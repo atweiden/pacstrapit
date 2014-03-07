@@ -285,18 +285,18 @@ done
 systemctl enable zramswap
 
 # set initramfs
-if   [[ ${_graphics} == intel  ]]; then
+if   [[ "${_graphics}" == 'intel'  ]]; then
   sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
-elif [[ ${_graphics} == nvidia ]]; then
+elif [[ "${_graphics}" == 'nvidia' ]]; then
   sed -i 's!MODULES.*!MODULES="crc32c nouveau"!' /etc/mkinitcpio.conf
-elif [[ ${_graphics} == radeon ]]; then
+elif [[ "${_graphics}" == 'radeon' ]]; then
   sed -i 's!MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
 fi
 sed -i 's!HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 # set sysctl.conf
-if [[ ${_disk} == ssd ]]; then
+if [[ "${_disk}" == 'ssd' ]]; then
 cat >> /etc/sysctl.conf <<'EOF'
 vm.swappiness=1
 vm.vfs_cache_pressure=50
@@ -305,11 +305,11 @@ fi
 
 # install grub
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
-if   [[ ${_disk} == ssd && ${_graphics} == radeon ]]; then
+if   [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\""
-elif [[ ${_disk} == ssd ]]; then
+elif [[ "${_disk}" == 'ssd' ]]; then
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\""
-elif [[ ${_graphics} == radeon ]]; then
+elif [[ "${_graphics}" == 'radeon' ]]; then
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\""
 else
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\""
@@ -352,8 +352,11 @@ if [ -z "$1" ]; then
 else
   echo "Changing sudoers"
   echo "${_user_name} ALL=(ALL) ALL" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /sbin/shutdown" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /sbin/reboot" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu" >> $1
 fi
 
 # create user home directory
