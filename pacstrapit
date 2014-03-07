@@ -1,0 +1,498 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# functions: toc
+# -----------------------------------------------------------------------------
+
+# gdiskify
+# luksify
+# zramswapify
+# pacstrapify
+
+
+# -----------------------------------------------------------------------------
+# variables: customize
+# -----------------------------------------------------------------------------
+
+# partition in which to install OS (caution)
+_partition=/dev/sda
+
+# machine's luks devmapper name (arbitrary)
+_luks_name=luksroot
+
+# machine's luks passphrase (strong)
+_luks_pass=secret
+
+# machine's hostname (arbitrary)
+_hostname=luksiso
+
+# machine's graphics card (intel, nvidia, or radeon)
+_graphics=intel
+
+# machine's hard drive (hdd or ssd)
+_disk=hdd
+
+# root pass (strong)
+_root_pass=secret
+
+# user name (arbitrary)
+_user_name=live
+
+# user pass (strong)
+_user_pass=secret
+
+
+# -----------------------------------------------------------------------------
+# gdiskify: create three GPT partitions (no swap) for btrfs + zramswap
+# -----------------------------------------------------------------------------
+
+function gdiskify() {
+expect <<EOF
+  spawn gdisk ${_partition}
+  expect "Command*" {
+    send "o\r"
+  }
+  expect "Command*" {
+    send "n\r"
+  }
+  expect "Partition number*" {
+    send "1\r"
+  }
+  expect "First sector*" {
+    send "\r"
+  }
+  expect "Last sector*" {
+    send "+2M\r"
+  }
+  expect "Hex code or GUID*" {
+    send "EF02\r"
+  }
+  expect "Command*" {
+    send "n\r"
+  }
+  expect "Partition number*" {
+    send "2\r"
+  }
+  expect "First sector*" {
+    send "\r"
+  }
+  expect "Last sector*" {
+    send "+128M\r"
+  }
+  expect "Hex code or GUID*" {
+    send "8300\r"
+  }
+  expect "Command*" {
+    send "n\r"
+  }
+  expect "Partition number*" {
+    send "3\r"
+  }
+  expect "First sector*" {
+    send "\r"
+  }
+  expect "Last sector*" {
+    send "\r"
+  }
+  expect "Hex code or GUID*" {
+    send "8300\r"
+  }
+  expect "Command*" {
+    send "w\r"
+  }
+  expect "Do you want to proceed*" {
+    send "Y\r"
+  }
+  expect eof
+EOF
+}
+
+
+# -----------------------------------------------------------------------------
+# luksify: create btrfs on luks system (boot, root)
+# -----------------------------------------------------------------------------
+
+function luksify() {
+
+# create unencrypted btrfs filesystem for /boot
+mkfs.btrfs ${_partition}2
+
+# load kernel modules required for luks
+modprobe dm_mod dm-crypt
+
+# create luks root partition
+expect <<EOF
+  spawn cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random --verify-passphrase luksFormat ${_partition}3
+  expect "Are you sure*" {
+    send "YES\r"
+  }
+  expect "Enter LUKS passphrase*" {
+    send "${_luks_pass}\r"
+  }
+  expect "Verify passphrase*" {
+    send "${_luks_pass}\r"
+  }
+  expect eof
+EOF
+
+# open luks root partition
+expect <<EOF
+  spawn cryptsetup luksOpen ${_partition}3 ${_luks_name}
+  expect "Enter passphrase*" {
+    send "${_luks_pass}\r"
+  }
+  expect eof
+EOF
+
+# create btrfs filesystem
+mkfs.btrfs /dev/mapper/${_luks_name}
+
+# create and mount main btrfs subvolumes
+mkdir /mnt2
+mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache /dev/mapper/${_luks_name} /mnt2
+cd /mnt2
+btrfs subvolume create @
+btrfs subvolume create @home
+btrfs subvolume create @opt
+btrfs subvolume create @srv
+btrfs subvolume create @tmp
+btrfs subvolume create @usr
+btrfs subvolume create @var
+mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@ /dev/mapper/${_luks_name} /mnt
+for _btrfs_dir in home opt srv tmp usr var; do
+  mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
+done
+cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
+
+# create and mount boot btrfs subvolume
+mkdir /mnt3
+mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,nodev,nosuid,noexec ${_partition}2 /mnt3
+cd /mnt3
+btrfs subvolume create @boot
+cd && umount /mnt3 && rmdir /mnt3 --ignore-fail-on-non-empty
+mkdir -p /mnt/boot && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,nodev,nosuid,noexec,subvol=@boot ${_partition}2 /mnt/boot
+}
+
+
+# -----------------------------------------------------------------------------
+# zramswapify: start zram swap service
+# -----------------------------------------------------------------------------
+
+function zramswapify() {
+
+# always suspend to RAM
+cat >> /etc/systemd/sleep.conf <<'EOF'
+[Sleep]
+SuspendMode=mem
+HibernateMode=mem
+HybridSleepMode=mem
+SuspendState=mem
+HibernateState=mem
+HybridSleepState=mem
+EOF
+
+# fetch deps to build aur packages
+pacman -Sy base-devel --needed --noconfirm
+
+# build zramswap aur package
+for _pkg in zramswap; do
+  mkdir -p ~/.src && cd ~/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  cd $_pkg
+  makepkg -Acsi --asroot --noconfirm
+  cd ..
+done
+
+# start zramswap
+systemctl start zramswap
+systemctl enable zramswap
+}
+
+
+# -----------------------------------------------------------------------------
+# pacstrapify: initialize and configure system
+# -----------------------------------------------------------------------------
+
+function pacstrapify() {
+
+# pacstrap [NET] packages
+pacstrap /mnt abs base base-devel btrfs-progs dhclient dialog ethtool grub-bios iproute2 iw kexec-tools net-tools openresolv openssh sshpass wget wireless_tools wpa_actiond wpa_supplicant
+
+# install a bootloader
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+# chroot into new system
+arch-chroot /mnt
+
+# set hostname
+echo ${_hostname} > /etc/hostname
+
+# set nameservers
+cat >> /etc/resolv.conf.head <<'EOF'
+# OpenDNS nameservers
+nameserver 208.67.222.222
+nameserver 208.67.220.220
+
+# Google nameservers
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+
+# set locale
+sed -i 's!#en_US\.UTF-8 UTF-8!en_US\.UTF-8 UTF-8!' /etc/locale.gen
+locale-gen
+cat >> /etc/locale.conf <<'EOF'
+LANG=en_US.UTF-8
+LC_TIME=en_US.UTF-8
+EOF
+export LANG=en_US.UTF-8
+
+# set console font
+setfont Lat2-Terminus16
+cat >> /etc/vconsole.conf <<'EOF'
+KEYMAP=us
+FONT=Lat2-Terminus16
+FONT_MAP=
+EOF
+
+# set timezone
+ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+# set hardware clock
+hwclock --systohc --utc
+
+# set zramswap
+cat >> /etc/systemd/sleep.conf <<'EOF'
+[Sleep]
+SuspendMode=mem
+HibernateMode=mem
+HybridSleepMode=mem
+SuspendState=mem
+HibernateState=mem
+HybridSleepState=mem
+EOF
+for _pkg in zramswap; do
+  mkdir -p ~/.src && cd ~/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  cd $_pkg
+  makepkg -Acsi --asroot --noconfirm
+  cd ..
+done
+systemctl enable zramswap
+
+# set initramfs
+if   [[ ${_graphics} == intel  ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
+elif [[ ${_graphics} == nvidia ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c nouveau"!' /etc/mkinitcpio.conf
+elif [[ ${_graphics} == radeon ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
+fi
+sed -i 's!HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+# set sysctl.conf
+if [[ ${_disk} == ssd ]]; then
+cat >> /etc/sysctl.conf <<'EOF'
+vm.swappiness=1
+vm.vfs_cache_pressure=50
+EOF
+fi
+
+# install grub
+_luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
+if   [[ ${_disk} == ssd && ${_graphics} == radeon ]]; then
+  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\""
+elif [[ ${_graphics} == radeon ]]; then
+  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\""
+else
+  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\""
+fi
+grub-install --target=i386-pc --recheck ${_partition}
+cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# set root password
+expect <<EOF
+  spawn passwd root
+  expect "Enter*" {
+    send "${_root_pass}\r"
+  }
+  expect "Retype*" {
+    send "${_root_pass}\r"
+  }
+  expect eof
+EOF
+
+# create user
+useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
+
+# set user password
+expect <<EOF
+  spawn passwd ${_user_name}
+  expect "Enter*" {
+    send "${_user_pass}\r"
+  }
+  expect "Retype*" {
+    send "${_user_pass}\r"
+  }
+  expect eof
+EOF
+
+# give user sudo permissions
+if [ -z "$1" ]; then
+  echo "Starting up visudo with this script as first parameter"
+  export EDITOR=$0 && sudo -E visudo
+else
+  echo "Changing sudoers"
+  echo "${_user_name} ALL=(ALL) ALL" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /sbin/shutdown" >> $1
+  echo "${_user_name} ALL=(ALL) NOPASSWD: /sbin/reboot" >> $1
+fi
+
+# create user home directory
+su -c "mkdir -p $HOME/{Desktop,Documents,Downloads,Graphics,Projects,.src,}" ${_user_name}
+
+# set systemd services
+systemctl enable cronie
+systemctl enable zramswap
+
+# set modprobe.conf
+cat >> /etc/modprobe.d/modprobe.conf <<'EOF'
+alias floppy off
+blacklist fd0
+blacklist floppy
+blacklist bcma
+blacklist snd_pcsp
+blacklist pcspkr
+EOF
+
+# exit pacstrapped chroot
+exit
+umount /mnt/{boot,home,opt,srv,tmp,usr,var,}
+}
+
+gdiskify
+luksify
+zramswapify
+pacstrapify
+
+read -d '' _pacman <<"EOF"
+                .;ok00000Oxl,
+            ,clol:,'......',:lolc.
+        .:oo;....................:ol;
+      .do'..........................;do.
+    .xo..............................od.
+   :k'................',..........,dl.
+  od.................0MMWc......:xc
+ ld..................kWMX:....ld,
+.K.........................'do.
+dc.......................;xl.
+K......................cd:
+K.....................:0'
+O,......................ld.
+:x........................dd.
+ 0,........................'do
+ .0'.........................'xl
+  .O;..........................,xc
+    od...........................;x:
+     .do...........................:k;
+       .od;........................cdc
+          'lll:...............'colc.
+              .:ccllllllllllcc;.
+EOF
+
+printf "${_pacman}\n"
+echo "******************************"
+echo "*                            *"
+echo "* Maybe time for a reboot... *"
+echo "*                            *"
+echo "******************************"
+
+# -----------------------------------------------------------------------------
+# pacstrap it!
+# -----------------------------------------------------------------------------
+
+
+read -d '' _pacstrapit <<"EOF"
+                                 UNLICENSE
+
+
+
+
+                              # # #               # # #
+                    #          it! #    #              #
+                    #    strap     #    # pacstrap it! #
+                    # pac          #    #              #
+                     # # #               # # #
+
+                              # # #               # # #
+                    #              #    # pac          #
+                    # pacstrap it! #    #    strap     #
+                    #              #    #          it! #
+                     # # #               # # #
+
+          # # #               # # #               # # #               # # #
+#              #    # pac          #    #     pac      #    #          pac #
+# pacstrap it! #    #    strap     #    #    strap     #    #     strap    #
+#              #    #          it! #    #     it!      #    # it!          #
+ # # #               # # #               # # #               # # #
+
+          # # #                                                       # # #
+# pac          #                                            #              #
+#    strap     #                                            # it! strappac #
+#          it! #                                            #              #
+ # # #                                                       # # #
+
+          # # #                                                       # # #
+#     pac      #                                            # it!          #
+#    strap     #                                            #     strap    #
+#     it!      #                                            #          pac #
+ # # #                                                       # # #
+
+          # # #               # # #               # # #               # # #
+#          pac #    #              #    # it!          #    #      it!     #
+#     strap    #    # it! strappac #    #     strap    #    #     strap    #
+# it!          #    #              #    #          pac #    #      pac     #
+ # # #               # # #               # # #               # # #
+
+          # # #               # # #               # # #               # # #
+#              #    # it!          #    #      it!     #    #          it! #
+# it! strappac #    #     strap    #    #     strap    #    #    strap     #
+#              #    #          pac #    #      pac     #    # pac          #
+ # # #               # # #               # # #               # # #
+
+          # # #                                                       # # #
+# it!          #                                            #              #
+#     strap    #                                            # pacstrap it! #
+#          pac #                                            #              #
+ # # #                                                       # # #
+
+          # # #                                                       # # #
+#      it!     #                                            # pac          #
+#     strap    #                                            #    strap     #
+#      pac     #                                            #          it! #
+ # # #                                                       # # #
+
+          # # #               # # #              # # #                # # #
+#          it! #    #              #    # pac          #    #     pac      #
+#    strap     #    # pacstrap it! #    #    strap     #    #    strap     #
+# pac          #    #              #    #          it! #    #     it!      #
+ # # #               # # #               # # #               # # #
+
+                             # # #                # # #
+                    # pac          #    #     pac      #
+                    #    strap     #    #    strap     #
+                    #          it! #    #     it!      #
+                     # # #               # # #
+
+                              # # #               # # #
+                    #     pac      #    #          pac #
+                    #    strap     #    #     strap    #
+                    #     it!      #    # it!          #
+                     # # #               # # #
+EOF
