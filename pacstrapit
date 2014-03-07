@@ -307,6 +307,9 @@ fi
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
 if   [[ ${_disk} == ssd && ${_graphics} == radeon ]]; then
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\""
+elif [[ ${_disk} == ssd ]]; then
+  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\""
+else
 elif [[ ${_graphics} == radeon ]]; then
   sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\""
 else
