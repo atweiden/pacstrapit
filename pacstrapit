@@ -387,25 +387,25 @@ read -d '' _pacman <<"EOF"
                 .;ok00000Oxl,
             ,clol:,'......',:lolc.
         .:oo;....................:ol;
-      .do'..........................;do.
-    .xo..............................od.
-   :k'................',..........,dl.
-  od.................0MMWc......:xc
- ld..................kWMX:....ld,
-.K.........................'do.
-dc.......................;xl.
-K......................cd:
-K.....................:0'
-O,......................ld.
-:x........................dd.
- 0,........................'do
- .0'.........................'xl
-  .O;..........................,xc
-    od...........................;x:
-     .do...........................:k;
-       .od;........................cdc
-          'lll:...............'colc.
-              .:ccllllllllllcc;.
+      .do'..........................;do.                    :cccccccccc:
+    .xo..............................od.              ',,,,,cccccccccccc,,,,,'
+   :k'................',..........,dl.             ...:cccccccccccccccccccccc:...
+  od.................0MMWc......:xc                :cccccccccccccccccccccccccccc:
+ ld..................kWMX:....ld,               ,,;ccccc;     .cccccccccccc.     ',,
+.K.........................'do.                 :cccc:''.      '',cccccc,''      .''
+dc.......................;xl.                   :cccc;            cccccc
+K......................cd:                      :cccc;      ooooolcccccc      cooooo
+K.....................:0'                    ...:cccc;     .ddddddcccccc      lddddd'..
+O,......................ld.                  :ccccccc;      oooddocccccc.     coodddcc:
+:x........................dd.                :cccccccccc;      cccccccccccc      ;cccc:
+ 0,........................'do               :cccccccccc:''''',cccccccccccc,''''':cccc:
+ .0'.........................'xl             :cccccccccccccccccccccccccccccccccccccccc:
+  .O;..........................,xc           :cccccccccccccccccccccccccccccccccccccccc:
+    od...........................;x:         :cccccccccccccccccccccccccccccccccccccccc:
+     .do...........................:k;       :cccc:'',cccccccc:'''''':cccccccc,'':cccc:
+       .od;........................cdc       :cccc,   :ccccccc,      ,ccccccc:   ,cccc:
+          'lll:...............'colc.         :c;        .:cccc,      ,cccc:.        ;c:
+              .:ccllllllllllcc;.             ''.         '''''.      .'''''         .''
 EOF
 
 printf "${_pacman}\n"
