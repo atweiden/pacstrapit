@@ -218,7 +218,7 @@ systemctl enable zramswap
 function pacstrapify() {
 
 # pacstrap [NET] packages
-pacstrap /mnt abs base base-devel btrfs-progs dhclient dialog ethtool grub-bios iproute2 iw kexec-tools net-tools openresolv openssh sshpass wget wireless_tools wpa_actiond wpa_supplicant
+pacstrap /mnt abs base base-devel btrfs-progs dhclient dialog dnscrypt-proxy ethtool grub-bios iproute2 iw kexec-tools net-tools openresolv openssh sshpass wget wireless_tools wpa_actiond wpa_supplicant
 
 # install a bootloader
 genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -231,6 +231,10 @@ echo ${_hostname} > /etc/hostname
 
 # set nameservers
 cat >> /etc/resolv.conf.head <<'EOF'
+# DNSCrypt
+options edns0
+nameserver 127.0.0.1
+
 # OpenDNS nameservers
 nameserver 208.67.222.222
 nameserver 208.67.220.220
@@ -239,6 +243,7 @@ nameserver 208.67.220.220
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
+systemctl enable dnscrypt-proxy.service
 
 # set locale
 sed -i 's!#en_US\.UTF-8 UTF-8!en_US\.UTF-8 UTF-8!' /etc/locale.gen
