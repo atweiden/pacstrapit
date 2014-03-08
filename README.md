@@ -16,15 +16,15 @@ Requirements
 Instructions
 ------------
 
-1. Burn CD with latest [Arch ISO](https://www.archlinux.org/download/)
-2. Insert CD into drive
-3. Boot from Arch ISO
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.5} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.0.5.tar.gz`
+1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
+2. Insert LiveCD/LiveUSB into drive
+3. Boot from LiveCD/LiveUSB
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.7} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.0.7.tar.gz`
 6. **Customize variables**
 
-*Warning: failure to give appropriate values could cause catastrophic
-data loss and boot failures.*
+WARNING: failure to give appropriate values could cause catastrophic
+data loss and boot failures.
 
 Defaults:
 
@@ -44,7 +44,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td><tr>
 </table>
 
-> `cd pacstrapit-0.0.1 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.0.7 && $EDITOR pacstrapit`
 
 Done. Ready to run `pacstrapit`.
 
