@@ -460,7 +460,7 @@ blacklist pcspkr
 EOF
 
 # debug
-if [[ $_debug == '1' ]]; then
+if [[ "$_debug" == '1' ]]; then
   arch-chroot /mnt systemctl list-unit-files    > /debug-systemctl-list-unit-files.txt
   arch-chroot /mnt ls -laiF /home/${_user_name} > /debug-ls-laif-home-user-name.txt
   mkdir -p pacstrapit-debug
@@ -493,10 +493,16 @@ luksify
 zramswapify
 pacstrapify
 
-printf "${_pacman}\n"
-printf "${_pacstrapit}\n"
-echo "******************************"
-echo "*                            *"
-echo "* Maybe time for a reboot... *"
-echo "*                            *"
-echo "******************************"
+if [[ "$_debug" == '1' ]]; then
+  echo "******************************"
+  echo "*                            *"
+  echo "* Examine pacstrapit-debug   *"
+  echo "*                            *"
+  echo "******************************"
+else
+  echo "******************************"
+  echo "*                            *"
+  echo "* Maybe time for a reboot... *"
+  echo "*                            *"
+  echo "******************************"
+fi
