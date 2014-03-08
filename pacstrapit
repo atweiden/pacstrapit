@@ -275,7 +275,7 @@ systemctl enable zramswap
 
 function pacstrapify() {
 
-# pacstrap [NET] packages
+# pacstrap packages
 pacstrap /mnt abs            \
               base           \
               base-devel     \
@@ -284,13 +284,16 @@ pacstrap /mnt abs            \
               dialog         \
               dnscrypt-proxy \
               ethtool        \
+              git            \
               grub-bios      \
               iproute2       \
               iw             \
               kexec-tools    \
+              mercurial      \
               net-tools      \
               openresolv     \
               openssh        \
+              python2        \
               sshpass        \
               wget           \
               wireless_tools \
