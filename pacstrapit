@@ -284,7 +284,6 @@ pacstrap /mnt abs            \
               dialog         \
               dnscrypt-proxy \
               ethtool        \
-              git            \
               grub-bios      \
               iproute2       \
               iw             \
