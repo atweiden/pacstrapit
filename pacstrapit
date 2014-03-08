@@ -439,20 +439,6 @@ arch-chroot /mnt expect <<EOF
   expect eof
 EOF
 
-# give user sudo permissions
-arch-chroot /mnt if [ -z "$1" ]; then
-  echo "Starting up visudo with this script as first parameter"
-  export EDITOR=$0 && sudo -E visudo
-else
-  echo "Changing sudoers"
-  echo "${_user_name} ALL=(ALL) ALL" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown" >> $1
-  echo "${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu" >> $1
-fi
-
 # create user home directory
 arch-chroot /mnt su -c "mkdir -p $HOME/{Desktop,Documents,Downloads,Graphics,Projects,.src,}" ${_user_name}
 

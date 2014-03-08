@@ -56,6 +56,7 @@ If the script exits with an error, it's best to reboot and start fresh.
 To Do
 -----
 
+- `cp sudoers /mnt/etc/sudoers`
 - tmpfs for vim, firefox, chromium
 - anything-sync-daemon
 - profile-sync-daemon
