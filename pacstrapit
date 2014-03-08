@@ -1,16 +1,6 @@
 #!/bin/bash
 
 # -----------------------------------------------------------------------------
-# functions: toc
-# -----------------------------------------------------------------------------
-
-# gdiskify
-# luksify
-# zramswapify
-# pacstrapify
-
-
-# -----------------------------------------------------------------------------
 # variables: customize
 # -----------------------------------------------------------------------------
 
@@ -26,11 +16,20 @@ _luks_pass=secret
 # machine's hostname (arbitrary)
 _hostname=luksiso
 
+# machine's processor (intel or other)
+_processor=intel
+
 # machine's graphics card (intel, nvidia, or radeon)
 _graphics=intel
 
 # machine's hard drive (hdd or ssd)
 _disk=hdd
+
+# machine's locale (TBD)
+_locale=en_US
+
+# machine's time zone (e.g. America/Los_Angeles corresponds to /usr/share/zoneinfo/America/Los_Angeles)
+_timezone=America/Los_Angeles
 
 # root pass (strong)
 _root_pass=secret
@@ -40,6 +39,16 @@ _user_name=live
 
 # user pass (strong)
 _user_pass=secret
+
+
+# -----------------------------------------------------------------------------
+# functions: toc
+# -----------------------------------------------------------------------------
+
+# gdiskify
+# luksify
+# zramswapify
+# pacstrapify
 
 
 # -----------------------------------------------------------------------------
@@ -248,7 +257,7 @@ systemctl enable dnscrypt-proxy.service
 # set locale
 sed -i 's!#en_US\.UTF-8 UTF-8!en_US\.UTF-8 UTF-8!' /etc/locale.gen
 locale-gen
-cat >> /etc/locale.conf <<'EOF'
+cat >> /etc/locale.conf <<EOF
 LANG=en_US.UTF-8
 LC_TIME=en_US.UTF-8
 EOF
@@ -256,14 +265,14 @@ export LANG=en_US.UTF-8
 
 # set console font
 setfont Lat2-Terminus16
-cat >> /etc/vconsole.conf <<'EOF'
+cat >> /etc/vconsole.conf <<EOF
 KEYMAP=us
 FONT=Lat2-Terminus16
 FONT_MAP=
 EOF
 
 # set timezone
-ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
 
 # set hardware clock
 hwclock --systohc --utc
@@ -290,8 +299,14 @@ done
 systemctl enable zramswap
 
 # set initramfs
-if   [[ "${_graphics}" == 'intel'  ]]; then
+if   [[ "${_processor}" == 'intel' && "${_graphics}" == 'intel' ]]; then
   sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
+elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'nvidia' ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c=intel nouveau"!' /etc/mkinitcpio.conf
+elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'radeon' ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c=intel radeon"!' /etc/mkinitcpio.conf
+elif [[ "${_graphics}" == 'intel' ]]; then
+  sed -i 's!MODULES.*!MODULES="crc32c i915"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'nvidia' ]]; then
   sed -i 's!MODULES.*!MODULES="crc32c nouveau"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'radeon' ]]; then
