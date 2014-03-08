@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e -x
-
 # -----------------------------------------------------------------------------
 # variables: customize
 # -----------------------------------------------------------------------------
@@ -318,14 +316,11 @@ pacstrap /mnt abs            \
 # install a bootloader
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-# chroot into new system
-arch-chroot /mnt
-
 # set hostname
-echo ${_hostname} > /etc/hostname
+arch-chroot /mnt echo ${_hostname} > /etc/hostname
 
 # set nameservers
-cat >> /etc/resolv.conf.head <<'EOF'
+arch-chroot /mnt cat >> /etc/resolv.conf.head <<'EOF'
 # DNSCrypt
 options edns0
 nameserver 127.0.0.1
@@ -338,33 +333,32 @@ nameserver 208.67.220.220
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
-systemctl enable dnscrypt-proxy.service
+arch-chroot /mnt systemctl enable dnscrypt-proxy.service
 
 # set locale
-sed -i "s!#${_locale}\.UTF-8 UTF-8!${_locale}\.UTF-8 UTF-8!" /etc/locale.gen
-locale-gen
-cat >> /etc/locale.conf <<EOF
+arch-chroot /mnt sed -i "s!#${_locale}\.UTF-8 UTF-8!${_locale}\.UTF-8 UTF-8!" /etc/locale.gen
+arch-chroot /mnt locale-gen
+arch-chroot /mnt cat >> /etc/locale.conf <<EOF
 LANG=${_locale}.UTF-8
 LC_TIME=${_locale}.UTF-8
 EOF
-export LANG=${_locale}.UTF-8
+arch-chroot /mnt export LANG=${_locale}.UTF-8
 
 # set console font
-setfont Lat2-Terminus16
-cat >> /etc/vconsole.conf <<EOF
+arch-chroot /mnt cat >> /etc/vconsole.conf <<EOF
 KEYMAP=${_keymap}
 FONT=Lat2-Terminus16
 FONT_MAP=
 EOF
 
 # set timezone
-ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
+arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
 
 # set hardware clock
-hwclock --systohc --utc
+arch-chroot /mnt hwclock --systohc --utc
 
 # set zramswap
-cat >> /etc/systemd/sleep.conf <<'EOF'
+arch-chroot /mnt cat >> /etc/systemd/sleep.conf <<'EOF'
 [Sleep]
 SuspendMode=mem
 HibernateMode=mem
@@ -373,37 +367,35 @@ SuspendState=mem
 HibernateState=mem
 HybridSleepState=mem
 EOF
-for _pkg in zramswap; do
+arch-chroot /mnt for _pkg in zramswap; do
   mkdir -p ~/.src && cd ~/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
+  cd $_pkg && makepkg -Acsi --asroot --noconfirm && cd ..
 done
-systemctl enable zramswap
+arch-chroot /mnt systemctl enable zramswap
 
 # set initramfs
 if   [[ "${_processor}" == 'intel' && "${_graphics}" == 'intel' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
 elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'nvidia' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c=intel nouveau"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c=intel nouveau"!' /etc/mkinitcpio.conf
 elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'radeon' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c=intel radeon"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c=intel radeon"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'intel' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c i915"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c i915"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'nvidia' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c nouveau"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c nouveau"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'radeon' ]]; then
-  sed -i 's!MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
 fi
-sed -i 's!HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
-mkinitcpio -p linux
+arch-chroot /mnt sed -i 's!HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+arch-chroot /mnt mkinitcpio -p linux
 
 # set sysctl.conf
 if [[ "${_disk}" == 'ssd' ]]; then
-cat >> /etc/sysctl.conf <<'EOF'
+arch-chroot /mnt cat >> /etc/sysctl.conf <<'EOF'
 vm.swappiness=1
 vm.vfs_cache_pressure=50
 EOF
@@ -412,20 +404,20 @@ fi
 # install grub
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
 if   [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
-  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\""
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\""
 elif [[ "${_disk}" == 'ssd' ]]; then
-  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\""
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\""
 elif [[ "${_graphics}" == 'radeon' ]]; then
-  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\""
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\""
 else
-  sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\""
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\""
 fi
-grub-install --target=i386-pc --recheck ${_partition}
-cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
+arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
-expect <<EOF
+arch-chroot /mnt expect <<EOF
   spawn passwd root
   expect "Enter*" {
     send "${_root_pass}\r"
@@ -437,10 +429,10 @@ expect <<EOF
 EOF
 
 # create user
-useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
+arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
 
 # set user password
-expect <<EOF
+arch-chroot /mnt expect <<EOF
   spawn passwd ${_user_name}
   expect "Enter*" {
     send "${_user_pass}\r"
@@ -452,7 +444,7 @@ expect <<EOF
 EOF
 
 # give user sudo permissions
-if [ -z "$1" ]; then
+arch-chroot /mnt if [ -z "$1" ]; then
   echo "Starting up visudo with this script as first parameter"
   export EDITOR=$0 && sudo -E visudo
 else
@@ -466,14 +458,14 @@ else
 fi
 
 # create user home directory
-su -c "mkdir -p $HOME/{Desktop,Documents,Downloads,Graphics,Projects,.src,}" ${_user_name}
+arch-chroot /mnt su -c "mkdir -p $HOME/{Desktop,Documents,Downloads,Graphics,Projects,.src,}" ${_user_name}
 
 # set systemd services
-systemctl enable cronie
-systemctl enable zramswap
+arch-chroot /mnt systemctl enable cronie
+arch-chroot /mnt systemctl enable zramswap
 
 # set modprobe.conf
-cat >> /etc/modprobe.d/modprobe.conf <<'EOF'
+arch-chroot /mnt cat >> /etc/modprobe.d/modprobe.conf <<'EOF'
 alias floppy off
 blacklist fd0
 blacklist floppy
@@ -483,7 +475,6 @@ blacklist pcspkr
 EOF
 
 # exit pacstrapped chroot
-exit
 umount /mnt/{boot,home,opt,srv,tmp,usr,var,}
 }
 
@@ -612,6 +603,7 @@ zramswapify
 pacstrapify
 
 printf "${_pacman}\n"
+printf "${_pacstrapit}\n"
 echo "******************************"
 echo "*                            *"
 echo "* Maybe time for a reboot... *"
