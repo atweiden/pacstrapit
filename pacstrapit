@@ -90,6 +90,10 @@ _user_pass=secret
 # dependency checks
 # -----------------------------------------------------------------------------
 
+# depends: root
+if ! [[ "$UID" == '0' ]]; then exit 1; fi
+
+# depends: expect
 if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
 
 
