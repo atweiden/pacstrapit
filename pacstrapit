@@ -25,13 +25,53 @@ _graphics=intel
 # machine's hard drive (hdd or ssd)
 _disk=hdd
 
-# machine's locale
+# machine's locale # de_DE
+                   # en_AU
+                   # en_GB
+                   # es_ES
+                   # fr_FR
+                   # it_IT
+                   # ja_JP
+                   # nl_NL
+                   # zh_CN
+                   # zh_TW
+                   # etc...
 _locale=en_US
 
-# machine's keymap
+# machine's keymap # de
+                   # es
+                   # fr
+                   # it
+                   # nl
+                   # ru
+                   # uk
+                   # us
+                   # etc...
 _keymap=us
 
-# machine's time zone (e.g. America/Los_Angeles corresponds to /usr/share/zoneinfo/America/Los_Angeles)
+# machine's time zone # Africa/Johannesburg  (SAST)
+                      # Africa/Lagos         (WAT)
+                      # Africa/Lusaka        (CAT)
+                      # Africa/Nairobi       (EAT)
+                      # America/Denver       (MST)
+                      # America/Indianapolis (CST)
+                      # America/Los_Angeles  (PST)
+                      # America/New_York     (EST)
+                      # Asia/Calcutta        (IST)
+                      # Asia/Hong_Kong       (HKT)
+                      # Asia/Istanbul        (EET)
+                      # Asia/Karachi         (PKT)
+                      # Asia/Kathmandu       (NPT)
+                      # Asia/Phnom_Penh      (ICT)
+                      # Asia/Seoul           (KT)
+                      # Asia/Shanghai        (CT)
+                      # Asia/Tokyo           (JT)
+                      # Australia/Perth      (WST)
+                      # Australia/Sydney     (EST)
+                      # Europe/Berlin        (CET)
+                      # Europe/London        (GMT/BST)
+                      # Pacific/Honolulu     (HST)
+                      # etc...
 _timezone=America/Los_Angeles
 
 # root pass (strong)
