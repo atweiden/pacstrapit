@@ -211,7 +211,7 @@ EOF
 mkfs.btrfs /dev/mapper/${_luks_name}
 
 # create and mount main btrfs subvolumes
-mkdir /mnt2
+mkdir -p /mnt2
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache /dev/mapper/${_luks_name} /mnt2
 cd /mnt2
 btrfs subvolume create @
@@ -228,7 +228,7 @@ done
 cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
 
 # create and mount boot btrfs subvolume
-mkdir /mnt3
+mkdir -p /mnt3
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,nodev,nosuid,noexec ${_partition}2 /mnt3
 cd /mnt3
 btrfs subvolume create @boot
