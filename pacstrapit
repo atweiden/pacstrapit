@@ -25,8 +25,11 @@ _graphics=intel
 # machine's hard drive (hdd or ssd)
 _disk=hdd
 
-# machine's locale (TBD)
+# machine's locale
 _locale=en_US
+
+# machine's keymap
+_keymap=us
 
 # machine's time zone (e.g. America/Los_Angeles corresponds to /usr/share/zoneinfo/America/Los_Angeles)
 _timezone=America/Los_Angeles
@@ -255,18 +258,18 @@ EOF
 systemctl enable dnscrypt-proxy.service
 
 # set locale
-sed -i 's!#en_US\.UTF-8 UTF-8!en_US\.UTF-8 UTF-8!' /etc/locale.gen
+sed -i "s!#${_locale}\.UTF-8 UTF-8!${_locale}\.UTF-8 UTF-8!" /etc/locale.gen
 locale-gen
 cat >> /etc/locale.conf <<EOF
-LANG=en_US.UTF-8
-LC_TIME=en_US.UTF-8
+LANG=${_locale}.UTF-8
+LC_TIME=${_locale}.UTF-8
 EOF
-export LANG=en_US.UTF-8
+export LANG=${_locale}.UTF-8
 
 # set console font
 setfont Lat2-Terminus16
 cat >> /etc/vconsole.conf <<EOF
-KEYMAP=us
+KEYMAP=${_keymap}
 FONT=Lat2-Terminus16
 FONT_MAP=
 EOF
