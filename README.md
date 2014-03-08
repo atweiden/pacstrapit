@@ -6,16 +6,22 @@ Features
 
 - Btrfs on LUKS
 
+
+Requirements
+------------
+
+- `expect`
+
+
 Instructions
 ------------
 
 1. Burn CD with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Insert CD into drive
 3. Boot from Arch ISO
-4. Fetch deps: `pacman -Sy expect`
-5. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.2} -o "#1-#3.#2"`
-6. Extract: `tar xvzf pacstrapit-0.0.2.tar.gz`
-7. **Customize variables**
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.5} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.0.5.tar.gz`
+6. **Customize variables**
 
 *Warning: failure to give appropriate values could cause catastrophic
 data loss and boot failures.*
@@ -43,6 +49,9 @@ Defaults:
 Done. Ready to run `pacstrapit`.
 
 > `./pacstrapit`
+
+If the script exits with an error, it's best to reboot and start fresh.
+
 
 To Do
 -----
