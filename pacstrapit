@@ -174,7 +174,13 @@ modprobe dm_mod dm-crypt
 
 # create luks root partition
 expect <<EOF
-  spawn cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --use-random --verify-passphrase luksFormat ${_partition}3
+  spawn cryptsetup --cipher aes-xts-plain64 \
+                   --key-size 512           \
+                   --hash sha512            \
+                   --iter-time 5000         \
+                   --use-random             \
+                   --verify-passphrase      \
+                   luksFormat ${_partition}3
   expect "Are you sure*" {
     send "YES\r"
   }
@@ -270,7 +276,26 @@ systemctl enable zramswap
 function pacstrapify() {
 
 # pacstrap [NET] packages
-pacstrap /mnt abs base base-devel btrfs-progs dhclient dialog dnscrypt-proxy ethtool grub-bios iproute2 iw kexec-tools net-tools openresolv openssh sshpass wget wireless_tools wpa_actiond wpa_supplicant
+pacstrap /mnt abs            \
+              base           \
+              base-devel     \
+              btrfs-progs    \
+              dhclient       \
+              dialog         \
+              dnscrypt-proxy \
+              ethtool        \
+              grub-bios      \
+              iproute2       \
+              iw             \
+              kexec-tools    \
+              net-tools      \
+              openresolv     \
+              openssh        \
+              sshpass        \
+              wget           \
+              wireless_tools \
+              wpa_actiond    \
+              wpa_supplicant
 
 # install a bootloader
 genfstab -U -p /mnt >> /mnt/etc/fstab
