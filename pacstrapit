@@ -83,6 +83,9 @@ _user_name=live
 # user pass (strong)
 _user_pass=secret
 
+# debug on/off (0 or 1)
+_debug=1
+
 
 # -----------------------------------------------------------------------------
 # dependency checks
@@ -298,6 +301,7 @@ pacstrap /mnt abs            \
               dialog         \
               dnscrypt-proxy \
               ethtool        \
+              expect         \
               grub-bios      \
               iproute2       \
               iw             \
@@ -342,7 +346,6 @@ arch-chroot /mnt cat >> /etc/locale.conf <<EOF
 LANG=${_locale}.UTF-8
 LC_TIME=${_locale}.UTF-8
 EOF
-arch-chroot /mnt export LANG=${_locale}.UTF-8
 
 # set console font
 arch-chroot /mnt cat >> /etc/vconsole.conf <<EOF
@@ -376,9 +379,9 @@ arch-chroot /mnt systemctl enable zramswap
 if   [[ "${_processor}" == 'intel' && "${_graphics}" == 'intel' ]]; then
   arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
 elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'nvidia' ]]; then
-  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c=intel nouveau"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c-intel nouveau"!' /etc/mkinitcpio.conf
 elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'radeon' ]]; then
-  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c=intel radeon"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c-intel radeon"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'intel' ]]; then
   arch-chroot /mnt sed -i 's!MODULES.*!MODULES="crc32c i915"!' /etc/mkinitcpio.conf
 elif [[ "${_graphics}" == 'nvidia' ]]; then
@@ -456,123 +459,29 @@ blacklist snd_pcsp
 blacklist pcspkr
 EOF
 
+# debug
+if [[ $_debug == '1' ]]; then
+  arch-chroot /mnt systemctl list-unit-files    > /debug-systemctl-list-unit-files.txt
+  arch-chroot /mnt ls -laiF /home/${_user_name} > /debug-ls-laif-home-user-name.txt
+  mkdir -p pacstrapit-debug
+  cp /mnt/boot/grub/grub.cfg                  pacstrapit-debug/debug-grub.cfg
+  cp /mnt/etc/fstab                           pacstrapit-debug/debug-fstab
+  cp /mnt/etc/hostname                        pacstrapit-debug/debug-hostname
+  cp /mnt/etc/locale.conf                     pacstrapit-debug/debug-locale.conf
+  cp /mnt/etc/locale.gen                      pacstrapit-debug/debug-locale.gen
+  cp /mnt/etc/mkinitcpio.conf                 pacstrapit-debug/debug-mkinitcpio.conf
+  cp /mnt/etc/modprobe.d/modprobe.conf        pacstrapit-debug/debug-modprobe.conf
+  cp /mnt/etc/resolv.conf.head                pacstrapit-debug/debug-resolv.conf.head
+  cp /mnt/etc/sysctl.conf                     pacstrapit-debug/debug-sysctl.conf
+  cp /mnt/etc/systemd/sleep.conf              pacstrapit-debug/debug-systemd-sleep.conf
+  cp /mnt/etc/vconsole.conf                   pacstrapit-debug/debug-vconsole.conf
+  cp /mnt/debug-ls-laif-home-user-name.txt    pacstrapit-debug
+  cp /mnt/debug-systemctl-list-unit-files.txt pacstrapit-debug
+fi
+
 # exit pacstrapped chroot
 umount /mnt/{boot,home,opt,srv,tmp,usr,var,}
 }
-
-
-# -----------------------------------------------------------------------------
-# pacman
-# -----------------------------------------------------------------------------
-
-read -d '' _pacman <<"EOF"
-                .;ok00000Oxl,
-            ,clol:,'......',:lolc.
-        .:oo;....................:ol;
-      .do'..........................;do.                    :cccccccccc:
-    .xo..............................od.              ',,,,,cccccccccccc,,,,,'
-   :k'................',..........,dl.             ...:cccccccccccccccccccccc:...
-  od.................0MMWc......:xc                :cccccccccccccccccccccccccccc:
- ld..................kWMX:....ld,               ,,;ccccc;     .cccccccccccc.     ',,
-.K.........................'do.                 :cccc:''.      '',cccccc,''      .''
-dc.......................;xl.                   :cccc;            cccccc
-K......................cd:                      :cccc;      ooooolcccccc      cooooo
-K.....................:0'                    ...:cccc;     .ddddddcccccc      lddddd'..
-O,......................ld.                  :ccccccc;      oooddocccccc.     coodddcc:
-:x........................dd.                :cccccccccc;      cccccccccccc      ;cccc:
- 0,........................'do               :cccccccccc:''''',cccccccccccc,''''':cccc:
- .0'.........................'xl             :cccccccccccccccccccccccccccccccccccccccc:
-  .O;..........................,xc           :cccccccccccccccccccccccccccccccccccccccc:
-    od...........................;x:         :cccccccccccccccccccccccccccccccccccccccc:
-     .do...........................:k;       :cccc:'',cccccccc:'''''':cccccccc,'':cccc:
-       .od;........................cdc       :cccc,   :ccccccc,      ,ccccccc:   ,cccc:
-          'lll:...............'colc.         :c;        .:cccc,      ,cccc:.        ;c:
-              .:ccllllllllllcc;.             ''.         '''''.      .'''''         .''
-EOF
-
-
-# -----------------------------------------------------------------------------
-# pacstrap it!
-# -----------------------------------------------------------------------------
-
-read -d '' _pacstrapit <<"EOF"
-                                 UNLICENSE
-
-
-
-
-                              # # #               # # #
-                    #          it! #    #              #
-                    #    strap     #    # pacstrap it! #
-                    # pac          #    #              #
-                     # # #               # # #
-
-                              # # #               # # #
-                    #              #    # pac          #
-                    # pacstrap it! #    #    strap     #
-                    #              #    #          it! #
-                     # # #               # # #
-
-          # # #               # # #               # # #               # # #
-#              #    # pac          #    #     pac      #    #          pac #
-# pacstrap it! #    #    strap     #    #    strap     #    #     strap    #
-#              #    #          it! #    #     it!      #    # it!          #
- # # #               # # #               # # #               # # #
-
-          # # #                                                       # # #
-# pac          #                                            #              #
-#    strap     #                                            # it! strappac #
-#          it! #                                            #              #
- # # #                                                       # # #
-
-          # # #                                                       # # #
-#     pac      #                                            # it!          #
-#    strap     #                                            #     strap    #
-#     it!      #                                            #          pac #
- # # #                                                       # # #
-
-          # # #               # # #               # # #               # # #
-#          pac #    #              #    # it!          #    #      it!     #
-#     strap    #    # it! strappac #    #     strap    #    #     strap    #
-# it!          #    #              #    #          pac #    #      pac     #
- # # #               # # #               # # #               # # #
-
-          # # #               # # #               # # #               # # #
-#              #    # it!          #    #      it!     #    #          it! #
-# it! strappac #    #     strap    #    #     strap    #    #    strap     #
-#              #    #          pac #    #      pac     #    # pac          #
- # # #               # # #               # # #               # # #
-
-          # # #                                                       # # #
-# it!          #                                            #              #
-#     strap    #                                            # pacstrap it! #
-#          pac #                                            #              #
- # # #                                                       # # #
-
-          # # #                                                       # # #
-#      it!     #                                            # pac          #
-#     strap    #                                            #    strap     #
-#      pac     #                                            #          it! #
- # # #                                                       # # #
-
-          # # #               # # #              # # #                # # #
-#          it! #    #              #    # pac          #    #     pac      #
-#    strap     #    # pacstrap it! #    #    strap     #    #    strap     #
-# pac          #    #              #    #          it! #    #     it!      #
- # # #               # # #               # # #               # # #
-
-                             # # #                # # #
-                    # pac          #    #     pac      #
-                    #    strap     #    #    strap     #
-                    #          it! #    #     it!      #
-                     # # #               # # #
-
-                              # # #               # # #
-                    #     pac      #    #          pac #
-                    #    strap     #    #     strap    #
-                    #     it!      #    # it!          #
-                     # # #               # # #
-EOF
 
 
 # -----------------------------------------------------------------------------
