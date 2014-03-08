@@ -104,6 +104,9 @@ expect <<EOF
   expect "Command*" {
     send "o\r"
   }
+  expect "Proceed*" {
+    send "Y\r"
+  }
   expect "Command*" {
     send "n\r"
   }

@@ -13,8 +13,8 @@ Instructions
 2. Insert CD into drive
 3. Boot from Arch ISO
 4. Fetch deps: `pacman -Sy expect`
-5. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.1} -o "#1-#3.#2"`
-6. Extract: `tar xvzf pacstrapit-0.0.1.tar.gz`
+5. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.2} -o "#1-#3.#2"`
+6. Extract: `tar xvzf pacstrapit-0.0.2.tar.gz`
 7. **Customize variables**
 
 *Warning: failure to give appropriate values could cause catastrophic
