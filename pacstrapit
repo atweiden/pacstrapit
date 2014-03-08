@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e -u -x
+
 # -----------------------------------------------------------------------------
 # variables: customize
 # -----------------------------------------------------------------------------
@@ -187,10 +189,10 @@ expect <<EOF
   expect "Are you sure*" {
     send "YES\r"
   }
-  expect "Enter LUKS passphrase*" {
+  expect "Enter*" {
     send "${_luks_pass}\r"
   }
-  expect "Verify passphrase*" {
+  expect "Verify*" {
     send "${_luks_pass}\r"
   }
   expect eof
@@ -199,7 +201,7 @@ EOF
 # open luks root partition
 expect <<EOF
   spawn cryptsetup luksOpen ${_partition}3 ${_luks_name}
-  expect "Enter passphrase*" {
+  expect "Enter*" {
     send "${_luks_pass}\r"
   }
   expect eof
