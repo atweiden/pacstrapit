@@ -53,7 +53,20 @@ If the script exits with an error, it's best to reboot and start fresh.
 To Do
 -----
 
-- `cp $srcdir/sudoers /mnt/etc/sudoers`
+- use arch-chroot sparingly, only for proven working commands
+  - `sed`
+  - `expect`
+- not working:
+  - /etc/hostname
+  - /etc/locale.conf
+  - /etc/locale.gen
+  - /etc/modprobe.d/modprobe.conf
+  - /etc/resolv.conf.head
+  - /etc/sudoers
+  - /etc/sysctl.conf
+  - /etc/systemd/sleep.conf
+  - /etc/vconsole.conf
+  - probably explains why latest zramswap isn't working
 - tmpfs for vim, firefox, chromium
 - anything-sync-daemon
 - profile-sync-daemon
