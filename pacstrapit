@@ -688,14 +688,16 @@ EOF
                      echo "********************"
                                   fi
 
+arch-chroot /mnt cat >> /tmp/installzram.sh <<'EOF'
+#!/bin/bash
 for _pkg in zramswap; do
-  arch-chroot /mnt mkdir -p /root/.src
-  arch-chroot /mnt rm -rf /root/.src/${_pkg} /root/.src/${_pkg}.tar.gz
-  arch-chroot /mnt mkdir -p /root/.src/${_pkg}
-  arch-chroot /mnt curl -k https://aur.archlinux.org/packages/${_pkg:0:2}/${_pkg}/${_pkg}.tar.gz -o /root/.src/${_pkg}.tar.gz
-  arch-chroot /mnt tar -xvzf /root/.src/${_pkg}.tar.gz --strip 1 -C /root/.src/${_pkg}
-  arch-chroot /mnt cd /root/.src/${_pkg} && makepkg -Acsi --asroot --noconfirm
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/${_pkg}/${_pkg}.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1
+  makepkg -Acsi --asroot --noconfirm
 done
+EOF
+arch-chroot /mnt chmod +x /tmp/installzram.sh
+arch-chroot /mnt /tmp/installzram.sh
 arch-chroot /mnt systemctl enable zramswap
 
 # set initramfs
