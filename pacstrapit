@@ -133,7 +133,7 @@ if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
 pacman -Sy abs --noconfirm
 abs extra/arch-install-scripts
 cd /var/abs/extra/arch-install-scripts
-sed -i 's!^SHELL=/bin/sh!SHELL=/bin/bash!' arch-chroot.in
+sed -i '/^build.*/a sed -i "s!^SHELL=/bin/sh!SHELL=/bin/bash!" "$pkgname-$pkgver"/arch-chroot.in' PKGBUILD
 makepkg -Acsi --asroot --noconfirm
 
 
