@@ -7,24 +7,17 @@ Features
 - Btrfs on LUKS
 
 
-Requirements
-------------
-
-- `expect`
-
-
 Instructions
 ------------
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
-2. Insert LiveCD/LiveUSB into drive
-3. Boot from LiveCD/LiveUSB
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.8} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.0.8.tar.gz`
-6. **Customize variables**
+2. Boot from LiveCD/LiveUSB
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.10} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.0.10.tar.gz`
+5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
-data loss and boot failures.
+data loss and system instability.
 
 Defaults:
 
@@ -44,11 +37,12 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td><tr>
 </table>
 
-> `cd pacstrapit-0.0.8 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.0.10 && $EDITOR pacstrapit`
 
 Done. Ready to run `pacstrapit`.
 
 > `./pacstrapit`
+> `./pacstrapit 2>&1 | tee pacstrapit.log # with logging`
 
 If the script exits with an error, it's best to reboot and start fresh.
 
@@ -56,7 +50,7 @@ If the script exits with an error, it's best to reboot and start fresh.
 To Do
 -----
 
-- `cp sudoers /mnt/etc/sudoers`
+- `cp $srcdir/sudoers /mnt/etc/sudoers`
 - tmpfs for vim, firefox, chromium
 - anything-sync-daemon
 - profile-sync-daemon
