@@ -690,11 +690,10 @@ EOF
 
 arch-chroot /mnt cat >> /tmp/installzram.sh <<'EOF'
 #!/bin/bash
-for _pkg in zramswap; do
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/${_pkg}/${_pkg}.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1
-  makepkg -Acsi --asroot --noconfirm
-done
+cd /tmp
+curl -k -O https://aur.archlinux.org/packages/zr/zramswap/zramswap.tar.gz
+tar -xvzf zramswap.tar.gz --strip 1
+makepkg -Acsi --asroot --noconfirm
 EOF
 arch-chroot /mnt chmod +x /tmp/installzram.sh
 arch-chroot /mnt /tmp/installzram.sh
