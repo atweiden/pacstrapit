@@ -694,7 +694,10 @@ for _pkg in zramswap; do
   arch-chroot /mnt mkdir -p /root/.src/$_pkg
   arch-chroot /mnt curl -k https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz -o /root/.src/${_pkg}.tar.gz
   arch-chroot /mnt tar -xvzf /root/.src/${_pkg}.tar.gz --strip 1 -C /root/.src/$_pkg
-  arch-chroot /mnt makepkg -p /root/.src/$_pkg/PKGBUILD -Acsi --asroot --noconfirm
+  arch-chroot /mnt PKGDEST="/root/.src/${_pkg}" \
+                   SRCDEST="/root/.src/${_pkg}" \
+                   BUILDDIR="/root/.src/${_pkg}" \
+                   makepkg -p /root/.src/$_pkg/PKGBUILD -Acsi --asroot --noconfirm
 done
 arch-chroot /mnt systemctl enable zramswap
 
