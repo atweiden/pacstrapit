@@ -120,6 +120,22 @@ if ! [[ "$UID" == '0' ]]; then exit 1; fi
 
 if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
 
+# depends: arch-install-scripts-bash
+
+                   if [[ "$_debug" == '1' ]]; then
+            echo "**************************************"
+            echo "*                                    *"
+            echo "* depends: arch-install-scripts-bash *"
+            echo "*                                    *"
+            echo "**************************************"
+                                  fi
+
+pacman -Sy abs --noconfirm
+abs extra/arch-install-scripts
+cd /var/abs/extra/arch-install-scripts
+sed -i 's!^SHELL=/bin/sh!SHELL=/bin/bash!' arch-chroot.in
+makepkg -Acsi --asroot --noconfirm
+
 
 
 
@@ -688,15 +704,15 @@ EOF
                      echo "********************"
                                   fi
 
-arch-chroot /mnt cat >> /tmp/installzram.sh <<'EOF'
+arch-chroot /mnt cat >> /dev/shm/installzram.sh <<'EOF'
 #!/bin/bash
-cd /tmp
+cd /dev/shm
 curl -k -O https://aur.archlinux.org/packages/zr/zramswap/zramswap.tar.gz
 tar -xvzf zramswap.tar.gz --strip 1
 makepkg -Acsi --asroot --noconfirm
 EOF
-arch-chroot /mnt chmod +x /tmp/installzram.sh
-arch-chroot /mnt /tmp/installzram.sh
+arch-chroot /mnt chmod +x /dev/shm/installzram.sh
+arch-chroot /mnt /dev/shm/installzram.sh
 arch-chroot /mnt systemctl enable zramswap
 
 # set initramfs
