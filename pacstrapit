@@ -690,14 +690,11 @@ EOF
 
 for _pkg in zramswap; do
   arch-chroot /mnt mkdir -p /root/.src
-  arch-chroot /mnt rm -rf /root/.src/$_pkg /root/.src/${_pkg}.tar.gz
-  arch-chroot /mnt mkdir -p /root/.src/$_pkg
-  arch-chroot /mnt curl -k https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz -o /root/.src/${_pkg}.tar.gz
-  arch-chroot /mnt tar -xvzf /root/.src/${_pkg}.tar.gz --strip 1 -C /root/.src/$_pkg
-  arch-chroot /mnt PKGDEST="/root/.src/${_pkg}" \
-                   SRCDEST="/root/.src/${_pkg}" \
-                   BUILDDIR="/root/.src/${_pkg}" \
-                   makepkg -p /root/.src/$_pkg/PKGBUILD -Acsi --asroot --noconfirm
+  arch-chroot /mnt rm -rf /root/.src/${_pkg} /root/.src/${_pkg}.tar.gz
+  arch-chroot /mnt mkdir -p /root/.src/${_pkg}
+  arch-chroot /mnt curl -k https://aur.archlinux.org/packages/${_pkg:0:2}/${_pkg}/${_pkg}.tar.gz -o /root/.src/${_pkg}.tar.gz
+  arch-chroot /mnt tar -xvzf /root/.src/${_pkg}.tar.gz --strip 1 -C /root/.src/${_pkg}
+  arch-chroot /mnt cd /root/.src/${_pkg} && makepkg -Acsi --asroot --noconfirm
 done
 arch-chroot /mnt systemctl enable zramswap
 
@@ -756,13 +753,13 @@ fi
 
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
 if   [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
+  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
 elif [[ "${_disk}" == 'ssd' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"!" /etc/default/grub
+  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"!" /etc/default/grub
 elif [[ "${_graphics}" == 'radeon' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\"!" /etc/default/grub
+  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\"!" /etc/default/grub
 else
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"!" /etc/default/grub
+  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"!" /etc/default/grub
 fi
 arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
@@ -865,8 +862,8 @@ EOF
                                   fi
 
 if [[ "$_debug" == '1' ]]; then
-  arch-chroot /mnt systemctl list-unit-files    > /debug-systemctl-list-unit-files.txt
-  arch-chroot /mnt ls -laiF /home/${_user_name} > /debug-ls-laif-home-user-name.txt
+  arch-chroot /mnt systemctl list-unit-files    > /root/debug-systemctl-list-unit-files.txt
+  arch-chroot /mnt ls -laiF /home/${_user_name} > /root/debug-ls-laif-home-user-name.txt
   mkdir -p pacstrapit-debug
   cp /mnt/boot/grub/grub.cfg                  pacstrapit-debug/debug-grub.cfg
   cp /mnt/etc/fstab                           pacstrapit-debug/debug-fstab
@@ -879,8 +876,8 @@ if [[ "$_debug" == '1' ]]; then
   cp /mnt/etc/sysctl.conf                     pacstrapit-debug/debug-sysctl.conf
   cp /mnt/etc/systemd/sleep.conf              pacstrapit-debug/debug-systemd-sleep.conf
   cp /mnt/etc/vconsole.conf                   pacstrapit-debug/debug-vconsole.conf
-  cp /mnt/debug-ls-laif-home-user-name.txt    pacstrapit-debug
-  cp /mnt/debug-systemctl-list-unit-files.txt pacstrapit-debug
+  cp /mnt/root/debug-ls.txt                   pacstrapit-debug/debug-ls.txt
+  cp /mnt/root/debug-systemctl.txt            pacstrapit-debug/debug-systemctl.txt
 fi
 
 # exit pacstrapped chroot
