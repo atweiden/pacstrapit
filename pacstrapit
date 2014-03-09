@@ -555,7 +555,6 @@ pacstrap /mnt abs            \
               iproute2       \
               iw             \
               kexec-tools    \
-              mercurial      \
               net-tools      \
               openresolv     \
               openssh        \
