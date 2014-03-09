@@ -689,7 +689,12 @@ EOF
                                   fi
 
 for _pkg in zramswap; do
-  arch-chroot /mnt mkdir -p ~/.src && cd ~/.src && rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg && curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz && tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg && cd $_pkg && makepkg -Acsi --asroot --noconfirm && cd ..
+  arch-chroot /mnt mkdir -p /root/.src
+  arch-chroot /mnt rm -rf /root/.src/$_pkg /root/.src/${_pkg}.tar.gz
+  arch-chroot /mnt mkdir -p /root/.src/$_pkg
+  arch-chroot /mnt curl -k https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz -o /root/.src/${_pkg}.tar.gz
+  arch-chroot /mnt tar -xvzf /root/.src/${_pkg}.tar.gz --strip 1 -C /root/.src/$_pkg
+  arch-chroot /mnt makepkg -p /root/.src/$_pkg/PKGBUILD -Acsi --asroot --noconfirm
 done
 arch-chroot /mnt systemctl enable zramswap
 
@@ -748,13 +753,13 @@ fi
 
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev}3 | awk '{print $3}')
 if   [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"" /etc/default/grub
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
 elif [[ "${_disk}" == 'ssd' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"" /etc/default/grub
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"!" /etc/default/grub
 elif [[ "${_graphics}" == 'radeon' ]]; then
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\"" /etc/default/grub
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ radeon.dpm=1\"!" /etc/default/grub
 else
-  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"" /etc/default/grub
+  arch-chroot /mnt sed -i "s!GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"!" /etc/default/grub
 fi
 arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
