@@ -422,13 +422,13 @@ mkdir -p /mnt/boot && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space
 # -----------------------------------------------------------------------------
 
 
-if [[ "$_debug" == '1' ]]; then
-echo "*****************"
-echo "*  -----------  *"
-echo "* |zramswapify| *"
-echo "*  -----------  *"
-echo "*****************"
-fi
+                   if [[ "$_debug" == '1' ]]; then
+                       echo "*****************"
+                       echo "*  -----------  *"
+                       echo "* |zramswapify| *"
+                       echo "*  -----------  *"
+                       echo "*****************"
+                                  fi
 
 
 function zramswapify() {
@@ -507,13 +507,13 @@ systemctl enable zramswap
 # -----------------------------------------------------------------------------
 
 
-if [[ "$_debug" == '1' ]]; then
-echo "*****************"
-echo "*  -----------  *"
-echo "* |pacstrapify| *"
-echo "*  -----------  *"
-echo "*****************"
-fi
+                   if [[ "$_debug" == '1' ]]; then
+                       echo "*****************"
+                       echo "*  -----------  *"
+                       echo "* |pacstrapify| *"
+                       echo "*  -----------  *"
+                       echo "*****************"
+                                  fi
 
 
 function pacstrapify() {
