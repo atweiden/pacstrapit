@@ -130,7 +130,7 @@ if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
             echo "**************************************"
                                   fi
 
-pacman -Sy abs --noconfirm
+pacman -Sy --needed abs base-devel --noconfirm
 abs extra/arch-install-scripts
 cd /var/abs/extra/arch-install-scripts
 sed -i '/^build.*/a sed -i "s!^SHELL=/bin/sh!SHELL=/bin/bash!" "$pkgname-$pkgver"/arch-chroot.in' PKGBUILD
@@ -478,8 +478,6 @@ EOF
                      echo "*                  *"
                      echo "********************"
                                   fi
-
-pacman -Sy --needed base-devel --noconfirm
 
 # build zramswap aur package
 
