@@ -20,7 +20,7 @@ _luks_pass=secret
 _hostname=luksiso
 
 # machine's processor (intel or other)
-_processor=intel
+_processor=other
 
 # machine's graphics card (intel, nvidia, or radeon)
 _graphics=intel
@@ -192,7 +192,7 @@ expect <<EOF
     send "\r"
   }
   expect "Last sector*" {
-    send "+128M\r"
+    send "+256M\r"
   }
   expect "Hex code or GUID*" {
     send "8300\r"
@@ -433,27 +433,6 @@ mkdir -p /mnt/boot && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space
 
 function zramswapify() {
 
-# always suspend to RAM
-
-                   if [[ "$_debug" == '1' ]]; then
-                    echo "**********************"
-                    echo "*                    *"
-                    echo "* systemd sleep.conf *"
-                    echo "*                    *"
-                    echo "**********************"
-                                  fi
-
-cat >> /etc/systemd/sleep.conf <<'EOF'
-[Sleep]
-SuspendMode=mem
-HibernateMode=mem
-HybridSleepMode=mem
-SuspendState=mem
-HibernateState=mem
-HybridSleepState=mem
-EOF
-cp /etc/systemd/sleep.conf /mnt/etc/systemd/sleep.conf
-
 # fetch deps to build aur packages
 
                    if [[ "$_debug" == '1' ]]; then
@@ -578,8 +557,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
                          echo "************"
                                   fi
 
-echo ${_hostname} > /etc/hostname
-cp /etc/hostname /mnt/etc/hostname
+echo ${_hostname} > /mnt/etc/hostname
 arch-chroot /mnt hostname -F
 
 # set nameservers
@@ -592,7 +570,7 @@ arch-chroot /mnt hostname -F
                          echo "************"
                                   fi
 
-cat >> /etc/resolv.conf.head <<'EOF'
+cat >> /mnt/etc/resolv.conf.head <<'EOF'
 # DNSCrypt
 options edns0
 nameserver 127.0.0.1
@@ -605,7 +583,6 @@ nameserver 208.67.220.220
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
-cp /etc/resolv.conf.head /mnt/etc/resolv.conf.head
 arch-chroot /mnt systemctl enable dnscrypt-proxy.service
 
 # set locale
@@ -618,14 +595,12 @@ arch-chroot /mnt systemctl enable dnscrypt-proxy.service
                           echo "**********"
                                   fi
 
-sed -i "s!#${_locale}\.UTF-8 UTF-8!${_locale}\.UTF-8 UTF-8!" /etc/locale.gen
-cp /etc/locale.gen /mnt/etc/locale.gen
+sed -i "s!#${_locale}\.UTF-8 UTF-8!${_locale}\.UTF-8 UTF-8!" /mnt/etc/locale.gen
 arch-chroot /mnt locale-gen
-cat >> /etc/locale.conf <<EOF
+cat >> /mnt/etc/locale.conf <<EOF
 LANG=${_locale}.UTF-8
 LC_TIME=${_locale}.UTF-8
 EOF
-cp /etc/locale.conf /mnt/etc/locale.conf
 
 # set console font
 
@@ -637,12 +612,11 @@ cp /etc/locale.conf /mnt/etc/locale.conf
                           echo "**********"
                                   fi
 
-cat >> /etc/vconsole.conf <<EOF
+cat >> /mnt/etc/vconsole.conf <<EOF
 KEYMAP=${_keymap}
 FONT=Lat2-Terminus16
 FONT_MAP=
 EOF
-cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # set timezone
 
@@ -681,6 +655,26 @@ arch-chroot /mnt hwclock --systohc --utc
 arch-chroot /mnt find /root/.src -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 arch-chroot /mnt systemctl enable zramswap
 
+# always suspend to RAM
+
+                   if [[ "$_debug" == '1' ]]; then
+                    echo "**********************"
+                    echo "*                    *"
+                    echo "* systemd sleep.conf *"
+                    echo "*                    *"
+                    echo "**********************"
+                                  fi
+
+cat >> /mnt/etc/systemd/sleep.conf <<'EOF'
+[Sleep]
+SuspendMode=mem
+HibernateMode=mem
+HybridSleepMode=mem
+SuspendState=mem
+HibernateState=mem
+HybridSleepState=mem
+EOF
+
 # set initramfs
 
                    if [[ "$_debug" == '1' ]]; then
@@ -718,11 +712,10 @@ arch-chroot /mnt mkinitcpio -p linux
                                   fi
 
 if [[ "${_disk}" == 'ssd' ]]; then
-cat >> /etc/sysctl.conf <<'EOF'
+cat >> /mnt/etc/sysctl.conf <<'EOF'
 vm.swappiness=1
 vm.vfs_cache_pressure=50
 EOF
-cp /etc/sysctl.conf /mnt/etc/sysctl.conf
 fi
 
 # install grub
@@ -826,7 +819,7 @@ arch-chroot /mnt systemctl enable zramswap
                        echo "*****************"
                                   fi
 
-cat >> /etc/modprobe.d/modprobe.conf <<'EOF'
+cat >> /mnt/etc/modprobe.d/modprobe.conf <<'EOF'
 alias floppy off
 blacklist fd0
 blacklist floppy
@@ -834,7 +827,6 @@ blacklist bcma
 blacklist snd_pcsp
 blacklist pcspkr
 EOF
-cp /etc/modprobe.d/modprobe.conf /mnt/etc/modprobe.d/modprobe.conf
 
 # debug
 

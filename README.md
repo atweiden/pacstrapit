@@ -23,7 +23,7 @@ Defaults:
 
 <table>
 <tr><td>Target partition</td><td>/dev/sda</td><tr>
-<tr><td>Type of processor</td><td>Intel</td><tr>
+<tr><td>Type of processor</td><td>other</td><tr>
 <tr><td>Type of graphics card</td><td>Intel</td><tr>
 <tr><td>Type of hard drive</td><td>HDD</td><tr>
 <tr><td>Locale</td><td>en_US</td><tr>
