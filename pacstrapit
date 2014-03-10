@@ -395,7 +395,7 @@ cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
          echo "*********************************************"
                                   fi
 
-mkdir -p /mnt/boot && mount /dev/sda2 ${_partition}2 /mnt/boot
+mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
 }
 
 
