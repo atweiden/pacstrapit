@@ -464,10 +464,6 @@ for _pkg in zramswap; do
   makepkg -Acsi --asroot --noconfirm
   cd ..
 done
-mkdir -p /mnt/root/.src
-for _pkg in `find /root/.src -type f -name "*.pkg.tar.xz"`; do
-  cp ${_pkg} /mnt/root/.src
-done
 
 # start zramswap
 
@@ -652,6 +648,10 @@ arch-chroot /mnt hwclock --systohc --utc
                      echo "********************"
                                   fi
 
+mkdir -p /mnt/root/.src
+for _pkg in `find /root/.src -type f -name "*.pkg.tar.xz"`; do
+  cp ${_pkg} /mnt/root/.src
+done
 arch-chroot /mnt find /root/.src -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 arch-chroot /mnt systemctl enable zramswap
 
