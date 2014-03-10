@@ -1031,6 +1031,15 @@ curl -k "${_user_key_sig}" -o ~/sshkey.pub.sig
                         echo "***************"
                                   fi
 
+for _pkg in python2-ecdsa python2-slowaes; do
+  mkdir -p ~/.src && cd ~/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  cd $_pkg
+  makepkg -Acsi --asroot --noconfirm
+  cd ..
+done
 cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${_electrum_version}} -o "#1-#3.#2"
 tar xvzf electrum-${_electrum_version}.tar.gz
 cd electrum-${_electrum_version}
