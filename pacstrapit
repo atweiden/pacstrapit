@@ -684,6 +684,25 @@ HibernateState=mem
 HybridSleepState=mem
 EOF
 
+# set modprobe.conf
+
+                   if [[ "$_debug" == '1' ]]; then
+                       echo "*****************"
+                       echo "*               *"
+                       echo "* modprobe.conf *"
+                       echo "*               *"
+                       echo "*****************"
+                                  fi
+
+cat >> /mnt/etc/modprobe.d/modprobe.conf <<'EOF'
+alias floppy off
+blacklist fd0
+blacklist floppy
+blacklist bcma
+blacklist snd_pcsp
+blacklist pcspkr
+EOF
+
 # set initramfs
 
                    if [[ "$_debug" == '1' ]]; then
@@ -708,6 +727,7 @@ elif [[ "${_graphics}" == 'radeon' ]]; then
   arch-chroot /mnt sed -i 's!^MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
 fi
 arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+arch-chroot /mnt sed -i 's!^FILES.*!FILES="/etc/modprobe.d/modprobe.conf"!' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
 
 # install grub
@@ -753,25 +773,6 @@ arch-chroot /mnt expect <<EOF
     send "${_root_pass}\r"
   }
   expect eof
-EOF
-
-# set modprobe.conf
-
-                   if [[ "$_debug" == '1' ]]; then
-                       echo "*****************"
-                       echo "*               *"
-                       echo "* modprobe.conf *"
-                       echo "*               *"
-                       echo "*****************"
-                                  fi
-
-cat >> /mnt/etc/modprobe.d/modprobe.conf <<'EOF'
-alias floppy off
-blacklist fd0
-blacklist floppy
-blacklist bcma
-blacklist snd_pcsp
-blacklist pcspkr
 EOF
 
 # configure sysctl
