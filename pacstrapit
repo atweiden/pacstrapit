@@ -1064,11 +1064,11 @@ _electrum_verified=$(./electrum verifymessage \
                                   fi
 
 if [[ "${_electrum_verified}" == 'true' ]]; then
-  mkdir -p /home/${_user_name}/.ssh
-  chmod 700 /home/${_user_name}/.ssh
-  cat ~/sshkey.pub /home/${_user_name}/.ssh/authorized_keys
-  chmod 600 /home/${_user_name}/.ssh/authorized_keys
-  chown -R ${_user_name}:users /home/${_user_name}/.ssh
+  mkdir -p /mnt/home/${_user_name}/.ssh
+  chmod 700 /mnt/home/${_user_name}/.ssh
+  cat ~/sshkey.pub /mnt/home/${_user_name}/.ssh/authorized_keys
+  chmod 600 /mnt/home/${_user_name}/.ssh/authorized_keys
+  chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
 else
   echo "Electrum verification code rejected."
   exit 1
