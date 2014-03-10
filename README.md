@@ -57,35 +57,39 @@ Before setting `_ssh` to `1`...
 
 **On the control machine**:
 
-`mkdir -p ~/keys`
+Make keys directory.
+
+```bash
+$ mkdir -p ~/keys
+```
 
 Generate ssh keys.
 
-```
+```bash
 $ ssh-keygen -t ed25519 -b 521 -f ~/keys/id_ed25519
 ```
 
-Obtain Electrum.
+Get Electrum.
 
-```
-cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${_electrum_version}} -o "#1-#3.#2"
-tar xvzf electrum-${_electrum_version}.tar.gz
-cd electrum-${_electrum_version}
-find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
-find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env python2#g'
+```bash
+$ cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${_electrum_version}} -o "#1-#3.#2"
+$ tar xvzf electrum-${_electrum_version}.tar.gz
+$ cd electrum-${_electrum_version}
+$ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
+$ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env python2#g'
 ```
 
 Pick an Electrum address for signing.
 
-```
+```bash
 $ address_for_signing=$(./electrum listaddresses | sed -n '2p' | tr -d '[:punct:]' | awk '{print $1}')
 ```
 
-```
-echo ${address_for_signing} > ~/keys/electrum.pub
+```bash
+$ echo ${address_for_signing} > ~/keys/electrum.pub
 ```
 
-```
+```bash
 $ ./electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
 ```
 
