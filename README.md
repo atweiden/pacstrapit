@@ -12,8 +12,8 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.18} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.0.18.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.19} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.0.19.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -37,7 +37,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td><tr>
 </table>
 
-> `cd pacstrapit-0.0.18 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.0.19 && $EDITOR pacstrapit`
 
 Done. Ready to run `pacstrapit`:
 
@@ -50,27 +50,51 @@ With logging:
 If the script exits with an error, it's best to reboot and start fresh.
 
 
-To Do
------
+Optional: sshify
+----------------
 
-- *attempting to fix by patching arch-install-scripts*
-  - use arch-chroot sparingly, only for proven working commands
-    - `sed`
-    - `expect`
-  - not working:
-    - /etc/hostname
-    - /etc/locale.conf
-    - /etc/locale.gen
-    - /etc/modprobe.d/modprobe.conf
-    - /etc/resolv.conf.head
-    - /etc/sudoers
-    - /etc/sysctl.conf
-    - /etc/systemd/sleep.conf
-    - /etc/vconsole.conf
-    - probably explains why latest zramswap isn't working
-- tmpfs for vim, firefox, chromium
-- anything-sync-daemon
-- profile-sync-daemon
+Before setting `_ssh` to `1`...
+
+**On the control machine**:
+
+`mkdir -p ~/keys`
+
+Generate ssh keys.
+
+```
+$ ssh-keygen -t ed25519 -b 521 -f ~/keys/id_ed25519
+```
+
+Obtain Electrum.
+
+```
+cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${_electrum_version}} -o "#1-#3.#2"
+tar xvzf electrum-${_electrum_version}.tar.gz
+cd electrum-${_electrum_version}
+find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
+find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env python2#g'
+```
+
+Pick an Electrum address for signing.
+
+```
+$ address_for_signing=$(./electrum listaddresses | sed -n '2p' | tr -d '[:punct:]' | awk '{print $1}')
+```
+
+```
+echo ${address_for_signing} > ~/keys/electrum.pub
+```
+
+```
+$ electrum signmessage ${address_for_signing} "$(cat id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
+```
+
+Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `electrum.pub` to
+GitHub, or any other file hosting service reachable via `curl`.
+
+Record the exact URL for each keyfile inside the variables section of
+`pacstrapit`.
+
 
 Licensing
 ---------
