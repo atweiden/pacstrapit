@@ -538,7 +538,6 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
                                   fi
 
 echo ${_hostname} > /mnt/etc/hostname
-arch-chroot /mnt hostname -F
 
 # set nameservers
 
