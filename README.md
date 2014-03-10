@@ -86,7 +86,7 @@ echo ${address_for_signing} > ~/keys/electrum.pub
 ```
 
 ```
-$ electrum signmessage ${address_for_signing} "$(cat id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
+$ ./electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
 ```
 
 Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `electrum.pub` to
