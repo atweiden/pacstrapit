@@ -201,7 +201,7 @@ expect <<EOF
     send "\r"
   }
   expect "Last sector*" {
-    send "+256M\r"
+    send "+128M\r"
   }
   expect "Hex code or GUID*" {
     send "8300\r"
@@ -250,17 +250,17 @@ EOF
 
 function luksify() {
 
-# create unencrypted btrfs filesystem for /boot
+# create unencrypted ext2 filesystem for /boot
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "*******************"
-                      echo "*                 *"
-                      echo "* mkfs.btrfs boot *"
-                      echo "*                 *"
-                      echo "*******************"
+                      echo "******************"
+                      echo "*                *"
+                      echo "* mkfs.ext2 boot *"
+                      echo "*                *"
+                      echo "******************"
                                   fi
 
-mkfs.btrfs ${_partition}2
+mkfs.ext2 ${_partition}2
 
 # load kernel modules required for luks
 
@@ -387,40 +387,15 @@ done
 
 cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
 
-# create and mount boot btrfs subvolume
-
                    if [[ "$_debug" == '1' ]]; then
-           echo "****************************************"
-           echo "*                                      *"
-           echo "* mounting devmapper luksroot in /mnt3 *"
-           echo "*                                      *"
-           echo "****************************************"
+         echo "*********************************************"
+         echo "*                                           *"
+         echo "* mounting ext2 boot partition in /mnt/boot *"
+         echo "*                                           *"
+         echo "*********************************************"
                                   fi
 
-mkdir -p /mnt3
-mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,nodev,nosuid,noexec ${_partition}2 /mnt3
-
-                   if [[ "$_debug" == '1' ]]; then
-          echo "******************************************"
-          echo "*                                        *"
-          echo "* creating btrfs boot subvolume in /mnt3 *"
-          echo "*                                        *"
-          echo "******************************************"
-                                  fi
-
-cd /mnt3
-btrfs subvolume create @boot
-
-                   if [[ "$_debug" == '1' ]]; then
-        echo "**********************************************"
-        echo "*                                            *"
-        echo "* mounting btrfs boot subvolume in /mnt/boot *"
-        echo "*                                            *"
-        echo "**********************************************"
-                                  fi
-
-cd && umount /mnt3 && rmdir /mnt3 --ignore-fail-on-non-empty
-mkdir -p /mnt/boot && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,nodev,nosuid,noexec,subvol=@boot ${_partition}2 /mnt/boot
+mkdir -p /mnt/boot && mount /dev/sda2 ${_partition}2 /mnt/boot
 }
 
 
