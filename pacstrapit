@@ -1091,7 +1091,7 @@ _electrum_verified=$(./electrum verifymessage \
 if [[ "${_electrum_verified}" == 'true' ]]; then
   mkdir -p /mnt/home/${_user_name}/.ssh
   chmod 700 /mnt/home/${_user_name}/.ssh
-  cat ~/sshkey.pub /mnt/home/${_user_name}/.ssh/authorized_keys
+  cat ~/sshkey.pub > /mnt/home/${_user_name}/.ssh/authorized_keys
   chmod 600 /mnt/home/${_user_name}/.ssh/authorized_keys
   chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
 else
