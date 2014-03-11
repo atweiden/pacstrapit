@@ -752,6 +752,7 @@ elif [[ "${_graphics}" == 'radeon' ]]; then
 else
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"!" /etc/default/grub
 fi
+chmod -x /mnt/etc/grub.d/10_linux
 arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
