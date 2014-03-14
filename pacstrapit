@@ -105,8 +105,20 @@ _debug=1
 
 
 # -----------------------------------------------------------------------------
-# dependency checks
+# checkify: dependency checks
 # -----------------------------------------------------------------------------
+
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "**************"
+                        echo "*  --------  *"
+                        echo "* |checkify| *"
+                        echo "*  --------  *"
+                        echo "**************"
+                                  fi
+
+
+function checkify() {
 
 # depends: root
 
@@ -143,6 +155,19 @@ if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
                                   fi
 
 if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
+
+# depends: base-devel
+
+                   if [[ "$_debug" == '1' ]]; then
+                    echo "***********************"
+                    echo "*                     *"
+                    echo "* depends: base-devel *"
+                    echo "*                     *"
+                    echo "***********************"
+                                  fi
+
+pacman -Sy --needed base-devel --noconfirm
+}
 
 
 
@@ -444,18 +469,6 @@ mkdir -p /mnt/boot && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space
 
 
 function zramswapify() {
-
-# fetch deps to build aur packages
-
-                   if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* aur package deps *"
-                     echo "*                  *"
-                     echo "********************"
-                                  fi
-
-pacman -Sy --needed base-devel --noconfirm
 
 # build zramswap aur package
 
@@ -1201,6 +1214,7 @@ echo "******************************"
 # go
 # -----------------------------------------------------------------------------
 
+checkify
 gdiskify
 luksify
 zramswapify
