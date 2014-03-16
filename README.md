@@ -7,13 +7,23 @@ Features
 - Btrfs on LUKS
 
 
+Requirements
+------------
+
+You:
+
+1. have no need for dual-booting Windows
+2. are comfortable working on the command line.
+3. are starting from a brand new or completely blank hard drive (`shred -fvz -n 7 /dev/sdX`)
+
+
 Instructions
 ------------
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.21} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.0.21.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.0.22} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.0.22.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -37,17 +47,20 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td><tr>
 </table>
 
-> `cd pacstrapit-0.0.21 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.0.22 && $EDITOR pacstrapit`
 
-Done. Ready to run `pacstrapit`:
+Done.
+
+To run `pacstrapit`:
 
 > `./pacstrapit`
 
-With logging:
+To run `pacstrapit` with logging:
 
 > `./pacstrapit 2>&1 | tee pacstrapit.log`
 
-If the script exits with an error, it's best to reboot and start fresh.
+If the script exits with an error, it's best to reboot and start fresh
+with a blank disk (`shred -fvz -n 0 /dev/sdX`).
 
 
 Optional: sshify
@@ -86,14 +99,14 @@ $ address_for_signing=$(./electrum listaddresses | sed -n '2p' | tr -d '[:punct:
 ```
 
 ```bash
-$ echo ${address_for_signing} > ~/keys/electrum.pub
+$ echo ${address_for_signing} > ~/keys/id_secp256k1.pub
 ```
 
 ```bash
 $ ./electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
 ```
 
-Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `electrum.pub` to
+Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `id_secp256k1.pub` to
 GitHub, or any other file hosting service reachable via `curl`.
 
 Record the exact URL for each keyfile inside the variables section of
