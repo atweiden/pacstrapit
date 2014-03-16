@@ -92,7 +92,7 @@ _ssh=0
 # ssh auth (caution)
 _electrum="https://raw.github.com/your/keys/master/id_electrum.pub"
 #_electrum="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
-_electrum_version="1.9.7"
+_electrum_version="1.9.8"
 _user_key="https://raw.github.com/your/keys/master/id_ed25519.pub"
 #_user_key="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
 _user_key_sig="https://raw.github.com/your/keys/master/id_ed25519.pub.sig"
