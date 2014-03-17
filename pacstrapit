@@ -1155,7 +1155,7 @@ if [[ "${_electrum_verified}" == 'true' ]]; then
   chmod 700 /mnt/home/${_user_name}/.ssh
   cat ~/sshkey.pub > /mnt/home/${_user_name}/.ssh/authorized_keys
   chmod 600 /mnt/home/${_user_name}/.ssh/authorized_keys
-  chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
+  arch-chroot /mnt chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
 else
   echo "Electrum verification code rejected."
   exit 1
@@ -1834,7 +1834,7 @@ sed -i "s#^zipcode.*#${_zipcode}#"     bootstrap.sh
                       echo "**********************"
                                   fi
 
-chown -R ${_user_name}:users /home/${_user_name}
+arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 }
 
 
