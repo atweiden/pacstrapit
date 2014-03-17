@@ -25,7 +25,7 @@ _processor=other
 # machine's graphics card (intel, nvidia, or radeon)
 _graphics=intel
 
-# machine's hard drive (hdd or ssd)
+# machine's hard drive (hdd, ssd, or usb)
 _disk=hdd
 
 # machine's locale # de_DE
@@ -728,7 +728,9 @@ EOF
                          echo "*************"
                                   fi
 
-if   [[ "${_processor}" == 'intel' && "${_graphics}" == 'intel' ]]; then
+if   [[ "${_disk}" == 'usb' ]]; then
+  arch-chroot /mnt sed -i 's!^MODULES.*!MODULES="crc32c"!' /etc/mkinitcpio.conf
+elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'intel' ]]; then
   arch-chroot /mnt sed -i 's!^MODULES.*!MODULES="crc32c-intel i915"!' /etc/mkinitcpio.conf
 elif [[ "${_processor}" == 'intel' && "${_graphics}" == 'nvidia' ]]; then
   arch-chroot /mnt sed -i 's!^MODULES.*!MODULES="crc32c-intel nouveau"!' /etc/mkinitcpio.conf
@@ -741,7 +743,12 @@ elif [[ "${_graphics}" == 'nvidia' ]]; then
 elif [[ "${_graphics}" == 'radeon' ]]; then
   arch-chroot /mnt sed -i 's!^MODULES.*!MODULES="crc32c radeon"!' /etc/mkinitcpio.conf
 fi
-arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+
+if   [[ "${_disk}" == 'usb' ]]; then
+  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev block autodetect modconf keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+else
+  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+fi
 arch-chroot /mnt sed -i 's!^FILES.*!FILES="/etc/modprobe.d/modprobe.conf"!' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
 
@@ -756,7 +763,9 @@ arch-chroot /mnt mkinitcpio -p linux
                                   fi
 
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev/}3 | awk '{print $3}')
-if   [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
+if   [[ "${_disk}" == 'usb' ]]; then
+  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop nomodeset\"!" /etc/default/grub
+elif [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
 elif [[ "${_disk}" == 'ssd' ]]; then
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"!" /etc/default/grub
@@ -897,7 +906,7 @@ net.ipv4.ip_local_port_range = 2000 65535
 kernel.sysrq = 0
 EOF
 
-if [[ "${_disk}" == 'ssd' ]]; then
+if [[ "${_disk}" == 'ssd' || "${_disk}" == 'usb' ]]; then
   sed -i 's!^#vm.vfs_cache_pressure.*!vm.vfs_cache_pressure=50!' /mnt/etc/sysctl.conf
   sed -i 's!^#vm.swappiness.*!vm.swappiness=1!' /mnt/etc/sysctl.conf
 fi
