@@ -99,6 +99,11 @@ _user_key_sig="https://raw.github.com/your/keys/master/id_ed25519.pub.sig"
 #_user_key_sig="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
 _hosts_allowed="192.168.0."
 
+# select packages on/off (0 or 1)
+_select=0
+_gui=0
+_dotfiles=0
+
 # debug on/off (0 or 1)
 _debug=1
 
@@ -662,16 +667,40 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
 
 arch-chroot /mnt hwclock --systohc --utc
 
-# install zramswap
+# build pacaur
+# vim re:center this
 
                    if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* install zramswap *"
-                     echo "*                  *"
-                     echo "********************"
+                     echo "****************"
+                     echo "*              *"
+                     echo "* build pacaur *"
+                     echo "*              *"
+                     echo "****************"
                                   fi
 
+pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
+for _pkg in cower pacaur; do
+  mkdir -p ~/.src && cd ~/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  cd $_pkg
+  makepkg -Acsi --asroot --noconfirm
+  cd ..
+done
+
+# install pacaur and zramswap
+# vim re:center this
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "*******************************"
+                     echo "*                             *"
+                     echo "* install pacaur and zramswap *"
+                     echo "*                             *"
+                     echo "*******************************"
+                                  fi
+
+arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 mkdir -p /mnt/root/.src
 for _pkg in `find /root/.src -type f -name "*.pkg.tar.xz"`; do
   cp ${_pkg} /mnt/root/.src
@@ -1125,15 +1154,297 @@ fi
 
 
 # -----------------------------------------------------------------------------
+# dotify: install dotfiles
+# -----------------------------------------------------------------------------
+
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "************"
+                        echo "*  ------  *"
+                        echo "* |dotify| *"
+                        echo "*  ------  *"
+                        echo "************"
+                                  fi
+
+
+function dotify() {
+}
+
+
+
+
+# -----------------------------------------------------------------------------
+# selectify: select packages to install
+# -----------------------------------------------------------------------------
+
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*  -------    *"
+                        echo "* |selectify| *"
+                        echo "*  -------    *"
+                        echo "***************"
+                                  fi
+
+
+function selectify() {
+
+# select
+
+declare _pkgs=('ack'
+               'arch-install-scripts'
+               'arch-wiki-docs-clean'
+               'archey'
+               'bash-completion'
+               'create_ap'
+               'dvd+rw-tools'
+               'easytether-rpm'
+               'electrum-headless'
+               'electrum-lite-headless'
+               'elinks'
+               'git'
+               'gobi-loader'
+               'gobi-firmware'
+               'gnupg1'
+               'haveged'
+               'ipw2100-fw'
+               'ipw2200-fw'
+               'jq'
+               'keepassc'
+               'libfaketime'
+               'libusb-compat'
+               'lynx'
+               'macchanger'
+               'mercurial'
+               'mlocate'
+               'mobile-broadband-provider-info'
+               'modemmanager'
+               'mosh'
+               'ncurses'
+               'openvpn'
+               'pkgcacheclean'
+               'proxychains'
+               'pwsafe'
+               'python2-pbp'
+               'quixand'
+               'socat'
+               'sshuttle'
+               'ssss'
+               'subrepo'
+               'the_silver_searcher'
+               'tmux'
+               'tor'
+               'torsocks'
+               'tree'
+               'unzip'
+               'usb_modeswitch')
+
+if [[ "${_gui}" == '1' ]]; then
+  declare _vimpkgs=('gvim')
+else
+  declare _vimpkgs=('vim-full')
+fi
+_vimpkgs+=('ctags'
+           'ttf-monaco'
+           'vim-align'
+           'vim-guicolorscheme'
+           'vim-indent-object'
+           'vim-nerdtree'
+           'vim-surround'
+           'vim-systemd'
+           'vim-ultisnips'
+           'vim-misc-xolox'
+           'vim-cecutil'
+           'vim-vis-git'
+           'vim-ack'
+           'vim-colors-liquidcarbon'
+           'vim-colors-mayansmoke'
+           'vim-colors-neverland-git'
+           'vim-colors-sorcerer'
+           'vim-csapprox'
+           'vim-delimitmate'
+           'vim-dragvisuals-git'
+           'vim-easydir-git'
+           'vim-easymotion'
+           'vim-easytags'
+           'vim-file-line-git'
+           'vim-gnupg'
+           'vim-gtk-syntax-git'
+           'vim-gundo'
+           'vim-haml-git'
+           'vim-hugefile-git'
+           'vim-less-git'
+           'vim-lightline-git'
+           'vim-lustyexplorer'
+           'vim-matchit'
+           'vim-multiple-cursors-git'
+           'vim-mustache-git'
+           'vim-nerdcommenter'
+           'vim-numbered-git'
+           'vim-openssl'
+           'vim-pipe2eval-git'
+           'vim-repeat'
+           'vim-taboo-git'
+           'vim-tabular-git'
+           'vim-tagbar'
+           'vim-tmux-navigator-git'
+           'vim-trailing-whitespace'
+           'vim-visual-star-search-git'
+           'vim-yankring')
+
+if [[ "${_perl}" == '1' ]]; then
+  _pkgs+=('perlbrew'
+          'perl-cpanplus-dist-arch'
+          'perl-ev'
+          'perl-io-socket-ip'
+          'perl-io-socket-ssl'
+          'perl-mojolicious')
+  _vimpkgs+=('vim-after-syntax-perl-git'
+             'vim-mojo-git'
+             'vim-perl'
+             'vim-perl-support')
+fi
+
+if [[ "${_python}" == '1' ]]; then
+  _pkgs+=('python'
+          'python-jedi'
+          'python-pip'
+          'python-setuptools'
+          'python-virtualenv'
+          'python-virtualenv-clone'
+          'python-virtualenvwrapper'
+          'python2'
+          'python2-jedi'
+          'python2-pip'
+          'python2-setuptools'
+          'python2-virtualenv'
+          'python2-virtualenv-clone')
+  _vimpkgs+=('vim-htmljinja'
+             'vim-jedi'
+             'vim-jinja'
+             'vim-kivy-git'
+             'vim-python'
+             'vim-virtualenv')
+fi
+
+if [[ "${_clojure}" == '1' ]]; then
+  _pkgs+=('jdk7-openjdk'
+          'clojure'
+          'leiningen')
+  _vimpkgs+=('vim-clojure-sql-git'
+             'vim-clojure-static-git'
+             'vim-fireplace-git'
+             'vim-rainbow-parentheses-git')
+fi
+
+if [[ "${_node}" == '1' ]]; then
+  _pkgs+=('nodejs'
+          'nodejs-bower'
+          'nodejs-grasp'
+          'nodejs-grunt-cli'
+          'nodejs-hexo'
+          'nodejs-jade'
+          'nodejs-stylus')
+  _vimpkgs+=('vim-jade-git'
+             'vim-javascript-git'
+             'vim-jquery'
+             'vim-nodejs-errorformat-git'
+             'vim-nodejs-git'
+             'vim-stylus-git')
+fi
+
+if [[ "${_elixir}" == '1' ]]; then
+  _pkgs+=('erlang'
+          'erlang-docs'
+          'elixir')
+  _vimpkgs+=('vim-elixir-git'
+             'vimerl-git'
+             'vim-mix-git')
+fi
+
+if [[ "${_ruby}" == '1' ]]; then
+  _pkgs+=('ruby'
+          'ruby-build'
+          'rbenv')
+  _vimpkgs+=('vim-rbenv-git'
+             'vim-ruby-git')
+fi
+
+if [[ "${_markdown}" == '1' ]]; then
+  _pkgs+=('markdown')
+  _vimpkgs+=('vim-markdown')
+fi
+
+if [[ "${_nimrod}" == '1' ]]; then
+  _pkgs+=('nimrod')
+  _vimpkgs+=('vim-nimrod-git')
+fi
+
+if [[ "${_go}" == '1' ]]; then
+  _pkgs+=('go')
+fi
+
+if [[ "${_lua}" == '1' ]]; then
+  _pkgs+=('lua')
+  _vimpkgs+=('vim-lua-ftplugin-git'
+             'vim-lua-inspect-git'
+             'vim-lua-support')
+fi
+
+if [[ "${_haskell}" == '1' ]]; then
+  _pkgs+=('ghc')
+  _vimpkgs+=('vim-haskell')
+fi
+
+if [[ "${_ledger}" == '1' ]]; then
+  _pkgs+=('ledger-git'
+          'ledger.py-git')
+fi
+
+if [[ "${_docker}" == '1' ]]; then
+  _pkgs+=('docker')
+  _vimpkgs+=('vim-dockerfile-git')
+fi
+
+if [[ "${_nginx}" == '1' ]]; then
+  _pkgs+=('nginx')
+  _vimpkgs+=('vim-nginx')
+fi
+
+if [[ "${_analysis}" == '1' ]]; then
+  _pkgs+=('ltrace'
+          'multitail'
+          'nethogs'
+          'ntop'
+          'strace')
+fi
+
+# install
+
+                   if [[ "$_debug" == '1' ]]; then
+                           echo "***********"
+                           echo "*         *"
+                           echo "* install *"
+                           echo "*         *"
+                           echo "***********"
+                                  fi
+
+arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} --noedit --noconfirm
+}
+
+
+
+
+# -----------------------------------------------------------------------------
 # debugify: debug
 # -----------------------------------------------------------------------------
 
 
                    if [[ "$_debug" == '1' ]]; then
                         echo "**************"
-                        echo "*  -------   *"
+                        echo "*  --------  *"
                         echo "* |debugify| *"
-                        echo "*  -------   *"
+                        echo "*  --------  *"
                         echo "**************"
                                   fi
 
@@ -1229,5 +1540,7 @@ luksify
 zramswapify
 pacstrapify
 if [[ "${_ssh}" == '1' ]]; then sshify; fi
+if [[ "${_select}" == '1' ]]; then selectify; fi
+if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
 if [[ "${_debug}" == '1' ]]; then debugify; fi
 exitify

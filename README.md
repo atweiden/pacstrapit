@@ -125,6 +125,8 @@ Record the exact URL for each keyfile inside the variables section of
 To Do
 -----
 
+- package electrum-headless electrum-lite-headless python2-scrypt
+- vim re:center debug boxes
 - Add keyfile-encrypted swap partition
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 
