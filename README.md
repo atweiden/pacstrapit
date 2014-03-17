@@ -127,7 +127,9 @@ To Do
 
 - create 0.1.0 release of dotfiles
 - package electrum-headless electrum-lite-headless python2-scrypt
+- replace manual electrum headless with electrum-headless pkg installation
 - vim re:center debug boxes
+- organize pkg sections
 - command line flags (shflags)
 - Add keyfile-encrypted swap partition
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
