@@ -102,7 +102,15 @@ _hosts_allowed="192.168.0."
 # select packages on/off (0 or 1)
 _select=0
 _gui=0
+
+# get dotfiles on/off (0 or 1)
 _dotfiles=0
+# name, email, github for gitconfig
+_name="Andy Weidenbaum"
+_email="archbaum@gmail.com"
+_github="atweiden"
+# zipcode for f.lux
+_zipcode=97210
 
 # debug on/off (0 or 1)
 _debug=1
@@ -538,27 +546,31 @@ function pacstrapify() {
                          echo "************"
                                   fi
 
-pacstrap /mnt abs            \
-              base           \
-              base-devel     \
-              btrfs-progs    \
-              dhclient       \
-              dialog         \
-              dnscrypt-proxy \
-              ethtool        \
-              expect         \
-              grub-bios      \
-              iproute2       \
-              iw             \
-              kexec-tools    \
-              net-tools      \
-              openresolv     \
-              openssh        \
-              python2        \
-              sshpass        \
-              wget           \
-              wireless_tools \
-              wpa_actiond    \
+pacstrap /mnt abs             \
+              base            \
+              base-devel      \
+              btrfs-progs     \
+              ca-certificates \
+              darkhttpd       \
+              dhclient        \
+              dialog          \
+              dnscrypt-proxy  \
+              ed              \
+              ethtool         \
+              expect          \
+              gptfdisk        \
+              grub-bios       \
+              iproute2        \
+              iw              \
+              kexec-tools     \
+              net-tools       \
+              openresolv      \
+              openssh         \
+              python2         \
+              sshpass         \
+              wget            \
+              wireless_tools  \
+              wpa_actiond     \
               wpa_supplicant
 
 # install a bootloader
@@ -1154,26 +1166,6 @@ fi
 
 
 # -----------------------------------------------------------------------------
-# dotify: install dotfiles
-# -----------------------------------------------------------------------------
-
-
-                   if [[ "$_debug" == '1' ]]; then
-                        echo "************"
-                        echo "*  ------  *"
-                        echo "* |dotify| *"
-                        echo "*  ------  *"
-                        echo "************"
-                                  fi
-
-
-function dotify() {
-}
-
-
-
-
-# -----------------------------------------------------------------------------
 # selectify: select packages to install
 # -----------------------------------------------------------------------------
 
@@ -1190,29 +1182,53 @@ function dotify() {
 function selectify() {
 
 # select
+_analysis=1
+_clojure=1
+_docker=1
+_elixir=1
+_fonts=1
+_go=1
+_haskell=1
+_ledger=1
+_lua=1
+_markdown=1
+_nginx=1
+_nimrod=1
+_node=1
+_perl=1
+_python=1
+_ruby=1
 
 declare _pkgs=('ack'
+               'ansible'
                'arch-install-scripts'
                'arch-wiki-docs-clean'
                'archey'
+               'avahi'
                'bash-completion'
+               'bluez'
+               'bluez-firmware'
+               'colordiff'
                'create_ap'
+               'cronwhip'
+               'devtools'
+               'downgrade'
                'dvd+rw-tools'
                'easytether-rpm'
-               'electrum-headless'
-               'electrum-lite-headless'
                'elinks'
+               'geturl-git'
                'git'
                'gobi-loader'
                'gobi-firmware'
                'gnupg1'
                'haveged'
+               'imgurbash'
                'ipw2100-fw'
                'ipw2200-fw'
                'jq'
-               'keepassc'
                'libfaketime'
                'libusb-compat'
+               'lrzip'
                'lynx'
                'macchanger'
                'mercurial'
@@ -1222,11 +1238,17 @@ declare _pkgs=('ack'
                'mosh'
                'ncurses'
                'openvpn'
+               'p7zip'
+               'pacmatic'
                'pkgcacheclean'
+               'pkgtools'
                'proxychains'
                'pwsafe'
                'python2-pbp'
                'quixand'
+               'reptyr'
+               'rfkill'
+               'sfk'
                'socat'
                'sshuttle'
                'ssss'
@@ -1237,7 +1259,10 @@ declare _pkgs=('ack'
                'torsocks'
                'tree'
                'unzip'
-               'usb_modeswitch')
+               'usbmuxd'
+               'usb_modeswitch'
+               'zsh'
+               'zsh-syntax-highlighting')
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
@@ -1290,7 +1315,8 @@ _vimpkgs+=('ctags'
            'vim-tmux-navigator-git'
            'vim-trailing-whitespace'
            'vim-visual-star-search-git'
-           'vim-yankring')
+           'vim-yankring'
+           'pnfo-git')
 
 if [[ "${_perl}" == '1' ]]; then
   _pkgs+=('perlbrew'
@@ -1298,7 +1324,8 @@ if [[ "${_perl}" == '1' ]]; then
           'perl-ev'
           'perl-io-socket-ip'
           'perl-io-socket-ssl'
-          'perl-mojolicious')
+          'perl-mojolicious'
+          'perlconsole')
   _vimpkgs+=('vim-after-syntax-perl-git'
              'vim-mojo-git'
              'vim-perl'
@@ -1329,8 +1356,12 @@ fi
 
 if [[ "${_clojure}" == '1' ]]; then
   _pkgs+=('jdk7-openjdk'
+          'ca-certificates-java'
           'clojure'
-          'leiningen')
+          'grenchman'
+          'leiningen'
+          'leiningen-completions'
+          'nailgun')
   _vimpkgs+=('vim-clojure-sql-git'
              'vim-clojure-static-git'
              'vim-fireplace-git'
@@ -1354,7 +1385,7 @@ if [[ "${_node}" == '1' ]]; then
 fi
 
 if [[ "${_elixir}" == '1' ]]; then
-  _pkgs+=('erlang'
+  _pkgs+=('erlang-nox'
           'erlang-docs'
           'elixir')
   _vimpkgs+=('vim-elixir-git'
@@ -1365,7 +1396,13 @@ fi
 if [[ "${_ruby}" == '1' ]]; then
   _pkgs+=('ruby'
           'ruby-build'
-          'rbenv')
+          'ruby-bundler'
+          'ruby-docs'
+          'ruby-rake'
+          'rbenv'
+          'rbenv-default-gems'
+          'rbenv-each-git'
+          'rbenv-vars')
   _vimpkgs+=('vim-rbenv-git'
              'vim-ruby-git')
 fi
@@ -1392,7 +1429,8 @@ if [[ "${_lua}" == '1' ]]; then
 fi
 
 if [[ "${_haskell}" == '1' ]]; then
-  _pkgs+=('ghc')
+  _pkgs+=('cabal-install'
+          'ghc')
   _vimpkgs+=('vim-haskell')
 fi
 
@@ -1412,11 +1450,303 @@ if [[ "${_nginx}" == '1' ]]; then
 fi
 
 if [[ "${_analysis}" == '1' ]]; then
-  _pkgs+=('ltrace'
+  _pkgs+=('glances'
+          'htop'
+          'iftop'
+          'iotop'
+          'ltrace'
+          'moreutils'
           'multitail'
           'nethogs'
+          'ngrep'
           'ntop'
-          'strace')
+          'strace'
+          'traceroute')
+fi
+
+if [[ "${_gui}" == '1' ]]; then
+  _pkgs+=('abiword'
+          'alsa-firmware'
+          'alsa-lib'
+          'alsa-oss'
+          'alsa-plugins'
+          'alsa-utils'
+          'anki'
+          'ascrubber-git'
+          'batti'
+          'bleachbit'
+          'chmsee-webkit'
+          'chromium'
+          'conky'
+          'deluge'
+          'desktop-file-utils'
+          'dmenu-xft'
+          'ekiga'
+          'enigmail-bin'
+          'evince'
+          'feh'
+          'firefox'
+          'flashplugin'
+          'gajim'
+          'gajim-plugin-otr-git'
+          'galculator'
+          'gcolor2'
+          'gimp'
+          'gmrun'
+          'gnumeric'
+          'gparted'
+          'grsync'
+          'gsettings-desktop-schemas'
+          'gsimplecal'
+          'gsm'
+          'gstreamer'
+          'gstreamer0.10'
+          'gstreamer0.10-bad'
+          'gstreamer0.10-bad-plugins'
+          'gstreamer0.10-base'
+          'gstreamer0.10-base-plugins'
+          'gstreamer0.10-ffmpeg'
+          'gstreamer0.10-good'
+          'gstreamer0.10-good-plugins'
+          'gstreamer0.10-python'
+          'gstreamer0.10-ugly'
+          'gstreamer0.10-ugly-plugins'
+          'gstreamermm'
+          'gtk2'
+          'gtk3'
+          'gucharmap'
+          'hicolor-icon-theme'
+          'hotshots'
+          'hunspell'
+          'hwinfo'
+          'hyphen'
+          'i2p'
+          'icedtea-web-java7'
+          'ifuse'
+          'imagemagick'
+          'imlib2'
+          'inkscape'
+          'inputproto'
+          'intltool'
+          'iso-codes'
+          'jhead'
+          'jp2a'
+          'jre7-openjdk'
+          'jre7-openjdk-headless'
+          'keepassx'
+          'leafpad'
+          'libgl'
+          'link-grammar'
+          'lxappearance'
+          'lxinput'
+          'lxmed'
+          'lxmenu-data'
+          'lxrandr'
+          'lxsplit'
+          'lxterminal'
+          'media-player-info'
+          'menu-cache'
+          'mesa'
+          'mesa-demos'
+          'mime-types'
+          'mimeo'
+          'nitrogen'
+          'notification-daemon'
+          'numlockx'
+          'obconf'
+          'obkey-git'
+          'obmenu'
+          'obmenu-generator'
+          'onboard'
+          'openbox'
+          'openbox-menu'
+          'openbox-themes'
+          'pcmanfm'
+          'perl-image-exiftool'
+          'pidgin-otr'
+          'printproto'
+          'pulseaudio'
+          'qrencode'
+          'radegast'
+          'randrproto'
+          'recode'
+          'renderproto'
+          'screencastor'
+          'scrot'
+          'shared-color-profiles'
+          'shared-mime-info'
+          'shotwell'
+          'source-highlight'
+          'startup-notification'
+          'statler-ui-theme'
+          'steghide'
+          'tcplay'
+          'thunderbird'
+          'tint2'
+          'tiv'
+          'tor-browser-en'
+          'torchat'
+          'truecrypt'
+          'urxvt-perls'
+          'videoproto'
+          'vlc'
+          'volumeicon'
+          'x11-ssh-askpass'
+          'xautolock'
+          'xautomation'
+          'xchat'
+          'xchat-otr'
+          'xclip'
+          'xdg-utils'
+          'xdotool'
+          'xextproto'
+          'xf86-input-evdev'
+          'xf86-input-joystick'
+          'xf86-input-keyboard'
+          'xf86-input-mouse'
+          'xf86-input-synaptics'
+          'xf86-input-vmmouse'
+          'xf86-input-void'
+          'xf86-video-ark'
+          'xf86-video-ast'
+          'xf86-video-ati'
+          'xf86-video-cirrus'
+          'xf86-video-dummy'
+          'xf86-video-fbdev'
+          'xf86-video-glint'
+          'xf86-video-i128'
+          'xf86-video-intel'
+          'xf86-video-mach64'
+          'xf86-video-mga'
+          'xf86-video-modesetting'
+          'xf86-video-neomagic'
+          'xf86-video-nouveau'
+          'xf86-video-nv'
+          'xf86-video-openchrome'
+          'xf86-video-r128'
+          'xf86-video-savage'
+          'xf86-video-siliconmotion'
+          'xf86-video-sis'
+          'xf86-video-tdfx'
+          'xf86-video-trident'
+          'xf86-video-v4l'
+          'xf86-video-vesa'
+          'xf86-video-vmware'
+          'xf86-video-voodoo'
+          'xf86dgaproto'
+          'xf86vidmodeproto'
+          'xflux'
+          'xineramaproto'
+          'xkeyboard-config'
+          'xlockmore'
+          'xorg'
+          'xorg-bdftopcf'
+          'xorg-docs'
+          'xorg-font-util'
+          'xorg-font-utils'
+          'xorg-fonts-100dpi'
+          'xorg-fonts-75dpi'
+          'xorg-fonts-alias'
+          'xorg-fonts-cyrillic'
+          'xorg-fonts-encodings'
+          'xorg-fonts-misc'
+          'xorg-fonts-type1'
+          'xorg-iceauth'
+          'xorg-luit'
+          'xorg-mkfontdir'
+          'xorg-mkfontscale'
+          'xorg-server'
+          'xorg-server-common'
+          'xorg-server-devel'
+          'xorg-server-utils'
+          'xorg-server-xdmx'
+          'xorg-server-xephyr'
+          'xorg-server-xnest'
+          'xorg-server-xvfb'
+          'xorg-sessreg'
+          'xorg-setxkbmap'
+          'xorg-smproxy'
+          'xorg-twm'
+          'xorg-utils'
+          'xorg-x11perf'
+          'xorg-xauth'
+          'xorg-xbacklight'
+          'xorg-xcalc'
+          'xorg-xclock'
+          'xorg-xcmsdb'
+          'xorg-xcursorgen'
+          'xorg-xdm'
+          'xorg-xdpyinfo'
+          'xorg-xdriinfo'
+          'xorg-xev'
+          'xorg-xgamma'
+          'xorg-xhost'
+          'xorg-xinit'
+          'xorg-xinput'
+          'xorg-xkbcomp'
+          'xorg-xkbevd'
+          'xorg-xkbutils'
+          'xorg-xkill'
+          'xorg-xlsatoms'
+          'xorg-xlsclients'
+          'xorg-xlsfonts'
+          'xorg-xmessage'
+          'xorg-xmodmap'
+          'xorg-xpr'
+          'xorg-xprop'
+          'xorg-xrandr'
+          'xorg-xrdb'
+          'xorg-xrefresh'
+          'xorg-xset'
+          'xorg-xsetroot'
+          'xorg-xvinfo'
+          'xorg-xwd'
+          'xorg-xwininfo'
+          'xorg-xwud'
+          'xproto'
+          'xterm'
+          'xxkb'
+          'zenity'
+          'zulucrypt')
+fi
+
+if [[ "${_fonts}" == '1' ]]; then
+  _pkgs+=('gsfonts'
+          'opendesktop-fonts'
+          'ttf-arphic-ukai'
+          'ttf-arphic-uming'
+          'ttf-baekmuk'
+          'ttf-bitstream-vera'
+          'ttf-dejavu'
+          'ttf-freebanglafont'
+          'ttf-gentium'
+          'ttf-google-fonts-git'
+          'ttf-hanazono'
+          'ttf-hannom'
+          'ttf-indic-otf'
+          'ttf-junicode'
+          'ttf-khmer'
+          'ttf-linux-libertine'
+          'ttf-mph-2b-damase'
+          'ttf-sazanami'
+          'ttf-symbola'
+          'ttf-tibetan-machine'
+          'ttf-tlwg'
+          'ttf-ubraille'
+          'wqy-bitmapfont'
+          'wqy-microhei'
+          'wqy-zenhei')
+fi
+
+if [[ "${_gui}" == '1' ]]; then
+  declare _bitpkgs=('electrum'
+                    'electrum-lite'
+                    'python2-zbar'
+                    'twister-core-git'
+                    'twister-html-git')
+else
+  declare _bitpkgs=('electrum-headless'
+                    'electrum-lite-headless')
 fi
 
 # install
@@ -1429,7 +1759,82 @@ fi
                            echo "***********"
                                   fi
 
-arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} --noedit --noconfirm
+arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitpkgs[@]} --noedit --noconfirm
+}
+
+
+
+
+# -----------------------------------------------------------------------------
+# dotify: install dotfiles
+# -----------------------------------------------------------------------------
+
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "************"
+                        echo "*  ------  *"
+                        echo "* |dotify| *"
+                        echo "*  ------  *"
+                        echo "************"
+                                  fi
+
+
+function dotify() {
+
+# downloading
+
+                   if [[ "$_debug" == '1' ]]; then
+                      echo "***************"
+                      echo "*             *"
+                      echo "* downloading *"
+                      echo "*             *"
+                      echo "***************"
+                                  fi
+
+mkdir -p /mnt/${_user_name}/.src && cd /mnt/${_user_name}/.src
+curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${_dotfiles_version}} -o /mnt/${_user_name}/.src/"#1-#3.#2"
+tar -xvzf dotfiles-${_dotfiles_version}
+cd dotfiles-${_dotfiles_version}
+
+# adjusting dotfile config parameters
+
+                   if [[ "$_debug" == '1' ]]; then
+                      echo "***************"
+                      echo "*             *"
+                      echo "* configuring *"
+                      echo "*             *"
+                      echo "***************"
+                                  fi
+
+sed -i "s#\$HOME#/home/${_user_name}#" bootstrap.sh
+sed -i "s#^name.*#${_name}#"           bootstrap.sh
+sed -i "s#^email.*#${_email}#"         bootstrap.sh
+sed -i "s#^github.*#${_github}#"       bootstrap.sh
+sed -i "s#^zipcode.*#${_zipcode}#"     bootstrap.sh
+
+# running bootstrap
+
+                   if [[ "$_debug" == '1' ]]; then
+                      echo "*****************"
+                      echo "*               *"
+                      echo "* bootstrapping *"
+                      echo "*               *"
+                      echo "*****************"
+                                  fi
+
+./bootstrap.sh
+
+# fixing permissions
+
+                   if [[ "$_debug" == '1' ]]; then
+                      echo "**********************"
+                      echo "*                    *"
+                      echo "* fixing permissions *"
+                      echo "*                    *"
+                      echo "**********************"
+                                  fi
+
+chown -R ${_user_name}:users /home/${_user_name}
 }
 
 
