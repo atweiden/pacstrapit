@@ -110,6 +110,7 @@ _elixir=0
 _fonts=0
 _games=0
 _go=0
+_gobi=0
 _haskell=0
 _ledger=0
 _lua=0
@@ -1247,8 +1248,6 @@ declare _pkgs=('ack'
                'elinks'
                'geturl-git'
                'git'
-               'gobi-loader'
-               'gobi-firmware'
                'gnupg1'
                'haveged'
                'imgurbash'
@@ -1262,8 +1261,6 @@ declare _pkgs=('ack'
                'macchanger'
                'mercurial'
                'mlocate'
-               'mobile-broadband-provider-info'
-               'modemmanager'
                'mosh'
                'ncurses'
                'openvpn'
@@ -1742,6 +1739,13 @@ if [[ "${_games}" == '1' ]]; then
           'papersplease'
           'radegast'
           'steam')
+fi
+
+if [[ "${_gobi}" == '1' ]]; then
+  _pkgs+=('gobi-loader'
+          'gobi-firmware'
+          'mobile-broadband-provider-info'
+          'modemmanager')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
