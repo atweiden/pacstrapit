@@ -1823,6 +1823,48 @@ sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" bootstrap.sh
 
 ./bootstrap.sh
 
+# configuring X11
+
+                   if [[ "$_debug" == '1' ]]; then
+                            echo "*******"
+                            echo "*     *"
+                            echo "* X11 *"
+                            echo "*     *"
+                            echo "*******"
+                                  fi
+
+if [[ "${_gui}" == '1' ]]; then
+  mv /mnt/etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d.bak
+  cp -R etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d
+fi
+
+# configuring openvpn
+
+                   if [[ "$_debug" == '1' ]]; then
+                          echo "***********"
+                          echo "*         *"
+                          echo "* openvpn *"
+                          echo "*         *"
+                          echo "***********"
+                                  fi
+
+mkdir -p /etc/openvpn
+cp etc/openvpn/update-resolv-conf /etc/openvpn
+
+# adding systemd service
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* kill-ssh-sessions *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+cp usr/lib/systemd/scripts/kill-ssh-sessions /usr/lib/systemd/scripts
+cp usr/lib/systemd/system/kill-ssh-sessions.service /usr/lib/systemd/system
+systemctl enable kill-ssh-sessions.service
+
 # fixing permissions
 
                    if [[ "$_debug" == '1' ]]; then
