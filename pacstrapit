@@ -1806,11 +1806,11 @@ cd dotfiles-${_dotfiles_version}
                       echo "***************"
                                   fi
 
-sed -i "s#\$HOME#/home/${_user_name}#" bootstrap.sh
-sed -i "s#^name.*#${_name}#"           bootstrap.sh
-sed -i "s#^email.*#${_email}#"         bootstrap.sh
-sed -i "s#^github.*#${_github}#"       bootstrap.sh
-sed -i "s#^zipcode.*#${_zipcode}#"     bootstrap.sh
+sed -i "s#\$HOME#/home/${_user_name}#"      bootstrap.sh
+sed -i "s#^name.*#name=${_name}#"           bootstrap.sh
+sed -i "s#^email.*#email=${_email}#"        bootstrap.sh
+sed -i "s#^github.*#github=${_github}#"     bootstrap.sh
+sed -i "s#^zipcode.*#zipcode="${_zipcode}#" bootstrap.sh
 
 # running bootstrap
 
