@@ -1386,7 +1386,6 @@ if [[ "${_clojure}" == '1' ]]; then
   _pkgs+=('jdk7-openjdk'
           'ca-certificates-java'
           'clojure'
-          'grenchman'
           'leiningen'
           'leiningen-completions'
           'nailgun')
