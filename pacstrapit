@@ -1849,7 +1849,7 @@ fi
                                   fi
 
 mkdir -p /etc/openvpn
-cp etc/openvpn/update-resolv-conf /etc/openvpn
+cp etc/openvpn/update-resolv-conf /mnt/etc/openvpn
 
 # adding systemd service
 
@@ -1861,9 +1861,9 @@ cp etc/openvpn/update-resolv-conf /etc/openvpn
                      echo "*********************"
                                   fi
 
-cp usr/lib/systemd/scripts/kill-ssh-sessions /usr/lib/systemd/scripts
-cp usr/lib/systemd/system/kill-ssh-sessions.service /usr/lib/systemd/system
-systemctl enable kill-ssh-sessions.service
+cp usr/lib/systemd/scripts/kill-ssh-sessions /mnt/usr/lib/systemd/scripts
+cp usr/lib/systemd/system/kill-ssh-sessions.service /mnt/usr/lib/systemd/system
+arch-chroot /mnt systemctl enable kill-ssh-sessions.service
 
 # fixing permissions
 
