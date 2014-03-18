@@ -1922,8 +1922,8 @@ function dotify() {
                         echo "***************"
                                   fi
 
-mkdir -p /mnt/${_user_name}/.src && cd /mnt/${_user_name}/.src
-curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${_dotfiles_version}} -o /mnt/${_user_name}/.src/"#1-#3.#2"
+mkdir -p /mnt/home/${_user_name}/.src && cd /mnt/home/${_user_name}/.src
+curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${_dotfiles_version}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
 tar -xvzf dotfiles-${_dotfiles_version}
 cd dotfiles-${_dotfiles_version}
 
