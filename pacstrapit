@@ -1231,7 +1231,7 @@ function selectify() {
 declare _pkgs=('ack'
                'ansible'
                'arch-install-scripts'
-               'arch-wiki-docs-clean'
+               'arch-wiki-markdown-git'
                'archey'
                'avahi'
                'bash-completion'
@@ -1300,7 +1300,8 @@ if [[ "${_gui}" == '1' ]]; then
 else
   declare _vimpkgs=('vim-full')
 fi
-_vimpkgs+=('ctags'
+_vimpkgs+=('arch-wiki-docs-clean'
+           'ctags'
            'vim-align'
            'vim-guicolorscheme'
            'vim-indent-object'
