@@ -105,6 +105,7 @@ _gui=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
+_dotfiles_version=0.1.0
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -680,14 +681,13 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
 arch-chroot /mnt hwclock --systohc --utc
 
 # build pacaur
-# vim re:center this
 
                    if [[ "$_debug" == '1' ]]; then
-                     echo "****************"
-                     echo "*              *"
-                     echo "* build pacaur *"
-                     echo "*              *"
-                     echo "****************"
+                       echo "****************"
+                       echo "*              *"
+                       echo "* build pacaur *"
+                       echo "*              *"
+                       echo "****************"
                                   fi
 
 pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
@@ -702,14 +702,13 @@ for _pkg in cower pacaur; do
 done
 
 # install pacaur and zramswap
-# vim re:center this
 
                    if [[ "$_debug" == '1' ]]; then
-                     echo "*******************************"
-                     echo "*                             *"
-                     echo "* install pacaur and zramswap *"
-                     echo "*                             *"
-                     echo "*******************************"
+                echo "*******************************"
+                echo "*                             *"
+                echo "* install pacaur and zramswap *"
+                echo "*                             *"
+                echo "*******************************"
                                   fi
 
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
@@ -1173,9 +1172,9 @@ fi
 
                    if [[ "$_debug" == '1' ]]; then
                         echo "***************"
-                        echo "*  -------    *"
+                        echo "*  ---------  *"
                         echo "* |selectify| *"
-                        echo "*  -------    *"
+                        echo "*  ---------  *"
                         echo "***************"
                                   fi
 
@@ -1185,7 +1184,6 @@ function selectify() {
 # select
 _analysis=1
 _clojure=1
-_docker=1
 _elixir=1
 _fonts=1
 _go=1
@@ -1442,11 +1440,6 @@ fi
 if [[ "${_ledger}" == '1' ]]; then
   _pkgs+=('ledger-git'
           'ledger.py-git')
-fi
-
-if [[ "${_docker}" == '1' ]]; then
-  _pkgs+=('docker')
-  _vimpkgs+=('vim-dockerfile-git')
 fi
 
 if [[ "${_nginx}" == '1' ]]; then
@@ -1750,23 +1743,25 @@ if [[ "${_gui}" == '1' ]]; then
                     'twister-core-git'
                     'twister-html-git')
 else
-  declare _bitpkgs=('electrum-headless'
-                    'electrum-lite-headless')
+  electrum_headless
 fi
 
 # install
 
                    if [[ "$_debug" == '1' ]]; then
-                           echo "***********"
-                           echo "*         *"
-                           echo "* install *"
-                           echo "*         *"
-                           echo "***********"
+                          echo "***********"
+                          echo "*         *"
+                          echo "* install *"
+                          echo "*         *"
+                          echo "***********"
                                   fi
 
 arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitpkgs[@]} --noedit --noconfirm
 }
 
+function electrum_headless() {
+
+}
 
 
 
@@ -1776,11 +1771,11 @@ arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitp
 
 
                    if [[ "$_debug" == '1' ]]; then
-                        echo "************"
-                        echo "*  ------  *"
-                        echo "* |dotify| *"
-                        echo "*  ------  *"
-                        echo "************"
+                         echo "************"
+                         echo "*  ------  *"
+                         echo "* |dotify| *"
+                         echo "*  ------  *"
+                         echo "************"
                                   fi
 
 
@@ -1789,11 +1784,11 @@ function dotify() {
 # downloading
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "***************"
-                      echo "*             *"
-                      echo "* downloading *"
-                      echo "*             *"
-                      echo "***************"
+                        echo "***************"
+                        echo "*             *"
+                        echo "* downloading *"
+                        echo "*             *"
+                        echo "***************"
                                   fi
 
 mkdir -p /mnt/${_user_name}/.src && cd /mnt/${_user_name}/.src
@@ -1804,11 +1799,11 @@ cd dotfiles-${_dotfiles_version}
 # adjusting dotfile config parameters
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "***************"
-                      echo "*             *"
-                      echo "* configuring *"
-                      echo "*             *"
-                      echo "***************"
+                        echo "***************"
+                        echo "*             *"
+                        echo "* configuring *"
+                        echo "*             *"
+                        echo "***************"
                                   fi
 
 sed -i "s#\$HOME#/home/${_user_name}#"         bootstrap.sh
@@ -1820,11 +1815,11 @@ sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" bootstrap.sh
 # running bootstrap
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "*****************"
-                      echo "*               *"
-                      echo "* bootstrapping *"
-                      echo "*               *"
-                      echo "*****************"
+                       echo "*****************"
+                       echo "*               *"
+                       echo "* bootstrapping *"
+                       echo "*               *"
+                       echo "*****************"
                                   fi
 
 ./bootstrap.sh
@@ -1832,11 +1827,11 @@ sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" bootstrap.sh
 # fixing permissions
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "**********************"
-                      echo "*                    *"
-                      echo "* fixing permissions *"
-                      echo "*                    *"
-                      echo "**********************"
+                    echo "**********************"
+                    echo "*                    *"
+                    echo "* fixing permissions *"
+                    echo "*                    *"
+                    echo "**********************"
                                   fi
 
 arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
