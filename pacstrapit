@@ -165,6 +165,24 @@ function checkify() {
 
 if ! [[ "$UID" == '0' ]]; then exit 1; fi
 
+# depends: pacman.conf
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* pacman.conf *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+sed -i '/^CheckSpace.*/a ILoveCandy'           /etc/pacman.conf
+sed -i 's!^#Color!Color!'                      /etc/pacman.conf
+sed -i 's!^#TotalDownload!TotalDownload!'      /etc/pacman.conf
+if [[ "$(uname -m)" == 'x86_64' ]]; then
+  echo '[multilib]'                         >> /etc/pacman.conf
+  echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
+fi
+
 # depends: rankmirrors
 
                    if [[ "$_debug" == '1' ]]; then
@@ -712,6 +730,24 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
                                   fi
 
 arch-chroot /mnt hwclock --systohc --utc
+
+# configure pacman.conf
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* pacman.conf *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+sed -i '/^CheckSpace.*/a ILoveCandy'           /mnt/etc/pacman.conf
+sed -i 's!^#Color!Color!'                      /mnt/etc/pacman.conf
+sed -i 's!^#TotalDownload!TotalDownload!'      /mnt/etc/pacman.conf
+if [[ "$(uname -m)" == 'x86_64' ]]; then
+  echo '[multilib]'                         >> /mnt/etc/pacman.conf
+  echo 'Include = /etc/pacman.d/mirrorlist' >> /mnt/etc/pacman.conf
+fi
 
 # rankmirrors
 
