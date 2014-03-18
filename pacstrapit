@@ -164,6 +164,20 @@ function checkify() {
 
 if ! [[ "$UID" == '0' ]]; then exit 1; fi
 
+# depends: rankmirrors
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* rankmirrors *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+sed -i 's!^#Server!Server!' /etc/pacman.d/mirrorlist
+mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
+
 # depends: expect
 
                    if [[ "$_debug" == '1' ]]; then
@@ -697,6 +711,20 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
                                   fi
 
 arch-chroot /mnt hwclock --systohc --utc
+
+# rankmirrors
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* rankmirrors *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+sed -i 's!^#Server!Server!' /mnt/etc/pacman.d/mirrorlist
+mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak
+rankmirrors -n 4 /mnt/etc/pacman.d/mirrorlist.bak > /mnt/etc/pacman.d/mirrorlist
 
 # build pacaur
 
