@@ -121,6 +121,31 @@ GitHub, or any other file hosting service reachable via `curl`.
 Record the exact URL for each keyfile inside the variables section of
 `pacstrapit`.
 
+Optional: select
+----------------
+
+Select packages are available.
+
+<table>
+<tr><td>Analysis</td><td>Sysadmin tools for system analysis</td><tr>
+<tr><td>Clojure</td><td>Packages for programming in Clojure</td><tr>
+<tr><td>Elixir</td><td>Packages for programming in Elixir</td><tr>
+<tr><td>Fonts</td><td>Fonts with internationalization</td><tr>
+<tr><td>Games</td><td>minecraft, papersplea.se, radegast, steam</td><tr>
+<tr><td>Go</td><td>Packages for programming in Go</td><tr>
+<tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td><tr>
+<tr><td>Haskell</td><td>Packages for programming in Haskell</td><tr>
+<tr><td>Ledger</td><td>CLI accounting</td><tr>
+<tr><td>Lua</td><td>Packages for programming in Lua</td><tr>
+<tr><td>Markdown</td><td>Packages for writing in Markdown</td><tr>
+<tr><td>Nginx</td><td>Nginx webserver packages</td><tr>
+<tr><td>Nimrod</td><td>Packages for programming in Nimrod</td><tr>
+<tr><td>Node</td><td>Packages for programming in Node.js</td><tr>
+<tr><td>Perl</td><td>Packages for programming in Perl</td><tr>
+<tr><td>Python</td><td>Packages for programming in Python</td><tr>
+<tr><td>Ruby</td><td>Packages for programming in Ruby</td><tr>
+</table>
+
 
 To Do
 -----
