@@ -85,7 +85,8 @@ $ ssh-keygen -t ed25519 -b 521 -f ~/keys/id_ed25519
 Get Electrum.
 
 ```bash
-$ for _pkg in python2-ecdsa python2-pbkdf2 python2-slowaes; do
+$ sudo pacman -Sy --needed python2-ecdsa --noconfirm
+$ for _pkg in python2-pbkdf2 python2-slowaes; do
     mkdir -p ~/.src && cd ~/.src
     rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
     curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
