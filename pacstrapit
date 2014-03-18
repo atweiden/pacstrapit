@@ -1386,8 +1386,12 @@ if [[ "${_node}" == '1' ]]; then
 fi
 
 if [[ "${_elixir}" == '1' ]]; then
-  _pkgs+=('erlang-nox'
-          'erlang-docs'
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('erlang')
+  else
+    _pkgs+=('erlang-nox')
+  fi
+  _pkgs+=('erlang-docs'
           'elixir')
   _vimpkgs+=('vim-elixir-git'
              'vimerl-git'
