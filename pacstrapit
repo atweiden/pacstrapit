@@ -103,6 +103,24 @@ _hosts_allowed="192.168.0."
 _select=0
 _gui=0
 
+# pkgs
+_analysis=0
+_clojure=0
+_elixir=0
+_fonts=0
+_games=0
+_go=0
+_haskell=0
+_ledger=0
+_lua=0
+_markdown=0
+_nginx=0
+_nimrod=0
+_node=0
+_perl=0
+_python=0
+_ruby=0
+
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
 _dotfiles_version=0.1.0
@@ -1182,22 +1200,6 @@ fi
 function selectify() {
 
 # select
-_analysis=1
-_clojure=1
-_elixir=1
-_fonts=1
-_go=1
-_haskell=1
-_ledger=1
-_lua=1
-_markdown=1
-_nginx=1
-_nimrod=1
-_node=1
-_perl=1
-_python=1
-_ruby=1
-
 declare _pkgs=('ack'
                'ansible'
                'arch-install-scripts'
@@ -1257,9 +1259,11 @@ declare _pkgs=('ack'
                'tor'
                'torsocks'
                'tree'
+               'ttf-monaco'
                'unzip'
                'usbmuxd'
                'usb_modeswitch'
+               'youtube-dl'
                'zsh'
                'zsh-syntax-highlighting')
 
@@ -1269,7 +1273,6 @@ else
   declare _vimpkgs=('vim-full')
 fi
 _vimpkgs+=('ctags'
-           'ttf-monaco'
            'vim-align'
            'vim-guicolorscheme'
            'vim-indent-object'
@@ -1563,7 +1566,6 @@ if [[ "${_gui}" == '1' ]]; then
           'printproto'
           'pulseaudio'
           'qrencode'
-          'radegast'
           'randrproto'
           'recode'
           'renderproto'
@@ -1705,6 +1707,13 @@ if [[ "${_gui}" == '1' ]]; then
           'xxkb'
           'zenity'
           'zulucrypt')
+fi
+
+if [[ "${_games}" == '1' ]]; then
+  _pkgs+=('minecraft'
+          'papersplease'
+          'radegast'
+          'steam')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
