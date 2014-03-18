@@ -1333,8 +1333,7 @@ if [[ "${_gui}" == '1' ]]; then
 else
   declare _vimpkgs=('vim-full')
 fi
-_vimpkgs+=('arch-wiki-docs-clean'
-           'ctags'
+_vimpkgs+=('ctags'
            'vim-align'
            'vim-guicolorscheme'
            'vim-indent-object'
@@ -1533,6 +1532,7 @@ if [[ "${_gui}" == '1' ]]; then
           'alsa-plugins'
           'alsa-utils'
           'anki'
+          'arch-wiki-docs-clean'
           'ascrubber-git'
           'batti'
           'bleachbit'
