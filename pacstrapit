@@ -1329,202 +1329,6 @@ declare _pkgs=('ack'
                'zsh-syntax-highlighting')
 
 if [[ "${_gui}" == '1' ]]; then
-  declare _vimpkgs=('gvim')
-else
-  declare _vimpkgs=('vim-full')
-fi
-_vimpkgs+=('ctags'
-           'vim-align'
-           'vim-guicolorscheme'
-           'vim-indent-object'
-           'vim-nerdtree'
-           'vim-surround'
-           'vim-systemd'
-           'vim-ultisnips'
-           'vim-misc-xolox'
-           'vim-cecutil'
-           'vim-vis-git'
-           'vim-ack'
-           'vim-colors-liquidcarbon'
-           'vim-colors-mayansmoke'
-           'vim-colors-neverland-git'
-           'vim-colors-sorcerer'
-           'vim-csapprox'
-           'vim-delimitmate'
-           'vim-dragvisuals-git'
-           'vim-easydir-git'
-           'vim-easymotion'
-           'vim-easytags'
-           'vim-file-line-git'
-           'vim-gnupg'
-           'vim-gtk-syntax-git'
-           'vim-gundo'
-           'vim-haml-git'
-           'vim-hugefile-git'
-           'vim-less-git'
-           'vim-lightline-git'
-           'vim-lustyexplorer'
-           'vim-matchit'
-           'vim-multiple-cursors-git'
-           'vim-mustache-git'
-           'vim-nerdcommenter'
-           'vim-numbered-git'
-           'vim-openssl'
-           'vim-pipe2eval-git'
-           'vim-repeat'
-           'vim-taboo-git'
-           'vim-tabular-git'
-           'vim-tagbar'
-           'vim-tmux-navigator-git'
-           'vim-trailing-whitespace'
-           'vim-visual-star-search-git'
-           'vim-yankring'
-           'pnfo-git')
-
-if [[ "${_perl}" == '1' ]]; then
-  _pkgs+=('perlbrew'
-          'perl-cpanplus-dist-arch'
-          'perl-ev'
-          'perl-io-socket-ip'
-          'perl-io-socket-ssl'
-          'perl-mojolicious'
-          'perlconsole')
-  _vimpkgs+=('vim-after-syntax-perl-git'
-             'vim-mojo-git'
-             'vim-perl'
-             'vim-perl-support')
-fi
-
-if [[ "${_python}" == '1' ]]; then
-  _pkgs+=('python'
-          'python-jedi'
-          'python-pip'
-          'python-setuptools'
-          'python-virtualenv'
-          'python-virtualenv-clone'
-          'python-virtualenvwrapper'
-          'python2'
-          'python2-jedi'
-          'python2-pip'
-          'python2-setuptools'
-          'python2-virtualenv'
-          'python2-virtualenv-clone')
-  _vimpkgs+=('vim-htmljinja'
-             'vim-jedi'
-             'vim-jinja'
-             'vim-kivy-git'
-             'vim-python'
-             'vim-virtualenv')
-fi
-
-if [[ "${_clojure}" == '1' ]]; then
-  _pkgs+=('jdk7-openjdk'
-          'ca-certificates-java'
-          'clojure'
-          'leiningen'
-          'leiningen-completions'
-          'nailgun')
-  _vimpkgs+=('vim-clojure-sql-git'
-             'vim-clojure-static-git'
-             'vim-fireplace-git'
-             'vim-rainbow-parentheses-git')
-fi
-
-if [[ "${_node}" == '1' ]]; then
-  _pkgs+=('nodejs'
-          'nodejs-bower'
-          'nodejs-grasp'
-          'nodejs-grunt-cli'
-          'nodejs-hexo'
-          'nodejs-jade'
-          'nodejs-stylus')
-  _vimpkgs+=('vim-jade-git'
-             'vim-javascript-git'
-             'vim-jquery'
-             'vim-nodejs-errorformat-git'
-             'vim-nodejs-git'
-             'vim-stylus-git')
-fi
-
-if [[ "${_elixir}" == '1' ]]; then
-  if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('erlang')
-  else
-    _pkgs+=('erlang-nox')
-  fi
-  _pkgs+=('erlang-docs'
-          'elixir')
-  _vimpkgs+=('vim-elixir-git'
-             'vimerl-git'
-             'vim-mix-git')
-fi
-
-if [[ "${_ruby}" == '1' ]]; then
-  _pkgs+=('ruby'
-          'ruby-build'
-          'ruby-bundler'
-          'ruby-docs'
-          'rbenv'
-          'rbenv-default-gems'
-          'rbenv-each-git'
-          'rbenv-vars')
-  _vimpkgs+=('vim-rbenv-git'
-             'vim-ruby-git')
-fi
-
-if [[ "${_markdown}" == '1' ]]; then
-  _pkgs+=('markdown')
-  _vimpkgs+=('vim-markdown')
-fi
-
-if [[ "${_nimrod}" == '1' ]]; then
-  _pkgs+=('nimrod')
-  _vimpkgs+=('vim-nimrod-git')
-fi
-
-if [[ "${_go}" == '1' ]]; then
-  _pkgs+=('go')
-fi
-
-if [[ "${_lua}" == '1' ]]; then
-  _pkgs+=('lua')
-  _vimpkgs+=('vim-lua-ftplugin-git'
-             'vim-lua-inspect-git'
-             'vim-lua-support')
-fi
-
-if [[ "${_haskell}" == '1' ]]; then
-  _pkgs+=('cabal-install'
-          'ghc')
-  _vimpkgs+=('vim-haskell')
-fi
-
-if [[ "${_ledger}" == '1' ]]; then
-  _pkgs+=('ledger-git'
-          'ledger.py-git')
-fi
-
-if [[ "${_nginx}" == '1' ]]; then
-  _pkgs+=('nginx')
-  _vimpkgs+=('vim-nginx')
-fi
-
-if [[ "${_analysis}" == '1' ]]; then
-  _pkgs+=('glances'
-          'htop'
-          'iftop'
-          'iotop'
-          'ltrace'
-          'moreutils'
-          'multitail'
-          'nethogs'
-          'ngrep'
-          'ntop'
-          'strace'
-          'traceroute')
-fi
-
-if [[ "${_gui}" == '1' ]]; then
   _pkgs+=('abiword'
           'alsa-firmware'
           'alsa-lib'
@@ -1769,18 +1573,98 @@ if [[ "${_gui}" == '1' ]]; then
           'zulucrypt')
 fi
 
-if [[ "${_games}" == '1' ]]; then
-  _pkgs+=('minecraft'
-          'papersplease'
-          'radegast'
-          'steam')
+if [[ "${_gui}" == '1' ]]; then
+  declare _vimpkgs=('gvim')
+else
+  declare _vimpkgs=('vim-full')
+fi
+_vimpkgs+=('ctags'
+           'vim-align'
+           'vim-guicolorscheme'
+           'vim-indent-object'
+           'vim-nerdtree'
+           'vim-surround'
+           'vim-systemd'
+           'vim-ultisnips'
+           'vim-misc-xolox'
+           'vim-cecutil'
+           'vim-vis-git'
+           'vim-ack'
+           'vim-colors-liquidcarbon'
+           'vim-colors-mayansmoke'
+           'vim-colors-neverland-git'
+           'vim-colors-sorcerer'
+           'vim-csapprox'
+           'vim-delimitmate'
+           'vim-dragvisuals-git'
+           'vim-easydir-git'
+           'vim-easymotion'
+           'vim-easytags'
+           'vim-file-line-git'
+           'vim-gnupg'
+           'vim-gtk-syntax-git'
+           'vim-gundo'
+           'vim-haml-git'
+           'vim-hugefile-git'
+           'vim-less-git'
+           'vim-lightline-git'
+           'vim-lustyexplorer'
+           'vim-matchit'
+           'vim-multiple-cursors-git'
+           'vim-mustache-git'
+           'vim-nerdcommenter'
+           'vim-numbered-git'
+           'vim-openssl'
+           'vim-pipe2eval-git'
+           'vim-repeat'
+           'vim-taboo-git'
+           'vim-tabular-git'
+           'vim-tagbar'
+           'vim-tmux-navigator-git'
+           'vim-trailing-whitespace'
+           'vim-visual-star-search-git'
+           'vim-yankring'
+           'pnfo-git')
+
+if [[ "${_analysis}" == '1' ]]; then
+  _pkgs+=('glances'
+          'htop'
+          'iftop'
+          'iotop'
+          'ltrace'
+          'moreutils'
+          'multitail'
+          'nethogs'
+          'ngrep'
+          'ntop'
+          'strace'
+          'traceroute')
 fi
 
-if [[ "${_gobi}" == '1' ]]; then
-  _pkgs+=('gobi-loader'
-          'gobi-firmware'
-          'mobile-broadband-provider-info'
-          'modemmanager')
+if [[ "${_clojure}" == '1' ]]; then
+  _pkgs+=('jdk7-openjdk'
+          'ca-certificates-java'
+          'clojure'
+          'leiningen'
+          'leiningen-completions'
+          'nailgun')
+  _vimpkgs+=('vim-clojure-sql-git'
+             'vim-clojure-static-git'
+             'vim-fireplace-git'
+             'vim-rainbow-parentheses-git')
+fi
+
+if [[ "${_elixir}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('erlang')
+  else
+    _pkgs+=('erlang-nox')
+  fi
+  _pkgs+=('erlang-docs'
+          'elixir')
+  _vimpkgs+=('vim-elixir-git'
+             'vimerl-git'
+             'vim-mix-git')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
@@ -1809,6 +1693,122 @@ if [[ "${_fonts}" == '1' ]]; then
           'wqy-bitmapfont'
           'wqy-microhei'
           'wqy-zenhei')
+fi
+
+if [[ "${_games}" == '1' ]]; then
+  _pkgs+=('minecraft'
+          'papersplease'
+          'radegast'
+          'steam')
+fi
+
+if [[ "${_go}" == '1' ]]; then
+  _pkgs+=('go')
+fi
+
+if [[ "${_gobi}" == '1' ]]; then
+  _pkgs+=('gobi-loader'
+          'gobi-firmware'
+          'mobile-broadband-provider-info'
+          'modemmanager')
+fi
+
+if [[ "${_haskell}" == '1' ]]; then
+  _pkgs+=('cabal-install'
+          'ghc')
+  _vimpkgs+=('vim-haskell')
+fi
+
+if [[ "${_ledger}" == '1' ]]; then
+  _pkgs+=('ledger-git'
+          'ledger.py-git')
+fi
+
+if [[ "${_lua}" == '1' ]]; then
+  _pkgs+=('lua')
+  _vimpkgs+=('vim-lua-ftplugin-git'
+             'vim-lua-inspect-git'
+             'vim-lua-support')
+fi
+
+if [[ "${_markdown}" == '1' ]]; then
+  _pkgs+=('markdown')
+  _vimpkgs+=('vim-markdown')
+fi
+
+if [[ "${_nginx}" == '1' ]]; then
+  _pkgs+=('nginx')
+  _vimpkgs+=('vim-nginx')
+fi
+
+if [[ "${_nimrod}" == '1' ]]; then
+  _pkgs+=('nimrod')
+  _vimpkgs+=('vim-nimrod-git')
+fi
+
+if [[ "${_node}" == '1' ]]; then
+  _pkgs+=('nodejs'
+          'nodejs-bower'
+          'nodejs-grasp'
+          'nodejs-grunt-cli'
+          'nodejs-hexo'
+          'nodejs-jade'
+          'nodejs-stylus')
+  _vimpkgs+=('vim-jade-git'
+             'vim-javascript-git'
+             'vim-jquery'
+             'vim-nodejs-errorformat-git'
+             'vim-nodejs-git'
+             'vim-stylus-git')
+fi
+
+if [[ "${_perl}" == '1' ]]; then
+  _pkgs+=('perlbrew'
+          'perl-cpanplus-dist-arch'
+          'perl-ev'
+          'perl-io-socket-ip'
+          'perl-io-socket-ssl'
+          'perl-mojolicious'
+          'perlconsole')
+  _vimpkgs+=('vim-after-syntax-perl-git'
+             'vim-mojo-git'
+             'vim-perl'
+             'vim-perl-support')
+fi
+
+if [[ "${_python}" == '1' ]]; then
+  _pkgs+=('python'
+          'python-jedi'
+          'python-pip'
+          'python-setuptools'
+          'python-virtualenv'
+          'python-virtualenv-clone'
+          'python-virtualenvwrapper'
+          'python2'
+          'python2-jedi'
+          'python2-pip'
+          'python2-setuptools'
+          'python2-virtualenv'
+          'python2-virtualenv-clone')
+  _vimpkgs+=('vim-htmljinja'
+             'vim-jedi'
+             'vim-jinja'
+             'vim-kivy-git'
+             'vim-python'
+             'vim-virtualenv')
+fi
+
+if [[ "${_ruby}" == '1' ]]; then
+  _pkgs+=('ruby'
+          'ruby-build'
+          'ruby-bundler'
+          'ruby-docs'
+          'rbenv'
+          'rbenv-default-gems'
+          'rbenv-each-git'
+          'rbenv-vars')
+  _vimpkgs+=('vim-rbenv-git'
+             'vim-ruby-git')
 fi
 
 if [[ "${_gui}" == '1' ]]; then
