@@ -1815,7 +1815,7 @@ if [[ "${_gui}" == '1' ]]; then
   declare _bitpkgs=('electrum'
                     'python2-zbar')
 else
-  electrum_headless
+  _headless=1
 fi
 
 # install
@@ -1835,20 +1835,20 @@ arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitp
 
 
 # -----------------------------------------------------------------------------
-# electrum_headless: install electrum-headless in chroot
+# electrumify: install electrum-headless in chroot
 # -----------------------------------------------------------------------------
 
 
                    if [[ "$_debug" == '1' ]]; then
-                    echo "***********************"
-                    echo "*  -----------------  *"
-                    echo "* |electrum_headless| *"
-                    echo "*  -----------------  *"
-                    echo "***********************"
+                       echo "*****************"
+                       echo "*  -----------  *"
+                       echo "* |electrumify| *"
+                       echo "*  -----------  *"
+                       echo "*****************"
                                   fi
 
 
-function electrum_headless() {
+function electrumify() {
 
 # install electrum-headless deps in chroot
 
@@ -2119,6 +2119,7 @@ zramswapify
 pacstrapify
 if [[ "${_ssh}" == '1' ]]; then sshify; fi
 if [[ "${_select}" == '1' ]]; then selectify; fi
+if [[ "${_headless}" == '1' ]]; then electrumify; fi
 if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
 if [[ "${_debug}" == '1' ]]; then debugify; fi
 exitify
