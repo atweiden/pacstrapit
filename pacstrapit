@@ -322,6 +322,7 @@ expect <<EOF
   }
   expect eof
 EOF
+sleep 1
 }
 
 
@@ -354,6 +355,7 @@ function luksify() {
                                   fi
 
 mkfs.ext2 ${_partition}2
+sleep 1
 
 # load kernel modules required for luks
 
@@ -366,6 +368,7 @@ mkfs.ext2 ${_partition}2
                                   fi
 
 modprobe dm_mod dm-crypt
+sleep 1
 
 # create luks root partition
 
@@ -396,6 +399,7 @@ expect <<EOF
   }
   expect eof
 EOF
+sleep 1
 
 # open luks root partition
 
@@ -414,6 +418,7 @@ expect <<EOF
   }
   expect eof
 EOF
+sleep 3
 
 # create btrfs filesystem
 
@@ -426,6 +431,7 @@ EOF
                                   fi
 
 mkfs.btrfs /dev/mapper/${_luks_name}
+sleep 3
 
 # create and mount main btrfs subvolumes
 
@@ -439,6 +445,7 @@ mkfs.btrfs /dev/mapper/${_luks_name}
 
 mkdir -p /mnt2
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache /dev/mapper/${_luks_name} /mnt2
+sleep 3
 
                    if [[ "$_debug" == '1' ]]; then
             echo "**************************************"
@@ -466,8 +473,10 @@ btrfs subvolume create @var
                                   fi
 
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@ /dev/mapper/${_luks_name} /mnt
+sleep 1
 for _btrfs_dir in home opt srv tmp usr var; do
   mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
+  sleep 1
 done
 
                    if [[ "$_debug" == '1' ]]; then
