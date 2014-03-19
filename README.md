@@ -32,19 +32,19 @@ data loss and system instability.
 Defaults:
 
 <table>
-<tr><td>Target partition</td><td>/dev/sda</td><tr>
-<tr><td>Type of processor</td><td>other</td><tr>
-<tr><td>Type of graphics card</td><td>Intel</td><tr>
-<tr><td>Type of hard drive</td><td>HDD</td><tr>
-<tr><td>Locale</td><td>en_US</td><tr>
-<tr><td>Keymap</td><td>us</td><tr>
-<tr><td>Timezone</td><td>America/Los_Angeles (PST)</td><tr>
-<tr><td>Root password</td><td>secret</td><tr>
-<tr><td>User name</td><td>live</td><tr>
-<tr><td>User password</td><td>secret</td><tr>
-<tr><td>LUKS name</td><td>luksroot</td><tr>
-<tr><td>LUKS password</td><td>secret</td><tr>
-<tr><td>Hostname</td><td>luksiso</td><tr>
+<tr><td>Target partition</td><td>/dev/sda</td></tr>
+<tr><td>Type of processor</td><td>other</td></tr>
+<tr><td>Type of graphics card</td><td>Intel</td></tr>
+<tr><td>Type of hard drive</td><td>HDD</td></tr>
+<tr><td>Locale</td><td>en_US</td></tr>
+<tr><td>Keymap</td><td>us</td></tr>
+<tr><td>Timezone</td><td>America/Los_Angeles (PST)</td></tr>
+<tr><td>Root password</td><td>secret</td></tr>
+<tr><td>User name</td><td>live</td></tr>
+<tr><td>User password</td><td>secret</td></tr>
+<tr><td>LUKS name</td><td>luksroot</td></tr>
+<tr><td>LUKS password</td><td>secret</td></tr>
+<tr><td>Hostname</td><td>luksiso</td></tr>
 </table>
 
 > `cd pacstrapit-0.2.4 && $EDITOR pacstrapit`
@@ -128,23 +128,23 @@ Optional: select
 Select packages are available.
 
 <table>
-<tr><td>Analysis</td><td>Sysadmin tools for system analysis</td><tr>
-<tr><td>Clojure</td><td>Packages for programming in Clojure</td><tr>
-<tr><td>Elixir</td><td>Packages for programming in Elixir</td><tr>
-<tr><td>Fonts</td><td>Fonts with internationalization</td><tr>
-<tr><td>Games</td><td>minecraft, papersplea.se, radegast, steam</td><tr>
-<tr><td>Go</td><td>Packages for programming in Go</td><tr>
-<tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td><tr>
-<tr><td>Haskell</td><td>Packages for programming in Haskell</td><tr>
-<tr><td>Ledger</td><td>CLI accounting</td><tr>
-<tr><td>Lua</td><td>Packages for programming in Lua</td><tr>
-<tr><td>Markdown</td><td>Packages for writing in Markdown</td><tr>
-<tr><td>Nginx</td><td>Nginx webserver packages</td><tr>
-<tr><td>Nimrod</td><td>Packages for programming in Nimrod</td><tr>
-<tr><td>Node</td><td>Packages for programming in Node.js</td><tr>
-<tr><td>Perl</td><td>Packages for programming in Perl</td><tr>
-<tr><td>Python</td><td>Packages for programming in Python</td><tr>
-<tr><td>Ruby</td><td>Packages for programming in Ruby</td><tr>
+<tr><td>Analysis</td><td>Sysadmin tools for system analysis</td></tr>
+<tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
+<tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
+<tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
+<tr><td>Games</td><td>minecraft, papersplea.se, radegast, steam</td></tr>
+<tr><td>Go</td><td>Packages for programming in Go</td></tr>
+<tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
+<tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
+<tr><td>Ledger</td><td>CLI accounting</td></tr>
+<tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
+<tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
+<tr><td>Nginx</td><td>Nginx webserver packages</td></tr>
+<tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
+<tr><td>Node</td><td>Packages for programming in Node.js</td></tr>
+<tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
+<tr><td>Python</td><td>Packages for programming in Python</td></tr>
+<tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 </table>
 
 Selecting all packages (GUI included) requires a ~1.0GB download and
