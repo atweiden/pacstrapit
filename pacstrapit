@@ -124,7 +124,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.2.1
+_dotfiles_version=0.2.2
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -1308,6 +1308,7 @@ declare _pkgs=('ack'
                'pwsafe'
                'python2-pbp'
                'quixand'
+               'remakepkg'
                'reptyr'
                'rfkill'
                'sfk'
