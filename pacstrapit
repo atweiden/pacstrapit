@@ -1942,6 +1942,7 @@ sed -i "s#^name.*#name=\"${_name}\"#"          bootstrap.sh
 sed -i "s#^email.*#email=\"${_email}\"#"       bootstrap.sh
 sed -i "s#^github.*#github=\"${_github}\"#"    bootstrap.sh
 sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" bootstrap.sh
+find _config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user_name}#g"
 
 # running bootstrap
 
