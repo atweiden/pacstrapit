@@ -1161,6 +1161,7 @@ sed -i 's!^#TCPKeepAlive.*!TCPKeepAlive yes!'                                   
 sed -i 's!^#UseDNS.*!UseDNS no!'                                                      /mnt/etc/ssh/sshd_config
 echo "AllowUsers ${_user_name}" >>                                                    /mnt/etc/ssh/sshd_config
 echo "sshd: ${_hosts_allowed}" >                                                      /mnt/etc/hosts.allow
+sed -i '/^multi.*/a nospoof on'                                                       /mnt/etc/host.conf
 arch-chroot /mnt systemctl enable sshd
 
 # import keys
