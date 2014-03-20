@@ -322,7 +322,6 @@ expect <<EOF
   }
   expect eof
 EOF
-sleep 1
 }
 
 
@@ -355,7 +354,6 @@ function luksify() {
                                   fi
 
 mkfs.ext2 ${_partition}2
-sleep 1
 
 # load kernel modules required for luks
 
@@ -368,7 +366,6 @@ sleep 1
                                   fi
 
 modprobe dm_mod dm-crypt
-sleep 1
 
 # create luks root partition
 
@@ -399,7 +396,6 @@ expect <<EOF
   }
   expect eof
 EOF
-sleep 1
 
 # open luks root partition
 
@@ -418,7 +414,6 @@ expect <<EOF
   }
   expect eof
 EOF
-sleep 3
 
 # create btrfs filesystem
 
@@ -431,7 +426,6 @@ sleep 3
                                   fi
 
 mkfs.btrfs /dev/mapper/${_luks_name}
-sleep 3
 
 # create and mount main btrfs subvolumes
 
@@ -445,7 +439,6 @@ sleep 3
 
 mkdir -p /mnt2
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache /dev/mapper/${_luks_name} /mnt2
-sleep 3
 
                    if [[ "$_debug" == '1' ]]; then
             echo "**************************************"
@@ -473,10 +466,8 @@ btrfs subvolume create @var
                                   fi
 
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@ /dev/mapper/${_luks_name} /mnt
-sleep 1
 for _btrfs_dir in home opt srv tmp usr var; do
   mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
-  sleep 1
 done
 
                    if [[ "$_debug" == '1' ]]; then
@@ -759,7 +750,7 @@ rankmirrors -n 4 /mnt/etc/pacman.d/mirrorlist.bak > /mnt/etc/pacman.d/mirrorlist
 
 pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 for _pkg in cower pacaur; do
-  mkdir -p ~/.src && cd ~/.src
+  mkdir -p /root/.src && cd /root/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
@@ -779,11 +770,13 @@ done
                                   fi
 
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
-mkdir -p /mnt/root/.src
-for _pkg in `find /root/.src -type f -name "*.pkg.tar.xz"`; do
-  cp ${_pkg} /mnt/root/.src
+for _pkg in cower pacaur zramswap; do
+  mkdir -p /mnt/root/.src/$_pkg
+  for _pkgtarxz in `find /root/.src/$_pkg -type f -name "*.pkg.tar.xz"`; do
+    cp ${_pkgtarxz} /mnt/root/.src/$_pkg
+  done
+  arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 done
-arch-chroot /mnt find /root/.src -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 arch-chroot /mnt systemctl enable zramswap
 
 # always suspend to RAM
@@ -1226,7 +1219,6 @@ if [[ "${_electrum_verified}" == 'true' ]]; then
   arch-chroot /mnt chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
 else
   echo "Electrum verification code rejected."
-  exit 1
 fi
 }
 
@@ -1274,6 +1266,7 @@ declare _pkgs=('ack'
                'imgurbash'
                'ipw2100-fw'
                'ipw2200-fw'
+               'ix'
                'jq'
                'libfaketime'
                'libusb-compat'
@@ -1289,7 +1282,7 @@ declare _pkgs=('ack'
                'pacmatic'
                'pkgcacheclean'
                'pkgtools'
-               'proxychains'
+               'proxychains-ng'
                'pwsafe'
                'python2-pbp'
                'quixand'
@@ -1610,8 +1603,7 @@ _vimpkgs+=('ctags'
            'vim-tmux-navigator-git'
            'vim-trailing-whitespace'
            'vim-visual-star-search-git'
-           'vim-yankring'
-           'pnfo-git')
+           'vim-yankring')
 
 if [[ "${_analysis}" == '1' ]]; then
   _pkgs+=('glances'
@@ -1626,6 +1618,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'ntop'
           'strace'
           'traceroute')
+  _vimpkgs+=('vim-iptables')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
@@ -1683,10 +1676,12 @@ if [[ "${_fonts}" == '1' ]]; then
 fi
 
 if [[ "${_games}" == '1' ]]; then
-  _pkgs+=('minecraft'
-          'papersplease'
-          'radegast'
-          'steam')
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('minecraft'
+            'papersplease'
+            'radegast'
+            'steam')
+  fi
 fi
 
 if [[ "${_go}" == '1' ]]; then
@@ -1779,7 +1774,7 @@ if [[ "${_python}" == '1' ]]; then
           'python2-virtualenv-clone')
   _vimpkgs+=('vim-htmljinja'
              'vim-jedi'
-             'vim-jinja'
+             'vim-jinja-git'
              'vim-kivy-git'
              'vim-python'
              'vim-virtualenv')
@@ -1816,6 +1811,18 @@ fi
                                   fi
 
 arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitpkgs[@]} --noedit --noconfirm
+
+# clean pacaur
+
+                   if [[ "$_debug" == '1' ]]; then
+                       echo "****************"
+                       echo "*              *"
+                       echo "* clean pacaur *"
+                       echo "*              *"
+                       echo "****************"
+                                  fi
+
+arch-chroot /mnt rm -rf /tmp/pacaur*
 }
 
 
