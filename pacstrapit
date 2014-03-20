@@ -1102,12 +1102,12 @@ echo "sshd: ${_hosts_allowed}" >                                                
                                   fi
 
 sed -i 's!^# Host!Host!' /mnt/etc/ssh/ssh_config
-sed -i '/^#   HostbasedAuthentication.*/a     HashKnownHosts yes' /mnt/etc/ssh/ssh_config
-sed -i '/^#   ConnectTimeout.*/a     TCPKeepAlive yes' /mnt/etc/ssh/ssh_config
+sed -i '/^#   HostbasedAuthentication.*/a \    HashKnownHosts yes' /mnt/etc/ssh/ssh_config
+sed -i '/^#   ConnectTimeout.*/a \    TCPKeepAlive yes' /mnt/etc/ssh/ssh_config
 sed -i 's!^#   Protocol.*!    Protocol 2!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   Ciphers.*!    Ciphers aes256-cbc,aes256-ctr,aes192-cbc,aes192-ctr,blowfish-cbc,aes128-cbc,aes128-ctr,arcfour256,arcfour128,arcfour,3des-cbc,cast128-cbc!'  /mnt/etc/ssh/ssh_config
-sed -i '/^#   MACs.*/a     KexAlgorithms diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1,diffie-hellman-group14-sha1' /mnt/etc/ssh/ssh_config
-sed -i '/^#   MACs.*/a     HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ssh-dss-cert-v01@openssh.com,ssh-dss-cert-v00@openssh.com,ssh-dss' /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    KexAlgorithms diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1,diffie-hellman-group14-sha1' /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ssh-dss-cert-v01@openssh.com,ssh-dss-cert-v00@openssh.com,ssh-dss' /mnt/etc/ssh/ssh_config
 sed -i 's!^#   MACs.*!    MACs hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-sha1,hmac-md5,hmac-sha1-96,hmac-md5-96,umac-64@openssh.com!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
 
