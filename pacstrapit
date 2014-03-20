@@ -1666,12 +1666,12 @@ fi
 
 if [[ "${_elixir}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('erlang')
+    _pkgs+=('erlang'
+            'erlang-docs')
   else
     _pkgs+=('erlang-nox')
   fi
-  _pkgs+=('erlang-docs'
-          'elixir')
+  _pkgs+=( 'elixir')
   _vimpkgs+=('vim-elixir-git'
              'vimerl-git'
              'vim-mix-git')
