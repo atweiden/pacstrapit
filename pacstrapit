@@ -1967,6 +1967,18 @@ sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" /mnt/home/${_user_name}/.src/dotf
 
 find /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/_config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user_name}#g"
 
+# fixing permissions
+
+                   if [[ "$_debug" == '1' ]]; then
+                    echo "**********************"
+                    echo "*                    *"
+                    echo "* fixing permissions *"
+                    echo "*                    *"
+                    echo "**********************"
+                                  fi
+
+arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
+
 # running bootstrap
 
                    if [[ "$_debug" == '1' ]]; then
@@ -2021,18 +2033,6 @@ cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/etc/openvpn/update
 cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/usr/lib/systemd/scripts/kill-ssh-sessions /mnt/usr/lib/systemd/scripts
 cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/usr/lib/systemd/system/kill-ssh-sessions.service /mnt/usr/lib/systemd/system
 arch-chroot /mnt systemctl enable kill-ssh-sessions.service
-
-# fixing permissions
-
-                   if [[ "$_debug" == '1' ]]; then
-                    echo "**********************"
-                    echo "*                    *"
-                    echo "* fixing permissions *"
-                    echo "*                    *"
-                    echo "**********************"
-                                  fi
-
-arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 }
 
 
