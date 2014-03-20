@@ -1946,10 +1946,9 @@ function dotify() {
                         echo "***************"
                                   fi
 
-mkdir -p /mnt/home/${_user_name}/.src && cd /mnt/home/${_user_name}/.src
+mkdir -p /mnt/home/${_user_name}/.src
 curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${_dotfiles_version}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
-tar -xvzf dotfiles-${_dotfiles_version}
-cd dotfiles-${_dotfiles_version}
+tar -xvzf /mnt/home/{$_user_name}/.src/dotfiles-${_dotfiles_version}.tar.gz -C /mnt/home/${_user_name}/.src
 
 # adjusting dotfile config parameters
 
@@ -1961,12 +1960,13 @@ cd dotfiles-${_dotfiles_version}
                         echo "***************"
                                   fi
 
-sed -i "s#\$HOME#/home/${_user_name}#"         bootstrap.sh
-sed -i "s#^name.*#name=\"${_name}\"#"          bootstrap.sh
-sed -i "s#^email.*#email=\"${_email}\"#"       bootstrap.sh
-sed -i "s#^github.*#github=\"${_github}\"#"    bootstrap.sh
-sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" bootstrap.sh
-find _config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user_name}#g"
+sed -i "s#\$HOME#/home/${_user_name}#"         /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
+sed -i "s#^name.*#name=\"${_name}\"#"          /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
+sed -i "s#^email.*#email=\"${_email}\"#"       /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
+sed -i "s#^github.*#github=\"${_github}\"#"    /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
+sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
+
+find /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/_config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user_name}#g"
 
 # running bootstrap
 
@@ -1978,7 +1978,8 @@ find _config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user
                        echo "*****************"
                                   fi
 
-./bootstrap.sh
+arch-chroot /mnt su -c "cd /home/${_user_name}/.src/dotfiles-${_dotfiles_version} && ./bootstrap.sh" ${_user_name}
+arch-chroot /mnt cd /home/${_user_name}/.src/dotfiles-${_dotfiles_version} && ./bootstrap.sh
 
 # configuring X11
 
@@ -1992,7 +1993,7 @@ find _config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user
 
 if [[ "${_gui}" == '1' ]]; then
   mv /mnt/etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d.bak
-  cp -R etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d
+  cp -R /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d
 fi
 
 # configuring openvpn
@@ -2005,8 +2006,8 @@ fi
                           echo "***********"
                                   fi
 
-mkdir -p /etc/openvpn
-cp etc/openvpn/update-resolv-conf /mnt/etc/openvpn
+mkdir -p /mnt/etc/openvpn
+cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/etc/openvpn/update-resolv-conf /mnt/etc/openvpn
 
 # adding systemd service
 
@@ -2018,8 +2019,8 @@ cp etc/openvpn/update-resolv-conf /mnt/etc/openvpn
                      echo "*********************"
                                   fi
 
-cp usr/lib/systemd/scripts/kill-ssh-sessions /mnt/usr/lib/systemd/scripts
-cp usr/lib/systemd/system/kill-ssh-sessions.service /mnt/usr/lib/systemd/system
+cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/usr/lib/systemd/scripts/kill-ssh-sessions /mnt/usr/lib/systemd/scripts
+cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/usr/lib/systemd/system/kill-ssh-sessions.service /mnt/usr/lib/systemd/system
 arch-chroot /mnt systemctl enable kill-ssh-sessions.service
 
 # fixing permissions
