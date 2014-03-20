@@ -1060,6 +1060,37 @@ iptables-restore < /mnt/etc/iptables/iptables.test.rules
 iptables-save > /mnt/etc/iptables/iptables.rules
 arch-chroot /mnt systemctl enable iptables
 
+# configure sshd
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* sshd_config *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+sed -i 's!^#Port.*!Port 22!'                                                          /mnt/etc/ssh/sshd_config
+sed -i 's!^#Protocol.*!Protocol 2!'                                                   /mnt/etc/ssh/sshd_config
+sed -i 's!^#HostKey /etc/ssh/ssh_host_rsa_key!HostKey /etc/ssh/ssh_host_rsa_key!'     /mnt/etc/ssh/sshd_config
+sed -i 's!^#HostKey /etc/ssh/ssh_host_dsa_key!HostKey /etc/ssh/ssh_host_dsa_key!'     /mnt/etc/ssh/sshd_config
+sed -i 's!^#HostKey /etc/ssh/ssh_host_ecdsa_key!HostKey /etc/ssh/ssh_host_ecdsa_key!' /mnt/etc/ssh/sshd_config
+sed -i 's!^#SyslogFacility.*!SyslogFacility AUTH!'                                    /mnt/etc/ssh/sshd_config
+sed -i 's!^#LogLevel.*!LogLevel ERROR!'                                               /mnt/etc/ssh/sshd_config
+sed -i 's!^#LoginGraceTime.*!LoginGraceTime 2m!'                                      /mnt/etc/ssh/sshd_config
+sed -i 's!^#PermitRootLogin.*!PermitRootLogin no!'                                    /mnt/etc/ssh/sshd_config
+sed -i 's!^#StrictModes.*!StrictModes yes!'                                           /mnt/etc/ssh/sshd_config
+sed -i 's!^#PasswordAuthentication.*!PasswordAuthentication no!'                      /mnt/etc/ssh/sshd_config
+sed -i 's!^UsePAM yes!UsePAM no!'                                                     /mnt/etc/ssh/sshd_config
+sed -i 's!^#X11Forwarding.*!X11Forwarding no!'                                        /mnt/etc/ssh/sshd_config
+sed -i 's!^#X11DisplayOffset.*!X11DisplayOffset 10!'                                  /mnt/etc/ssh/sshd_config
+sed -i 's!^#PrintLastLog.*!PrintLastLog yes!'                                         /mnt/etc/ssh/sshd_config
+sed -i 's!^#TCPKeepAlive.*!TCPKeepAlive yes!'                                         /mnt/etc/ssh/sshd_config
+sed -i 's!^#UseDNS.*!UseDNS no!'                                                      /mnt/etc/ssh/sshd_config
+echo "AllowUsers ${_user_name}" >>                                                    /mnt/etc/ssh/sshd_config
+sed -i '/^multi.*/a nospoof on'                                                       /mnt/etc/host.conf
+echo "sshd: ${_hosts_allowed}" >                                                      /mnt/etc/hosts.allow
+
 # create user
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1093,6 +1124,25 @@ arch-chroot /mnt expect <<EOF
   expect eof
 EOF
 
+# configure sudo
+
+                   if [[ "$_debug" == '1' ]]; then
+                           echo "********"
+                           echo "*      *"
+                           echo "* sudo *"
+                           echo "*      *"
+                           echo "********"
+                                  fi
+
+cat >> /mnt/etc/sudoers <<EOF
+${_user_name} ALL=(ALL) ALL
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu
+EOF
+
 # set systemd services
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1110,7 +1160,7 @@ arch-chroot /mnt systemctl enable cronie
 
 
 # -----------------------------------------------------------------------------
-# sshify: setup ssh
+# sshify: prepare machine for remote administration
 # -----------------------------------------------------------------------------
 
 
@@ -1125,36 +1175,16 @@ arch-chroot /mnt systemctl enable cronie
 
 function sshify() {
 
-# configure sshd
+# enable sshd
 
                    if [[ "$_debug" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
-                        echo "* sshd_config *"
+                        echo "* enable sshd *"
                         echo "*             *"
                         echo "***************"
                                   fi
 
-sed -i 's!^#Port.*!Port 22!'                                                          /mnt/etc/ssh/sshd_config
-sed -i 's!^#Protocol.*!Protocol 2!'                                                   /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_rsa_key!HostKey /etc/ssh/ssh_host_rsa_key!'     /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_dsa_key!HostKey /etc/ssh/ssh_host_dsa_key!'     /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_ecdsa_key!HostKey /etc/ssh/ssh_host_ecdsa_key!' /mnt/etc/ssh/sshd_config
-sed -i 's!^#SyslogFacility.*!SyslogFacility AUTH!'                                    /mnt/etc/ssh/sshd_config
-sed -i 's!^#LogLevel.*!LogLevel ERROR!'                                               /mnt/etc/ssh/sshd_config
-sed -i 's!^#LoginGraceTime.*!LoginGraceTime 2m!'                                      /mnt/etc/ssh/sshd_config
-sed -i 's!^#PermitRootLogin.*!PermitRootLogin no!'                                    /mnt/etc/ssh/sshd_config
-sed -i 's!^#StrictModes.*!StrictModes yes!'                                           /mnt/etc/ssh/sshd_config
-sed -i 's!^#PasswordAuthentication.*!PasswordAuthentication no!'                      /mnt/etc/ssh/sshd_config
-sed -i 's!^UsePAM yes!UsePAM no!'                                                     /mnt/etc/ssh/sshd_config
-sed -i 's!^#X11Forwarding.*!X11Forwarding no!'                                        /mnt/etc/ssh/sshd_config
-sed -i 's!^#X11DisplayOffset.*!X11DisplayOffset 10!'                                  /mnt/etc/ssh/sshd_config
-sed -i 's!^#PrintLastLog.*!PrintLastLog yes!'                                         /mnt/etc/ssh/sshd_config
-sed -i 's!^#TCPKeepAlive.*!TCPKeepAlive yes!'                                         /mnt/etc/ssh/sshd_config
-sed -i 's!^#UseDNS.*!UseDNS no!'                                                      /mnt/etc/ssh/sshd_config
-echo "AllowUsers ${_user_name}" >>                                                    /mnt/etc/ssh/sshd_config
-echo "sshd: ${_hosts_allowed}" >                                                      /mnt/etc/hosts.allow
-sed -i '/^multi.*/a nospoof on'                                                       /mnt/etc/host.conf
 arch-chroot /mnt systemctl enable sshd
 
 # import keys
