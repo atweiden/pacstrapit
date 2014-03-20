@@ -1780,8 +1780,7 @@ if [[ "${_perl}" == '1' ]]; then
           'perl-ev'
           'perl-io-socket-ip'
           'perl-io-socket-ssl'
-          'perl-mojolicious'
-          'perlconsole')
+          'perl-mojolicious')
   _vimpkgs+=('vim-after-syntax-perl-git'
              'vim-mojo-git'
              'vim-perl'
