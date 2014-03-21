@@ -1409,7 +1409,7 @@ if [[ "${_gui}" == '1' ]]; then
           'alsa-plugins'
           'alsa-utils'
           'anki'
-          'arch-wiki-docs-clean'
+          'arch-wiki-docs'
           'ascrubber-git'
           'batti'
           'bleachbit'
