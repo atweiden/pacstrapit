@@ -2,7 +2,6 @@
 
 
 
-
 # -----------------------------------------------------------------------------
 # variables: customize
 # -----------------------------------------------------------------------------
@@ -124,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.0
+_dotfiles_version=0.3.1
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -134,6 +133,7 @@ _zipcode=97210
 
 # debug on/off (0 or 1)
 _debug=1
+
 
 
 
@@ -232,6 +232,38 @@ if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
                                   fi
 
 pacman -Sy --needed base-devel --noconfirm
+}
+
+
+
+
+# -----------------------------------------------------------------------------
+# functify: sourcing auxiliary functions in functions.d
+# -----------------------------------------------------------------------------
+
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "**************"
+                        echo "*  --------  *"
+                        echo "* |functify| *"
+                        echo "*  --------  *"
+                        echo "**************"
+                                  fi
+
+
+function functify() {
+
+# sourcing all functions in functions.d
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* functions.d *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+for _fn in `find functions.d -type f`; do . ${_fn}; done
 }
 
 
@@ -1174,6 +1206,18 @@ EOF
                                   fi
 
 arch-chroot /mnt systemctl enable cronie
+
+# disable /var/log/journal CoW
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* disable CoW *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+chattrify "/var/log/journal" "root" "systemd-journal"
 }
 
 
@@ -2158,6 +2202,7 @@ echo "******************************"
 # -----------------------------------------------------------------------------
 
 checkify
+functify
 gdiskify
 luksify
 zramswapify
