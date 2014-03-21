@@ -123,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.1
+_dotfiles_version=0.3.2
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -1217,7 +1217,7 @@ arch-chroot /mnt systemctl enable cronie
                         echo "***************"
                                   fi
 
-chattrify "/var/log/journal" "root" "systemd-journal"
+chattrify "/var/log/journal" "755" "root" "systemd-journal"
 }
 
 
