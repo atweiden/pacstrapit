@@ -605,35 +605,36 @@ function pacstrapify() {
                          echo "************"
                                   fi
 
-pacstrap /mnt abs             \
-              base            \
-              base-devel      \
-              bash-completion \
-              btrfs-progs     \
-              ca-certificates \
-              dhclient        \
-              dialog          \
-              dnscrypt-proxy  \
-              ed              \
-              ethtool         \
-              expect          \
-              gptfdisk        \
-              grub-bios       \
-              iproute2        \
-              iw              \
-              kexec-tools     \
-              net-tools       \
-              openresolv      \
-              openssh         \
-              python2         \
-              sshpass         \
-              tmux            \
-              unzip           \
-              wget            \
-              wireless_tools  \
-              wpa_actiond     \
-              wpa_supplicant  \
-              zip             \
+pacstrap /mnt abs                  \
+              arch-install-scripts \
+              base                 \
+              base-devel           \
+              bash-completion      \
+              btrfs-progs          \
+              ca-certificates      \
+              dhclient             \
+              dialog               \
+              dnscrypt-proxy       \
+              ed                   \
+              ethtool              \
+              expect               \
+              gptfdisk             \
+              grub-bios            \
+              iproute2             \
+              iw                   \
+              kexec-tools          \
+              net-tools            \
+              openresolv           \
+              openssh              \
+              python2              \
+              sshpass              \
+              tmux                 \
+              unzip                \
+              wget                 \
+              wireless_tools       \
+              wpa_actiond          \
+              wpa_supplicant       \
+              zip                  \
               zsh
 
 # install a bootloader
@@ -1343,7 +1344,6 @@ function selectify() {
 declare _pkgs=('ack'
                'ansible'
                'archey'
-               'arch-install-scripts'
                'arch-wiki-markdown-git'
                'avahi'
                'bluez'
@@ -1736,7 +1736,7 @@ if [[ "${_elixir}" == '1' ]]; then
   else
     _pkgs+=('erlang-nox')
   fi
-  _pkgs+=( 'elixir')
+  _pkgs+=('elixir')
   _vimpkgs+=('vim-elixir-git'
              'vimerl-git'
              'vim-mix-git')
