@@ -608,9 +608,9 @@ function pacstrapify() {
 pacstrap /mnt abs             \
               base            \
               base-devel      \
+              bash-completion \
               btrfs-progs     \
               ca-certificates \
-              darkhttpd       \
               dhclient        \
               dialog          \
               dnscrypt-proxy  \
@@ -627,10 +627,14 @@ pacstrap /mnt abs             \
               openssh         \
               python2         \
               sshpass         \
+              tmux            \
+              unzip           \
               wget            \
               wireless_tools  \
               wpa_actiond     \
-              wpa_supplicant
+              wpa_supplicant  \
+              zip             \
+              zsh
 
 # install a bootloader
 
@@ -1338,16 +1342,16 @@ function selectify() {
 # select
 declare _pkgs=('ack'
                'ansible'
+               'archey'
                'arch-install-scripts'
                'arch-wiki-markdown-git'
-               'archey'
                'avahi'
-               'bash-completion'
                'bluez'
                'bluez-firmware'
                'colordiff'
                'create_ap'
                'cronwhip'
+               'darkhttpd'
                'devtools'
                'downgrade'
                'dvd+rw-tools'
@@ -1389,16 +1393,13 @@ declare _pkgs=('ack'
                'ssss'
                'subrepo'
                'the_silver_searcher'
-               'tmux'
                'tor'
                'torsocks'
                'tree'
                'ttf-monaco'
-               'unzip'
-               'usbmuxd'
                'usb_modeswitch'
+               'usbmuxd'
                'youtube-dl'
-               'zsh'
                'zsh-syntax-highlighting')
 
 if [[ "${_gui}" == '1' ]]; then
