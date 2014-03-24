@@ -561,19 +561,6 @@ for _pkg in zramswap; do
   makepkg -Acsi --asroot --noconfirm
   cd ..
 done
-
-# start zramswap
-
-                   if [[ "$_debug" == '1' ]]; then
-                      echo "******************"
-                      echo "*                *"
-                      echo "* start zramswap *"
-                      echo "*                *"
-                      echo "******************"
-                                  fi
-
-systemctl start zramswap
-systemctl enable zramswap
 }
 
 
