@@ -157,6 +157,7 @@ To Do
 - Add keyfile-encrypted swap partition
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 - Add command line flags (shflags)
+- Add [menu](https://github.com/jamielinux/bashmount)
 
 
 Licensing
