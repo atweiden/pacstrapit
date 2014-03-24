@@ -123,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.2
+_dotfiles_version=0.3.3
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
