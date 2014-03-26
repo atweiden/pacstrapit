@@ -1401,6 +1401,7 @@ if [[ "${_gui}" == '1' ]]; then
           'ascrubber-git'
           'batti'
           'bleachbit'
+          'castawesome'
           'chromium'
           'conky'
           'deluge'
