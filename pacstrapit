@@ -1641,17 +1641,9 @@ else
   declare _vimpkgs=('vim-full')
 fi
 _vimpkgs+=('ctags'
-           'vim-align'
-           'vim-guicolorscheme'
-           'vim-indent-object'
-           'vim-nerdtree'
-           'vim-surround'
-           'vim-systemd'
-           'vim-ultisnips'
-           'vim-misc-xolox'
-           'vim-cecutil'
-           'vim-vis-git'
            'vim-ack'
+           'vim-align'
+           'vim-cecutil'
            'vim-colors-liquidcarbon'
            'vim-colors-mayansmoke'
            'vim-colors-neverland-git'
@@ -1665,27 +1657,37 @@ _vimpkgs+=('ctags'
            'vim-file-line-git'
            'vim-gnupg'
            'vim-gtk-syntax-git'
+           'vim-guicolorscheme'
            'vim-gundo'
            'vim-haml-git'
            'vim-hugefile-git'
+           'vim-indent-object'
+           'vim-iptables'
            'vim-less-git'
            'vim-lightline-git'
            'vim-lustyexplorer'
            'vim-matchit'
+           'vim-misc-xolox'
            'vim-multiple-cursors-git'
            'vim-mustache-git'
            'vim-nerdcommenter'
+           'vim-nerdtree'
            'vim-numbered-git'
            'vim-openssl'
            'vim-pipe2eval-git'
            'vim-repeat'
+           'vim-surround'
+           'vim-systemd'
            'vim-taboo-git'
            'vim-tabular-git'
            'vim-tagbar'
            'vim-tmux-navigator-git'
            'vim-trailing-whitespace'
+           'vim-ultisnips'
+           'vim-vis-git'
            'vim-visual-star-search-git'
-           'vim-yankring')
+           'vim-yankring'
+           'vim-youcompleteme-git')
 
 if [[ "${_analysis}" == '1' ]]; then
   _pkgs+=('glances'
@@ -1700,7 +1702,6 @@ if [[ "${_analysis}" == '1' ]]; then
           'ntop'
           'strace'
           'traceroute')
-  _vimpkgs+=('vim-iptables')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
