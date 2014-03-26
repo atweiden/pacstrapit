@@ -1693,6 +1693,7 @@ if [[ "${_analysis}" == '1' ]]; then
   _pkgs+=('glances'
           'htop'
           'iftop'
+          'inotify-tools'
           'iotop'
           'ltrace'
           'moreutils'
