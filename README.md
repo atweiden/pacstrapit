@@ -162,7 +162,7 @@ Select packages include:
 <tr><td>mlocate</td><td>Locate files easily.</td></tr>
 <tr><td>mosh</td><td>Mobile shell, survives disconnects.</td></tr>
 <tr><td>ncurses</td><td>Text mode user interface support.</td></tr>
-<tr><td>openvpn</td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network.</td></tr>
+<tr><td>openvpn</td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
 <tr><td>p7zip</td><td>7zip file archiver.</td></tr>
 <tr><td>pacmatic</td><td>Pacman with less surprises.</td></tr>
 <tr><td>perl-image-exiftool</td><td>Alter EXIF data easily.</td></tr>
