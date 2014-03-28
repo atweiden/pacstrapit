@@ -123,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.3
+_dotfiles_version=0.3.4
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -270,7 +270,7 @@ for _fn in `find functions.d -type f`; do . ${_fn}; done
 
 
 # -----------------------------------------------------------------------------
-# gdiskify: create three GPT partitions (no swap) for btrfs + zramswap
+# gdiskify: create three GPT partitions for btrfs (no swap)
 # -----------------------------------------------------------------------------
 
 
@@ -360,7 +360,7 @@ EOF
 
 
 # -----------------------------------------------------------------------------
-# luksify: create btrfs on luks system (boot, root)
+# luksify: create btrfs on luks system with unencrypted /boot
 # -----------------------------------------------------------------------------
 
 
@@ -521,46 +521,6 @@ cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
                                   fi
 
 mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
-}
-
-
-
-
-# -----------------------------------------------------------------------------
-# zramswapify: start zram swap service
-# -----------------------------------------------------------------------------
-
-
-                   if [[ "$_debug" == '1' ]]; then
-                       echo "*****************"
-                       echo "*  -----------  *"
-                       echo "* |zramswapify| *"
-                       echo "*  -----------  *"
-                       echo "*****************"
-                                  fi
-
-
-function zramswapify() {
-
-# build zramswap aur package
-
-                   if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* install zramswap *"
-                     echo "*                  *"
-                     echo "********************"
-                                  fi
-
-for _pkg in zramswap; do
-  mkdir -p ~/.src && cd ~/.src
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
-done
 }
 
 
@@ -783,24 +743,36 @@ for _pkg in cower pacaur; do
   cd ..
 done
 
-# install pacaur and zramswap
+# install pacaur
 
                    if [[ "$_debug" == '1' ]]; then
-                echo "*******************************"
-                echo "*                             *"
-                echo "* install pacaur and zramswap *"
-                echo "*                             *"
-                echo "*******************************"
+                      echo "******************"
+                      echo "*                *"
+                      echo "* install pacaur *"
+                      echo "*                *"
+                      echo "******************"
                                   fi
 
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
-for _pkg in cower pacaur zramswap; do
+for _pkg in cower pacaur; do
   mkdir -p /mnt/root/.src/$_pkg
   for _pkgtarxz in `find /root/.src/$_pkg -type f -name "*.pkg.tar.xz"`; do
     cp ${_pkgtarxz} /mnt/root/.src/$_pkg
   done
   arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 done
+
+# install zramswap
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* install zramswap *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+arch-chroot /mnt pacaur -Sy --needed --asroot zramswap --noedit --noconfirm
 arch-chroot /mnt systemctl enable zramswap
 
 # always suspend to RAM
@@ -1365,20 +1337,22 @@ declare _pkgs=('ack'
                'openvpn'
                'p7zip'
                'pacmatic'
+               'perl-image-exiftool'
                'pkgcacheclean'
-               'pkgtools'
                'proxychains-ng'
                'pwsafe'
                'python2-pbp'
                'quixand'
-               'remakepkg'
                'reptyr'
                'rfkill'
+               'rtorrent'
                'sfk'
                'socat'
                'sshuttle'
                'ssss'
+               'steghide'
                'subrepo'
+               'tcplay'
                'the_silver_searcher'
                'tor'
                'torsocks'
@@ -1386,8 +1360,7 @@ declare _pkgs=('ack'
                'ttf-monaco'
                'usb_modeswitch'
                'usbmuxd'
-               'youtube-dl'
-               'zsh-syntax-highlighting')
+               'youtube-dl')
 
 if [[ "${_gui}" == '1' ]]; then
   _pkgs+=('abiword'
@@ -1488,7 +1461,6 @@ if [[ "${_gui}" == '1' ]]; then
           'openbox-menu'
           'openbox-themes'
           'pcmanfm'
-          'perl-image-exiftool'
           'pidgin-otr'
           'printproto'
           'pulseaudio'
@@ -1504,8 +1476,6 @@ if [[ "${_gui}" == '1' ]]; then
           'source-highlight'
           'startup-notification'
           'statler-ui-theme'
-          'steghide'
-          'tcplay'
           'thunderbird'
           'thunderbird-enigmail-bin'
           'tint2'
@@ -2196,7 +2166,6 @@ checkify
 functify
 gdiskify
 luksify
-zramswapify
 pacstrapify
 if [[ "${_ssh}" == '1' ]]; then sshify; fi
 if [[ "${_select}" == '1' ]]; then selectify; fi
