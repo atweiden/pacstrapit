@@ -773,7 +773,6 @@ done
                                   fi
 
 arch-chroot /mnt pacaur -Sy --needed --asroot zramswap --noedit --noconfirm
-arch-chroot /mnt systemctl enable zramswap
 
 # always suspend to RAM
 
@@ -1169,7 +1168,7 @@ EOF
                      echo "********************"
                                   fi
 
-arch-chroot /mnt systemctl enable cronie
+arch-chroot /mnt systemctl enable cronie zramswap
 
 # disable /var/log/journal CoW
 
