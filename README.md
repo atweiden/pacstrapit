@@ -22,8 +22,8 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.5} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.3.5.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.6} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.3.6.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -47,7 +47,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td></tr>
 </table>
 
-> `cd pacstrapit-0.3.5 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.3.6 && $EDITOR pacstrapit`
 
 Done.
 
@@ -130,7 +130,6 @@ Select packages include:
 <table>
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>grep replacement.</td></tr>
 <tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Radically simple IT automation platform.</td></tr>
-<tr><td><a href="https://github.com/djmelik/archey">archey</a></td><td>Display the Arch Linux logo and basic system info.</td></tr>
 <tr><td><a href="https://github.com/tsgates/arch-wiki-markdown">arch-wiki-markdown-git</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a> in Markdown.</td></tr>
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
