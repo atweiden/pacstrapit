@@ -226,6 +226,14 @@ Set `_dotfiles` to 1 for:
 
 (wallpaper not included)
 
+To easily set a wallpaper:
+
+```bash
+pacman -S archlinux-wallpaper
+sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' ~/.config/nitrogen/nitrogen.cfg
+nitrogen # select a wallpaper via GUI
+```
+
 #### Openbox Settings
 
 **Keybindings**
@@ -258,8 +266,8 @@ Movement shortcuts:
 - `Super+<DOWN>` : move the current window down
 - `Super+<RIGHT>`: move the current window to the right
 - `Super+<LEFT>` : move the current window to the left
-- `ALT+Super+<ARROW>` : resize the current window
-- `ALT+Shift+<ARROW>` : move the current window to a different desktop
+- `Alt+Super+<ARROW>` : resize the current window
+- `Alt+Shift+<ARROW>` : move the current window to a different desktop
 
 **Notes**:
 
