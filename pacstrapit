@@ -123,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.4
+_dotfiles_version=0.3.5
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -567,6 +567,7 @@ pacstrap /mnt abs                  \
               expect               \
               gptfdisk             \
               grub-bios            \
+              haveged              \
               iproute2             \
               iw                   \
               kexec-tools          \
@@ -1318,7 +1319,6 @@ declare _pkgs=('ack'
                'geturl-git'
                'git'
                'gnupg1'
-               'haveged'
                'imgurbash'
                'ipw2100-fw'
                'ipw2200-fw'

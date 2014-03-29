@@ -22,8 +22,8 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.4} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.3.4.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.5} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.3.5.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -47,7 +47,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td></tr>
 </table>
 
-> `cd pacstrapit-0.3.4 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.3.5 && $EDITOR pacstrapit`
 
 Done.
 
@@ -63,8 +63,8 @@ If the script exits with an error, it's best to reboot and start fresh
 with a blank disk (`shred -fvz -n 0 /dev/sdX`).
 
 
-Optional: sshify
-----------------
+Optional: sshd
+--------------
 
 Before setting `_ssh` to `1`...
 
@@ -128,67 +128,66 @@ Optional: select
 Select packages include:
 
 <table>
-<tr><td>ack</td><td>grep replacement.</td></tr>
-<tr><td>ansible</td><td>Radically simple IT automation platform.</td></tr>
-<tr><td>archey</td><td>Display the Arch Linux logo and basic system info.</td></tr>
-<tr><td>arch-wiki-markdown-git</td><td>Offline Arch Wiki in Markdown.</td></tr>
-<tr><td>avahi</td><td>Multicast/unicast DNS-SD framework.</td></tr>
-<tr><td>bluez</td><td>Bluetooth support.</td></tr>
-<tr><td>bluez-firmware</td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
-<tr><td>colordiff</td><td>Syntax highlighting for diff.</td></tr>
-<tr><td>create_ap</td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
-<tr><td>cronwhip</td><td>Run missed cronjobs.</td></tr>
-<tr><td>darkhttpd</td><td>Small and secure static webserver.</td></tr>
-<tr><td>devtools</td><td>Tools for Arch Linux package maintainers.</td></tr>
-<tr><td>downgrade</td><td>Downgrade software to an earlier version.</td></tr>
-<tr><td>dvd+rw-tools</td><td>DVD burning tools.</td></tr>
-<tr><td>easytether-rpm</td><td>EasyTether Internet access drivers.</td></tr>
-<tr><td>elinks</td><td>Text mode web browser.</td></tr>
-<tr><td>geturl-git</td><td>Filepicker.io CLI tool to get a public link for any file.</td></tr>
-<tr><td>git</td><td>Fast distributed version control system.</td></tr>
-<tr><td>gnupg1</td><td>GNU Privacy Guard.</td></tr>
-<tr><td>haveged</td><td>Entropy harvesting daemon.</td></tr>
-<tr><td>imgurbash</td><td>Imgur.com CLI uploader.</td></tr>
-<tr><td>ipw2100-fw</td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
-<tr><td>ipw2200-fw</td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
-<tr><td>ix</td><td>Client for the ix.io pastebin.</td></tr>
-<tr><td>jq</td><td>Command-line JSON processor.</td></tr>
-<tr><td>libfaketime</td><td>Report arbitrary dates and times to programs.</td></tr>
-<tr><td>libusb-compat</td><td>USB device support.</td></tr>
-<tr><td>lrzip</td><td>Multi-threaded file compression.</td></tr>
-<tr><td>lynx</td><td>Text mode Web browser.</td></tr>
-<tr><td>macchanger</td><td>Change your NIC's MAC address.</td></tr>
-<tr><td>mercurial</td><td>Scalable distributed SCM tool.</td></tr>
-<tr><td>mlocate</td><td>Locate files easily.</td></tr>
-<tr><td>mosh</td><td>Mobile shell, survives disconnects.</td></tr>
-<tr><td>ncurses</td><td>Text mode user interface support.</td></tr>
-<tr><td>openvpn</td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
-<tr><td>p7zip</td><td>7zip file archiver.</td></tr>
-<tr><td>pacmatic</td><td>Pacman with less surprises.</td></tr>
-<tr><td>perl-image-exiftool</td><td>Alter EXIF data easily.</td></tr>
-<tr><td>pkgcacheclean</td><td>Clean the Pacman cache to save on disk space.</td></tr>
-<tr><td>proxychains-ng</td><td>Run programs from behind a proxy server.</td></tr>
-<tr><td>pwsafe</td><td>CLI password manager.</td></tr>
-<tr><td>python2-pbp</td><td>Simple crypto tool.</td></tr>
-<tr><td>quixand</td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
-<tr><td>reptyr</td><td>Utility for taking an existing running program and attaching it to a new terminal.</td></tr>
-<tr><td>rfkill</td><td>Tool for enabling and disabling wireless devices.</td></tr>
-<tr><td>rtorrent</td><td>Rakshasa's BitTorrent client.</td></tr>
-<tr><td>sfk</td><td>Swiss File Knife.</td></tr>
-<tr><td>socat</td><td>Multipurpose relay.</td></tr>
-<tr><td>sshuttle</td><td>Poor man's VPN.</td></tr>
-<tr><td>ssss</td><td>CLI tool for Shamir's Secret Sharing Scheme.</td></tr>
-<tr><td>steghide</td><td>Embed a message in a file.</td></tr>
-<tr><td>subrepo</td><td>Git & Mercurial subrepos done right.</td></tr>
-<tr><td>tcplay</td><td>CLI TrueCrypt.</td></tr>
-<tr><td>the_silver_searcher</td><td>Code searching tool.</td></tr>
-<tr><td>tor</td><td>Anonymizing overlay network.</td></tr>
-<tr><td>torsocks</td><td>Safely torify applications.</td></tr>
-<tr><td>tree</td><td>Show the contents of a directory in a depth-indented list of files.</td></tr>
-<tr><td>ttf-monaco</td><td>Monospaced sans-serif typeface.</td></tr>
-<tr><td>usb_modeswitch</td><td>Activate switchable USB devices.</td></tr>
-<tr><td>usbmuxd</td><td>USB Multiplex Daemon.</td></tr>
-<tr><td>youtube-dl</td><td>YouTube.com CLI video downloader.</td></tr>
+<tr><td><a href="http://beyondgrep.com/">ack</a></td><td>grep replacement.</td></tr>
+<tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Radically simple IT automation platform.</td></tr>
+<tr><td><a href="https://github.com/djmelik/archey">archey</a></td><td>Display the Arch Linux logo and basic system info.</td></tr>
+<tr><td><a href="https://github.com/tsgates/arch-wiki-markdown">arch-wiki-markdown-git</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a> in Markdown.</td></tr>
+<tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
+<tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
+<tr><td><a href="http://www.bluez.org/">bluez-firmware</a></td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
+<tr><td><a href="http://www.colordiff.org/">colordiff</a></td><td>Syntax highlighting for diff.</td></tr>
+<tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
+<tr><td><a href="http://dmr.ath.cx/net/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
+<tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for Arch Linux package maintainers.</td></tr>
+<tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
+<tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
+<tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether-rpm</a></td><td>EasyTether Internet access drivers.</td></tr>
+<tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
+<tr><td><a href="https://github.com/uams/geturl">geturl-git</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
+<tr><td><a href="http://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
+<tr><td><a href="http://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
+<tr><td><a href="http://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
+<tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
+<tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
+<tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
+<tr><td><a href="http://stedolan.github.io/jq/">jq</a></td><td>Command-line JSON processor.</td></tr>
+<tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
+<tr><td><a href="http://libusb.sourceforge.net/">libusb-compat</a></td><td>USB device support.</td></tr>
+<tr><td><a href="http://lrzip.kolivas.org/">lrzip</a></td><td>Multi-threaded file compression.</td></tr>
+<tr><td><a href="http://lynx.isc.org/">lynx</a></td><td>Text mode Web browser.</td></tr>
+<tr><td><a href="http://ftp.gnu.org/gnu/macchanger">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
+<tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
+<tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
+<tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
+<tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
+<tr><td><a href="http://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
+<tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
+<tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
+<tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
+<tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
+<tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
+<tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
+<tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/quixand">quixand</a></td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
+<tr><td><a href="https://github.com/nelhage/reptyr">reptyr</a></td><td>Utility for taking an existing running program and attaching it to a new terminal.</td></tr>
+<tr><td><a href="http://wireless.kernel.org/en/users/Documentation/rfkill">rfkill</a></td><td>Tool for enabling and disabling wireless devices.</td></tr>
+<tr><td><a href="http://libtorrent.rakshasa.no/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
+<tr><td><a href="http://stahlforce.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
+<tr><td><a href="http://www.dest-unreach.org/socat/">socat</a></td><td>Multipurpose relay.</td></tr>
+<tr><td><a href="https://github.com/apenwarr/sshuttle">sshuttle</a></td><td>Poor man's VPN.</td></tr>
+<tr><td><a href="http://point-at-infinity.org/ssss/">ssss</a></td><td>CLI tool for Shamir's Secret Sharing Scheme.</td></tr>
+<tr><td><a href="http://steghide.sourceforge.net/">steghide</a></td><td>Embed a message in a file.</td></tr>
+<tr><td><a href="http://blog.rusty.io/2010/01/24/submodules-and-subrepos-done-right/">subrepo</a></td><td>Git & Mercurial subrepos done right.</td></tr>
+<tr><td><a href="https://github.com/bwalex/tc-play">tcplay</a></td><td>CLI TrueCrypt implementation.</td></tr>
+<tr><td><a href="https://github.com/ggreer/the_silver_searcher">the_silver_searcher</a></td><td>Code searching tool.</td></tr>
+<tr><td><a href="https://www.torproject.org/">tor</a></td><td>Anonymizing overlay network.</td></tr>
+<tr><td><a href="http://code.google.com/p/torsocks">torsocks</a></td><td>Safely torify applications.</td></tr>
+<tr><td><a href="http://mama.indstate.edu/users/ice/tree/">tree</a></td><td>Show the contents of a directory in a depth-indented list of files.</td></tr>
+<tr><td><a href="https://en.wikipedia.org/wiki/Monaco_(typeface)">ttf-monaco</a></td><td>Monospaced sans-serif typeface.</td></tr>
+<tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
+<tr><td><a href="http://marcansoft.com/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
+<tr><td><a href="http://rg3.github.io/youtube-dl/">youtube-dl</a></td><td><a href="https://www.youtube.com/">YouTube.com</a> CLI video downloader.</td></tr>
 </table>
 
 Additional packages are available.
@@ -216,6 +215,73 @@ Additional packages are available.
 Selecting all packages (GUI included) adds over 1.0 GB to the download
 and over 4.0 GB to the system image size. This is something to be aware
 of if installing on a slow Internet connection or to a small USB stick.
+
+
+Optional: dotfiles
+------------------
+
+Set `_dotfiles` to 1 for:
+
+![openbox](http://i.imgur.com/KlLsMQR.png)
+
+(wallpaper not included)
+
+#### Openbox Settings
+
+**Keybindings**
+
+*The Windows symbol key is the 'Super' key. For example,
+`Windows+spacebar` opens the main menu*
+
+Program shortcuts:
+
+- `Super+space`: main menu
+- `Super+t`    : LXTerminal (T)erminal
+- `Super+f`    : PCManFM (F)ile manager
+- `Super+e`    : Leafpad (E)ditor
+- `Super+m`    : VLC (M)edia player
+- `Super+w`    : Chromium (W)eb browser
+- `Super+q`    : Force (Q)uit
+- `Super+g`    : (g)Vim
+- `Super+l`    : (L)ock screen
+- `Super+r`    : Calculato(R)
+- `Alt+F2`     : gmrun dialog (program launcher)
+- `Alt+F3`     : dmenu (HUD-like program launcher with simple fuzzy completion)
+
+Movement shortcuts:
+
+- `Super+a` : toggle maximize the current window
+- `Super+h` : toggle fully expand the current window horizontally
+- `Super+v` : toggle fully expand the current window vertically
+- `Super+c` : center the current window
+- `Super+<UP>`   : move the current window up
+- `Super+<DOWN>` : move the current window down
+- `Super+<RIGHT>`: move the current window to the right
+- `Super+<LEFT>` : move the current window to the left
+- `ALT+Super+<ARROW>` : resize the current window
+- `ALT+Shift+<ARROW>` : move the current window to a different desktop
+
+**Notes**:
+
+- None of the below notes materially affect daily usage of this setup
+- You should manually set the network interface in `~/.conkyrc`
+  because `wlan0` will likely not be your correct wireless interface. I
+  think systemd sets the wireless interface randomly. Check `iwconfig`
+  for something like `wlp10s0` and change `wlan0` in `~/.conkyrc` to
+  that. Or check `ifconfig` for the proper interface if your network
+  connection is wired.
+- Conkyswitcher (ConkyWonky) is currently unmaintained in the AUR,
+  which makes the keybinding `Super+x` completely useless
+  - `Super+x` is supposed to make Conky display 'movement' keybindings
+    on the desktop, found in `~/.conkyrc1`
+- A vim plugin keeps creating `~/Templates` on login, and I don't yet
+  see how to prevent this from happening short of removing vim plugins
+  one-by-one
+
+#### How It Works
+
+- Log in
+- Run `startx` to launch Openbox
 
 
 To Do
