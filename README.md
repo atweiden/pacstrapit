@@ -273,11 +273,10 @@ Movement shortcuts:
 *None of the below materially affects daily usage*
 
 - You should manually set the network interface in `~/.conkyrc`
-  because `wlan0` will likely not be your correct wireless interface. I
-  think systemd sets the wireless interface randomly. Check `iwconfig`
-  for something like `wlp10s0` and change `wlan0` in `~/.conkyrc` to
-  that. Or check `ifconfig` for the proper interface if your network
-  connection is wired.
+  because `wlan0` will likely not be your correct wireless
+  interface. Check `iwconfig` for something like `wlp10s0` and change
+  `wlan0` in `~/.conkyrc` to that. Or check `ifconfig` for the proper
+  interface if your network connection is wired.
 - Conkyswitcher (ConkyWonky) is currently unmaintained in the AUR,
   which makes the keybinding `Super+x` completely useless
   - `Super+x` is supposed to make Conky display 'movement' keybindings
