@@ -123,7 +123,7 @@ _ruby=0
 
 # get dotfiles on/off (0 or 1)
 _dotfiles=0
-_dotfiles_version=0.3.7
+_dotfiles_version=0.3.8
 # name, email, github for gitconfig
 _name="Andy Weidenbaum"
 _email="archbaum@gmail.com"
@@ -1389,6 +1389,7 @@ if [[ "${_gui}" == '1' ]]; then
           'gcolor2'
           'gimp'
           'gmrun'
+          'gnome-themes-standard'
           'gnumeric'
           'gparted'
           'grsync'
@@ -1610,14 +1611,15 @@ else
   declare _vimpkgs=('vim-full')
 fi
 _vimpkgs+=('ctags'
-           'vim-ack'
            'vim-align'
            'vim-cecutil'
+           'vim-colors-eddie-git'
            'vim-colors-liquidcarbon'
            'vim-colors-mayansmoke'
            'vim-colors-neverland-git'
            'vim-colors-sorcerer'
            'vim-csapprox'
+           'vim-ctrlsf-git'
            'vim-delimitmate'
            'vim-dragvisuals-git'
            'vim-easydir-git'
@@ -1632,6 +1634,7 @@ _vimpkgs+=('ctags'
            'vim-hugefile-git'
            'vim-indent-object'
            'vim-iptables'
+           'vim-jellybeans'
            'vim-less-git'
            'vim-lightline-git'
            'vim-lustyexplorer'
@@ -1645,6 +1648,7 @@ _vimpkgs+=('ctags'
            'vim-openssl'
            'vim-pipe2eval-git'
            'vim-repeat'
+           'vim-searchparty-git'
            'vim-surround'
            'vim-systemd'
            'vim-taboo-git'
@@ -1654,7 +1658,6 @@ _vimpkgs+=('ctags'
            'vim-trailing-whitespace'
            'vim-ultisnips'
            'vim-vis-git'
-           'vim-visual-star-search-git'
            'vim-yankring'
            'vim-youcompleteme-git')
 
