@@ -128,8 +128,8 @@ Optional: select
 Select packages include:
 
 <table>
-<tr><td><a href="http://beyondgrep.com/">ack</a></td><td>grep replacement.</td></tr>
-<tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Radically simple IT automation platform.</td></tr>
+<tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
+<tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Syadmin anti-conflaguration discombobulator.</td></tr>
 <tr><td><a href="https://github.com/tsgates/arch-wiki-markdown">arch-wiki-markdown-git</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a> in Markdown.</td></tr>
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
