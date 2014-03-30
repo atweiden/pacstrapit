@@ -270,7 +270,8 @@ Movement shortcuts:
 
 **Notes**:
 
-- None of the below notes materially affect daily usage of this setup
+*None of the below materially affects daily usage*
+
 - You should manually set the network interface in `~/.conkyrc`
   because `wlan0` will likely not be your correct wireless interface. I
   think systemd sets the wireless interface randomly. Check `iwconfig`
