@@ -1862,7 +1862,7 @@ fi
                           echo "***********"
                                   fi
 
-arch-chroot /mnt pacaur -Sy --needed --asroot ${_pkgs[@]} ${_vimpkgs[@]} ${_bitpkgs[@]} --noedit --noconfirm
+arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 
 # clean pacaur
 
