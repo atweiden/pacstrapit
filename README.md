@@ -146,7 +146,7 @@ Select packages include:
 <tr><td><a href="https://github.com/uams/geturl">geturl-git</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
 <tr><td><a href="http://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="http://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
-<tr><td><a href="http://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
+<tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
 <tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
@@ -221,7 +221,7 @@ Optional: dotfiles
 
 Set `_dotfiles` to 1 for:
 
-![openbox](http://i.imgur.com/KlLsMQR.png)
+![openbox](https://i.imgur.com/CFDQ0hw.png)
 
 (wallpaper not included)
 
