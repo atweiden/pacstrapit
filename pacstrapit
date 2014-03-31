@@ -131,8 +131,8 @@ _github="atweiden"
 # zipcode for f.lux
 _zipcode=97210
 
-# debug on/off (0 or 1)
-_debug=1
+# verbose on/off (0 or 1)
+_verbose=1
 
 
 
@@ -142,7 +142,7 @@ _debug=1
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "**************"
                         echo "*  --------  *"
                         echo "* |checkify| *"
@@ -155,7 +155,7 @@ function checkify() {
 
 # depends: root
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "*****************"
                        echo "*               *"
                        echo "* depends: root *"
@@ -167,7 +167,7 @@ if ! [[ "$UID" == '0' ]]; then exit 1; fi
 
 # depends: pacman.conf
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* pacman.conf *"
@@ -185,7 +185,7 @@ fi
 
 # depends: rankmirrors
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* rankmirrors *"
@@ -199,7 +199,7 @@ rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
 
 # depends: expect
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "*******************"
                       echo "*                 *"
                       echo "* depends: expect *"
@@ -211,7 +211,7 @@ if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
 
 # depends: iptables
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                      echo "*********************"
                      echo "*                   *"
                      echo "* depends: iptables *"
@@ -223,7 +223,7 @@ if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
 
 # depends: base-devel
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                     echo "***********************"
                     echo "*                     *"
                     echo "* depends: base-devel *"
@@ -242,7 +242,7 @@ pacman -Sy --needed base-devel --noconfirm
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "**************"
                         echo "*  --------  *"
                         echo "* |functify| *"
@@ -255,7 +255,7 @@ function functify() {
 
 # sourcing all functions in functions.d
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* functions.d *"
@@ -274,7 +274,7 @@ for _fn in `find functions.d -type f`; do . ${_fn}; done
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "**************"
                         echo "*  --------  *"
                         echo "* |gdiskify| *"
@@ -285,7 +285,7 @@ for _fn in `find functions.d -type f`; do . ${_fn}; done
 
 function gdiskify() {
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "******************"
                       echo "*                *"
                       echo "* spawning gdisk *"
@@ -364,7 +364,7 @@ EOF
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "*************"
                          echo "*  -------  *"
                          echo "* |luksify| *"
@@ -377,7 +377,7 @@ function luksify() {
 
 # create unencrypted ext2 filesystem for /boot
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "******************"
                       echo "*                *"
                       echo "* mkfs.ext2 boot *"
@@ -389,7 +389,7 @@ mkfs.ext2 ${_partition}2
 
 # load kernel modules required for luks
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "*******************"
                       echo "*                 *"
                       echo "* dm_mod dm-crypt *"
@@ -401,7 +401,7 @@ modprobe dm_mod dm-crypt
 
 # create luks root partition
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
               echo "**********************************"
               echo "*                                *"
               echo "* spawning cryptsetup luksFormat *"
@@ -431,7 +431,7 @@ EOF
 
 # open luks root partition
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                echo "********************************"
                echo "*                              *"
                echo "* spawning cryptsetup luksOpen *"
@@ -449,7 +449,7 @@ EOF
 
 # create btrfs filesystem
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                echo "*********************************"
                echo "*                               *"
                echo "* mkfs.btrfs devmapper luksroot *"
@@ -461,7 +461,7 @@ mkfs.btrfs /dev/mapper/${_luks_name}
 
 # create and mount main btrfs subvolumes
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
            echo "****************************************"
            echo "*                                      *"
            echo "* mounting devmapper luksroot in /mnt2 *"
@@ -472,7 +472,7 @@ mkfs.btrfs /dev/mapper/${_luks_name}
 mkdir -p /mnt2
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache /dev/mapper/${_luks_name} /mnt2
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
             echo "**************************************"
             echo "*                                    *"
             echo "* creating btrfs subvolumes in /mnt2 *"
@@ -489,7 +489,7 @@ btrfs subvolume create @tmp
 btrfs subvolume create @usr
 btrfs subvolume create @var
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
              echo "*************************************"
              echo "*                                   *"
              echo "* mounting btrfs subvolumes in /mnt *"
@@ -502,7 +502,7 @@ for _btrfs_dir in home opt srv tmp usr var; do
   mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
 done
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                      echo "********************"
                      echo "*                  *"
                      echo "* unmounting /mnt2 *"
@@ -512,7 +512,7 @@ done
 
 cd && umount /mnt2 && rmdir /mnt2 --ignore-fail-on-non-empty
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
          echo "*********************************************"
          echo "*                                           *"
          echo "* mounting ext2 boot partition in /mnt/boot *"
@@ -531,7 +531,7 @@ mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "*****************"
                        echo "*  -----------  *"
                        echo "* |pacstrapify| *"
@@ -544,7 +544,7 @@ function pacstrapify() {
 
 # pacstrap packages
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* pacstrap *"
@@ -587,7 +587,7 @@ pacstrap /mnt abs                  \
 
 # install a bootloader
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* genfstab *"
@@ -599,7 +599,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 # set hostname
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* hostname *"
@@ -611,7 +611,7 @@ echo ${_hostname} > /mnt/etc/hostname
 
 # set nameservers
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* DNSCrypt *"
@@ -635,7 +635,7 @@ EOF
 
 # set locale
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "**********"
                           echo "*        *"
                           echo "* locale *"
@@ -652,7 +652,7 @@ EOF
 
 # set console font
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "**********"
                           echo "*        *"
                           echo "* keymap *"
@@ -668,7 +668,7 @@ EOF
 
 # set timezone
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* timezone *"
@@ -680,7 +680,7 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
 
 # set hardware clock
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "***********"
                           echo "*         *"
                           echo "* hwclock *"
@@ -692,7 +692,7 @@ arch-chroot /mnt hwclock --systohc --utc
 
 # configure pacman.conf
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* pacman.conf *"
@@ -710,7 +710,7 @@ fi
 
 # rankmirrors
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* rankmirrors *"
@@ -724,7 +724,7 @@ rankmirrors -n 4 /mnt/etc/pacman.d/mirrorlist.bak > /mnt/etc/pacman.d/mirrorlist
 
 # build pacaur
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "****************"
                        echo "*              *"
                        echo "* build pacaur *"
@@ -745,7 +745,7 @@ done
 
 # install pacaur
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "******************"
                       echo "*                *"
                       echo "* install pacaur *"
@@ -764,7 +764,7 @@ done
 
 # install zramswap
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                      echo "********************"
                      echo "*                  *"
                      echo "* install zramswap *"
@@ -776,7 +776,7 @@ arch-chroot /mnt pacaur -Sy --needed --asroot zramswap --noedit --noconfirm
 
 # always suspend to RAM
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                     echo "**********************"
                     echo "*                    *"
                     echo "* systemd sleep.conf *"
@@ -796,7 +796,7 @@ EOF
 
 # set modprobe.conf
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "*****************"
                        echo "*               *"
                        echo "* modprobe.conf *"
@@ -815,7 +815,7 @@ EOF
 
 # set initramfs
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "*************"
                          echo "*           *"
                          echo "* initramfs *"
@@ -849,7 +849,7 @@ arch-chroot /mnt mkinitcpio -p linux
 
 # install grub
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                            echo "********"
                            echo "*      *"
                            echo "* grub *"
@@ -875,7 +875,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* root passwd *"
@@ -896,7 +896,7 @@ EOF
 
 # configure sysctl
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* sysctl.conf *"
@@ -1010,7 +1010,7 @@ arch-chroot /mnt sysctl -p
 
 # configure iptables
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*          *"
                          echo "* iptables *"
@@ -1056,7 +1056,7 @@ iptables-save > /mnt/etc/iptables/iptables.rules
 
 # configure sshd
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* sshd_config *"
@@ -1087,7 +1087,7 @@ echo "sshd: ${_hosts_allowed}" >                                                
 
 # configure ssh
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "**************"
                         echo "*            *"
                         echo "* ssh_config *"
@@ -1107,7 +1107,7 @@ sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
 
 # create user
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* create user *"
@@ -1119,7 +1119,7 @@ arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power
 
 # set user password
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* user passwd *"
@@ -1140,7 +1140,7 @@ EOF
 
 # configure sudo
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                            echo "********"
                            echo "*      *"
                            echo "* sudo *"
@@ -1159,7 +1159,7 @@ EOF
 
 # set systemd services
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                      echo "********************"
                      echo "*                  *"
                      echo "* systemd services *"
@@ -1174,7 +1174,7 @@ arch-chroot /mnt systemctl enable cronie         \
 
 # disable /var/log/journal CoW
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* disable CoW *"
@@ -1193,7 +1193,7 @@ chattrify "/var/log/journal" "755" "root" "systemd-journal"
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*  ------  *"
                          echo "* |sshify| *"
@@ -1206,7 +1206,7 @@ function sshify() {
 
 # enable sshd
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* enable sshd *"
@@ -1218,7 +1218,7 @@ arch-chroot /mnt systemctl enable sshd
 
 # import keys
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* import keys *"
@@ -1232,7 +1232,7 @@ curl -k "${_user_key_sig}" -o ~/sshkey.pub.sig
 
 # verify with electrum
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* verify keys *"
@@ -1262,7 +1262,7 @@ _electrum_verified=$(./electrum verifymessage \
 
 # setup authorized_keys
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                       echo "*******************"
                       echo "*                 *"
                       echo "* authorized_keys *"
@@ -1289,7 +1289,7 @@ fi
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*  ---------  *"
                         echo "* |selectify| *"
@@ -1300,7 +1300,6 @@ fi
 
 function selectify() {
 
-# select
 declare _pkgs=('ack'
                'ansible'
                'arch-wiki-markdown-git'
@@ -1858,7 +1857,7 @@ fi
 
 # install
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "***********"
                           echo "*         *"
                           echo "* install *"
@@ -1870,7 +1869,7 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
 
 # clean pacaur
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "****************"
                        echo "*              *"
                        echo "* clean pacaur *"
@@ -1889,7 +1888,7 @@ arch-chroot /mnt rm -rf /tmp/pacaur*
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "*****************"
                        echo "*  -----------  *"
                        echo "* |electrumify| *"
@@ -1902,7 +1901,7 @@ function electrumify() {
 
 # install electrum-headless deps in chroot
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                   echo "**************************"
                   echo "*                        *"
                   echo "* electrum-headless deps *"
@@ -1928,7 +1927,7 @@ arch-chroot /mnt find /root/.src/electrum -type f -name "*.pkg.tar.xz" -exec pac
 
 # place electrum-headless in chroot
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                   echo "***************************"
                   echo "*                         *"
                   echo "* place electrum-headless *"
@@ -1951,7 +1950,7 @@ cd && mv electrum-${_electrum_version} /mnt/home/${_user_name}
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "************"
                          echo "*  ------  *"
                          echo "* |dotify| *"
@@ -1964,7 +1963,7 @@ function dotify() {
 
 # downloading
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* downloading *"
@@ -1978,7 +1977,7 @@ tar -xvzf /mnt/home/{$_user_name}/.src/dotfiles-${_dotfiles_version}.tar.gz -C /
 
 # adjusting dotfile config parameters
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                         echo "***************"
                         echo "*             *"
                         echo "* configuring *"
@@ -1996,7 +1995,7 @@ find /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/_config/obmenu-g
 
 # fixing permissions
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                     echo "**********************"
                     echo "*                    *"
                     echo "* fixing permissions *"
@@ -2008,7 +2007,7 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 
 # running bootstrap
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                        echo "*****************"
                        echo "*               *"
                        echo "* bootstrapping *"
@@ -2021,7 +2020,7 @@ arch-chroot /mnt cd /home/${_user_name}/.src/dotfiles-${_dotfiles_version} && ./
 
 # configuring X11
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                             echo "*******"
                             echo "*     *"
                             echo "* X11 *"
@@ -2036,7 +2035,7 @@ fi
 
 # configuring openvpn
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "***********"
                           echo "*         *"
                           echo "* openvpn *"
@@ -2049,7 +2048,7 @@ cp /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/etc/openvpn/update
 
 # adding systemd service
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                      echo "*********************"
                      echo "*                   *"
                      echo "* kill-ssh-sessions *"
@@ -2066,68 +2065,11 @@ arch-chroot /mnt systemctl enable kill-ssh-sessions.service
 
 
 # -----------------------------------------------------------------------------
-# debugify: debug
-# -----------------------------------------------------------------------------
-
-
-                   if [[ "$_debug" == '1' ]]; then
-                        echo "**************"
-                        echo "*  --------  *"
-                        echo "* |debugify| *"
-                        echo "*  --------  *"
-                        echo "**************"
-                                  fi
-
-
-function debugify() {
-
-# debug
-
-                   if [[ "$_debug" == '1' ]]; then
-                           echo "*********"
-                           echo "*       *"
-                           echo "* debug *"
-                           echo "*       *"
-                           echo "*********"
-                                  fi
-
-echo "cat /boot/grub/grub.cfg:"
-arch-chroot /mnt cat /boot/grub/grub.cfg
-echo "cat /etc/fstab:"
-arch-chroot /mnt cat /etc/fstab
-echo "cat /etc/hostname:"
-arch-chroot /mnt cat /etc/hostname
-echo "cat /etc/locale.conf:"
-arch-chroot /mnt cat /etc/locale.conf
-echo "cat /etc/locale.gen:"
-arch-chroot /mnt cat /etc/locale.gen
-echo "cat /etc/mkinitcpio.conf:"
-arch-chroot /mnt cat /etc/mkinitcpio.conf
-echo "cat /etc/modprobe.d/modprobe.conf:"
-arch-chroot /mnt cat /etc/modprobe.d/modprobe.conf
-echo "cat /etc/resolv.conf.head:"
-arch-chroot /mnt cat /etc/resolv.conf.head
-echo "cat /etc/sysctl.conf:"
-arch-chroot /mnt cat /etc/sysctl.conf
-echo "cat /etc/systemd/sleep.conf:"
-arch-chroot /mnt cat /etc/systemd/sleep.conf
-echo "cat /etc/vconsole.conf:"
-arch-chroot /mnt cat /etc/vconsole.conf
-echo "ls -laiF /home/${_user_name}:"
-arch-chroot /mnt ls -laiF /home/${_user_name}
-echo "systemctl list-unit-files:"
-arch-chroot /mnt systemctl list-unit-files | perl -p -e 'print while (<>)'
-}
-
-
-
-
-# -----------------------------------------------------------------------------
 # exitify: exit pacstrapit
 # -----------------------------------------------------------------------------
 
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                          echo "*************"
                          echo "*  -------  *"
                          echo "* |exitify| *"
@@ -2140,7 +2082,7 @@ function exitify() {
 
 # exit pacstrapped chroot
 
-                   if [[ "$_debug" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                           echo "**********"
                           echo "*        *"
                           echo "* umount *"
@@ -2173,5 +2115,4 @@ if [[ "${_ssh}" == '1' ]]; then sshify; fi
 if [[ "${_select}" == '1' ]]; then selectify; fi
 if [[ "${_headless}" == '1' ]]; then electrumify; fi
 if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
-if [[ "${_debug}" == '1' ]]; then debugify; fi
 exitify
