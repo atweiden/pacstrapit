@@ -1167,7 +1167,10 @@ EOF
                      echo "********************"
                                   fi
 
-arch-chroot /mnt systemctl enable cronie dnscrypt-proxy iptables zramswap
+arch-chroot /mnt systemctl enable cronie         \
+                                  dnscrypt-proxy \
+                                  iptables       \
+                                  zramswap
 
 # disable /var/log/journal CoW
 
