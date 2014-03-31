@@ -632,7 +632,6 @@ nameserver 208.67.220.220
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
-arch-chroot /mnt systemctl enable dnscrypt-proxy.service
 
 # set locale
 
@@ -1054,7 +1053,6 @@ EOF
 iptables-save > /mnt/etc/iptables/iptables.up.rules
 iptables-restore < /mnt/etc/iptables/iptables.test.rules
 iptables-save > /mnt/etc/iptables/iptables.rules
-arch-chroot /mnt systemctl enable iptables
 
 # configure sshd
 
@@ -1169,7 +1167,7 @@ EOF
                      echo "********************"
                                   fi
 
-arch-chroot /mnt systemctl enable cronie zramswap
+arch-chroot /mnt systemctl enable cronie dnscrypt-proxy iptables zramswap
 
 # disable /var/log/journal CoW
 

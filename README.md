@@ -192,7 +192,7 @@ Select packages include:
 Additional packages are available.
 
 <table>
-<tr><td>Analysis</td><td>Sysadmin tools for system analysis</td></tr>
+<tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
@@ -295,6 +295,7 @@ To Do
 -----
 
 - Add keyfile-encrypted swap partition
+- Add grub menu theme
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 - Add command line flags (shflags)
 - Add [menu](https://github.com/jamielinux/bashmount)
