@@ -1871,7 +1871,7 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
 
 # set XDG dirs
 
-         if [[ "$_verbose" == '1' && "$_gui" == '1' ]]; then
+                  if [[ "$_verbose" == '1' ]]; then
                             echo "*******"
                             echo "*     *"
                             echo "* XDG *"
