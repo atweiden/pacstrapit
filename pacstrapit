@@ -1492,6 +1492,7 @@ if [[ "${_gui}" == '1' ]]; then
           'xchat'
           'xchat-otr'
           'xclip'
+          'xdg-user-dirs'
           'xdg-utils'
           'xdotool'
           'xextproto'
@@ -1866,6 +1867,32 @@ fi
                                   fi
 
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+
+# set XDG dirs
+
+         if [[ "$_verbose" == '1' && "$_gui" == '1' ]]; then
+                            echo "*******"
+                            echo "*     *"
+                            echo "* XDG *"
+                            echo "*     *"
+                            echo "*******"
+                                  fi
+
+if [[ "$_gui" == '1' ]]; then cat > /mnt/etc/xdg/user-dirs.defaults <<'EOF'
+# Default settings for user directories
+#
+# The values are relative pathnames from the home directory and
+# will be translated on a per-path-element basis into the users locale
+DESKTOP=Desktop
+DOWNLOAD=Desktop/Downloads
+TEMPLATES=Desktop/Templates
+PUBLICSHARE=Desktop/Public
+DOCUMENTS=Desktop/Documents
+MUSIC=Desktop/Music
+PICTURES=Desktop/Pictures
+VIDEOS=Desktop/Videos
+EOF
+fi
 
 # clean pacaur
 

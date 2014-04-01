@@ -281,9 +281,6 @@ Movement shortcuts:
   which makes the keybinding `Super+x` completely useless
   - `Super+x` is supposed to make Conky display 'movement' keybindings
     on the desktop, found in `~/.conkyrc1`
-- A vim plugin keeps creating `~/Templates` on login, and I don't yet
-  see how to prevent this from happening short of removing vim plugins
-  one-by-one
 
 #### How It Works
 
