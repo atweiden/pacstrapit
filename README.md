@@ -22,8 +22,8 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.8} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.3.8.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.9} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.3.9.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -47,7 +47,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td></tr>
 </table>
 
-> `cd pacstrapit-0.3.8 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.3.9 && $EDITOR pacstrapit`
 
 Done.
 
@@ -151,6 +151,7 @@ Select packages include:
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
 <tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
 <tr><td><a href="http://stedolan.github.io/jq/">jq</a></td><td>Command-line JSON processor.</td></tr>
+<tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
 <tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
 <tr><td><a href="http://libusb.sourceforge.net/">libusb-compat</a></td><td>USB device support.</td></tr>
 <tr><td><a href="http://lrzip.kolivas.org/">lrzip</a></td><td>Multi-threaded file compression.</td></tr>
