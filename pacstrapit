@@ -1886,10 +1886,10 @@ if [[ "$_gui" == '1' ]]; then cat > /mnt/etc/xdg/user-dirs.defaults <<'EOF'
 # The values are relative pathnames from the home directory and
 # will be translated on a per-path-element basis into the users locale
 DESKTOP=Desktop
-DOWNLOAD=Desktop/Downloads
+DOWNLOAD=Downloads
 TEMPLATES=Desktop/Templates
 PUBLICSHARE=Desktop/Public
-DOCUMENTS=Desktop/Documents
+DOCUMENTS=Documents
 MUSIC=Desktop/Music
 PICTURES=Desktop/Pictures
 VIDEOS=Desktop/Videos
