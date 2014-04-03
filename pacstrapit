@@ -1302,7 +1302,7 @@ function selectify() {
 
 declare _pkgs=('ack'
                'ansible'
-               'arch-wiki-markdown-git'
+               'arch-wiki-lite'
                'avahi'
                'bluez'
                'bluez-firmware'
