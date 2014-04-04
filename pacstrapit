@@ -1858,14 +1858,14 @@ else
   _headless=1
 fi
 
-# install
+# install selected pkgs
 
                   if [[ "$_verbose" == '1' ]]; then
-                          echo "***********"
-                          echo "*         *"
-                          echo "* install *"
-                          echo "*         *"
-                          echo "***********"
+                 echo "****************************"
+                 echo "*                          *"
+                 echo "* installing selected pkgs *"
+                 echo "*                          *"
+                 echo "****************************"
                                   fi
 
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
