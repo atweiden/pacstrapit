@@ -2002,7 +2002,7 @@ function dotify() {
 
 mkdir -p /mnt/home/${_user_name}/.src
 curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${_dotfiles_version}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
-tar -xvzf /mnt/home/{$_user_name}/.src/dotfiles-${_dotfiles_version}.tar.gz -C /mnt/home/${_user_name}/.src
+tar -xvzf /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}.tar.gz -C /mnt/home/${_user_name}/.src
 
 # adjusting dotfile config parameters
 
