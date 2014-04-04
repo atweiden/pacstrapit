@@ -22,9 +22,10 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.10} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.3.10.tar.gz`
-5. **Customize variables**
+3. Connect to the Internet: `wifi-menu -o`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.10} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.3.10.tar.gz`
+6. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
 data loss and system instability.
