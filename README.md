@@ -1,6 +1,11 @@
 PacstrapIt!
 ===========
 
+<table>
+<tr><td>Last tested</td><td>2014-04-04 with archlinux-2014.04.01-dual.iso</td></tr>
+</table>
+
+
 Features
 --------
 
