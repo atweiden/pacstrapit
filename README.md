@@ -22,8 +22,8 @@ Instructions
 
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
-3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.9} -o "#1-#3.#2"`
-4. Extract: `tar xvzf pacstrapit-0.3.9.tar.gz`
+3. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.3.10} -o "#1-#3.#2"`
+4. Extract: `tar xvzf pacstrapit-0.3.10.tar.gz`
 5. **Customize variables**
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -47,7 +47,7 @@ Defaults:
 <tr><td>Hostname</td><td>luksiso</td></tr>
 </table>
 
-> `cd pacstrapit-0.3.9 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.3.10 && $EDITOR pacstrapit`
 
 Done.
 
