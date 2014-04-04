@@ -111,7 +111,6 @@ _games=0
 _go=0
 _gobi=0
 _haskell=0
-_ledger=0
 _lua=0
 _markdown=0
 _nginx=0
@@ -1324,6 +1323,7 @@ declare _pkgs=('ack'
                'ix'
                'jq'
                'keybase'
+               'ledger.py-git'
                'libfaketime'
                'libusb-compat'
                'lrzip'
@@ -1757,11 +1757,6 @@ if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
   _vimpkgs+=('vim-haskell')
-fi
-
-if [[ "${_ledger}" == '1' ]]; then
-  _pkgs+=('ledger-git'
-          'ledger.py-git')
 fi
 
 if [[ "${_lua}" == '1' ]]; then
