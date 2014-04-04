@@ -1416,7 +1416,6 @@ if [[ "${_gui}" == '1' ]]; then
           'gtk-engines'
           'gucharmap'
           'hicolor-icon-theme'
-          'hotshots'
           'hunspell'
           'hwinfo'
           'hyphen'
