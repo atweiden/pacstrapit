@@ -156,7 +156,7 @@ Select packages include:
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
 <tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
-<tr><td><a href="http://stedolan.github.io/jq/">jq</a></td><td>Command-line JSON processor.</td></tr>
+<tr><td><a href="http://stedolan.github.io/jq/">jq</a></td><td>CLI JSON processor.</td></tr>
 <tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
 <tr><td><a href="https://github.com/mafm/ledger.py">ledger.py</a></td><td>CLI double-entry accounting.</td></tr>
 <tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
