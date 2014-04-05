@@ -209,7 +209,6 @@ Additional packages are available.
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
-<tr><td>Ledger</td><td>CLI accounting</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
 <tr><td>Nginx</td><td>Nginx webserver packages</td></tr>
@@ -221,8 +220,10 @@ Additional packages are available.
 </table>
 
 Selecting all packages (GUI included) adds over 1.0 GB to the download
-and over 4.0 GB to the system image size. This is something to be aware
+and over 5.5 GB to the system image size. This is something to be aware
 of if installing on a slow Internet connection or to a small USB stick.
+An 8GB USB stick should work perfectly well, but free space would be
+very limited with all GUI packages included.
 
 
 Optional: dotfiles
