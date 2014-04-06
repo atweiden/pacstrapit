@@ -210,7 +210,6 @@ Additional packages are available.
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
-<tr><td>Nginx</td><td>Nginx webserver packages</td></tr>
 <tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
 <tr><td>Node</td><td>Packages for programming in Node.js</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>

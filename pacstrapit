@@ -112,7 +112,6 @@ _gobi=0
 _haskell=0
 _lua=0
 _markdown=0
-_nginx=0
 _nimrod=0
 _node=0
 _perl=0
@@ -1759,11 +1758,6 @@ fi
 if [[ "${_markdown}" == '1' ]]; then
   _pkgs+=('markdown')
   _vimpkgs+=('vim-markdown')
-fi
-
-if [[ "${_nginx}" == '1' ]]; then
-  _pkgs+=('nginx')
-  _vimpkgs+=('vim-nginx')
 fi
 
 if [[ "${_nimrod}" == '1' ]]; then
