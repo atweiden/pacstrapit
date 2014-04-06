@@ -183,6 +183,7 @@ Select packages include:
 <tr><td><a href="http://libtorrent.rakshasa.no/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
 <tr><td><a href="http://stahlforce.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="http://www.dest-unreach.org/socat/">socat</a></td><td>Multipurpose relay.</td></tr>
+<tr><td><a href="https://www.tarsnap.com/spiped.html">spiped</a></td><td>Secure pipe daemon.</td></tr>
 <tr><td><a href="https://github.com/apenwarr/sshuttle">sshuttle</a></td><td>Poor man's VPN.</td></tr>
 <tr><td><a href="http://point-at-infinity.org/ssss/">ssss</a></td><td>CLI tool for Shamir's Secret Sharing Scheme.</td></tr>
 <tr><td><a href="http://steghide.sourceforge.net/">steghide</a></td><td>Embed a message in a file.</td></tr>
