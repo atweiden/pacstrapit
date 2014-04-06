@@ -205,7 +205,6 @@ Additional packages are available.
 <tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
-<tr><td>Games</td><td>minecraft, papersplea.se, radegast, steam</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>

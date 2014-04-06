@@ -107,7 +107,6 @@ _analysis=0
 _clojure=0
 _elixir=0
 _fonts=0
-_games=0
 _go=0
 _gobi=0
 _haskell=0
@@ -1731,15 +1730,6 @@ if [[ "${_fonts}" == '1' ]]; then
           'wqy-bitmapfont'
           'wqy-microhei'
           'wqy-zenhei')
-fi
-
-if [[ "${_games}" == '1' ]]; then
-  if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('minecraft'
-            'papersplease'
-            'radegast'
-            'steam')
-  fi
 fi
 
 if [[ "${_go}" == '1' ]]; then
