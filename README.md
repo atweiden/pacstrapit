@@ -264,7 +264,7 @@ Program shortcuts:
 - `Alt+F2`     : gmrun dialog (program launcher)
 - `Alt+F3`     : dmenu (HUD-like program launcher with simple fuzzy completion)
 
-Movement shortcuts:
+Desktop shortcuts:
 
 - `Super+a` : toggle maximize the current window
 - `Super+h` : toggle fully expand the current window horizontally
@@ -276,6 +276,7 @@ Movement shortcuts:
 - `Super+<LEFT>` : move the current window to the left
 - `Alt+Super+<ARROW>` : resize the current window
 - `Alt+Shift+<ARROW>` : move the current window to a different desktop
+- `Super+<F1-F4>` : switch to desktop #1-4
 
 **Notes**:
 
