@@ -311,7 +311,7 @@ To Do
 Licensing
 ---------
 
-<img style="float: right" alt="arch" src="https://i.imgur.com/D53mim5.png" />
-
 This is free and unencumbered public domain software. For more
 information, see http://unlicense.org/ or the accompanying UNLICENSE file.
+
+<img style="float: right" alt="arch" src="https://i.imgur.com/D53mim5.png" />
