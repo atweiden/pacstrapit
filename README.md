@@ -313,3 +313,5 @@ Licensing
 
 This is free and unencumbered public domain software. For more
 information, see http://unlicense.org/ or the accompanying UNLICENSE file.
+
+![arch](https://i.imgur.com/D53mim5.png)
