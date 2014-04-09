@@ -460,7 +460,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo    "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
     echo
-    for ((i = 0 ; i < ${#_block_devices[@]} ; i++ )); do
+    for i in "${!_block_devices[@]}"; do
       echo  "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
     done
     echo
@@ -815,7 +815,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo    "${bold}${blue}::${normal} ${bold}${white}Available processors${normal}"
     echo
-    for ((i = 0 ; i < ${#_processors[@]} ; i++ )); do
+    for i in "${!_processors[@]}"; do
       echo  "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
     done
     echo
@@ -852,7 +852,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo    "${bold}${blue}::${normal} ${bold}${white}Available graphics cards${normal}"
     echo
-    for ((i = 0 ; i < ${#_gpus[@]} ; i++ )); do
+    for i in "${!_gpus[@]}"; do
       echo  "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"
     done
     echo
@@ -889,7 +889,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo    "${bold}${blue}::${normal} ${bold}${white}Available hard drive targets${normal}"
     echo
-    for ((i = 0 ; i < ${#_disks[@]} ; i++ )); do
+    for i in "${!_disks[@]}"; do
       echo  "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
     done
     echo
