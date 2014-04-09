@@ -82,9 +82,11 @@ Run `pacstrapit` using default variables in config section:
 
 Run `pacstrapit` with username and password set from environment variables:
 
-> `export USERNAME=sky`
-> `export USERPASS="sailing"`
-> `./pacstrapit start`
+```
+`export USERNAME=sky`
+`export USERPASS="sailing"`
+`./pacstrapit start`
+```
 
 If the script exits with an error, it's best to reboot and start fresh
 with a blank disk (`shred -fvz -n 0 /dev/sdX`).
