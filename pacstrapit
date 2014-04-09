@@ -2673,14 +2673,14 @@ cd && mv electrum-${_electrum_version} /mnt/home/${_user_name}
 
 function dotify() {
 
-# name for GitHub/gitconfig
+# configure name for GitHub/gitconfig
 
                   if [[ "$_verbose" == '1' ]]; then
-                     echo "*********************"
-                     echo "*                   *"
-                     echo "* github name entry *"
-                     echo "*                   *"
-                     echo "*********************"
+                       echo "****************"
+                       echo "*              *"
+                       echo "* config: name *"
+                       echo "*              *"
+                       echo "****************"
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
@@ -2697,14 +2697,14 @@ else
   _name="$_name_default"
 fi
 
-# email for GitHub/gitconfig
+# configure email for GitHub/gitconfig
 
                   if [[ "$_verbose" == '1' ]]; then
-                    echo "**********************"
-                    echo "*                    *"
-                    echo "* github email entry *"
-                    echo "*                    *"
-                    echo "**********************"
+                       echo "*****************"
+                       echo "*               *"
+                       echo "* config: email *"
+                       echo "*               *"
+                       echo "*****************"
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
@@ -2721,14 +2721,14 @@ else
   _email="$_email_default"
 fi
 
-# github account name for GitHub/gitconfig
+# configure github account name for GitHub/gitconfig
 
                   if [[ "$_verbose" == '1' ]]; then
-                     echo "*********************"
-                     echo "*                   *"
-                     echo "* github acct entry *"
-                     echo "*                   *"
-                     echo "*********************"
+                      echo "******************"
+                      echo "*                *"
+                      echo "* config: github *"
+                      echo "*                *"
+                      echo "******************"
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
@@ -2745,14 +2745,14 @@ else
   _github="$_github_default"
 fi
 
-# zipcode for f.lux
+# configure zipcode for f.lux
 
                   if [[ "$_verbose" == '1' ]]; then
-                       echo "*****************"
-                       echo "*               *"
-                       echo "* zipcode entry *"
-                       echo "*               *"
-                       echo "*****************"
+                      echo "*******************"
+                      echo "*                 *"
+                      echo "* config: zipcode *"
+                      echo "*                 *"
+                      echo "*******************"
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
