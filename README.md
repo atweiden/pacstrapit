@@ -155,8 +155,8 @@ with a blank disk (`shred -fvz -n 0 /dev/sdX`).
 Optional: sshd
 --------------
 
-If you intend to enable SSH access, you'll want to change
-`_electrum_pubkey_default`, `_user_pubkey_default`, and
+If you intend to enable SSH access, you'll want to reset the
+values of `_electrum_pubkey_default`, `_user_pubkey_default`, and
 `_user_pubkey_sig_default`.
 
 Before setting `_ssh` to `1`...
@@ -198,7 +198,7 @@ $ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env p
 Generate an Electrum wallet.
 
 ```bash
-$ ./electrum create -o || return 0
+$ ./electrum create -o
 ```
 
 Pick an Electrum address for signing.
