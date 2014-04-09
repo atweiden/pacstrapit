@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# askify: ask user a yes-no question and return the response
+# -----------------------------------------------------------------------------
+
+
+
+# -----------------------------------------------------------------------------
+#
+# Args
+#
+#   arg 1 = INQUIRY to ask
+#   arg 2 = DEFAULT ANSWER to INQUIRY
+#
+# Examples
+#
+#   askify "INQUIRY" "DEFAULT ANSWER"
+#   askify "Are you sure? (Y/n)" "Y"
+#   askify "Install dotfiles? (y/N)" "N"
+#   askify "Enable SSH? (y/N)" "n"
+
+function askify() {
+
+_inquiry="$1"
+_answer_default="$2"
+
+while true; do
+  echo -n "${bold}${white}${_inquiry}${normal} ${bold}${white}[${normal}${_answer_default}${bold}${white}]${normal} "; read -r -n 1 -s -p ' ' _answer
+  _answer="${_answer:-$_answer_default}"
+  echo
+  if   [[ "$_answer" =~ [Yy] ]] ; then
+    echo "${bold}${green}TEH HEH${normal}"
+    _retval=0
+    break
+  elif [[ "$_answer" =~ [Nn] ]]; then
+    echo "${bold}${red}NOOOOO${normal}"
+    _retval=1
+    break
+  else
+    echo  "${bold}${yellow}::${normal} Please try again"
+  fi
+done
+return $_retval
+}

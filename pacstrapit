@@ -3,6 +3,7 @@
 
 
 
+. functions.d/askify
 . functions.d/chattrify
 . functions.d/shflags/src/shflags
 
@@ -14,7 +15,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.2"
+VERSION="0.5.3"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -273,7 +274,7 @@ esac
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                         echo "**************"
                         echo "*  --------  *"
                         echo "* |checkify| *"
@@ -433,7 +434,7 @@ setfont Lat2-Terminus16
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                         echo "**************"
                         echo "*  --------  *"
                         echo "* |gdiskify| *"
@@ -563,7 +564,7 @@ EOF
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                          echo "*************"
                          echo "*  -------  *"
                          echo "* |luksify| *"
@@ -788,7 +789,7 @@ mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                        echo "*****************"
                        echo "*  -----------  *"
                        echo "* |pacstrapify| *"
@@ -1809,7 +1810,7 @@ chattrify "/var/log/journal" "755" "root" "systemd-journal"
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                          echo "************"
                          echo "*  ------  *"
                          echo "* |sshify| *"
@@ -1977,7 +1978,7 @@ fi
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                         echo "***************"
                         echo "*  ---------  *"
                         echo "* |selectify| *"
@@ -2642,7 +2643,7 @@ arch-chroot /mnt rm -rf /tmp/pacaur*
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                        echo "*****************"
                        echo "*  -----------  *"
                        echo "* |electrumify| *"
@@ -2704,7 +2705,7 @@ cd && mv electrum-${VERSION_ELECTRUM} /mnt/home/${_user_name}
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                          echo "************"
                          echo "*  ------  *"
                          echo "* |dotify| *"
@@ -2918,7 +2919,7 @@ arch-chroot /mnt systemctl enable kill-ssh-sessions.service
 # -----------------------------------------------------------------------------
 
 
-                  if [[ "$_verbose" == '1' ]]; then
+                   if [[ "$_debug" == '1' ]]; then
                          echo "*************"
                          echo "*  -------  *"
                          echo "* |exitify| *"
@@ -2955,12 +2956,46 @@ echo "******************************"
 # go
 # -----------------------------------------------------------------------------
 
+# dependency checks
 checkify
+
+# disk partitioning
 gdiskify
+
+# disk encryption
 luksify
+
+# base system
 pacstrapify
-if [[ "${_ssh}" == '1' ]]; then sshify; fi
-if [[ "${_select}" == '1' ]]; then selectify; fi
-if [[ "${_headless}" == '1' ]]; then electrumify; fi
-if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
+
+# ssh
+if   [[ "${_ssh}" == '1' ]]; then
+  sshify
+elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_ssh}" -eq "${FLAGS_FALSE}" ]]; then
+  askify 'Enable SSH? (y/N)' 'n'
+  if [[ "$_retval" == '0' ]]; then sshify; fi
+fi
+
+# supplementary pkgs
+if   [[ "${_select}" == '1' ]]; then
+  selectify
+elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_select}" -eq "${FLAGS_FALSE}" && -z "${FLAGS_bundle}" ]]; then
+  askify 'Install select pkgs? (y/N)' 'n'
+  if [[ "$_retval" == '0' ]]; then selectify; fi
+fi
+
+# install electrum-headless
+if   [[ "${_headless}" == '1' ]]; then
+  electrumify
+fi
+
+# install dotfiles
+if   [[ "${_dotfiles}" == '1' ]]; then
+  dotify
+elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_dotfiles}" -eq "${FLAGS_FALSE}" ]]; then
+  askify 'Install dotfiles? (y/N)' 'n'
+  if [[ "$_retval" == '0' ]]; then dotify; fi
+fi
+
+# exit
 exitify
