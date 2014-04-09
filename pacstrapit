@@ -60,7 +60,7 @@ _zipcode_default="97210"
                    # fi_FI (Finnish)
                    # fr_FR (French)
                    # ga_IE (Irish)
-                   # ha_NG (Nigerian)
+                   # ha_NG (Hausa)
                    # he_IL (Hebrew)
                    # hi_IN (Hindi)
                    # hr_HR (Croatian)
@@ -996,7 +996,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
 # cs_CZ (Czech)     # fi_FI (Finnish)    # ml_IN (Malayalam)  # so_KE (Somali)
 # da_DK (Danish)    # fr_FR (French)     # ne_NP (Nepali)     # sv_SE (Swedish)
 # de_DE (German)    # ga_IE (Irish)      # nl_BE (Dutch)      # ta_IN (Tamil)
-# en_AU (English)   # ha_NG (Nigerian)   # nl_NL (Dutch)      # th_TH (Thai)
+# en_AU (English)   # ha_NG (Hausa)      # nl_NL (Dutch)      # th_TH (Thai)
 # en_CA (English)   # he_IL (Hebrew)     # nn_NO (Nynorsk)    # tr_TR (Turkish)
 # en_GB (English)   # hi_IN (Hindi)      # pa_IN (Panjabi)    # uk_UA (Ukrainian)
 # en_HK (English)   # hr_HR (Croatian)   # pa_PK (Panjabi)    # ur_IN (Urdu)
@@ -1111,17 +1111,17 @@ EOF
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Available timezones${normal}"
 read -d '' timezones <<'EOF'
-# Africa/Johannesburg  (SAST) # Asia/Karachi         (PKT)
-# Africa/Lagos         (WAT)  # Asia/Kathmandu       (NPT)
-# Africa/Lusaka        (CAT)  # Asia/Phnom_Penh      (ICT)
-# Africa/Nairobi       (EAT)  # Asia/Seoul           (KT)
-# America/Denver       (MST)  # Asia/Shanghai        (CT)
-# America/Indianapolis (CST)  # Asia/Tokyo           (JT)
-# America/Los_Angeles  (PST)  # Australia/Perth      (WST)
-# America/New_York     (EST)  # Australia/Sydney     (EST)
-# Asia/Calcutta        (IST)  # Europe/Berlin        (CET)
-# Asia/Hong_Kong       (HKT)  # Europe/London        (GMT/BST)
-# Asia/Istanbul        (EET)  # Pacific/Honolulu     (HST)
+# Africa/Johannesburg  (SAST) # Asia/Karachi     (PKT)
+# Africa/Lagos         (WAT)  # Asia/Kathmandu   (NPT)
+# Africa/Lusaka        (CAT)  # Asia/Phnom_Penh  (ICT)
+# Africa/Nairobi       (EAT)  # Asia/Seoul       (KT)
+# America/Denver       (MST)  # Asia/Shanghai    (CT)
+# America/Indianapolis (CST)  # Asia/Tokyo       (JT)
+# America/Los_Angeles  (PST)  # Australia/Perth  (WST)
+# America/New_York     (EST)  # Australia/Sydney (EST)
+# Asia/Calcutta        (IST)  # Europe/Berlin    (CET)
+# Asia/Hong_Kong       (HKT)  # Europe/London    (GMT/BST)
+# Asia/Istanbul        (EET)  # Pacific/Honolulu (HST)
 EOF
   printf "${yellow}${timezones}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter timezone${normal} ${bold}${white}[${normal}$_timezone_default${bold}${white}]${normal}:"; read -p ' ' _timezone
@@ -1945,6 +1945,7 @@ declare _bundle_lite=('base'
                       'dotfiles')
 declare _bundle_full=('base'
                       'gui'
+                      'dotfiles'
                       'analysis'
                       'clojure'
                       'elixir'
@@ -1958,8 +1959,7 @@ declare _bundle_full=('base'
                       'node'
                       'perl'
                       'python'
-                      'ruby'
-                      'dotfiles')
+                      'ruby')
 
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
