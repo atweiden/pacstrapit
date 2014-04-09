@@ -28,8 +28,8 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.0} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.5.0.tar.gz`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.1} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.5.1.tar.gz`
 6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -53,7 +53,7 @@ Defaults:
 <tr><td>Hostname</td><td>luxor</td></tr>
 </table>
 
-> `cd pacstrapit-0.5.0 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.5.1 && $EDITOR pacstrapit`
 
 Done.
 
@@ -93,23 +93,34 @@ Tip:
 
 Run `pacstrapit` interactively:
 
-`./pacstrapit start -i`
+```bash
+./pacstrapit start -i
+```
 
 ...with ssh access to target machine enabled:
 
-`./pacstrapit start -i -s`
+```bash
+./pacstrapit start -i -s
+```
 
 ...with verbose output:
 
-`./pacstrapit start -i -s -V`
+```bash
+./pacstrapit start -i -s -V
+```
 
-Run `pacstrapit` using default variables in config section:
+Run `pacstrapit` using default variables in config section, but with
+interactive password input:
 
-`./pacstrapit start`
+```bash
+./pacstrapit start --concealed
+```
 
 ...with logging:
 
-`./pacstrapit start 2>&1 | tee pacstrapit.log`
+```bash
+./pacstrapit start 2>&1 | tee pacstrapit.log
+```
 
 Run `pacstrapit` with username and password set from environment variables:
 
@@ -119,6 +130,24 @@ export USERPASS="sailing"
 ./pacstrapit start
 ```
 
+Run `pacstrapit` for a workstation installation:
+
+```bash
+./pacstrapit start --bundle    "full"                \
+                   --username  "newusername"         \
+                   --hostname  "yourhostname"        \
+                   --partition "/dev/sda"            \
+                   --processor "intel"               \
+                   --graphics  "nvidia"              \
+                   --disk      "ssd"                 \
+                   --luksname  "infinity"            \
+                   --locale    "en_US"               \
+                   --keymap    "us"                  \
+                   --timezone  "America/Los_Angeles" \
+                   --concealed
+```
+
+
 If the script exits with an error, it's best to reboot and start fresh
 with a blank disk (`shred -fvz -n 0 /dev/sdX`).
 
@@ -127,7 +156,7 @@ Optional: sshd
 --------------
 
 If you intend to enable SSH access, you'll want to change
-`_electrum_pubkey_default`, `_user_pubkey_default`,
+`_electrum_pubkey_default`, `_user_pubkey_default`, and
 `_user_pubkey_sig_default`.
 
 Before setting `_ssh` to `1`...

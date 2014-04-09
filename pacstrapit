@@ -14,7 +14,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.0"
+VERSION="0.5.1"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -206,6 +206,7 @@ white=$(tput setaf 7)
 # -----------------------------------------------------------------------------
 
 DEFINE_boolean 'interactive' false  'interactive mode'                  'i'
+DEFINE_boolean 'concealed'   false  'hidden interactive password input' 'c'
 DEFINE_string  'partition'    ' '   'partition in which to install OS'  'P'
 DEFINE_string  'processor'    ' '   'processor'                         'C'
 DEFINE_string  'graphics'     ' '   'graphics card'                     'G'
@@ -558,7 +559,7 @@ fi
                      echo "********************"
                                   fi
 
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p ' ' _luks_pass
     echo
@@ -1353,7 +1354,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
                      echo "********************"
                                   fi
 
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
     echo
@@ -1444,7 +1445,7 @@ arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power
                      echo "********************"
                                   fi
 
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
     echo
