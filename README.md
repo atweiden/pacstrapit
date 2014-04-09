@@ -30,7 +30,7 @@ Instructions
 3. Connect to the Internet: `wifi-menu -o`
 4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.4.0} -o "#1-#3.#2"`
 5. Extract: `tar xvzf pacstrapit-0.4.0.tar.gz`
-6. **Customize variables**
+6. Customize defaults
 
 WARNING: failure to give appropriate values could cause catastrophic
 data loss and system instability.
@@ -46,24 +46,45 @@ Defaults:
 <tr><td>Keymap</td><td>us</td></tr>
 <tr><td>Timezone</td><td>America/Los_Angeles (PST)</td></tr>
 <tr><td>Root password</td><td>secret</td></tr>
-<tr><td>User name</td><td>live</td></tr>
+<tr><td>User name</td><td>guru</td></tr>
 <tr><td>User password</td><td>secret</td></tr>
-<tr><td>LUKS name</td><td>luksroot</td></tr>
+<tr><td>LUKS name</td><td>lux</td></tr>
 <tr><td>LUKS password</td><td>secret</td></tr>
-<tr><td>Hostname</td><td>luksiso</td></tr>
+<tr><td>Hostname</td><td>luxor</td></tr>
 </table>
 
 > `cd pacstrapit-0.4.0 && $EDITOR pacstrapit`
 
 Done.
 
-To run `pacstrapit`:
+Usage
+-----
 
-> `./pacstrapit`
+Run `pacstrapit` interactively:
 
-To run `pacstrapit` with logging:
+> `./pacstrapit start -i`
 
-> `./pacstrapit 2>&1 | tee pacstrapit.log`
+...with ssh access to target machine enabled:
+
+> `./pacstrapit start -i -s`
+
+...with verbose output:
+
+> `./pacstrapit start -i -s -V`
+
+Run `pacstrapit` using default variables in config section:
+
+> `./pacstrapit start`
+
+...with logging:
+
+> `./pacstrapit start 2>&1 | tee pacstrapit.log`
+
+Run `pacstrapit` with username and password set from environment variables:
+
+> `export USERNAME=sky`
+> `export USERPASS="sailing"`
+> `./pacstrapit start`
 
 If the script exits with an error, it's best to reboot and start fresh
 with a blank disk (`shred -fvz -n 0 /dev/sdX`).
@@ -71,6 +92,10 @@ with a blank disk (`shred -fvz -n 0 /dev/sdX`).
 
 Optional: sshd
 --------------
+
+If you intend to enable SSH access, you'll want to change
+`_electrum_pubkey_default`, `_user_pubkey_default`,
+`_user_pubkey_sig_default`.
 
 Before setting `_ssh` to `1`...
 
@@ -302,10 +327,7 @@ To Do
 -----
 
 - Add keyfile-encrypted swap partition
-- Add grub menu theme
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
-- Add command line flags (shflags)
-- Add [menu](https://github.com/jamielinux/bashmount)
 
 
 Licensing

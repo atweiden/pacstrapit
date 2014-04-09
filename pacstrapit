@@ -2,54 +2,139 @@
 
 
 
+
+. functions.d/chattrify
+. functions.d/shflags/src/shflags
+
+
+
+
 # -----------------------------------------------------------------------------
-# variables: customize
+# config
 # -----------------------------------------------------------------------------
 
-# partition in which to install OS (caution)
-_partition=/dev/sda
+# machine
+_partition_default="/dev/sda"
+_processor_default="other"
+_graphics_default="intel"
+_disk_default="hdd"
+_luks_name_default="lux"
+_luks_pass_default="secret"
+_host_name_default="luxor"
+_root_pass_default="secret"
+_user_name_default="guru"
+_user_pass_default="secret"
 
-# machine's luks devmapper name (arbitrary)
-_luks_name=luksroot
+# dotfiles
+_dotfiles_version=0.4.0
+_name_default="Andy Weidenbaum"
+_email_default="archbaum@gmail.com"
+_github_default="atweiden"
+_zipcode_default="97210"
 
-# machine's luks passphrase (strong)
-_luks_pass=secret
+# pkgs
+_gui=0
+_analysis=0
+_clojure=0
+_elixir=0
+_fonts=0
+_go=0
+_gobi=0
+_haskell=0
+_lua=0
+_markdown=0
+_nimrod=0
+_node=0
+_perl=0
+_python=0
+_ruby=0
 
-# machine's hostname (arbitrary)
-_hostname=luksiso
-
-# machine's processor (intel or other)
-_processor=other
-
-# machine's graphics card (intel, nvidia, or radeon)
-_graphics=intel
-
-# machine's hard drive (hdd, ssd, or usb)
-_disk=hdd
-
-# machine's locale # de_DE
-                   # en_AU
-                   # en_GB
-                   # es_ES
-                   # fr_FR
-                   # it_IT
-                   # ja_JP
-                   # nl_NL
-                   # zh_CN
-                   # zh_TW
+# machine's locale # af_ZA (Afrikaans)
+                   # ar_AE (Arabic - UAE)
+                   # ar_IN (Arabic - India)
+                   # ca_ES (Catalan)
+                   # cs_CZ (Czech)
+                   # da_DK (Danish)
+                   # de_DE (German)
+                   # en_AU (English - Australia)
+                   # en_CA (English - Canada)
+                   # en_GB (English - UK)
+                   # en_HK (English - HK)
+                   # en_NZ (English - New Zealand)
+                   # en_US (English - US)
+                   # es_AR (Spanish - Argentina)
+                   # es_CL (Spanish - Chile)
+                   # es_CO (Spanish - Colombia)
+                   # es_ES (Spanish - Spain)
+                   # es_MX (Spanish - Mexico)
+                   # es_PR (Spanish - Puerto Rico)
+                   # es_US (Spanish - US)
+                   # fa_IR (Farsi)
+                   # fi_FI (Finnish)
+                   # fr_FR (French)
+                   # ga_IE (Irish)
+                   # ha_NG (Nigerian)
+                   # he_IL (Hebrew)
+                   # hi_IN (Hindi)
+                   # hr_HR (Croatian)
+                   # hu_HU (Hungarian)
+                   # id_ID (Indonesian)
+                   # is_IS (Icelandic)
+                   # it_IT (Italian)
+                   # ja_JP (Japanese)
+                   # km_KH (Khmer)
+                   # ko_KR (Korean)
+                   # ks_IN (Kashmiri - India)
+                   # lg_UG (Ganda)
+                   # lt_LT (Lithuanian)
+                   # ml_IN (Malayalam - India)
+                   # ne_NP (Nepali)
+                   # nl_BE (Dutch - Belgium)
+                   # nl_NL (Dutch - Netherlands)
+                   # nn_NO (Norwegian Nynorsk)
+                   # pa_IN (Panjabi - India)
+                   # pa_PK (Panjabi - Pakistan)
+                   # ph_PH (Filipino)
+                   # pl_PL (Polish)
+                   # pt_BR (Portuguese - Brazil)
+                   # pt_PT (Portuguese - Portugal)
+                   # ro_RO (Romanian)
+                   # ru_RU (Russian)
+                   # sa_IN (Sanskrit - India)
+                   # sd_IN (Sindhi)
+                   # si_LK (Sinhala)
+                   # so_KE (Somali)
+                   # sv_SE (Swedish)
+                   # ta_IN (Tamil)
+                   # th_TH (Thai)
+                   # tr_TR (Turkish)
+                   # uk_UA (Ukrainian)
+                   # ur_IN (Urdu - India)
+                   # ur_PK (Urdu - Pakistan)
+                   # vi_VN (Vietnamese)
+                   # zh_CN (Chinese - Simplified)
+                   # zh_TW (Chinese - Traditional)
+                   # zu_ZA (Zulu)
                    # etc...
-_locale=en_US
+_locale_default="en_US"
 
-# machine's keymap # de
-                   # es
-                   # fr
-                   # it
-                   # nl
-                   # ru
-                   # uk
-                   # us
-                   # etc...
-_keymap=us
+# machine's keymap # cz    (Czech)
+                   # de    (German)
+                   # dk    (Danish)
+                   # es    (Spanish)
+                   # fi    (Finnish)
+                   # fr    (French)
+                   # it    (Italian)
+                   # jp106 (Japanese)
+                   # lt    (Lithuanian)
+                   # nl    (Dutch)
+                   # no    (Norwegian)
+                   # pl    (Polish)
+                   # ro    (Romanian)
+                   # ru    (Russian)
+                   # uk    (English - UK)
+                   # us    (English - US)
+_keymap_default="us"
 
 # machine's time zone # Africa/Johannesburg  (SAST)
                       # Africa/Lagos         (WAT)
@@ -74,62 +159,89 @@ _keymap=us
                       # Europe/London        (GMT/BST)
                       # Pacific/Honolulu     (HST)
                       # etc...
-_timezone=America/Los_Angeles
+_timezone_default="America/Los_Angeles"
 
-# root pass (strong)
-_root_pass=secret
-
-# user name (arbitrary)
-_user_name=live
-
-# user pass (strong)
-_user_pass=secret
-
-# ssh on/off (0 or 1)
-_ssh=0
-
-# ssh auth (caution)
-_electrum="https://raw.github.com/your/keys/master/id_electrum.pub"
-#_electrum="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
-_electrum_version="1.9.8"
-_user_key="https://raw.github.com/your/keys/master/id_ed25519.pub"
-#_user_key="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
-_user_key_sig="https://raw.github.com/your/keys/master/id_ed25519.pub.sig"
-#_user_key_sig="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
+# ssh
+if [[ "${FLAGS_ssh}" -eq "${FLAGS_TRUE}" || -n "$SSH" ]]; then
+  _ssh=1
+fi
 _hosts_allowed="192.168.0."
+_electrum_version="1.9.8"
+_electrum_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
+_user_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
+_user_pubkey_sig_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
 
-# select packages on/off (0 or 1)
-_select=0
-_gui=0
+# dotfiles
+if [[ "${FLAGS_dotfiles}" -eq "${FLAGS_TRUE}" || -n "$DOTFILES" ]]; then
+  _dotfiles=1
+fi
 
-# pkgs
-_analysis=0
-_clojure=0
-_elixir=0
-_fonts=0
-_go=0
-_gobi=0
-_haskell=0
-_lua=0
-_markdown=0
-_nimrod=0
-_node=0
-_perl=0
-_python=0
-_ruby=0
+# verbose on/off
+if [[ "${FLAGS_verbose}" -eq "${FLAGS_TRUE}" || -n "$VERBOSE" ]]; then
+  _verbose=1
+fi
 
-# get dotfiles on/off (0 or 1)
-_dotfiles=0
-_dotfiles_version=0.4.0
-# name, email, github for gitconfig
-_name="Andy Weidenbaum"
-_email="archbaum@gmail.com"
-_github="atweiden"
-# zipcode for f.lux
-_zipcode=97210
+# colors
+normal=$(tput sgr0)
+bold=$(tput bold)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+blue=$(tput setaf 4)
+teal=$(tput setaf 6)
+white=$(tput setaf 7)
 
-# verbose on/off (0 or 1)
-_verbose=1
+
+
+
+# -----------------------------------------------------------------------------
+# cli
+# -----------------------------------------------------------------------------
+
+DEFINE_boolean 'interactive' false  'interactive mode'                  'i'
+DEFINE_string  'partition'    ' '   'partition in which to install OS'  'p'
+DEFINE_string  'luksname'     ' '   'LUKS encrypted volume name'        'l'
+DEFINE_string  'lukspass'     ' '   'LUKS encrypted volume password'    'L'
+DEFINE_string  'hostname'     ' '   'Hostname'                          'H'
+DEFINE_string  'rootpass'     ' '   'Root user password'                'R'
+DEFINE_string  'username'     ' '   'User name'                         'u'
+DEFINE_string  'userpass'     ' '   'User password'                     'U'
+DEFINE_string  'bundle'      'none' 'bundled pkgs [full, lite, select]' 'b'
+DEFINE_boolean 'ssh'         false  'enable ssh access'                 's'
+DEFINE_string  'electrum'     ' '   'link to Electrum pubkey'           'E'
+DEFINE_string  'pubkey'       ' '   'link to user pubkey'               'K'
+DEFINE_string  'pubkeysig'    ' '   'link to user pubkey signature'     'S'
+DEFINE_boolean 'dotfiles'    false  'install dotfiles'                  'd'
+DEFINE_string  'name'         ' '   'Github personal name'              'n'
+DEFINE_string  'email'        ' '   'Github email'                      'e'
+DEFINE_string  'github'       ' '   'Github account'                    'g'
+DEFINE_string  'zipcode'      ' '   'f.lux zipcode'                     'z'
+DEFINE_boolean 'verbose'     false  'verbose mode'                      'V'
+DEFINE_boolean 'version'     false  'display program version and exit'  'v'
+
+FLAGS_HELP=`cat <<EOF
+commands:
+  start: start pacstrapit (requires root)
+EOF`
+
+FLAGS "$@" || exit 1
+eval set -- "${FLAGS_ARGV}"
+
+function die() {
+  if [[ "$#" > '0' ]]; then echo "error: $@" >&2; fi
+  flags_help
+  exit 1
+}
+
+command=$1
+case ${command} in
+  '') die ;;
+
+  start)
+    echo 'Starting...' ;;
+
+  *) die "unrecognized command (${command})" ;;
+esac
 
 
 
@@ -160,7 +272,7 @@ function checkify() {
                        echo "*****************"
                                   fi
 
-if ! [[ "$UID" == '0' ]]; then exit 1; fi
+if ! [[ "$UID" == '0' ]]; then die 'root priviledges required'; fi
 
 # depends: pacman.conf
 
@@ -229,38 +341,18 @@ if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
                                   fi
 
 pacman -Sy --needed base-devel --noconfirm
-}
 
-
-
-
-# -----------------------------------------------------------------------------
-# functify: sourcing auxiliary functions in functions.d
-# -----------------------------------------------------------------------------
-
+# setting font for convenience
 
                   if [[ "$_verbose" == '1' ]]; then
-                        echo "**************"
-                        echo "*  --------  *"
-                        echo "* |functify| *"
-                        echo "*  --------  *"
-                        echo "**************"
+                       echo "****************"
+                       echo "*              *"
+                       echo "* setting font *"
+                       echo "*              *"
+                       echo "****************"
                                   fi
 
-
-function functify() {
-
-# sourcing all functions in functions.d
-
-                  if [[ "$_verbose" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* functions.d *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-for _fn in `find functions.d -type f`; do . ${_fn}; done
+setfont Lat2-Terminus16
 }
 
 
@@ -281,6 +373,46 @@ for _fn in `find functions.d -type f`; do . ${_fn}; done
 
 
 function gdiskify() {
+
+# configure partition in which to install OS
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* config: partition *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | egrep 'sd|hd' | tr -d '[:digit:]' | uniq))
+  while true; do
+    echo    "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
+    echo
+    for ((i = 0 ; i < ${#_block_devices[@]} ; i++ )); do
+      echo  "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
+    done
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a block device number for partitioning:${normal}"; read -p ' ' _block_device_number
+    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_block_devices[${_block_device_number}]}${normal}"
+    echo    "${bold}${yellow}::${normal} ${bold}${white}Data in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${red}WILL BE DESTROYED${normal}."
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _partition_confirm
+    if [[ "${_block_devices[${_block_device_number}]}" == "$_partition_confirm" ]]; then break; fi
+    echo    "${bold}${yellow}::${normal} Please try again"
+  done
+  _partition="${_block_devices[${_block_device_number}]}"
+elif [[ -n "$FLAGS_partition" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading partition from cmdline flag...${normal}"
+  _partition="$FLAGS_partition"
+elif [[ -n "$PARTITION" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading partition from environment variable...${normal}"
+  _partition="$PARTITION"
+else
+  echo      "${bold}${blue}::${normal} ${bold}${white}Using default partition...${normal}"
+  _partition="$_partition_default"
+fi
+
+# partition disks
 
                   if [[ "$_verbose" == '1' ]]; then
                       echo "******************"
@@ -371,6 +503,64 @@ EOF
 
 
 function luksify() {
+
+# configure machine's luks devmapper name
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: luksname *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter LUKS devmapper name${normal} ${bold}${white}[${normal}$_luks_name_default${bold}${white}]${normal}:"; read -p ' ' _luks_name
+  _luks_name="${_luks_name:-$_luks_name_default}"
+elif [[ -n "$FLAGS_luksname" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from cmdline flag...${normal}"
+  _luks_name="$FLAGS_luksname"
+elif [[ -n "$LUKS_NAME" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from environment variable...${normal}"
+  _luks_name="$LUKS_NAME"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default LUKS devmapper name...${normal}"
+  _luks_name="$_luks_name_default"
+fi
+
+# configure machine's luks passphrase
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: lukspass *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p " " _luks_pass
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Verify passphrase:${normal}"; read -s -p " " _luks_pass_confirm
+    echo
+    if [[ "$_luks_pass" == "$_luks_pass_confirm" && -n "$_luks_pass" ]]; then break; fi
+    if [[ -z "$_luks_pass" ]]; then
+      echo  "${bold}${yellow}::${normal} LUKS passphrase cannot be blank. Please try again"
+    else
+      echo  "${bold}${yellow}::${normal} Please try again"
+    fi
+  done
+elif [[ -n "$FLAGS_lukspass" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from cmdline flag...${normal}"
+  _luks_pass="$FLAGS_lukspass"
+elif [[ -n "$LUKS_PASS" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from environment variable...${normal}"
+  _luks_pass="$LUKS_PASS"
+else
+  echo "${bold}${blue}::${normal} ${bold}${white}Using default LUKS encrypted volume passphrase...${normal}"
+  _luks_pass="$_luks_pass_default"
+fi
 
 # create unencrypted ext2 filesystem for /boot
 
@@ -539,6 +729,117 @@ mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
 
 function pacstrapify() {
 
+# configure machine's processor
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* config: processor *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+declare _processors=('intel' 'other')
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo    "${bold}${blue}::${normal} ${bold}${white}Available processors${normal}"
+    echo
+    for ((i = 0 ; i < ${#_processors[@]} ; i++ )); do
+      echo  "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
+    done
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a processor number:${normal}"; read -p ' ' _processor_number
+    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_processors[${_processor_number}]}${normal}"
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_processors[${_processor_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _processor_confirm
+    if [[ "${_processors[${_processor_number}]}" == "$_processor_confirm" ]]; then break; fi
+    echo    "${bold}${yellow}::${normal} Please try again"
+  done
+  _processor="${_processors[${_processor_number}]}"
+elif [[ -n "$FLAGS_processor" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading processor from cmdline flag...${normal}"
+  _processor="$FLAGS_processor"
+elif [[ -n "$PROCESSOR" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading processor from environment variable...${normal}"
+  _processor="$PROCESSOR"
+else
+  echo      "${bold}${blue}::${normal} ${bold}${white}Using default processor...${normal}"
+  _processor="$_processor_default"
+fi
+
+# configure machine's graphics card
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: graphics *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+declare _gpus=('intel' 'nvidia' 'radeon')
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo    "${bold}${blue}::${normal} ${bold}${white}Available graphics cards${normal}"
+    echo
+    for ((i = 0 ; i < ${#_gpus[@]} ; i++ )); do
+      echo  "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"
+    done
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a graphics card number:${normal}"; read -p ' ' _gpu_number
+    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_gpus[${_gpu_number}]}${normal}"
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_gpus[${_gpu_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _graphics_confirm
+    if [[ "${_gpus[${_gpu_number}]}" == "$_graphics_confirm" ]]; then break; fi
+    echo    "${bold}${yellow}::${normal} Please try again"
+  done
+  _graphics="${_processors[${_processor_number}]}"
+elif [[ -n "$FLAGS_graphics" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading graphics card from cmdline flag...${normal}"
+  _graphics="$FLAGS_graphics"
+elif [[ -n "$GRAPHICS" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading graphics card from environment variable...${normal}"
+  _graphics="$GRAPHICS"
+else
+  echo      "${bold}${blue}::${normal} ${bold}${white}Using default graphics card...${normal}"
+  _graphics="$_graphics_default"
+fi
+
+# configure machine's hard drive
+
+                  if [[ "$_verbose" == '1' ]]; then
+                       echo "****************"
+                       echo "*              *"
+                       echo "* config: disk *"
+                       echo "*              *"
+                       echo "****************"
+                                  fi
+
+declare _disks=('hdd' 'ssd' 'usb')
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo    "${bold}${blue}::${normal} ${bold}${white}Available hard drive targets${normal}"
+    echo
+    for ((i = 0 ; i < ${#_disks[@]} ; i++ )); do
+      echo  "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
+    done
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a hard drive target number:${normal}"; read -p ' ' _disk_number
+    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_disks[${_disk_number}]}${normal}"
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_disks[${_disk_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _disk_confirm
+    if [[ "${_disks[${_disk_number}]}" == "$_disk_confirm" ]]; then break; fi
+    echo    "${bold}${yellow}::${normal} Please try again"
+  done
+  _disk="${_disks[${_disk_number}]}"
+elif [[ -n "$FLAGS_disk" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from cmdline flag...${normal}"
+  _disk="$FLAGS_disk"
+elif [[ -n "$DISK" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from environment variable...${normal}"
+  _disk="$DISK"
+else
+  echo      "${bold}${blue}::${normal} ${bold}${white}Using default hard drive target...${normal}"
+  _disk="$_disk_default"
+fi
+
 # pacstrap packages
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -594,6 +895,30 @@ pacstrap /mnt abs                  \
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
+# configure machine's hostname
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: hostname *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter hostname for machine${normal} ${bold}${white}[${normal}$_host_name_default${bold}${white}]${normal}:"; read -p ' ' _host_name
+  _host_name="${_host_name:-$_host_name_default}"
+elif [[ -n "$FLAGS_hostname" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading hostname from cmdline flag...${normal}"
+  _host_name="$FLAGS_hostname"
+elif [[ -n "$HOST_NAME" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading hostname from environment variable...${normal}"
+  _host_name="$HOST_NAME"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default hostname...${normal}"
+  _host_name="$_host_name_default"
+fi
+
 # set hostname
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -604,7 +929,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
                          echo "************"
                                   fi
 
-echo ${_hostname} > /mnt/etc/hostname
+echo ${_host_name} > /mnt/etc/hostname
 
 # set nameservers
 
@@ -630,6 +955,51 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
 
+# configure locale
+
+                  if [[ "$_verbose" == '1' ]]; then
+                      echo "******************"
+                      echo "*                *"
+                      echo "* config: locale *"
+                      echo "*                *"
+                      echo "******************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Available locales${normal}"
+  read -d '' locales <<'EOF'
+# af_ZA (Afrikaans) # es_PR (Spanish)    # ko_KR (Korean)     # ru_RU (Russian)
+# ar_AE (Arabic)    # es_US (Spanish)    # ks_IN (Kashmiri)   # sa_IN (Sanskrit)
+# ar_IN (Arabic)    # fa_IR (Farsi)      # lg_UG (Ganda)      # sd_IN (Sindhi)
+# ca_ES (Catalan)   # fi_FI (Finnish)    # lt_LT (Lithuanian) # si_LK (Sinhala)
+# cs_CZ (Czech)     # fr_FR (French)     # ml_IN (Malayalam)  # so_KE (Somali)
+# de_DE (German)    # ga_IE (Irish)      # ne_NP (Nepali)     # sv_SE (Swedish)
+# en_AU (English)   # ha_NG (Nigerian)   # nl_BE (Dutch)      # ta_IN (Tamil)
+# en_CA (English)   # he_IL (Hebrew)     # nl_NL (Dutch)      # th_TH (Thai)
+# en_GB (English)   # hi_IN (Hindi)      # nn_NO (Nynorsk)    # tr_TR (Turkish)
+# en_HK (English)   # hr_HR (Croatian)   # pa_IN (Panjabi)    # uk_UA (Ukrainian)
+# en_NZ (English)   # hu_HU (Hungarian)  # pa_PK (Panjabi)    # ur_IN (Urdu)
+# en_US (English)   # id_ID (Indonesian) # ph_PH (Filipino)   # ur_PK (Urdu)
+# es_AR (Spanish)   # is_IS (Icelandic)  # pl_PL (Polish)     # vi_VN (Vietnamese)
+# es_CL (Spanish)   # it_IT (Italian)    # pt_BR (Portuguese) # zh_CN (Chinese - Simplified)
+# es_CO (Spanish)   # ja_JP (Japanese)   # pt_PT (Portuguese) # zh_TW (Chinese - Traditional)
+# es_ES (Spanish)   # km_KH (Khmer)      # ro_RO (Romanian)   # zu_ZA (Zulu)
+# es_MX (Spanish)   # da_DK (Danish)
+EOF
+  printf "${yellow}${locales}${normal}\n"
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter locale${normal} ${bold}${white}[${normal}$_locale_default${bold}${white}]${normal}:"; read -p ' ' _locale
+  _locale="${_locale:-$_locale_default}"
+elif [[ -n "$FLAGS_locale" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading locale from cmdline flag...${normal}"
+  _locale="$FLAGS_locale"
+elif [[ -n "$LOCALE" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading locale from environment variable...${normal}"
+  _locale="$LOCALE"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default locale...${normal}"
+  _locale="$_locale_default"
+fi
+
 # set locale
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -647,6 +1017,50 @@ LANG=${_locale}.UTF-8
 LC_TIME=${_locale}.UTF-8
 EOF
 
+# configure keymap
+
+                  if [[ "$_verbose" == '1' ]]; then
+                      echo "******************"
+                      echo "*                *"
+                      echo "* config: keymap *"
+                      echo "*                *"
+                      echo "******************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Available keymaps${normal}"
+  read -d '' keymaps <<'EOF'
+# cz    (Czech)
+# de    (German)
+# dk    (Danish)
+# es    (Spanish)
+# fi    (Finnish)
+# fr    (French)
+# it    (Italian)
+# jp106 (Japanese)
+# lt    (Lithuanian)
+# nl    (Dutch)
+# no    (Norwegian)
+# pl    (Polish)
+# ro    (Romanian)
+# ru    (Russian)
+# uk    (English - UK)
+# us    (English - US)
+EOF
+  printf "${yellow}${keymaps}${normal}\n"
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter keymap${normal} ${bold}${white}[${normal}$_keymap_default${bold}${white}]${normal}:"; read -p ' ' _keymap
+  _keymap="${_keymap:-$_keymap_default}"
+elif [[ -n "$FLAGS_keymap" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading keymap from cmdline flag...${normal}"
+  _keymap="$FLAGS_keymap"
+elif [[ -n "$KEYMAP" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading keymap from environment variable...${normal}"
+  _keymap="$KEYMAP"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default keymap...${normal}"
+  _keymap="$_keymap_default"
+fi
+
 # set console font
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -662,6 +1076,45 @@ KEYMAP=${_keymap}
 FONT=Lat2-Terminus16
 FONT_MAP=
 EOF
+
+# configure timezone
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: timezone *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Available timezones${normal}"
+read -d '' timezones <<'EOF'
+# Africa/Johannesburg  (SAST) # Asia/Karachi         (PKT)
+# Africa/Lagos         (WAT)  # Asia/Kathmandu       (NPT)
+# Africa/Lusaka        (CAT)  # Asia/Phnom_Penh      (ICT)
+# Africa/Nairobi       (EAT)  # Asia/Seoul           (KT)
+# America/Denver       (MST)  # Asia/Shanghai        (CT)
+# America/Indianapolis (CST)  # Asia/Tokyo           (JT)
+# America/Los_Angeles  (PST)  # Australia/Perth      (WST)
+# America/New_York     (EST)  # Australia/Sydney     (EST)
+# Asia/Calcutta        (IST)  # Europe/Berlin        (CET)
+# Asia/Hong_Kong       (HKT)  # Europe/London        (GMT/BST)
+# Asia/Istanbul        (EET)  # Pacific/Honolulu     (HST)
+EOF
+  printf "${yellow}${timezones}${normal}\n"
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter timezone${normal} ${bold}${white}[${normal}$_timezone_default${bold}${white}]${normal}:"; read -p ' ' _timezone
+  _timezone="${_timezone:-$_timezone_default}"
+elif [[ -n "$FLAGS_timezone" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading timezone from cmdline flag...${normal}"
+  _timezone="$FLAGS_timezone"
+elif [[ -n "$TIMEZONE" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading timezone from environment variable...${normal}"
+  _timezone="$TIMEZONE"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default timezone...${normal}"
+  _timezone="$_timezone_default"
+fi
 
 # set timezone
 
@@ -870,6 +1323,40 @@ arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
+# configure root password
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: rootpass *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p " " _root_pass
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p " " _root_pass_confirm
+    echo
+    if [[ "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
+    if [[ -z "$_root_pass" ]]; then
+      echo  "${bold}${yellow}::${normal} Root password cannot be blank. Please try again"
+    else
+      echo  "${bold}${yellow}::${normal} Please try again"
+    fi
+  done
+elif [[ -n "$FLAGS_rootpass" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading root password from cmdline flag...${normal}"
+  _root_pass="$FLAGS_rootpass"
+elif [[ -n "$ROOT_PASS" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading root password from environment variable...${normal}"
+  _root_pass="$ROOT_PASS"
+else
+  echo "${bold}${blue}::${normal} ${bold}${white}Using default root password...${normal}"
+  _root_pass="$_root_pass_default"
+fi
+
 # set root password
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -889,6 +1376,116 @@ arch-chroot /mnt expect <<EOF
     send "${_root_pass}\r"
   }
   expect eof
+EOF
+
+# configure user name
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: username *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
+  _user_name="${_user_name:-$_user_name_default}"
+elif [[ -n "$FLAGS_username" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading user name from cmdline flag...${normal}"
+  _user_name="$FLAGS_username"
+elif [[ -n "$USER_NAME" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading user name from environment variable...${normal}"
+  _user_name="$USER_NAME"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default user name...${normal}"
+  _user_name="$_user_name_default"
+fi
+
+# create user
+
+                  if [[ "$_verbose" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* create user *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
+
+# configure user password
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: userpass *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p " " _user_pass
+    echo
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p " " _user_pass_confirm
+    echo
+    if [[ "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
+    if [[ -z "$_user_pass" ]]; then
+      echo  "${bold}${yellow}::${normal} User password cannot be blank. Please try again"
+    else
+      echo  "${bold}${yellow}::${normal} Please try again"
+    fi
+  done
+elif [[ -n "$FLAGS_userpass" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading user password from cmdline flag...${normal}"
+  _user_pass="$FLAGS_userpass"
+elif [[ -n "$USER_PASS" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading user password from environment variable...${normal}"
+  _user_pass="$USER_PASS"
+else
+  echo "${bold}${blue}::${normal} ${bold}${white}Using default user password...${normal}"
+  _user_pass="$_user_pass_default"
+fi
+
+# set user password
+
+                  if [[ "$_verbose" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* user passwd *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+arch-chroot /mnt expect <<EOF
+  spawn passwd ${_user_name}
+  expect "Enter*" {
+    send "${_user_pass}\r"
+  }
+  expect "Retype*" {
+    send "${_user_pass}\r"
+  }
+  expect eof
+EOF
+
+# configure sudo
+
+                  if [[ "$_verbose" == '1' ]]; then
+                           echo "********"
+                           echo "*      *"
+                           echo "* sudo *"
+                           echo "*      *"
+                           echo "********"
+                                  fi
+
+cat >> /mnt/etc/sudoers <<EOF
+${_user_name} ALL=(ALL) ALL
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu
 EOF
 
 # configure sysctl
@@ -1106,58 +1703,6 @@ sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com,ssh-r
 sed -i 's!^#   MACs.*!    MACs hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-sha1,hmac-md5,hmac-sha1-96,hmac-md5-96,umac-64@openssh.com!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
 
-# create user
-
-                  if [[ "$_verbose" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* create user *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
-
-# set user password
-
-                  if [[ "$_verbose" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* user passwd *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-arch-chroot /mnt expect <<EOF
-  spawn passwd ${_user_name}
-  expect "Enter*" {
-    send "${_user_pass}\r"
-  }
-  expect "Retype*" {
-    send "${_user_pass}\r"
-  }
-  expect eof
-EOF
-
-# configure sudo
-
-                  if [[ "$_verbose" == '1' ]]; then
-                           echo "********"
-                           echo "*      *"
-                           echo "* sudo *"
-                           echo "*      *"
-                           echo "********"
-                                  fi
-
-cat >> /mnt/etc/sudoers <<EOF
-${_user_name} ALL=(ALL) ALL
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu
-EOF
-
 # set systemd services
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -1205,6 +1750,78 @@ chattrify "/var/log/journal" "755" "root" "systemd-journal"
 
 function sshify() {
 
+# configure electrum pubkey
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: electrum *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your electrum pubkey${normal} ${bold}${white}[${normal}$_electrum_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _electrum_pubkey
+  _electrum_pubkey="${_electrum_pubkey:-$_electrum_pubkey_default}"
+elif [[ -n "$FLAGS_electrum" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from cmdline flag...${normal}"
+  _electrum_pubkey="$FLAGS_electrum"
+elif [[ -n "$ELECTRUM" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from environment variable...${normal}"
+  _electrum_pubkey="$ELECTRUM"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to electrum pubkey...${normal}"
+  _electrum_pubkey="$_electrum_pubkey_default"
+fi
+
+# configure user pubkey
+
+                  if [[ "$_verbose" == '1' ]]; then
+                      echo "******************"
+                      echo "*                *"
+                      echo "* config: pubkey *"
+                      echo "*                *"
+                      echo "******************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey${normal} ${bold}${white}[${normal}$_user_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey
+  _user_pubkey="${_user_pubkey:-$_user_pubkey_default}"
+elif [[ -n "$FLAGS_pubkey" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from cmdline flag...${normal}"
+  _user_pubkey="$FLAGS_pubkey"
+elif [[ -n "$PUBKEY" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from environment variable...${normal}"
+  _user_pubkey="$PUBKEY"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey...${normal}"
+  _user_pubkey="$_user_pubkey_default"
+fi
+
+# configure user pubkey signature
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* config: pubkeysig *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey signature${normal} ${bold}${white}[${normal}$_user_pubkey_sig_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey_sig
+  _user_pubkey_sig="${_user_pubkey_sig:-$_user_pubkey_sig_default}"
+elif [[ -n "$FLAGS_pubkeysig" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from cmdline flag...${normal}"
+  _user_pubkey_sig="$FLAGS_pubkeysig"
+elif [[ -n "$PUBKEYSIG" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from environment variable...${normal}"
+  _user_pubkey_sig="$PUBKEYSIG"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey signature...${normal}"
+  _user_pubkey_sig="$_user_pubkey_sig_default"
+fi
+
 # enable sshd
 
                   if [[ "$_verbose" == '1' ]]; then
@@ -1227,9 +1844,9 @@ arch-chroot /mnt systemctl enable sshd
                         echo "***************"
                                   fi
 
-curl -k "${_electrum}"     -o ~/electrum.pub
-curl -k "${_user_key}"     -o ~/sshkey.pub
-curl -k "${_user_key_sig}" -o ~/sshkey.pub.sig
+curl -k "${_electrum_pubkey}" -o ~/electrum.pub
+curl -k "${_user_pubkey}"     -o ~/sshkey.pub
+curl -k "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 
 # verify with electrum
 
@@ -1300,6 +1917,90 @@ fi
 
 
 function selectify() {
+
+if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
+elif [[ "$FLAGS_bundle" == 'full' || "$FLAGS_bundle" == 'lite' || "$FLAGS_bundle" == 'select' ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from cmdline flag...${normal}"
+elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'select' ]]; then
+  echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from environment variable...${normal}"
+fi
+
+for i in select     \
+         gui        \
+         analysis   \
+         clojure    \
+         elixir     \
+         fonts      \
+         go         \
+         gobi       \
+         haskell    \
+         lua        \
+         markdown   \
+         nimrod     \
+         node       \
+         perl       \
+         python     \
+         ruby       \
+         dotfiles; do
+  export _${i}_default=1
+done
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo
+  echo  "       ${bold}${teal}0${normal}: exclude it"
+  echo  "       ${bold}${teal}1${normal}: include it"
+  echo
+  for i in select   \
+           gui      \
+           analysis \
+           clojure  \
+           elixir   \
+           fonts    \
+           go       \
+           gobi     \
+           haskell  \
+           lua      \
+           markdown \
+           nimrod   \
+           node     \
+           perl     \
+           python   \
+           ruby     \
+           dotfiles; do
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Include ${i}?${normal}"; read -e -p ' ' -i '1' _${i}
+  done
+elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
+  for i in select   \
+           gui      \
+           analysis \
+           clojure  \
+           elixir   \
+           fonts    \
+           go       \
+           gobi     \
+           haskell  \
+           lua      \
+           markdown \
+           nimrod   \
+           node     \
+           perl     \
+           python   \
+           ruby     \
+           dotfiles; do
+    export _${i}=1
+  done
+elif [[ "$FLAGS_bundle" == 'lite' || "$BUNDLE" == 'lite' ]]; then
+  for i in select   \
+           gui      \
+           dotfiles; do
+    export _${i}=1
+  done
+elif [[ "$FLAGS_bundle" == 'select' || "$BUNDLE" == 'select' ]]; then
+  for i in select; do
+    export _${i}=1
+  done
+fi
 
 declare _pkgs=('ack'
                'ansible'
@@ -1972,14 +2673,110 @@ cd && mv electrum-${_electrum_version} /mnt/home/${_user_name}
 
 function dotify() {
 
-# downloading
+# name for GitHub/gitconfig
 
                   if [[ "$_verbose" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* downloading *"
-                        echo "*             *"
-                        echo "***************"
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* github name entry *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter GitHub personal name${normal} ${bold}${white}[${normal}$_name_default${bold}${white}]${normal}:"; read -p ' ' _name
+  _name="${_name:-$_name_default}"
+elif [[ -n "$FLAGS_name" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from cmdline flag...${normal}"
+  _name="$FLAGS_name"
+elif [[ -n "$NAME" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from environment variable...${normal}"
+  _name="$NAME"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default GitHub personal name...${normal}"
+  _name="$_name_default"
+fi
+
+# email for GitHub/gitconfig
+
+                  if [[ "$_verbose" == '1' ]]; then
+                    echo "**********************"
+                    echo "*                    *"
+                    echo "* github email entry *"
+                    echo "*                    *"
+                    echo "**********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter GitHub email address${normal} ${bold}${white}[${normal}$_email_default${bold}${white}]${normal}:"; read -p ' ' _email
+  _email="${_email:-$_email_default}"
+elif [[ -n "$FLAGS_email" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from cmdline flag...${normal}"
+  _email="$FLAGS_email"
+elif [[ -n "$EMAIL" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from environment variable...${normal}"
+  _email="$EMAIL"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default GitHub email address...${normal}"
+  _email="$_email_default"
+fi
+
+# github account name for GitHub/gitconfig
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* github acct entry *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter GitHub account name${normal} ${bold}${white}[${normal}$_github_default${bold}${white}]${normal}:"; read -p ' ' _github
+  _github="${_github:-$_github_default}"
+elif [[ -n "$FLAGS_github" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub account name from cmdline flag...${normal}"
+  _github="$FLAGS_github"
+elif [[ -n "$GITHUB" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub account name from environment variable...${normal}"
+  _github="$GITHUB"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default GitHub account name...${normal}"
+  _github="$_github_default"
+fi
+
+# zipcode for f.lux
+
+                  if [[ "$_verbose" == '1' ]]; then
+                       echo "*****************"
+                       echo "*               *"
+                       echo "* zipcode entry *"
+                       echo "*               *"
+                       echo "*****************"
+                                  fi
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter Zipcode for f.lux${normal} ${bold}${white}[${normal}$_zipcode_default${bold}${white}]${normal}:"; read -p ' ' _zipcode
+  _zipcode="${_zipcode:-$_zipcode_default}"
+elif [[ -n "$FLAGS_zipcode" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from cmdline flag...${normal}"
+  _zipcode="$FLAGS_zipcode"
+elif [[ -n "$ZIPCODE" ]]; then
+  echo    "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from environment variable...${normal}"
+  _zipcode="$ZIPCODE"
+else
+  echo    "${bold}${blue}::${normal} ${bold}${white}Using default zipcode for f.lux...${normal}"
+  _zipcode="$_zipcode_default"
+fi
+
+# downloading dotfiles
+
+                  if [[ "$_verbose" == '1' ]]; then
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* downloading dotfiles *"
+                   echo "*                      *"
+                   echo "************************"
                                   fi
 
 mkdir -p /mnt/home/${_user_name}/.src
@@ -1989,11 +2786,11 @@ tar -xvzf /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}.tar.gz -C /
 # adjusting dotfile config parameters
 
                   if [[ "$_verbose" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* configuring *"
-                        echo "*             *"
-                        echo "***************"
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* configuring dotfiles *"
+                   echo "*                      *"
+                   echo "************************"
                                   fi
 
 sed -i "s#\$HOME#/home/${_user_name}#"         /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
@@ -2001,7 +2798,6 @@ sed -i "s#^name.*#name=\"${_name}\"#"          /mnt/home/${_user_name}/.src/dotf
 sed -i "s#^email.*#email=\"${_email}\"#"       /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
 sed -i "s#^github.*#github=\"${_github}\"#"    /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
 sed -i "s#^zipcode.*#zipcode=\"${_zipcode}\"#" /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/bootstrap.sh
-
 find /mnt/home/${_user_name}/.src/dotfiles-${_dotfiles_version}/_config/obmenu-generator -type f -print0 | xargs -0 sed -i "s#lniux#${_user_name}#g"
 
 # fixing permissions
@@ -2118,12 +2914,11 @@ echo "******************************"
 # -----------------------------------------------------------------------------
 
 checkify
-functify
 gdiskify
 luksify
 pacstrapify
 if [[ "${_ssh}" == '1' ]]; then sshify; fi
-if [[ "${_select}" == '1' ]]; then selectify; fi
+selectify
 if [[ "${_headless}" == '1' ]]; then electrumify; fi
 if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
 exitify
