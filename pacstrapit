@@ -327,6 +327,54 @@ sed -i 's!^#Server!Server!' /etc/pacman.d/mirrorlist
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
 
+# depends: arch-install-scripts
+
+                  if [[ "$_verbose" == '1' ]]; then
+               echo "*********************************"
+               echo "*                               *"
+               echo "* depends: arch-install-scripts *"
+               echo "*                               *"
+               echo "*********************************"
+                                  fi
+
+if ! [[ -x /usr/bin/arch-chroot ]]; then pacman -Sy arch-install-scripts --noconfirm; fi
+
+# depends: gptfdisk
+
+                  if [[ "$_verbose" == '1' ]]; then
+                     echo "*********************"
+                     echo "*                   *"
+                     echo "* depends: gptfdisk *"
+                     echo "*                   *"
+                     echo "*********************"
+                                  fi
+
+if ! [[ -x /usr/bin/gdisk ]]; then pacman -Sy gptfdisk --noconfirm; fi
+
+# depends: btrfs-progs
+
+                  if [[ "$_verbose" == '1' ]]; then
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* depends: btrfs-progs *"
+                   echo "*                      *"
+                   echo "************************"
+                                  fi
+
+if ! [[ -x /usr/bin/mkfs.btrfs ]]; then pacman -Sy btrfs-progs --noconfirm; fi
+
+# depends: tput
+
+                  if [[ "$_verbose" == '1' ]]; then
+                       echo "*****************"
+                       echo "*               *"
+                       echo "* depends: tput *"
+                       echo "*               *"
+                       echo "*****************"
+                                  fi
+
+if ! [[ -x /usr/bin/tput ]]; then pacman -Sy ncurses --noconfirm; fi
+
 # depends: expect
 
                   if [[ "$_verbose" == '1' ]]; then
