@@ -30,11 +30,9 @@ while true; do
   _answer="${_answer:-$_answer_default}"
   echo
   if   [[ "$_answer" =~ [Yy] ]] ; then
-    echo "${bold}${green}TEH HEH${normal}"
     _retval=0
     break
   elif [[ "$_answer" =~ [Nn] ]]; then
-    echo "${bold}${red}NOOOOO${normal}"
     _retval=1
     break
   else
