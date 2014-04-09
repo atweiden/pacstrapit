@@ -28,9 +28,9 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.4.0} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.4.0.tar.gz`
-6. Customize defaults
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.0} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.5.0.tar.gz`
+6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
 data loss and system instability.
@@ -53,39 +53,70 @@ Defaults:
 <tr><td>Hostname</td><td>luxor</td></tr>
 </table>
 
-> `cd pacstrapit-0.4.0 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.5.0 && $EDITOR pacstrapit`
 
 Done.
 
 Usage
 -----
 
+Run `pacstrapit` for a capable cmdline persistent USB installation
+in /dev/sdb:
+
+```bash
+./pacstrapit start --bundle                               \
+                   --username  "newusername"              \
+                   --userpass  "your new user's password" \
+                   --rootpass  "your root password"       \
+                   --lukspass  "your LUKS password"       \
+                   --hostname  "yourhostname"             \
+                   --partition "/dev/sdb"                 \
+                   --processor "intel"                    \
+                   --graphics  "nvidia"                   \
+                   --disk      "usb"                      \
+                   --luksname  "infinity"                 \
+                   --locale    "en_US"                    \
+                   --keymap    "us"                       \
+                   --timezone  "America/Los_Angeles"
+```
+
+Tip:
+
+> Omit `--bundle` and `--select`, and you'll end up with a very minimal
+> headless system with nothing extraneous installed
+>
+> The `base` bundle adds CLI, vim, and bitcoin pkgs.
+>
+> The `lite` bundle includes the base bundle plus GUI pkgs and dotfiles
+>
+> The `full` bundle includes all pkgs and dotfiles
+
 Run `pacstrapit` interactively:
 
-> `./pacstrapit start -i`
+`./pacstrapit start -i`
 
 ...with ssh access to target machine enabled:
 
-> `./pacstrapit start -i -s`
+`./pacstrapit start -i -s`
 
 ...with verbose output:
 
-> `./pacstrapit start -i -s -V`
+`./pacstrapit start -i -s -V`
 
 Run `pacstrapit` using default variables in config section:
 
-> `./pacstrapit start`
+`./pacstrapit start`
 
 ...with logging:
 
-> `./pacstrapit start 2>&1 | tee pacstrapit.log`
+`./pacstrapit start 2>&1 | tee pacstrapit.log`
 
 Run `pacstrapit` with username and password set from environment variables:
 
-```
-`export USERNAME=sky`
-`export USERPASS="sailing"`
-`./pacstrapit start`
+```bash
+export USERNAME=sky
+export USERPASS="sailing"
+./pacstrapit start
 ```
 
 If the script exits with an error, it's best to reboot and start fresh
@@ -158,7 +189,7 @@ Record the exact URL for each keyfile inside the variables section of
 Optional: select
 ----------------
 
-Select packages include:
+Base packages include:
 
 <table>
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
@@ -328,6 +359,7 @@ Desktop shortcuts:
 To Do
 -----
 
+- Add man page
 - Add keyfile-encrypted swap partition
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 

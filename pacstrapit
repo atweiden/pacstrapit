@@ -13,6 +13,8 @@
 # config
 # -----------------------------------------------------------------------------
 
+VERSION="0.5.0"
+
 # machine
 _partition_default="/dev/sda"
 _processor_default="other"
@@ -31,23 +33,6 @@ _name_default="Andy Weidenbaum"
 _email_default="archbaum@gmail.com"
 _github_default="atweiden"
 _zipcode_default="97210"
-
-# pkgs
-_gui=0
-_analysis=0
-_clojure=0
-_elixir=0
-_fonts=0
-_go=0
-_gobi=0
-_haskell=0
-_lua=0
-_markdown=0
-_nimrod=0
-_node=0
-_perl=0
-_python=0
-_ruby=0
 
 # machine's locale # af_ZA (Afrikaans)
                    # ar_AE (Arabic - UAE)
@@ -161,9 +146,22 @@ _keymap_default="us"
                       # etc...
 _timezone_default="America/Los_Angeles"
 
+# select pkgs
+if [[ "${FLAGS_select}" -eq "${FLAGS_TRUE}" || -n "$SELECT" || -n "$FLAGS_bundle" || -n "$BUNDLE" ]]; then
+  _select=1
+else
+  # set to 1 to explicitly enable selectifying without the use of cmdline
+  # flags or environment variables
+  _select=0
+fi
+
 # ssh
 if [[ "${FLAGS_ssh}" -eq "${FLAGS_TRUE}" || -n "$SSH" ]]; then
   _ssh=1
+else
+  # set to 1 to explicitly enable sshifying without the use of cmdline
+  # flags or environment variables
+  _ssh=0
 fi
 _hosts_allowed="192.168.0."
 _electrum_version="1.9.8"
@@ -174,11 +172,19 @@ _user_pubkey_sig_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/i
 # dotfiles
 if [[ "${FLAGS_dotfiles}" -eq "${FLAGS_TRUE}" || -n "$DOTFILES" ]]; then
   _dotfiles=1
+else
+  # set to 1 to explicitly enable dotifying without the use of cmdline
+  # flags or environment variables
+  _dotfiles=0
 fi
 
 # verbose on/off
 if [[ "${FLAGS_verbose}" -eq "${FLAGS_TRUE}" || -n "$VERBOSE" ]]; then
   _verbose=1
+else
+  # set to 1 to explicitly enable verbose output without the use of
+  # cmdline flags or environment variables
+  _verbose=0
 fi
 
 # colors
@@ -199,14 +205,20 @@ white=$(tput setaf 7)
 # -----------------------------------------------------------------------------
 
 DEFINE_boolean 'interactive' false  'interactive mode'                  'i'
-DEFINE_string  'partition'    ' '   'partition in which to install OS'  'p'
+DEFINE_string  'partition'    ' '   'partition in which to install OS'  'P'
+DEFINE_string  'processor'    ' '   'processor'                         'C'
+DEFINE_string  'graphics'     ' '   'graphics card'                     'G'
+DEFINE_string  'disk'         ' '   'hard drive type'                   'D'
+DEFINE_string  'locale'       ' '   'locale'                            'A'
+DEFINE_string  'keymap'       ' '   'keymap'                            'M'
+DEFINE_string  'timezone'     ' '   'timezone'                          'T'
 DEFINE_string  'luksname'     ' '   'LUKS encrypted volume name'        'l'
 DEFINE_string  'lukspass'     ' '   'LUKS encrypted volume password'    'L'
 DEFINE_string  'hostname'     ' '   'Hostname'                          'H'
 DEFINE_string  'rootpass'     ' '   'Root user password'                'R'
 DEFINE_string  'username'     ' '   'User name'                         'u'
 DEFINE_string  'userpass'     ' '   'User password'                     'U'
-DEFINE_string  'bundle'      'none' 'bundled pkgs [full, lite, select]' 'b'
+DEFINE_string  'bundle'      'base' 'bundled pkgs [full, lite, base]'   'b'
 DEFINE_boolean 'ssh'         false  'enable ssh access'                 's'
 DEFINE_string  'electrum'     ' '   'link to Electrum pubkey'           'E'
 DEFINE_string  'pubkey'       ' '   'link to user pubkey'               'K'
@@ -214,18 +226,23 @@ DEFINE_string  'pubkeysig'    ' '   'link to user pubkey signature'     'S'
 DEFINE_boolean 'dotfiles'    false  'install dotfiles'                  'd'
 DEFINE_string  'name'         ' '   'Github personal name'              'n'
 DEFINE_string  'email'        ' '   'Github email'                      'e'
-DEFINE_string  'github'       ' '   'Github account'                    'g'
-DEFINE_string  'zipcode'      ' '   'f.lux zipcode'                     'z'
-DEFINE_boolean 'verbose'     false  'verbose mode'                      'V'
-DEFINE_boolean 'version'     false  'display program version and exit'  'v'
+DEFINE_string  'github'       ' '   'Github account name'               'g'
+DEFINE_string  'zipcode'      ' '   'f.lux display temperature zipcode' 'z'
+DEFINE_boolean 'verbose'     false  'verbose output'                    'V'
 
 FLAGS_HELP=`cat <<EOF
 commands:
   start: start pacstrapit (requires root)
+  version: show program version
 EOF`
 
 FLAGS "$@" || exit 1
 eval set -- "${FLAGS_ARGV}"
+
+function printversion() {
+echo "${bold}${white}PacstrapIt!${normal} ${bold}${green}v${VERSION}${normal} ($(uname -o) $(uname -m))"
+  exit 1
+}
 
 function die() {
   if [[ "$#" > '0' ]]; then echo "error: $@" >&2; fi
@@ -239,6 +256,8 @@ case ${command} in
 
   start)
     echo 'Starting...' ;;
+
+  version) printversion ;;
 
   *) die "unrecognized command (${command})" ;;
 esac
@@ -540,9 +559,9 @@ fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p " " _luks_pass
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p ' ' _luks_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Verify passphrase:${normal}"; read -s -p " " _luks_pass_confirm
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Verify passphrase:${normal}"; read -s -p ' ' _luks_pass_confirm
     echo
     if [[ "$_luks_pass" == "$_luks_pass_confirm" && -n "$_luks_pass" ]]; then break; fi
     if [[ -z "$_luks_pass" ]]; then
@@ -968,23 +987,23 @@ EOF
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Available locales${normal}"
   read -d '' locales <<'EOF'
-# af_ZA (Afrikaans) # es_PR (Spanish)    # ko_KR (Korean)     # ru_RU (Russian)
-# ar_AE (Arabic)    # es_US (Spanish)    # ks_IN (Kashmiri)   # sa_IN (Sanskrit)
-# ar_IN (Arabic)    # fa_IR (Farsi)      # lg_UG (Ganda)      # sd_IN (Sindhi)
-# ca_ES (Catalan)   # fi_FI (Finnish)    # lt_LT (Lithuanian) # si_LK (Sinhala)
-# cs_CZ (Czech)     # fr_FR (French)     # ml_IN (Malayalam)  # so_KE (Somali)
-# de_DE (German)    # ga_IE (Irish)      # ne_NP (Nepali)     # sv_SE (Swedish)
-# en_AU (English)   # ha_NG (Nigerian)   # nl_BE (Dutch)      # ta_IN (Tamil)
-# en_CA (English)   # he_IL (Hebrew)     # nl_NL (Dutch)      # th_TH (Thai)
-# en_GB (English)   # hi_IN (Hindi)      # nn_NO (Nynorsk)    # tr_TR (Turkish)
-# en_HK (English)   # hr_HR (Croatian)   # pa_IN (Panjabi)    # uk_UA (Ukrainian)
-# en_NZ (English)   # hu_HU (Hungarian)  # pa_PK (Panjabi)    # ur_IN (Urdu)
-# en_US (English)   # id_ID (Indonesian) # ph_PH (Filipino)   # ur_PK (Urdu)
-# es_AR (Spanish)   # is_IS (Icelandic)  # pl_PL (Polish)     # vi_VN (Vietnamese)
-# es_CL (Spanish)   # it_IT (Italian)    # pt_BR (Portuguese) # zh_CN (Chinese - Simplified)
-# es_CO (Spanish)   # ja_JP (Japanese)   # pt_PT (Portuguese) # zh_TW (Chinese - Traditional)
-# es_ES (Spanish)   # km_KH (Khmer)      # ro_RO (Romanian)   # zu_ZA (Zulu)
-# es_MX (Spanish)   # da_DK (Danish)
+# af_ZA (Afrikaans) # es_MX (Spanish)    # ko_KR (Korean)     # ru_RU (Russian)
+# ar_AE (Arabic)    # es_PR (Spanish)    # ks_IN (Kashmiri)   # sa_IN (Sanskrit)
+# ar_IN (Arabic)    # es_US (Spanish)    # lg_UG (Ganda)      # sd_IN (Sindhi)
+# ca_ES (Catalan)   # fa_IR (Farsi)      # lt_LT (Lithuanian) # si_LK (Sinhala)
+# cs_CZ (Czech)     # fi_FI (Finnish)    # ml_IN (Malayalam)  # so_KE (Somali)
+# da_DK (Danish)    # fr_FR (French)     # ne_NP (Nepali)     # sv_SE (Swedish)
+# de_DE (German)    # ga_IE (Irish)      # nl_BE (Dutch)      # ta_IN (Tamil)
+# en_AU (English)   # ha_NG (Nigerian)   # nl_NL (Dutch)      # th_TH (Thai)
+# en_CA (English)   # he_IL (Hebrew)     # nn_NO (Nynorsk)    # tr_TR (Turkish)
+# en_GB (English)   # hi_IN (Hindi)      # pa_IN (Panjabi)    # uk_UA (Ukrainian)
+# en_HK (English)   # hr_HR (Croatian)   # pa_PK (Panjabi)    # ur_IN (Urdu)
+# en_NZ (English)   # hu_HU (Hungarian)  # ph_PH (Filipino)   # ur_PK (Urdu)
+# en_US (English)   # id_ID (Indonesian) # pl_PL (Polish)     # vi_VN (Vietnamese)
+# es_AR (Spanish)   # is_IS (Icelandic)  # pt_BR (Portuguese) # zh_CN (Chinese - Simplified)
+# es_CL (Spanish)   # it_IT (Italian)    # pt_PT (Portuguese) # zh_TW (Chinese - Traditional)
+# es_CO (Spanish)   # ja_JP (Japanese)   # ro_RO (Romanian)   # zu_ZA (Zulu)
+# es_ES (Spanish)   # km_KH (Khmer)
 EOF
   printf "${yellow}${locales}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter locale${normal} ${bold}${white}[${normal}$_locale_default${bold}${white}]${normal}:"; read -p ' ' _locale
@@ -1335,9 +1354,9 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p " " _root_pass
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p " " _root_pass_confirm
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p ' ' _root_pass_confirm
     echo
     if [[ "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
     if [[ -z "$_root_pass" ]]; then
@@ -1426,9 +1445,9 @@ arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p " " _user_pass
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p " " _user_pass_confirm
+    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p ' ' _user_pass_confirm
     echo
     if [[ "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
     if [[ -z "$_user_pass" ]]; then
@@ -1918,153 +1937,125 @@ fi
 
 function selectify() {
 
+declare _bundle_base=('base')
+declare _bundle_lite=('base'
+                      'gui'
+                      'dotfiles')
+declare _bundle_full=('base'
+                      'gui'
+                      'analysis'
+                      'clojure'
+                      'elixir'
+                      'fonts'
+                      'go'
+                      'gobi'
+                      'haskell'
+                      'lua'
+                      'markdown'
+                      'nimrod'
+                      'node'
+                      'perl'
+                      'python'
+                      'ruby'
+                      'dotfiles')
+
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
-elif [[ "$FLAGS_bundle" == 'full' || "$FLAGS_bundle" == 'lite' || "$FLAGS_bundle" == 'select' ]]; then
+elif [[ "$FLAGS_bundle" == 'full' || "$FLAGS_bundle" == 'lite' || "$FLAGS_bundle" == 'base' ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from cmdline flag...${normal}"
-elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'select' ]]; then
+elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'base' ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from environment variable...${normal}"
 fi
-
-for i in select     \
-         gui        \
-         analysis   \
-         clojure    \
-         elixir     \
-         fonts      \
-         go         \
-         gobi       \
-         haskell    \
-         lua        \
-         markdown   \
-         nimrod     \
-         node       \
-         perl       \
-         python     \
-         ruby       \
-         dotfiles; do
-  export _${i}_default=1
-done
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo
   echo  "       ${bold}${teal}0${normal}: exclude it"
   echo  "       ${bold}${teal}1${normal}: include it"
   echo
-  for i in select   \
-           gui      \
-           analysis \
-           clojure  \
-           elixir   \
-           fonts    \
-           go       \
-           gobi     \
-           haskell  \
-           lua      \
-           markdown \
-           nimrod   \
-           node     \
-           perl     \
-           python   \
-           ruby     \
-           dotfiles; do
+  for i in "$_bundle_full[@]"; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Include ${i}?${normal}"; read -e -p ' ' -i '1' _${i}
   done
 elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
-  for i in select   \
-           gui      \
-           analysis \
-           clojure  \
-           elixir   \
-           fonts    \
-           go       \
-           gobi     \
-           haskell  \
-           lua      \
-           markdown \
-           nimrod   \
-           node     \
-           perl     \
-           python   \
-           ruby     \
-           dotfiles; do
+  for i in "$_bundle_full[@]"; do
     export _${i}=1
   done
 elif [[ "$FLAGS_bundle" == 'lite' || "$BUNDLE" == 'lite' ]]; then
-  for i in select   \
-           gui      \
-           dotfiles; do
+  for i in "$_bundle_lite[@]"; do
     export _${i}=1
   done
-elif [[ "$FLAGS_bundle" == 'select' || "$BUNDLE" == 'select' ]]; then
-  for i in select; do
+elif [[ "$FLAGS_bundle" == 'base' || "$BUNDLE" == 'base' ]]; then
+  for i in "$_bundle_base[@]"; do
     export _${i}=1
   done
 fi
 
-declare _pkgs=('ack'
-               'ansible'
-               'arch-wiki-lite'
-               'avahi'
-               'bluez'
-               'bluez-firmware'
-               'colordiff'
-               'create_ap'
-               'cronwhip'
-               'darkhttpd'
-               'devtools'
-               'downgrade'
-               'dvd+rw-tools'
-               'easytether-rpm'
-               'elinks'
-               'geturl-git'
-               'git'
-               'gnupg1'
-               'imgurbash'
-               'ipw2100-fw'
-               'ipw2200-fw'
-               'ix'
-               'jq'
-               'keybase'
-               'ledger.py-git'
-               'libfaketime'
-               'libusb-compat'
-               'lrzip'
-               'lynx'
-               'macchanger'
-               'mercurial'
-               'mlocate'
-               'mosh'
-               'ncurses'
-               'openvpn'
-               'p7zip'
-               'pacmatic'
-               'parcimonie-sh-git'
-               'perl-image-exiftool'
-               'pkgcacheclean'
-               'proxychains-ng'
-               'pwsafe'
-               'python2-pbp'
-               'quixand'
-               'reptyr'
-               'rfkill'
-               'rtorrent'
-               'sfk'
-               'socat'
-               'spiped'
-               'sshuttle'
-               'ssss'
-               'steghide'
-               'subrepo'
-               'tcplay'
-               'the_silver_searcher'
-               'tor'
-               'torsocks'
-               'tree'
-               'ttf-monaco'
-               'usb_modeswitch'
-               'usbmuxd'
-               'youtube-dl')
+declare _pkgs=()
+
+if [[ "${_base}" == '1' ]]; then
+  _pkgs+=('ack'
+          'ansible'
+          'arch-wiki-lite'
+          'avahi'
+          'bluez'
+          'bluez-firmware'
+          'colordiff'
+          'create_ap'
+          'cronwhip'
+          'darkhttpd'
+          'devtools'
+          'downgrade'
+          'dvd+rw-tools'
+          'easytether-rpm'
+          'elinks'
+          'geturl-git'
+          'git'
+          'gnupg1'
+          'imgurbash'
+          'ipw2100-fw'
+          'ipw2200-fw'
+          'ix'
+          'jq'
+          'keybase'
+          'ledger.py-git'
+          'libfaketime'
+          'libusb-compat'
+          'lrzip'
+          'lynx'
+          'macchanger'
+          'mercurial'
+          'mlocate'
+          'mosh'
+          'ncurses'
+          'openvpn'
+          'p7zip'
+          'pacmatic'
+          'parcimonie-sh-git'
+          'perl-image-exiftool'
+          'pkgcacheclean'
+          'proxychains-ng'
+          'pwsafe'
+          'python2-pbp'
+          'quixand'
+          'reptyr'
+          'rfkill'
+          'rtorrent'
+          'sfk'
+          'socat'
+          'spiped'
+          'sshuttle'
+          'ssss'
+          'steghide'
+          'subrepo'
+          'tcplay'
+          'the_silver_searcher'
+          'tor'
+          'torsocks'
+          'tree'
+          'ttf-monaco'
+          'usb_modeswitch'
+          'usbmuxd'
+          'youtube-dl')
+fi
 
 if [[ "${_gui}" == '1' ]]; then
   _pkgs+=('abiword'
@@ -2918,7 +2909,7 @@ gdiskify
 luksify
 pacstrapify
 if [[ "${_ssh}" == '1' ]]; then sshify; fi
-selectify
+if [[ "${_select}" == '1' ]]; then selectify; fi
 if [[ "${_headless}" == '1' ]]; then electrumify; fi
 if [[ "${_dotfiles}" == '1' ]]; then dotify; fi
 exitify
