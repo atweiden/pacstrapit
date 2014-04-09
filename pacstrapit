@@ -121,6 +121,7 @@ _locale_default="en_US"
                    # ru    (Russian)
                    # uk    (English - UK)
                    # us    (English - US)
+                   # etc...
 _keymap_default="us"
 
 # machine's time zone # Africa/Johannesburg  (SAST)
