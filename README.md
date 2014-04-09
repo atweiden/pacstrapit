@@ -152,7 +152,7 @@ interactive password input:
 Run `pacstrapit` with username and password set from environment variables:
 
 ```bash
-export USERNAME=sky
+export USERNAME="sky"
 export USERPASS="sailing"
 ./pacstrapit start
 ```
