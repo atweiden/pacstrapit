@@ -15,7 +15,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.3"
+VERSION="0.5.4"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -151,7 +151,7 @@ _keymap_default="us"
 _timezone_default="America/Los_Angeles"
 
 # select pkgs
-if [[ "${FLAGS_select}" -eq "${FLAGS_TRUE}" || -n "$SELECT" || -n "$FLAGS_bundle" || -n "$BUNDLE" ]]; then
+if [[ -n "${FLAGS_select}" || -n "$SELECT" || -n "$FLAGS_bundle" || -n "$BUNDLE" ]]; then
   _select=1
 else
   # set to 1 to explicitly enable selectifying without the use of cmdline
@@ -222,6 +222,7 @@ DEFINE_string  'hostname'     ' '   'Hostname'                          'H'
 DEFINE_string  'rootpass'     ' '   'Root user password'                'R'
 DEFINE_string  'username'     ' '   'User name'                         'u'
 DEFINE_string  'userpass'     ' '   'User password'                     'U'
+DEFINE_string  'select'       ' '   'select pkgs  [gui, python, etc]'   't'
 DEFINE_string  'bundle'       ' '   'bundled pkgs [full, lite, base]'   'b'
 DEFINE_boolean 'ssh'         false  'enable ssh access'                 's'
 DEFINE_string  'electrum'     ' '   'link to Electrum pubkey'           'E'
@@ -1989,6 +1990,7 @@ fi
 
 function selectify() {
 
+# pkg bundles
 declare _bundle_base=('base')
 declare _bundle_lite=('base'
                       'gui'
@@ -2011,6 +2013,7 @@ declare _bundle_full=('base'
                       'python'
                       'ruby')
 
+# pkgs feedback
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
 elif [[ "$FLAGS_bundle" == 'full' || "$FLAGS_bundle" == 'lite' || "$FLAGS_bundle" == 'base' ]]; then
@@ -2019,23 +2022,49 @@ elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'base' ]]; th
   echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from environment variable...${normal}"
 fi
 
+# IF: selected pkgs from the cmdline select option, THEN: get it
+if [[ -n "$FLAGS_select" ]]; then
+  read -a _select_pkgs_array     <<< "$FLAGS_select"
+  for i in "${_select_pkgs_array[@]}"; do
+    echo "${bold}${blue}::${normal} ${bold}${white}Selected ${_select_pkgs_array[${i}]}${normal}"
+    export _"${_select_pkgs_array[${i}]}"=1
+  done
+fi
+
+# IF: selected pkgs from SELECT environment variable, THEN: get it
+if [[ -n "$SELECT" ]]; then
+  read -a _select_pkgs_array_env <<< "$FLAGS_select"
+  for i in "${_select_pkgs_array_env[@]}"; do
+    echo "${bold}${blue}::${normal} ${bold}${white}Selected ${_select_pkgs_array_env[${i}]}${normal}"
+    export _"${_select_pkgs_array_env[${i}]}"=1
+  done
+fi
+
+# IF: interactive mode enabled
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo
   echo  "       ${bold}${teal}0${normal}: exclude it"
   echo  "       ${bold}${teal}1${normal}: include it"
   echo
+  # THEN: iterate through all pkgs avail with Y/N
   for i in "$_bundle_full[@]"; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Include ${i}?${normal}"; read -e -p ' ' -i '1' _${i}
   done
+# IF: opt for full bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
+  # THEN: get all pkgs avail in the full bundle (pkg=1)
   for i in "$_bundle_full[@]"; do
     export _${i}=1
   done
+# IF: opt for lite bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'lite' || "$BUNDLE" == 'lite' ]]; then
+  # THEN: get all pkgs avail in the lite bundle (pkg=1)
   for i in "$_bundle_lite[@]"; do
     export _${i}=1
   done
+# IF: opt for base bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'base' || "$BUNDLE" == 'base' ]]; then
+  # THEN: get all pkgs avail in the base bundle (pkg=1)
   for i in "$_bundle_base[@]"; do
     export _${i}=1
   done
@@ -2979,7 +3008,7 @@ fi
 # supplementary pkgs
 if   [[ "${_select}" == '1' ]]; then
   selectify
-elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_select}" -eq "${FLAGS_FALSE}" && -z "${FLAGS_bundle}" ]]; then
+elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && -z "${FLAGS_select}" && -z "${FLAGS_bundle}" ]]; then
   askify 'Install select pkgs? (y/N)' 'n'
   if [[ "$_retval" == '0' ]]; then selectify; fi
 fi
