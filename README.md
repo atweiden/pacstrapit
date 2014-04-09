@@ -166,6 +166,12 @@ $ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g
 $ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env python2#g'
 ```
 
+Generate an Electrum wallet.
+
+```bash
+$ ./electrum create -o || return 0
+```
+
 Pick an Electrum address for signing.
 
 ```bash
