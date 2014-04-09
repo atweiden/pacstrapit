@@ -71,8 +71,8 @@ in /dev/sdb:
                    --lukspass  "your LUKS password"       \
                    --hostname  "yourhostname"             \
                    --partition "/dev/sdb"                 \
-                   --processor "intel"                    \
-                   --graphics  "nvidia"                   \
+                   --processor "other"                    \
+                   --graphics  "intel"                    \
                    --disk      "usb"                      \
                    --luksname  "infinity"                 \
                    --locale    "en_US"                    \
