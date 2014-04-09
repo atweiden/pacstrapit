@@ -80,6 +80,26 @@ in /dev/sdb:
                    --timezone  "America/Los_Angeles"
 ```
 
+...use the `select` option instead of `bundle` for more control:
+
+```bash
+./pacstrapit start --select    "base gui python nimrod"   \
+                   --dotfiles                             \
+                   --username  "newusername"              \
+                   --userpass  "your new user's password" \
+                   --rootpass  "your root password"       \
+                   --lukspass  "your LUKS password"       \
+                   --hostname  "yourhostname"             \
+                   --partition "/dev/sdb"                 \
+                   --processor "other"                    \
+                   --graphics  "intel"                    \
+                   --disk      "usb"                      \
+                   --luksname  "infinity"                 \
+                   --locale    "en_US"                    \
+                   --keymap    "us"                       \
+                   --timezone  "America/Los_Angeles"
+```
+
 Tip:
 
 > Omit `--bundle` and `--select`, and you'll end up with a very minimal
@@ -96,6 +116,13 @@ Run `pacstrapit` interactively:
 ```bash
 ./pacstrapit start -i
 ```
+
+Tip:
+
+> Interactive mode allows you to manually select all important
+> options. Use concealed mode if you're only interested in manually
+> inputting your user password, root password and LUKS password
+> without echoing it to console.
 
 ...with ssh access to target machine enabled:
 
