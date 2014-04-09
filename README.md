@@ -120,9 +120,9 @@ Run `pacstrapit` interactively:
 Tip:
 
 > Interactive mode allows you to manually select all important
-> options. Use concealed mode if you're only interested in manually
-> inputting your user password, root password and LUKS password
-> without echoing it to console.
+> options. Use concealed mode (`--concealed` | `-c`) if you're only
+> interested in manually inputting your user password, root password
+> and LUKS password without echoing it to console.
 
 ...with ssh access to target machine enabled:
 
