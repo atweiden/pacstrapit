@@ -978,16 +978,16 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter hostname for machine${normal} ${bold}${white}[${normal}$_host_name_default${bold}${white}]${normal}:"; read -p ' ' _host_name
+  echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter hostname for machine${normal} ${bold}${white}[${normal}$_host_name_default${bold}${white}]${normal}:"; read -p ' ' _host_name
   _host_name="${_host_name:-$_host_name_default}"
-elif [[ -n "$FLAGS_hostname" ]]; then
-  echo     "${bold}${blue}::${normal} ${bold}${white}Reading hostname from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_hostname" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading hostname from cmdline flag...${normal}"
   _host_name="$FLAGS_hostname"
-elif [[ -n "$HOST_NAME" ]]; then
-  echo     "${bold}${blue}::${normal} ${bold}${white}Reading hostname from environment variable...${normal}"
+elif [[ -n   "$HOST_NAME" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading hostname from environment variable...${normal}"
   _host_name="$HOST_NAME"
 else
-  echo     "${bold}${blue}::${normal} ${bold}${white}Using default hostname...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default hostname...${normal}"
   _host_name="$_host_name_default"
 fi
 
