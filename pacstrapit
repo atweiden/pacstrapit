@@ -1461,7 +1461,7 @@ EOF
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
+  echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
   _user_name="${_user_name:-$_user_name_default}"
 elif [[ -n   "$FLAGS_username" ]]; then
   echo       "${bold}${blue}::${normal} ${bold}${white}Reading user name from cmdline flag...${normal}"
