@@ -1058,7 +1058,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
 # es_CO (Spanish)   # ja_JP (Japanese)   # ro_RO (Romanian)   # zu_ZA (Zulu)
 # es_ES (Spanish)   # km_KH (Khmer)
 EOF
-  printf "${yellow}${locales}${normal}\n"
+  printf  "${yellow}${locales}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter locale${normal} ${bold}${white}[${normal}$_locale_default${bold}${white}]${normal}:"; read -p ' ' _locale
   _locale="${_locale:-$_locale_default}"
 elif [[ -n "$FLAGS_locale" ]]; then
@@ -1119,7 +1119,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
 # uk    (English - UK)
 # us    (English - US)
 EOF
-  printf "${yellow}${keymaps}${normal}\n"
+  printf  "${yellow}${keymaps}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter keymap${normal} ${bold}${white}[${normal}$_keymap_default${bold}${white}]${normal}:"; read -p ' ' _keymap
   _keymap="${_keymap:-$_keymap_default}"
 elif [[ -n "$FLAGS_keymap" ]]; then
@@ -1174,17 +1174,17 @@ read -d '' timezones <<'EOF'
 # Asia/Hong_Kong       (HKT)  # Europe/London    (GMT/BST)
 # Asia/Istanbul        (EET)  # Pacific/Honolulu (HST)
 EOF
-  printf "${yellow}${timezones}${normal}\n"
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter timezone${normal} ${bold}${white}[${normal}$_timezone_default${bold}${white}]${normal}:"; read -p ' ' _timezone
+  printf    "${yellow}${timezones}${normal}\n"
+  echo -n   "${bold}${blue}::${normal} ${bold}${white}Enter timezone${normal} ${bold}${white}[${normal}$_timezone_default${bold}${white}]${normal}:"; read -p ' ' _timezone
   _timezone="${_timezone:-$_timezone_default}"
-elif [[ -n "$FLAGS_timezone" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading timezone from cmdline flag...${normal}"
+elif [[ -n  "$FLAGS_timezone" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading timezone from cmdline flag...${normal}"
   _timezone="$FLAGS_timezone"
-elif [[ -n "$TIMEZONE" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading timezone from environment variable...${normal}"
+elif [[ -n  "$TIMEZONE" ]]; then
+  echo      "${bold}${blue}::${normal} ${bold}${white}Reading timezone from environment variable...${normal}"
   _timezone="$TIMEZONE"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default timezone...${normal}"
+  echo      "${bold}${blue}::${normal} ${bold}${white}Using default timezone...${normal}"
   _timezone="$_timezone_default"
 fi
 
