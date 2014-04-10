@@ -459,28 +459,28 @@ function gdiskify() {
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | egrep 'sd|hd' | tr -d '[:digit:]' | uniq))
   while true; do
-    echo    "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
+    echo     "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
     echo
     for i in "${!_block_devices[@]}"; do
-      echo  "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
+      echo   "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
     done
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a block device number for partitioning:${normal}"; read -p ' ' _block_device_number
-    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_block_devices[${_block_device_number}]}${normal}"
-    echo    "${bold}${yellow}::${normal} ${bold}${white}Data in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${red}WILL BE DESTROYED${normal}."
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _partition_confirm
-    if [[ "${_block_devices[${_block_device_number}]}" == "$_partition_confirm" ]]; then break; fi
-    echo    "${bold}${yellow}::${normal} Please try again"
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a block device number for partitioning:${normal}"; read -p ' ' _block_device_number
+    echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_block_devices[${_block_device_number}]}${normal}"
+    echo     "${bold}${yellow}::${normal} ${bold}${white}Data in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${red}WILL BE DESTROYED${normal}."
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _partition_confirm
+    if [[    "${_block_devices[${_block_device_number}]}" == "$_partition_confirm" ]]; then break; fi
+    echo     "${bold}${yellow}::${normal} Please try again"
   done
   _partition="${_block_devices[${_block_device_number}]}"
-elif [[ -n "$FLAGS_partition" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading partition from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_partition" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading partition from cmdline flag...${normal}"
   _partition="$FLAGS_partition"
-elif [[ -n "$PARTITION" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading partition from environment variable...${normal}"
+elif [[ -n   "$PARTITION" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading partition from environment variable...${normal}"
   _partition="$PARTITION"
 else
-  echo      "${bold}${blue}::${normal} ${bold}${white}Using default partition...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default partition...${normal}"
   _partition="$_partition_default"
 fi
 
@@ -587,16 +587,16 @@ function luksify() {
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter LUKS devmapper name${normal} ${bold}${white}[${normal}$_luks_name_default${bold}${white}]${normal}:"; read -p ' ' _luks_name
+  echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter LUKS devmapper name${normal} ${bold}${white}[${normal}$_luks_name_default${bold}${white}]${normal}:"; read -p ' ' _luks_name
   _luks_name="${_luks_name:-$_luks_name_default}"
-elif [[ -n "$FLAGS_luksname" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_luksname" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from cmdline flag...${normal}"
   _luks_name="$FLAGS_luksname"
-elif [[ -n "$LUKS_NAME" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from environment variable...${normal}"
+elif [[ -n   "$LUKS_NAME" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from environment variable...${normal}"
   _luks_name="$LUKS_NAME"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default LUKS devmapper name...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default LUKS devmapper name...${normal}"
   _luks_name="$_luks_name_default"
 fi
 
@@ -612,21 +612,21 @@ fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p ' ' _luks_pass
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter passphrase for LUKS encrypted volume:${normal}"; read -s -p ' ' _luks_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Verify passphrase:${normal}"; read -s -p ' ' _luks_pass_confirm
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Verify passphrase:${normal}"; read -s -p ' ' _luks_pass_confirm
     echo
-    if [[ "$_luks_pass" == "$_luks_pass_confirm" && -n "$_luks_pass" ]]; then break; fi
+    if [[    "$_luks_pass" == "$_luks_pass_confirm" && -n "$_luks_pass" ]]; then break; fi
     if [[ -z "$_luks_pass" ]]; then
-      echo  "${bold}${yellow}::${normal} LUKS passphrase cannot be blank. Please try again"
+      echo   "${bold}${yellow}::${normal} LUKS passphrase cannot be blank. Please try again"
     else
-      echo  "${bold}${yellow}::${normal} Please try again"
+      echo   "${bold}${yellow}::${normal} Please try again"
     fi
   done
-elif [[ -n "$FLAGS_lukspass" ]]; then
+elif [[ -n   "$FLAGS_lukspass" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from cmdline flag...${normal}"
   _luks_pass="$FLAGS_lukspass"
-elif [[ -n "$LUKS_PASS" ]]; then
+elif [[ -n   "$LUKS_PASS" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from environment variable...${normal}"
   _luks_pass="$LUKS_PASS"
 else
@@ -814,27 +814,27 @@ function pacstrapify() {
 declare _processors=('intel' 'other')
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo    "${bold}${blue}::${normal} ${bold}${white}Available processors${normal}"
+    echo     "${bold}${blue}::${normal} ${bold}${white}Available processors${normal}"
     echo
     for i in "${!_processors[@]}"; do
-      echo  "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
+      echo   "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
     done
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a processor number:${normal}"; read -p ' ' _processor_number
-    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_processors[${_processor_number}]}${normal}"
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_processors[${_processor_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _processor_confirm
-    if [[ "${_processors[${_processor_number}]}" == "$_processor_confirm" ]]; then break; fi
-    echo    "${bold}${yellow}::${normal} Please try again"
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a processor number:${normal}"; read -p ' ' _processor_number
+    echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_processors[${_processor_number}]}${normal}"
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_processors[${_processor_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _processor_confirm
+    if [[    "${_processors[${_processor_number}]}" == "$_processor_confirm" ]]; then break; fi
+    echo     "${bold}${yellow}::${normal} Please try again"
   done
   _processor="${_processors[${_processor_number}]}"
-elif [[ -n "$FLAGS_processor" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading processor from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_processor" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading processor from cmdline flag...${normal}"
   _processor="$FLAGS_processor"
-elif [[ -n "$PROCESSOR" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading processor from environment variable...${normal}"
+elif [[ -n   "$PROCESSOR" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading processor from environment variable...${normal}"
   _processor="$PROCESSOR"
 else
-  echo      "${bold}${blue}::${normal} ${bold}${white}Using default processor...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default processor...${normal}"
   _processor="$_processor_default"
 fi
 
@@ -860,14 +860,14 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
     echo -n "${bold}${blue}::${normal} ${bold}${white}Select a graphics card number:${normal}"; read -p ' ' _gpu_number
     echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_gpus[${_gpu_number}]}${normal}"
     echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_gpus[${_gpu_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _graphics_confirm
-    if [[ "${_gpus[${_gpu_number}]}" == "$_graphics_confirm" ]]; then break; fi
+    if [[   "${_gpus[${_gpu_number}]}" == "$_graphics_confirm" ]]; then break; fi
     echo    "${bold}${yellow}::${normal} Please try again"
   done
   _graphics="${_processors[${_processor_number}]}"
-elif [[ -n "$FLAGS_graphics" ]]; then
+elif [[ -n  "$FLAGS_graphics" ]]; then
   echo      "${bold}${blue}::${normal} ${bold}${white}Reading graphics card from cmdline flag...${normal}"
   _graphics="$FLAGS_graphics"
-elif [[ -n "$GRAPHICS" ]]; then
+elif [[ -n  "$GRAPHICS" ]]; then
   echo      "${bold}${blue}::${normal} ${bold}${white}Reading graphics card from environment variable...${normal}"
   _graphics="$GRAPHICS"
 else
@@ -888,27 +888,27 @@ fi
 declare _disks=('hdd' 'ssd' 'usb')
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo    "${bold}${blue}::${normal} ${bold}${white}Available hard drive targets${normal}"
+    echo     "${bold}${blue}::${normal} ${bold}${white}Available hard drive targets${normal}"
     echo
     for i in "${!_disks[@]}"; do
-      echo  "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
+      echo   "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
     done
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Select a hard drive target number:${normal}"; read -p ' ' _disk_number
-    echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_disks[${_disk_number}]}${normal}"
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_disks[${_disk_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _disk_confirm
-    if [[ "${_disks[${_disk_number}]}" == "$_disk_confirm" ]]; then break; fi
-    echo    "${bold}${yellow}::${normal} Please try again"
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a hard drive target number:${normal}"; read -p ' ' _disk_number
+    echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_disks[${_disk_number}]}${normal}"
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_disks[${_disk_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _disk_confirm
+    if [[    "${_disks[${_disk_number}]}" == "$_disk_confirm" ]]; then break; fi
+    echo     "${bold}${yellow}::${normal} Please try again"
   done
   _disk="${_disks[${_disk_number}]}"
-elif [[ -n "$FLAGS_disk" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_disk" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from cmdline flag...${normal}"
   _disk="$FLAGS_disk"
-elif [[ -n "$DISK" ]]; then
-  echo      "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from environment variable...${normal}"
+elif [[ -n   "$DISK" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading hard drive target from environment variable...${normal}"
   _disk="$DISK"
 else
-  echo      "${bold}${blue}::${normal} ${bold}${white}Using default hard drive target...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default hard drive target...${normal}"
   _disk="$_disk_default"
 fi
 
@@ -978,16 +978,16 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter hostname for machine${normal} ${bold}${white}[${normal}$_host_name_default${bold}${white}]${normal}:"; read -p ' ' _host_name
+  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter hostname for machine${normal} ${bold}${white}[${normal}$_host_name_default${bold}${white}]${normal}:"; read -p ' ' _host_name
   _host_name="${_host_name:-$_host_name_default}"
 elif [[ -n "$FLAGS_hostname" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading hostname from cmdline flag...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading hostname from cmdline flag...${normal}"
   _host_name="$FLAGS_hostname"
 elif [[ -n "$HOST_NAME" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading hostname from environment variable...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading hostname from environment variable...${normal}"
   _host_name="$HOST_NAME"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default hostname...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Using default hostname...${normal}"
   _host_name="$_host_name_default"
 fi
 
@@ -1366,7 +1366,7 @@ if   [[ "${_disk}" == 'usb' ]]; then
 else
   arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
 fi
-arch-chroot /mnt sed -i 's!^FILES.*!FILES="/etc/modprobe.d/modprobe.conf"!' /etc/mkinitcpio.conf
+arch-chroot /mnt sed -i   's!^FILES.*!FILES="/etc/modprobe.d/modprobe.conf"!' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
 
 # install grub
@@ -1407,18 +1407,18 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p ' ' _root_pass_confirm
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p ' ' _root_pass_confirm
     echo
-    if [[ "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
+    if [[    "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
     if [[ -z "$_root_pass" ]]; then
-      echo  "${bold}${yellow}::${normal} Root password cannot be blank. Please try again"
+      echo   "${bold}${yellow}::${normal} Root password cannot be blank. Please try again"
     else
-      echo  "${bold}${yellow}::${normal} Please try again"
+      echo   "${bold}${yellow}::${normal} Please try again"
     fi
   done
-elif [[ -n "$FLAGS_rootpass" ]]; then
+elif [[ -n   "$FLAGS_rootpass" ]]; then
   echo "${bold}${blue}::${normal} ${bold}${white}Reading root password from cmdline flag...${normal}"
   _root_pass="$FLAGS_rootpass"
 elif [[ -n "$ROOT_PASS" ]]; then
@@ -1463,14 +1463,14 @@ EOF
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
   _user_name="${_user_name:-$_user_name_default}"
-elif [[ -n "$FLAGS_username" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading user name from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_username" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading user name from cmdline flag...${normal}"
   _user_name="$FLAGS_username"
-elif [[ -n "$USER_NAME" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading user name from environment variable...${normal}"
+elif [[ -n   "$USER_NAME" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading user name from environment variable...${normal}"
   _user_name="$USER_NAME"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default user name...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default user name...${normal}"
   _user_name="$_user_name_default"
 fi
 
@@ -1498,25 +1498,25 @@ arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
     echo
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p ' ' _user_pass_confirm
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p ' ' _user_pass_confirm
     echo
-    if [[ "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
+    if [[    "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
     if [[ -z "$_user_pass" ]]; then
-      echo  "${bold}${yellow}::${normal} User password cannot be blank. Please try again"
+      echo   "${bold}${yellow}::${normal} User password cannot be blank. Please try again"
     else
-      echo  "${bold}${yellow}::${normal} Please try again"
+      echo   "${bold}${yellow}::${normal} Please try again"
     fi
   done
-elif [[ -n "$FLAGS_userpass" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading user password from cmdline flag...${normal}"
+elif [[ -n   "$FLAGS_userpass" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading user password from cmdline flag...${normal}"
   _user_pass="$FLAGS_userpass"
-elif [[ -n "$USER_PASS" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading user password from environment variable...${normal}"
+elif [[ -n   "$USER_PASS" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading user password from environment variable...${normal}"
   _user_pass="$USER_PASS"
 else
-  echo "${bold}${blue}::${normal} ${bold}${white}Using default user password...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default user password...${normal}"
   _user_pass="$_user_pass_default"
 fi
 
@@ -1833,16 +1833,16 @@ function sshify() {
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your electrum pubkey${normal} ${bold}${white}[${normal}$_electrum_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _electrum_pubkey
+  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter link to your electrum pubkey${normal} ${bold}${white}[${normal}$_electrum_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _electrum_pubkey
   _electrum_pubkey="${_electrum_pubkey:-$_electrum_pubkey_default}"
 elif [[ -n "$FLAGS_electrum" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from cmdline flag...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from cmdline flag...${normal}"
   _electrum_pubkey="$FLAGS_electrum"
 elif [[ -n "$ELECTRUM" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from environment variable...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to electrum pubkey from environment variable...${normal}"
   _electrum_pubkey="$ELECTRUM"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to electrum pubkey...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Using default link to electrum pubkey...${normal}"
   _electrum_pubkey="$_electrum_pubkey_default"
 fi
 
@@ -1857,16 +1857,16 @@ fi
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey${normal} ${bold}${white}[${normal}$_user_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey
+  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey${normal} ${bold}${white}[${normal}$_user_pubkey_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey
   _user_pubkey="${_user_pubkey:-$_user_pubkey_default}"
 elif [[ -n "$FLAGS_pubkey" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from cmdline flag...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from cmdline flag...${normal}"
   _user_pubkey="$FLAGS_pubkey"
 elif [[ -n "$PUBKEY" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from environment variable...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey from environment variable...${normal}"
   _user_pubkey="$PUBKEY"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey...${normal}"
   _user_pubkey="$_user_pubkey_default"
 fi
 
@@ -1881,16 +1881,16 @@ fi
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey signature${normal} ${bold}${white}[${normal}$_user_pubkey_sig_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey_sig
+  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter link to your user pubkey signature${normal} ${bold}${white}[${normal}$_user_pubkey_sig_default${bold}${white}]${normal}:"; read -p ' ' _user_pubkey_sig
   _user_pubkey_sig="${_user_pubkey_sig:-$_user_pubkey_sig_default}"
 elif [[ -n "$FLAGS_pubkeysig" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from cmdline flag...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from cmdline flag...${normal}"
   _user_pubkey_sig="$FLAGS_pubkeysig"
 elif [[ -n "$PUBKEYSIG" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from environment variable...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading link to user pubkey signature from environment variable...${normal}"
   _user_pubkey_sig="$PUBKEYSIG"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey signature...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Using default link to user pubkey signature...${normal}"
   _user_pubkey_sig="$_user_pubkey_sig_default"
 fi
 
@@ -2015,11 +2015,11 @@ declare _bundle_full=('base'
 
 # pkgs feedback
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Setting bundle preferences interactively...${normal}"
 elif [[ "$FLAGS_bundle" == 'full' || "$FLAGS_bundle" == 'lite' || "$FLAGS_bundle" == 'base' ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from cmdline flag...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from cmdline flag...${normal}"
 elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'base' ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from environment variable...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Reading bundle preferences from environment variable...${normal}"
 fi
 
 # IF: selected pkgs from the cmdline select option, THEN: get it
@@ -2755,17 +2755,17 @@ function dotify() {
                        echo "****************"
                                   fi
 
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+if [[   "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter GitHub personal name${normal} ${bold}${white}[${normal}$_name_default${bold}${white}]${normal}:"; read -p ' ' _name
   _name="${_name:-$_name_default}"
 elif [[ -n "$FLAGS_name" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from cmdline flag...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from cmdline flag...${normal}"
   _name="$FLAGS_name"
 elif [[ -n "$NAME" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from environment variable...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Reading GitHub personal name from environment variable...${normal}"
   _name="$NAME"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default GitHub personal name...${normal}"
+  echo  "${bold}${blue}::${normal} ${bold}${white}Using default GitHub personal name...${normal}"
   _name="$_name_default"
 fi
 
@@ -2783,13 +2783,13 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter GitHub email address${normal} ${bold}${white}[${normal}$_email_default${bold}${white}]${normal}:"; read -p ' ' _email
   _email="${_email:-$_email_default}"
 elif [[ -n "$FLAGS_email" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from cmdline flag...${normal}"
+  echo   "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from cmdline flag...${normal}"
   _email="$FLAGS_email"
 elif [[ -n "$EMAIL" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from environment variable...${normal}"
+  echo   "${bold}${blue}::${normal} ${bold}${white}Reading GitHub email address from environment variable...${normal}"
   _email="$EMAIL"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default GitHub email address...${normal}"
+  echo   "${bold}${blue}::${normal} ${bold}${white}Using default GitHub email address...${normal}"
   _email="$_email_default"
 fi
 
@@ -2828,16 +2828,16 @@ fi
                                   fi
 
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n "${bold}${blue}::${normal} ${bold}${white}Enter Zipcode for f.lux${normal} ${bold}${white}[${normal}$_zipcode_default${bold}${white}]${normal}:"; read -p ' ' _zipcode
+  echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter Zipcode for f.lux${normal} ${bold}${white}[${normal}$_zipcode_default${bold}${white}]${normal}:"; read -p ' ' _zipcode
   _zipcode="${_zipcode:-$_zipcode_default}"
 elif [[ -n "$FLAGS_zipcode" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from cmdline flag...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from cmdline flag...${normal}"
   _zipcode="$FLAGS_zipcode"
 elif [[ -n "$ZIPCODE" ]]; then
-  echo    "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from environment variable...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Reading zipcode for f.lux from environment variable...${normal}"
   _zipcode="$ZIPCODE"
 else
-  echo    "${bold}${blue}::${normal} ${bold}${white}Using default zipcode for f.lux...${normal}"
+  echo     "${bold}${blue}::${normal} ${bold}${white}Using default zipcode for f.lux...${normal}"
   _zipcode="$_zipcode_default"
 fi
 
@@ -2998,32 +2998,32 @@ luksify
 pacstrapify
 
 # ssh
-if   [[ "${_ssh}" == '1' ]]; then
+if   [[  "${_ssh}" == '1' ]]; then
   sshify
-elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_ssh}" -eq "${FLAGS_FALSE}" ]]; then
-  askify 'Enable SSH? (y/N)' 'n'
-  if [[ "$_retval" == '0' ]]; then sshify; fi
+elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_ssh}" -eq "${FLAGS_FALSE}" ]]; then
+  askify "Enable SSH? (y/N)" "n"
+  if [[  "$_retval" == '0' ]]; then sshify; fi
 fi
 
 # supplementary pkgs
-if   [[ "${_select}" == '1' ]]; then
+if   [[  "${_select}" == '1' ]]; then
   selectify
-elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && -z "${FLAGS_select}" && -z "${FLAGS_bundle}" ]]; then
-  askify 'Install select pkgs? (y/N)' 'n'
-  if [[ "$_retval" == '0' ]]; then selectify; fi
+elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && -z "${FLAGS_select}" && -z "${FLAGS_bundle}" ]]; then
+  askify "Install select pkgs? (y/N)" "n"
+  if [[  "$_retval" == '0' ]]; then selectify; fi
 fi
 
 # install electrum-headless
-if   [[ "${_headless}" == '1' ]]; then
+if   [[  "${_headless}" == '1' ]]; then
   electrumify
 fi
 
 # install dotfiles
-if   [[ "${_dotfiles}" == '1' ]]; then
+if   [[  "${_dotfiles}" == '1' ]]; then
   dotify
-elif [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_dotfiles}" -eq "${FLAGS_FALSE}" ]]; then
-  askify 'Install dotfiles? (y/N)' 'n'
-  if [[ "$_retval" == '0' ]]; then dotify; fi
+elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_dotfiles}" -eq "${FLAGS_FALSE}" ]]; then
+  askify "Install dotfiles? (y/N)" "n"
+  if [[  "$_retval" == '0' ]]; then dotify; fi
 fi
 
 # exit
