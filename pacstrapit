@@ -1419,13 +1419,13 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${
     fi
   done
 elif [[ -n   "$FLAGS_rootpass" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading root password from cmdline flag...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading root password from cmdline flag...${normal}"
   _root_pass="$FLAGS_rootpass"
-elif [[ -n "$ROOT_PASS" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading root password from environment variable...${normal}"
+elif [[ -n   "$ROOT_PASS" ]]; then
+  echo       "${bold}${blue}::${normal} ${bold}${white}Reading root password from environment variable...${normal}"
   _root_pass="$ROOT_PASS"
 else
-  echo "${bold}${blue}::${normal} ${bold}${white}Using default root password...${normal}"
+  echo       "${bold}${blue}::${normal} ${bold}${white}Using default root password...${normal}"
   _root_pass="$_root_pass_default"
 fi
 
