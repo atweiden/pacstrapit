@@ -350,17 +350,7 @@ Optional: dotfiles
 
 Set `_dotfiles` to 1 for:
 
-![openbox](https://i.imgur.com/CFDQ0hw.png)
-
-(wallpaper not included)
-
-To easily set a wallpaper:
-
-```bash
-pacman -S archlinux-wallpaper
-sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' ~/.config/nitrogen/nitrogen.cfg
-nitrogen # select a wallpaper via GUI
-```
+![openbox](https://i.imgur.com/Fb2Gq1d.png)
 
 #### Openbox Settings
 

@@ -2315,6 +2315,7 @@ if [[ "${_gui}" == '1' ]]; then
           'alsa-plugins'
           'alsa-utils'
           'anki'
+          'archlinux-wallpaper'
           'arch-wiki-docs'
           'ascrubber-git'
           'batti'
@@ -3104,6 +3105,27 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 
 arch-chroot /mnt su -c "cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" ${_user_name}
 arch-chroot /mnt cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh
+
+# configuring wallpaper
+
+                   if [[ "$_debug" == '1' ]]; then
+                         echo "*************"
+                         echo "*           *"
+                         echo "* wallpaper *"
+                         echo "*           *"
+                         echo "*************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_gui}" == '1' ]] \
+  && msg "Configuring wallpaper..."
+
+sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' /mnt/home/${_user_name}/.config/nitrogen/nitrogen.cfg
+cat > /mnt/home/${_user_name}/.config/nitrogen/bg-saved.cfg <<'EOF'
+[:0.0]
+file=/usr/share/archlinux/wallpaper/archlinux-simplyblack-43.png
+mode=5
+bgcolor=#000000
+EOF
 
 # configuring X11
 
