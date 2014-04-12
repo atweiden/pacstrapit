@@ -456,8 +456,8 @@ function gdiskify() {
                      echo "*********************"
                                   fi
 
+declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | egrep 'sd|hd' | tr -d '[:digit:]' | uniq))
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | egrep 'sd|hd' | tr -d '[:digit:]' | uniq))
   while true; do
     echo     "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
     echo
