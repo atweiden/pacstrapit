@@ -388,20 +388,6 @@ Desktop shortcuts:
 - `Alt+Shift+<ARROW>` : move the current window to a different desktop
 - `Super+<F1-F4>` : switch to desktop #1-4
 
-**Notes**:
-
-*None of the below materially affects daily usage*
-
-- You should manually set the network interface in `~/.conkyrc`
-  because `wlan0` will likely not be your correct wireless
-  interface. Check `iwconfig` for something like `wlp10s0` and change
-  `wlan0` in `~/.conkyrc` to that. Or check `ifconfig` for the proper
-  interface if your network connection is wired.
-- Conkyswitcher (ConkyWonky) is currently unmaintained in the AUR,
-  which makes the keybinding `Super+x` completely useless
-  - `Super+x` is supposed to make Conky display 'movement' keybindings
-    on the desktop, found in `~/.conkyrc1`
-
 #### How It Works
 
 - Log in
