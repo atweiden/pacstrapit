@@ -475,13 +475,13 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   done
   _partition="${_block_devices[${_block_device_number}]}"
 elif [[ -n   "$FLAGS_partition" ]]; then
-  echo       "${bold}${blue}::${normal} ${bold}${white}Reading partition from cmdline flag...${normal}"
+  msg        "Reading partition from cmdline flag..."
   _partition="$FLAGS_partition"
 elif [[ -n   "$PARTITION" ]]; then
-  echo       "${bold}${blue}::${normal} ${bold}${white}Reading partition from environment variable...${normal}"
+  msg        "Reading partition from environment variable..."
   _partition="$PARTITION"
 else
-  echo       "${bold}${blue}::${normal} ${bold}${white}Using default partition...${normal}"
+  msg        "Using default partition..."
   _partition="$_partition_default"
 fi
 
@@ -597,13 +597,13 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter LUKS devmapper name${normal} ${bold}${white}[${normal}$_luks_name_default${bold}${white}]${normal}:"; read -p ' ' _luks_name
   _luks_name="${_luks_name:-$_luks_name_default}"
 elif [[ -n   "$FLAGS_luksname" ]]; then
-  echo       "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from cmdline flag...${normal}"
+  msg        "Reading LUKS devmapper name from cmdline flag..."
   _luks_name="$FLAGS_luksname"
 elif [[ -n   "$LUKS_NAME" ]]; then
-  echo       "${bold}${blue}::${normal} ${bold}${white}Reading LUKS devmapper name from environment variable...${normal}"
+  msg        "Reading LUKS devmapper name from environment variable..."
   _luks_name="$LUKS_NAME"
 else
-  echo       "${bold}${blue}::${normal} ${bold}${white}Using default LUKS devmapper name...${normal}"
+  msg        "Using default LUKS devmapper name..."
   _luks_name="$_luks_name_default"
 fi
 
@@ -634,13 +634,13 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${
     fi
   done
 elif [[ -n   "$FLAGS_lukspass" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from cmdline flag...${normal}"
+  msg        "Reading LUKS encrypted volume passphrase from cmdline flag..."
   _luks_pass="$FLAGS_lukspass"
 elif [[ -n   "$LUKS_PASS" ]]; then
-  echo "${bold}${blue}::${normal} ${bold}${white}Reading LUKS encrypted volume passphrase from environment variable...${normal}"
+  msg        "Reading LUKS encrypted volume passphrase from environment variable..."
   _luks_pass="$LUKS_PASS"
 else
-  echo "${bold}${blue}::${normal} ${bold}${white}Using default LUKS encrypted volume passphrase...${normal}"
+  msg        "Using default LUKS encrypted volume passphrase..."
   _luks_pass="$_luks_pass_default"
 fi
 
