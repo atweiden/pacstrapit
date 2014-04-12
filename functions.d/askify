@@ -26,7 +26,7 @@ _inquiry="$1"
 _answer_default="$2"
 
 while true; do
-  echo -n "${bold}${white}${_inquiry}${normal} ${bold}${white}[${normal}${_answer_default}${bold}${white}]${normal} "; read -r -n 1 -s -p ' ' _answer
+  echo -n "${bold}${blue}::${normal} ${bold}${white}${_inquiry}${normal} ${bold}${white}[${normal}${_answer_default}${bold}${white}]${normal} "; read -r -n 1 -s -p ' ' _answer
   _answer="${_answer:-$_answer_default}"
   echo
   if   [[ "$_answer" =~ [Yy] ]] ; then
