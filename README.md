@@ -102,8 +102,7 @@ in /dev/sdb:
 
 Tip:
 
-> Omit `--bundle` and `--select`, and you'll end up with a very minimal
-> headless system with nothing extraneous installed
+> Omit `--bundle` and `--select` to create a very minimal headless system.
 >
 > The `base` bundle adds CLI, vim, and bitcoin pkgs
 >
