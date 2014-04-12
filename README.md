@@ -105,7 +105,7 @@ Tip:
 > Omit `--bundle` and `--select`, and you'll end up with a very minimal
 > headless system with nothing extraneous installed
 >
-> The `base` bundle adds CLI, vim, and bitcoin pkgs.
+> The `base` bundle adds CLI, vim, and bitcoin pkgs
 >
 > The `lite` bundle includes the base bundle plus GUI pkgs and dotfiles
 >
@@ -245,8 +245,9 @@ $ ./electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" >
 Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `id_secp256k1.pub` to
 GitHub, or any other file hosting service reachable via `curl`.
 
-Record the exact URL for each keyfile inside the variables section of
-`pacstrapit`.
+Save the exact URL for each keyfile to the corresponding
+variable (`_electrum_pubkey_default`, `_user_pubkey_default`,
+`_user_pubkey_sig_default`).
 
 Optional: select
 ----------------
@@ -264,7 +265,7 @@ Base packages include:
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
 <tr><td><a href="http://dmr.ath.cx/net/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
-<tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for Arch Linux package maintainers.</td></tr>
+<tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for package maintainers.</td></tr>
 <tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
 <tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
 <tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether-rpm</a></td><td>EasyTether Internet access drivers.</td></tr>
@@ -432,5 +433,3 @@ Licensing
 
 This is free and unencumbered public domain software. For more
 information, see http://unlicense.org/ or the accompanying UNLICENSE file.
-
-![arch](https://i.imgur.com/D53mim5.png)
