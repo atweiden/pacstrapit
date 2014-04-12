@@ -461,8 +461,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo     "${bold}${blue}::${normal} ${bold}${white}Available block device numbers${normal}"
     echo
-    for i in "${!_block_devices[@]}"; do
-      echo   "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
+    for i in "${!_block_devices[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
     done
     echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a block device number for partitioning:${normal}"; read -p ' ' _block_device_number
@@ -816,8 +815,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo     "${bold}${blue}::${normal} ${bold}${white}Available processors${normal}"
     echo
-    for i in "${!_processors[@]}"; do
-      echo   "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
+    for i in "${!_processors[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
     done
     echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a processor number:${normal}"; read -p ' ' _processor_number
@@ -853,8 +851,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo    "${bold}${blue}::${normal} ${bold}${white}Available graphics cards${normal}"
     echo
-    for i in "${!_gpus[@]}"; do
-      echo  "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"
+    for i in "${!_gpus[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"
     done
     echo
     echo -n "${bold}${blue}::${normal} ${bold}${white}Select a graphics card number:${normal}"; read -p ' ' _gpu_number
@@ -890,8 +887,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     echo     "${bold}${blue}::${normal} ${bold}${white}Available hard drive targets${normal}"
     echo
-    for i in "${!_disks[@]}"; do
-      echo   "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
+    for i in "${!_disks[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
     done
     echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a hard drive target number:${normal}"; read -p ' ' _disk_number
