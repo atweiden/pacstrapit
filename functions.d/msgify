@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# msgify: echo a message to console in bold
+# -----------------------------------------------------------------------------
+
+
+
+# -----------------------------------------------------------------------------
+#
+# Args
+#
+#   arg 1 = MESSAGE to pretty print to console
+#
+# Examples
+#
+#   msg "MESSAGE"
+#   msg "Building..."
+
+function msg() {
+echo "${bold}${blue}::${normal} ${bold}${white}$1${normal}"
+}

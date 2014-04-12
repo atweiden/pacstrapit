@@ -15,12 +15,12 @@
 #
 # Examples
 #
-#   askify "INQUIRY" "DEFAULT ANSWER"
-#   askify "Are you sure? (Y/n)" "Y"
-#   askify "Install dotfiles? (y/N)" "N"
-#   askify "Enable SSH? (y/N)" "n"
+#   ask "INQUIRY" "DEFAULT ANSWER"
+#   ask "Are you sure? (Y/n)" "Y"
+#   ask "Install dotfiles? (y/N)" "N"
+#   ask "Enable SSH? (y/N)" "n"
 
-function askify() {
+function ask() {
 
 _inquiry="$1"
 _answer_default="$2"
