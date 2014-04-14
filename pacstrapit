@@ -2581,6 +2581,7 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
+  _vimpkgs+=('vim-ultisnips')
 else
   declare _vimpkgs=('vim-full')
 fi
@@ -2630,7 +2631,6 @@ _vimpkgs+=('ctags'
            'vim-tagbar'
            'vim-tmux-navigator-git'
            'vim-trailing-whitespace'
-           'vim-ultisnips'
            'vim-vis-git'
            'vim-yankring'
            'vim-youcompleteme-git')
@@ -3130,7 +3130,6 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
   && msg "Installing dotfiles..."
 
 arch-chroot /mnt su -c "cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" ${_user_name}
-arch-chroot /mnt /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/bootstrap.sh
 
 # configuring wallpaper
 
