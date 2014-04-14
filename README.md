@@ -1,8 +1,8 @@
-PacstrapIt!
-===========
+pacstrap it: install arch the easy way
+======================================
 
 <table>
-<tr><td>Last tested</td><td>2014-04-04 with archlinux-2014.04.01-dual.iso</td></tr>
+<tr><td>Last tested</td><td>2014-04-14 with archlinux-2014.04.01-dual.iso</td></tr>
 </table>
 
 
