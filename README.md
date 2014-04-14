@@ -12,8 +12,8 @@ Features
 - Btrfs on LUKS
 
 
-Requirements
-------------
+Assumptions
+-----------
 
 You:
 
