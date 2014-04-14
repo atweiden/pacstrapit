@@ -9,7 +9,9 @@ pacstrap it: install arch the easy way
 Features
 --------
 
-- Btrfs on LUKS
+- Btrfs on LUKS done for you
+- Supports persistent USB installation
+- Interactive and cmdline configuration options
 
 
 Assumptions
@@ -18,7 +20,7 @@ Assumptions
 You:
 
 1. have no need for dual-booting Windows
-2. are comfortable working on the command line.
+2. are comfortable working on the command line
 3. are starting from a brand new or completely blank hard drive (`shred -fvz -n 7 /dev/sdX`)
 
 
