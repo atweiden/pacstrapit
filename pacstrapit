@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.6"
+VERSION="0.5.7"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -2160,7 +2160,7 @@ if [[ "${_electrum_verified}" == 'true' ]]; then
   chmod 700 /mnt/home/${_user_name}/.ssh
   cat ~/sshkey.pub > /mnt/home/${_user_name}/.ssh/authorized_keys
   chmod 600 /mnt/home/${_user_name}/.ssh/authorized_keys
-  arch-chroot /mnt chown -R ${_user_name}:users /mnt/home/${_user_name}/.ssh
+  arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}/.ssh
 else
   echo "Electrum verification code rejected."
 fi
@@ -3130,7 +3130,7 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
   && msg "Installing dotfiles..."
 
 arch-chroot /mnt su -c "cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" ${_user_name}
-arch-chroot /mnt cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh
+arch-chroot /mnt /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/bootstrap.sh
 
 # configuring wallpaper
 
@@ -3266,19 +3266,19 @@ luksify
 pacstrapify
 
 # ssh
-if   [[  "${_ssh}" == '1' ]]; then
-  sshify
-elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_ssh}" -eq "${FLAGS_FALSE}" ]]; then
+if   [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   ask "Enable SSH? (y/N)" "n"
   if [[  "$_retval" == '0' ]]; then sshify; fi
+elif [[  "${_ssh}" == '1' ]]; then
+  sshify
 fi
 
 # supplementary pkgs
-if   [[  "${_select}" == '1' ]]; then
-  selectify
-elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && -z "${FLAGS_select}" && -z "${FLAGS_bundle}" ]]; then
+if   [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   ask "Install select pkgs? (y/N)" "n"
   if [[  "$_retval" == '0' ]]; then selectify; fi
+elif [[  "${_select}" == '1' ]]; then
+  selectify
 fi
 
 # install electrum-headless
@@ -3287,11 +3287,11 @@ if   [[  "${_headless}" == '1' ]]; then
 fi
 
 # install dotfiles
-if   [[  "${_dotfiles}" == '1' ]]; then
-  dotify
-elif [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" && "${FLAGS_dotfiles}" -eq "${FLAGS_FALSE}" ]]; then
+if   [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   ask "Install dotfiles? (y/N)" "n"
   if [[  "$_retval" == '0' ]]; then dotify; fi
+elif [[  "${_dotfiles}" == '1' ]]; then
+  dotify
 fi
 
 # exit
