@@ -200,6 +200,7 @@ yellow=$(tput setaf 3)
 blue=$(tput setaf 4)
 teal=$(tput setaf 6)
 white=$(tput setaf 7)
+gray=$(tput setaf 8)
 
 
 
@@ -246,7 +247,7 @@ FLAGS "$@" || exit 1
 eval set -- "${FLAGS_ARGV}"
 
 function printversion() {
-echo "${bold}${white}PacstrapIt!${normal} ${bold}${green}v${VERSION}${normal} ($(uname -o) $(uname -m))"
+echo "${bold}${white}PacstrapIt!${normal} ${bold}${green}v${VERSION}${normal} ${bold}${gray}(${normal}${gray}$(uname -o) $(uname -m)${normal}${bold}${gray})${normal}"
   exit 1
 }
 
