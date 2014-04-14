@@ -288,6 +288,8 @@ esac
 
 function checkify() {
 
+msg "Resolving dependencies..."
+
 # depends: root
 
                    if [[ "$_debug" == '1' ]]; then
@@ -310,6 +312,7 @@ if ! [[ "$UID" == '0' ]]; then die 'root priviledges required'; fi
                         echo "***************"
                                   fi
 
+echo "${bold}${green}==>${normal} ${bold}${white}Configuring pacman.conf...${normal}"
 sed -i '/^CheckSpace.*/a ILoveCandy'           /etc/pacman.conf
 sed -i 's!^#Color!Color!'                      /etc/pacman.conf
 sed -i 's!^#TotalDownload!TotalDownload!'      /etc/pacman.conf
@@ -328,6 +331,8 @@ fi
                         echo "***************"
                                   fi
 
+echo "${bold}${green}==>${normal} ${bold}${white}Ranking mirrors...${normal}"
+echo "${bold}${blue}  ->${normal} ${bold}${white}This can take up to 20 minutes${normal}"
 sed -i 's!^#Server!Server!' /etc/pacman.d/mirrorlist
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
@@ -342,7 +347,10 @@ rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
                echo "*********************************"
                                   fi
 
-if ! [[ -x /usr/bin/arch-chroot ]]; then pacman -Sy arch-install-scripts --noconfirm; fi
+if ! [[ -x /usr/bin/arch-chroot ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: arch-install-scripts...${normal}"
+  pacman -Sy arch-install-scripts --noconfirm
+fi
 
 # depends: gptfdisk
 
@@ -354,7 +362,10 @@ if ! [[ -x /usr/bin/arch-chroot ]]; then pacman -Sy arch-install-scripts --nocon
                      echo "*********************"
                                   fi
 
-if ! [[ -x /usr/bin/gdisk ]]; then pacman -Sy gptfdisk --noconfirm; fi
+if ! [[ -x /usr/bin/gdisk ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: gptfdisk...${normal}"
+  pacman -Sy gptfdisk --noconfirm
+fi
 
 # depends: btrfs-progs
 
@@ -366,7 +377,10 @@ if ! [[ -x /usr/bin/gdisk ]]; then pacman -Sy gptfdisk --noconfirm; fi
                    echo "************************"
                                   fi
 
-if ! [[ -x /usr/bin/mkfs.btrfs ]]; then pacman -Sy btrfs-progs --noconfirm; fi
+if ! [[ -x /usr/bin/mkfs.btrfs ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: btrfs-progs...${normal}"
+  pacman -Sy btrfs-progs --noconfirm
+fi
 
 # depends: tput
 
@@ -378,7 +392,10 @@ if ! [[ -x /usr/bin/mkfs.btrfs ]]; then pacman -Sy btrfs-progs --noconfirm; fi
                        echo "*****************"
                                   fi
 
-if ! [[ -x /usr/bin/tput ]]; then pacman -Sy ncurses --noconfirm; fi
+if ! [[ -x /usr/bin/tput ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: ncurses...${normal}"
+  pacman -Sy ncurses --noconfirm
+fi
 
 # depends: expect
 
@@ -390,7 +407,10 @@ if ! [[ -x /usr/bin/tput ]]; then pacman -Sy ncurses --noconfirm; fi
                       echo "*******************"
                                   fi
 
-if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
+if ! [[ -x /usr/bin/expect ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: expect...${normal}"
+  pacman -Sy expect --noconfirm
+fi
 
 # depends: iptables
 
@@ -402,7 +422,10 @@ if ! [[ -x /usr/bin/expect ]]; then pacman -Sy expect --noconfirm; fi
                      echo "*********************"
                                   fi
 
-if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
+if ! [[ -x /usr/bin/iptables ]]; then
+  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: iptables...${normal}"
+  pacman -Sy iptables --noconfirm
+fi
 
 # depends: base-devel
 
@@ -414,6 +437,7 @@ if ! [[ -x /usr/bin/iptables ]]; then pacman -Sy iptables --noconfirm; fi
                     echo "***********************"
                                   fi
 
+echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: base-devel...${normal}"
 pacman -Sy --needed base-devel --noconfirm
 
 # setting font for convenience
@@ -426,6 +450,7 @@ pacman -Sy --needed base-devel --noconfirm
                        echo "****************"
                                   fi
 
+echo "${bold}${green}==>${normal} ${bold}${white}Setting font...${normal}"
 setfont Lat2-Terminus16
 }
 
@@ -1123,7 +1148,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
 # es_CO (Spanish)   # ja_JP (Japanese)   # ro_RO (Romanian)   # zu_ZA (Zulu)
 # es_ES (Spanish)   # km_KH (Khmer)
 EOF
-  printf  "${yellow}${locales}${normal}\n"
+  printf  "${green}${locales}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter locale${normal} ${bold}${white}[${normal}$_locale_default${bold}${white}]${normal}:"; read -p ' ' _locale
   _locale="${_locale:-$_locale_default}"
 elif [[ -n "$FLAGS_locale" ]]; then
@@ -1190,7 +1215,7 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
 # uk    (English - UK)
 # us    (English - US)
 EOF
-  printf  "${yellow}${keymaps}${normal}\n"
+  printf  "${green}${keymaps}${normal}\n"
   echo -n "${bold}${blue}::${normal} ${bold}${white}Enter keymap${normal} ${bold}${white}[${normal}$_keymap_default${bold}${white}]${normal}:"; read -p ' ' _keymap
   _keymap="${_keymap:-$_keymap_default}"
 elif [[ -n "$FLAGS_keymap" ]]; then
@@ -1251,7 +1276,7 @@ read -d '' timezones <<'EOF'
 # Asia/Hong_Kong       (HKT)  # Europe/London    (GMT/BST)
 # Asia/Istanbul        (EET)  # Pacific/Honolulu (HST)
 EOF
-  printf    "${yellow}${timezones}${normal}\n"
+  printf    "${green}${timezones}${normal}\n"
   echo -n   "${bold}${blue}::${normal} ${bold}${white}Enter timezone${normal} ${bold}${white}[${normal}$_timezone_default${bold}${white}]${normal}:"; read -p ' ' _timezone
   _timezone="${_timezone:-$_timezone_default}"
 elif [[ -n  "$FLAGS_timezone" ]]; then
