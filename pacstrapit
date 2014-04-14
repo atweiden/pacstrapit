@@ -2220,7 +2220,7 @@ fi
 # IF: selected pkgs from the cmdline select option, THEN: get it
 if [[ -n    "$FLAGS_select" ]]; then
   read -a _select_pkgs_array     <<< "$FLAGS_select"
-  for i in  "${_select_pkgs_array[@]}"; do
+  for i in  "${!_select_pkgs_array[@]}"; do
     msg     "Selected ${_select_pkgs_array[${i}]}"
     export _"${_select_pkgs_array[${i}]}"=1
   done
@@ -2229,7 +2229,7 @@ fi
 # IF: selected pkgs from SELECT environment variable, THEN: get it
 if [[ -n    "$SELECT" ]]; then
   read -a _select_pkgs_array_env <<< "$FLAGS_select"
-  for i in  "${_select_pkgs_array_env[@]}"; do
+  for i in  "${!_select_pkgs_array_env[@]}"; do
     msg     "Selected ${_select_pkgs_array_env[${i}]}"
     export _"${_select_pkgs_array_env[${i}]}"=1
   done
@@ -2242,25 +2242,25 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   echo  "       ${bold}${teal}1${normal}: include it"
   echo
   # THEN: iterate through all pkgs avail with Y/N
-  for i in "$_bundle_full[@]"; do
+  for i in "${!_bundle_full[@]}"; do
     echo -n "${bold}${blue}::${normal} ${bold}${white}Include ${i}?${normal}"; read -e -p ' ' -i '1' _${i}
   done
 # IF: opt for full bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
   # THEN: get all pkgs avail in the full bundle (pkg=1)
-  for i in "$_bundle_full[@]"; do
+  for i in "${!_bundle_full[@]}"; do
     export _${i}=1
   done
 # IF: opt for lite bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'lite' || "$BUNDLE" == 'lite' ]]; then
   # THEN: get all pkgs avail in the lite bundle (pkg=1)
-  for i in "$_bundle_lite[@]"; do
+  for i in "${!_bundle_lite[@]}"; do
     export _${i}=1
   done
 # IF: opt for base bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'base' || "$BUNDLE" == 'base' ]]; then
   # THEN: get all pkgs avail in the base bundle (pkg=1)
-  for i in "$_bundle_base[@]"; do
+  for i in "${!_bundle_base[@]}"; do
     export _${i}=1
   done
 fi
