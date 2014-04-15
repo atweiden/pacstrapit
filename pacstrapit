@@ -2217,24 +2217,6 @@ elif [[ "$BUNDLE" == 'full' || "$BUNDLE" == 'lite' || "$BUNDLE" == 'base' ]]; th
   msg   "Reading bundle preferences from environment variable..."
 fi
 
-# IF: selected pkgs from the cmdline select option, THEN: get it
-if [[ -n   "$FLAGS_select" ]]; then
-  read -a _select_pkgs_array <<< "$FLAGS_select"
-  for i in "${!_select_pkgs_array[@]}"; do
-    msg    "Selected ${_select_pkgs_array[${i}]}"
-    export "_${_select_pkgs_array[${i}]}"=1
-  done
-fi
-
-# IF: selected pkgs from SELECT environment variable, THEN: get it
-if [[ -n   "$SELECT" ]]; then
-  read -a _select_pkgs_array_env <<< "$FLAGS_select"
-  for i in "${!_select_pkgs_array_env[@]}"; do
-    msg    "Selected ${_select_pkgs_array_env[${i}]}"
-    export "_${_select_pkgs_array_env[${i}]}"=1
-  done
-fi
-
 # IF: interactive mode enabled
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   # THEN: iterate through all pkgs avail with Y/N
@@ -2242,22 +2224,41 @@ if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
     ask "Include ${_bundle_full[${i}]}? (Y/n)" "y"
     if [[ "$_retval" == '0' ]]; then export "_${_bundle_full[${i}]}"=1; fi
   done
+# IF: selected pkgs from the cmdline select option
+elif [[ -n   "$FLAGS_select" ]]; then
+  # THEN: get selected pkgs
+  read -a _select_pkgs_array <<< "$FLAGS_select"
+  for i in "${!_select_pkgs_array[@]}"; do
+    status "Selected ${_select_pkgs_array[${i}]}"
+    export "_${_select_pkgs_array[${i}]}"=1
+  done
+# IF: selected pkgs from SELECT environment variable
+elif [[ -n   "$SELECT" ]]; then
+  # THEN: get selected pkgs
+  read -a _select_pkgs_array_env <<< "$FLAGS_select"
+  for i in "${!_select_pkgs_array_env[@]}"; do
+    status "Selected ${_select_pkgs_array_env[${i}]}"
+    export "_${_select_pkgs_array_env[${i}]}"=1
+  done
 # IF: opt for full bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
   # THEN: get all pkgs avail in the full bundle (pkg=1)
   for i in "${!_bundle_full[@]}"; do
+    status "Selected ${_bundle_full[${i}]}"
     export "_${_bundle_full[${i}]}"=1
   done
 # IF: opt for lite bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'lite' || "$BUNDLE" == 'lite' ]]; then
   # THEN: get all pkgs avail in the lite bundle (pkg=1)
   for i in "${!_bundle_lite[@]}"; do
+    status "Selected ${_bundle_lite[${i}]}"
     export "_${_bundle_lite[${i}]}"=1
   done
 # IF: opt for base bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'base' || "$BUNDLE" == 'base' ]]; then
   # THEN: get all pkgs avail in the base bundle (pkg=1)
   for i in "${!_bundle_base[@]}"; do
+    status "Selected ${_bundle_base[${i}]}"
     export "_${_bundle_base[${i}]}"=1
   done
 fi
