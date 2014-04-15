@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.10"
+VERSION="0.5.11"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -312,7 +312,7 @@ if ! [[ "$UID" == '0' ]]; then die 'root priviledges required'; fi
                         echo "***************"
                                   fi
 
-echo "${bold}${green}==>${normal} ${bold}${white}Configuring pacman.conf...${normal}"
+status "Configuring pacman.conf..."
 sed -i '/^CheckSpace.*/a ILoveCandy'           /etc/pacman.conf
 sed -i 's!^#Color!Color!'                      /etc/pacman.conf
 sed -i 's!^#TotalDownload!TotalDownload!'      /etc/pacman.conf
@@ -331,8 +331,8 @@ fi
                         echo "***************"
                                   fi
 
-echo "${bold}${green}==>${normal} ${bold}${white}Ranking mirrors...${normal}"
-echo "${bold}${blue}  ->${normal} ${bold}${white}This can take up to 20 minutes${normal}"
+status "Ranking mirrors..."
+substatus "This can take up to 20 minutes"
 sed -i 's!^#Server!Server!' /etc/pacman.d/mirrorlist
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
@@ -348,7 +348,7 @@ rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
                                   fi
 
 if ! [[ -x /usr/bin/arch-chroot ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: arch-install-scripts...${normal}"
+  status "Depends pkg: arch-install-scripts"
   pacman -Sy arch-install-scripts --noconfirm
 fi
 
@@ -363,7 +363,7 @@ fi
                                   fi
 
 if ! [[ -x /usr/bin/gdisk ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: gptfdisk...${normal}"
+  status "Depends pkg: gptfdisk"
   pacman -Sy gptfdisk --noconfirm
 fi
 
@@ -378,7 +378,7 @@ fi
                                   fi
 
 if ! [[ -x /usr/bin/mkfs.btrfs ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: btrfs-progs...${normal}"
+  status "Depends pkg: btrfs-progs"
   pacman -Sy btrfs-progs --noconfirm
 fi
 
@@ -393,7 +393,7 @@ fi
                                   fi
 
 if ! [[ -x /usr/bin/tput ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: ncurses...${normal}"
+  status "Depends pkg: ncurses"
   pacman -Sy ncurses --noconfirm
 fi
 
@@ -408,7 +408,7 @@ fi
                                   fi
 
 if ! [[ -x /usr/bin/expect ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: expect...${normal}"
+  status "Depends pkg: expect"
   pacman -Sy expect --noconfirm
 fi
 
@@ -423,7 +423,7 @@ fi
                                   fi
 
 if ! [[ -x /usr/bin/iptables ]]; then
-  echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: iptables...${normal}"
+  status "Depends pkg: iptables"
   pacman -Sy iptables --noconfirm
 fi
 
@@ -437,7 +437,7 @@ fi
                     echo "***********************"
                                   fi
 
-echo "${bold}${green}==>${normal} ${bold}${white}Depends pkg: base-devel...${normal}"
+status "Depends pkg: base-devel"
 pacman -Sy --needed base-devel --noconfirm
 
 # setting font for convenience
@@ -450,7 +450,7 @@ pacman -Sy --needed base-devel --noconfirm
                        echo "****************"
                                   fi
 
-echo "${bold}${green}==>${normal} ${bold}${white}Setting font...${normal}"
+status "Setting font..."
 setfont Lat2-Terminus16
 }
 

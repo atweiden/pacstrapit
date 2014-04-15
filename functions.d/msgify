@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # -----------------------------------------------------------------------------
-# msgify: echo a message to console in bold
+# msgify: echo a message to console in an aesthetically pleasing form
 # -----------------------------------------------------------------------------
 
 
@@ -15,8 +15,20 @@
 # Examples
 #
 #   msg "MESSAGE"
+#   status "STATUS"
+#   substatus "SUBSTATUS"
 #   msg "Building..."
+#   status "Ranking mirrors..."
+#   substatus "This could take up to 20 minutes"
 
 function msg() {
 echo "${bold}${blue}::${normal} ${bold}${white}$1${normal}"
+}
+
+function status() {
+echo "${bold}${green}==>${normal} ${bold}${white}$1${normal}"
+}
+
+function substatus() {
+echo "${bold}${blue}  ->${normal} ${bold}${white}$1${normal}"
 }
