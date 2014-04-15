@@ -16,8 +16,8 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.12"
-VERSION_DOTFILES="0.5.0"
+VERSION="0.5.13"
+VERSION_DOTFILES="0.5.1"
 VERSION_ELECTRUM="1.9.8"
 
 # machine
@@ -2342,7 +2342,6 @@ if [[ "${_gui}" == '1' ]]; then
           'archlinux-wallpaper'
           'arch-wiki-docs'
           'ascrubber-git'
-          'batti'
           'bleachbit'
           'castawesome'
           'chromium'
@@ -2454,6 +2453,7 @@ if [[ "${_gui}" == '1' ]]; then
           'torchat'
           'truecrypt'
           'urxvt-perls'
+          'valabattery-git'
           'videoproto'
           'vlc'
           'volumeicon'
