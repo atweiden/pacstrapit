@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.9"
+VERSION="0.5.10"
 VERSION_DOTFILES="0.5.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -2237,13 +2237,10 @@ fi
 
 # IF: interactive mode enabled
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo
-  echo  "       ${bold}${teal}0${normal}: exclude it"
-  echo  "       ${bold}${teal}1${normal}: include it"
-  echo
   # THEN: iterate through all pkgs avail with Y/N
   for i in "${!_bundle_full[@]}"; do
-    echo -n "${bold}${blue}::${normal} ${bold}${white}Include ${_bundle_full[${i}]}?${normal}"; read -e -p ' ' -i '1' "_${_bundle_full[${i}]}"
+    ask "Include ${_bundle_full[${i}]}? (Y/n)" "y"
+    if [[ "$_retval" == '0' ]]; then export "_${_bundle_full[${i}]}"=1; fi
   done
 # IF: opt for full bundle from cmdline option or BUNDLE environment variable
 elif [[ "$FLAGS_bundle" == 'full' || "$BUNDLE" == 'full' ]]; then
