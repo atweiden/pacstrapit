@@ -2835,7 +2835,8 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Configuring XDG user directories..."
 
-if [[ "$_gui" == '1' ]]; then cat > /mnt/etc/xdg/user-dirs.defaults <<'EOF'
+if [[ "$_gui" == '1' ]]; then
+  cat > /mnt/etc/xdg/user-dirs.defaults <<'EOF'
 # Default settings for user directories
 #
 # The values are relative pathnames from the home directory and
@@ -2849,6 +2850,7 @@ MUSIC=Desktop/Music
 PICTURES=Desktop/Pictures
 VIDEOS=Desktop/Videos
 EOF
+  arch-chroot /mnt su -c "xdg-user-dirs-update" ${_user_name}
 fi
 
 # clean pacaur
