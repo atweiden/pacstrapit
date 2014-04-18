@@ -396,6 +396,16 @@ Desktop shortcuts:
 - Run `startx` to launch Openbox
 
 
+Notes
+-----
+
+- If you are doing a persistent USB install, it's recommended to boot
+  the Arch LiveCD/USB in i686 mode to ensure maximum hardware
+  compatibilty.
+- If `wifi-menu -o` throws an `invalid interface` error, reboot the
+  LiveCD/USB.
+
+
 To Do
 -----
 
