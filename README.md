@@ -159,6 +159,26 @@ export USERPASS="sailing"
 ./pacstrapit start
 ```
 
+Run `pacstrapit` for a lightweight remote server installation:
+
+```
+./pacstrapit start --username     'newusername'  \
+                   --hostname     'yourhostname' \
+                   --partition    '/dev/xvda'    \
+                   --processor    'intel'        \
+                   --graphics     'intel'        \
+                   --disk         'ssd'          \
+                   --luksname     'infinity'     \
+                   --locale       'en_US'        \
+                   --keymap       'us'           \
+                   --timezone     'UTC'          \
+                   --hostsallowed '*'            \
+                   --ssh                         \
+                   --dotfiles                    \
+                   --concealed                   \
+                   --verbose
+```
+
 Run `pacstrapit` for a workstation installation:
 
 ```bash
