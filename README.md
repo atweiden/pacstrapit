@@ -17,11 +17,9 @@ Features
 Assumptions
 -----------
 
-You:
-
-1. have no need for dual-booting Windows
-2. are comfortable working on the command line
-3. are starting from a brand new or completely blank hard drive (`shred -fvz -n 7 /dev/sdX`)
+`pacstrapit` is meant for provisioning physical hardware. It assumes
+you have no need for dual-booting Windows, and that you are comfortable
+working on the command line.
 
 
 Instructions
@@ -157,26 +155,6 @@ Run `pacstrapit` with username and password set from environment variables:
 export USERNAME="sky"
 export USERPASS="sailing"
 ./pacstrapit start
-```
-
-Run `pacstrapit` for a lightweight remote server installation:
-
-```
-./pacstrapit start --username     'newusername'  \
-                   --hostname     'yourhostname' \
-                   --partition    '/dev/xvda'    \
-                   --processor    'intel'        \
-                   --graphics     'intel'        \
-                   --disk         'ssd'          \
-                   --luksname     'infinity'     \
-                   --locale       'en_US'        \
-                   --keymap       'us'           \
-                   --timezone     'UTC'          \
-                   --hostsallowed '*'            \
-                   --ssh                         \
-                   --dotfiles                    \
-                   --concealed                   \
-                   --verbose
 ```
 
 Run `pacstrapit` for a workstation installation:
@@ -430,9 +408,9 @@ Notes
 To Do
 -----
 
-- Add man page
+- Add linux-grsec (now an official pkg)
 - Handle cmdline flag-related error messages gracefully
-- Add keyfile-encrypted swap partition
+- Add man page
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 
 
