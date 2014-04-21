@@ -455,7 +455,7 @@ fi
                                   fi
 
 status "Depends pkg: base-devel"
-pacman -Sy --needed base-devel --noconfirm
+pacman -Sy base-devel --noconfirm
 
 # setting font for convenience
 
