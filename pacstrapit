@@ -306,11 +306,11 @@ if ! [[ "$UID" == '0' ]]; then die 'root priviledges required'; fi
 # depends: pacman.conf
 
                    if [[ "$_debug" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* pacman.conf *"
-                        echo "*             *"
-                        echo "***************"
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* depends: pacman.conf *"
+                   echo "*                      *"
+                   echo "************************"
                                   fi
 
 status "Configuring pacman.conf..."
@@ -322,14 +322,30 @@ if [[ "$(uname -m)" == 'x86_64' ]]; then
   echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 fi
 
+# depends: pacman-key --init
+
+                   if [[ "$_debug" == '1' ]]; then
+                echo "******************************"
+                echo "*                            *"
+                echo "* depends: pacman-key --init *"
+                echo "*                            *"
+                echo "******************************"
+                                  fi
+
+status "Initializing pacman-keys..."
+haveged -w 1024
+pacman-key --init
+pacman-key --populate archlinux
+pkill haveged
+
 # depends: rankmirrors
 
                    if [[ "$_debug" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* rankmirrors *"
-                        echo "*             *"
-                        echo "***************"
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* depends: rankmirrors *"
+                   echo "*                      *"
+                   echo "************************"
                                   fi
 
 status "Ranking mirrors..."
