@@ -168,7 +168,7 @@ else
   # flags or environment variables
   _ssh=0
 fi
-_hosts_allowed="192.168.0."
+_hosts_allowed_default="192.168.0."
 _electrum_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
 _user_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
 _user_pubkey_sig_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
@@ -227,6 +227,7 @@ DEFINE_string  'userpass'     ' '   'User password'                     'U'
 DEFINE_string  'select'       ' '   'select pkgs  [gui, python, etc]'   't'
 DEFINE_string  'bundle'       ' '   'bundled pkgs [full, lite, base]'   'b'
 DEFINE_boolean 'ssh'         false  'enable ssh access'                 's'
+DEFINE_string  'hostsallowed' ' '   'hosts allowed to connect over ssh' 'a'
 DEFINE_string  'electrum'     ' '   'link to Electrum pubkey'           'E'
 DEFINE_string  'pubkey'       ' '   'link to user pubkey'               'K'
 DEFINE_string  'pubkeysig'    ' '   'link to user pubkey signature'     'S'
@@ -1906,6 +1907,33 @@ sed -i '/^#   MACs.*/a \    KexAlgorithms diffie-hellman-group-exchange-sha256,e
 sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ssh-dss-cert-v01@openssh.com,ssh-dss-cert-v00@openssh.com,ssh-dss' /mnt/etc/ssh/ssh_config
 sed -i 's!^#   MACs.*!    MACs hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-sha1,hmac-md5,hmac-sha1-96,hmac-md5-96,umac-64@openssh.com!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
+
+# configure hosts_allowed
+
+                   if [[ "$_debug" == '1' ]]; then
+                   echo "*************************"
+                   echo "*                       *"
+                   echo "* config: hosts_allowed *"
+                   echo "*                       *"
+                   echo "*************************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring hosts_allowed..."
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n        "${bold}${blue}::${normal} ${bold}${white}Enter hosts_allowed${normal} ${bold}${white}[${normal}$_hosts_allowed_default${bold}${white}]${normal}:"; read -p ' ' _hosts_allowed
+  _hosts_allowed="${_hosts_allowed:-$_hosts_allowed_default}"
+elif [[ -n       "$FLAGS_hostsallowed" ]]; then
+  msg            "Reading hosts_allowed from cmdline flag..."
+  _hosts_allowed="$FLAGS_hostsallowed"
+elif [[ -n       "$HOSTS_ALLOWED" ]]; then
+  msg            "Reading hosts_allowed from environment variable..."
+  _hosts_allowed="$HOSTS_ALLOWED"
+else
+  msg            "Using default hosts_allowed..."
+  _hosts_allowed="$_hosts_allowed_default"
+fi
 
 # configure sshd
 
