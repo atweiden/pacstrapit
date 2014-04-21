@@ -1863,7 +1863,7 @@ arch-chroot /mnt sysctl -p
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Configuring iptables..."
 
-cat > /mnt/etc/iptables.test.rules <<'EOF'
+cat > iptables.test.rules <<'EOF'
 *filter
 #| Allow all loopback (lo0) traffic, and drop all traffic to 127/8 that doesn't use lo0
 -A INPUT -i lo -j ACCEPT
@@ -1896,7 +1896,7 @@ cat > /mnt/etc/iptables.test.rules <<'EOF'
 COMMIT
 EOF
 iptables-save > /mnt/etc/iptables/iptables.up.rules
-iptables-restore < /mnt/etc/iptables/iptables.test.rules
+iptables-restore < iptables.test.rules
 iptables-save > /mnt/etc/iptables/iptables.rules
 
 # configure ssh
