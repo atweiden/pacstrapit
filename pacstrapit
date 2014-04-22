@@ -2350,6 +2350,7 @@ if [[ "${_base}" == '1' ]]; then
           'parcimonie-sh-git'
           'perl-image-exiftool'
           'pkgcacheclean'
+          'pkgtools-git'
           'proxychains-ng'
           'pwsafe'
           'python2-pbp'
