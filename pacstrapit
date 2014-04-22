@@ -2230,11 +2230,14 @@ fi
 function selectify() {
 
 # pkg bundles
-declare _bundle_base=('base')
+declare _bundle_base=('base'
+                      'grsec')
 declare _bundle_lite=('base'
+                      'grsec'
                       'gui'
                       'dotfiles')
 declare _bundle_full=('base'
+                      'grsec'
                       'gui'
                       'dotfiles'
                       'analysis'
@@ -2374,6 +2377,17 @@ if [[ "${_base}" == '1' ]]; then
           'usb_modeswitch'
           'usbmuxd'
           'youtube-dl')
+fi
+
+if [[ "${_grsec}" == '1' ]]; then
+  _pkgs+=('checksec'
+          'gradm'
+          'linux-grsec'
+          'linux-grsec-docs'
+          'linux-grsec-headers'
+          'paxtest'
+          'pax-utils'
+          'prelink')
 fi
 
 if [[ "${_gui}" == '1' ]]; then
@@ -2867,6 +2881,25 @@ fi
   && msg "Installing selected pkgs..."
 
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+
+# setup grsec
+
+                   if [[ "$_debug" == '1' ]]; then
+                           echo "*********"
+                           echo "*       *"
+                           echo "* grsec *"
+                           echo "*       *"
+                           echo "*********"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Setting up Grsecurity / PaX..."
+
+if [[ "$_grsec" == '1' ]]; then
+  arch-chroot /mnt usermod -a -G tpe ${_user_name}
+  arch-chroot /mnt usermod -a -G tpe root
+  arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+fi
 
 # set XDG dirs
 

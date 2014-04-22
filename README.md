@@ -105,7 +105,7 @@ Tip:
 
 > Omit `--bundle` and `--select` to create a very minimal headless system.
 >
-> The `base` bundle adds CLI, vim, and bitcoin pkgs
+> The `base` bundle adds CLI, vim, grsec and bitcoin pkgs
 >
 > The `lite` bundle includes the base bundle plus GUI pkgs and dotfiles
 >
@@ -330,6 +330,7 @@ Additional packages are available.
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
+<tr><td>Grsec</td><td>Packages for Grsecurity / PaX</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
