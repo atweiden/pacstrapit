@@ -2902,7 +2902,7 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
                            echo "*********"
                                   fi
 
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_grsec}" == '1' ]] \
   && msg "Setting up Grsecurity / PaX..."
 
 if [[ "$_grsec" == '1' ]]; then
@@ -2921,7 +2921,7 @@ fi
                             echo "*******"
                                   fi
 
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_gui}" == '1' ]] \
   && msg "Configuring XDG user directories..."
 
 if [[ "$_gui" == '1' ]]; then
@@ -2952,7 +2952,7 @@ fi
                            echo "********"
                                   fi
 
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_vbox}" == '1' ]] \
   && msg "Setting up VirtualBox..."
 
 if [[ "$_vbox" == '1' ]]; then
