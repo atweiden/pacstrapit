@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.18"
+VERSION="0.5.19"
 VERSION_DOTFILES="0.5.3"
 VERSION_ELECTRUM="1.9.8"
 
@@ -2244,7 +2244,8 @@ declare _bundle_full=('base'
                       'node'
                       'perl'
                       'python'
-                      'ruby')
+                      'ruby'
+                      'vbox')
 
 # pkgs feedback
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
@@ -2851,6 +2852,24 @@ if [[ "${_ruby}" == '1' ]]; then
              'vim-ruby-git')
 fi
 
+if [[ "${_vbox}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('qt4')
+  fi
+  _pkgs+=('linux-headers'
+          'net-tools'
+          'vde2'
+          'virtualbox'
+          'virtualbox-ext-oracle'
+          'virtualbox-guest-dkms'
+          'virtualbox-guest-iso'
+          'virtualbox-guest-modules'
+          'virtualbox-guest-utils'
+          'virtualbox-host-dkms'
+          'virtualbox-host-modules'
+          'virtualbox-sdk')
+fi
+
 if [[ "${_gui}" == '1' ]]; then
   declare _bitpkgs=('electrum'
                     'python2-zbar')
@@ -2921,6 +2940,48 @@ PICTURES=Desktop/Pictures
 VIDEOS=Desktop/Videos
 EOF
   arch-chroot /mnt su -c "xdg-user-dirs-update" ${_user_name}
+fi
+
+# setup vbox
+
+                   if [[ "$_debug" == '1' ]]; then
+                           echo "********"
+                           echo "*      *"
+                           echo "* vbox *"
+                           echo "*      *"
+                           echo "********"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Setting up VirtualBox..."
+
+if [[ "$_vbox" == '1' ]]; then
+  arch-chroot /mnt groupadd vboxsf
+  arch-chroot /mnt usermod -a -G uucp,vboxsf,vboxusers ${_user_name}
+  arch-chroot /mnt usermod -a -G uucp,vboxsf,vboxusers root
+  cat > /mnt/etc/modules-load.d/virtualbox.conf <<'EOF'
+# Load vboxdrv module at boot
+vboxdrv
+
+# Load vboxguest module at boot
+vboxguest
+
+# Load vboxnetadp module at boot
+vboxnetadp
+
+# Load vboxnetflt module at boot
+vboxnetflt
+
+# Load vboxsf module at boot
+vboxsf
+
+# Load vboxvideo module at boot
+vboxvideo
+EOF
+  arch-chroot /mnt depmod -a
+  arch-chroot /mnt dkms install vboxhost/$(pacman -Q virtualbox|awk {'print $2'}|sed 's/\-.\+//') -k $(uname -rm|sed 's/\ /\//')
+  arch-chroot /mnt dkms install vboxguest/$(pacman -Q virtualbox|awk {'print $2'}|sed 's/\-.\+//') -k $(uname -rm|sed 's/\ /\//')
+  arch-chroot /mnt systemctl enable vboxservice
 fi
 
 # clean pacaur

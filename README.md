@@ -28,8 +28,8 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.18} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.5.18.tar.gz`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.19} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.5.19.tar.gz`
 6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -54,7 +54,7 @@ Defaults:
 <tr><td>Hosts allowed</td><td>192.168.0. (LAN)</td></tr>
 </table>
 
-> `cd pacstrapit-0.5.18 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.5.19 && $EDITOR pacstrapit`
 
 Done.
 
@@ -330,6 +330,7 @@ Additional packages are available.
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
+<tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
 </table>
 
 Selecting all packages (GUI included) adds over 1.0 GB to the download
