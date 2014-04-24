@@ -2166,16 +2166,7 @@ curl -k "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Verifying SSH keys..."
 
-pacman -Sy --needed python2-ecdsa --noconfirm
-for _pkg in python2-pbkdf2 python2-slowaes; do
-  mkdir -p ~/.src && cd ~/.src
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
-done
+pacman -Sy --needed python2-ecdsa python2-pbkdf2 python2-slowaes --noconfirm
 cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
 tar xvzf electrum-${VERSION_ELECTRUM}.tar.gz
 cd electrum-${VERSION_ELECTRUM}
@@ -2980,21 +2971,7 @@ function electrumify() {
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing Electrum headless dependencies..."
 
-arch-chroot /mnt pacman -Sy --needed python2-ecdsa --noconfirm
-for _pkg in python2-pbkdf2 python2-slowaes; do
-  mkdir -p /root/.src/electrum && cd /root/.src/electrum
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
-done
-mkdir -p /mnt/root/.src/electrum
-for _pkg in `find /root/.src/electrum -type f -name "*.pkg.tar.xz"`; do
-  cp ${_pkg} /mnt/root/.src/electrum
-done
-arch-chroot /mnt find /root/.src/electrum -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
+arch-chroot /mnt pacman -Sy --needed python2-ecdsa python2-pbkdf2 python2-slowaes --noconfirm
 
 # place electrum-headless in chroot
 
