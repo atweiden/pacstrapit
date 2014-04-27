@@ -286,7 +286,7 @@ Base packages include:
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh-git</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
-<tr><td><a href="https://github.com/Daenyth/pkgtools">pkgtools-git</a></td><td>Pacman tools.</td></tr>
+<tr><td><a href="https://github.com/Daenyth/pkgtools">pkgtools</a></td><td>Pacman tools.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
 <tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
