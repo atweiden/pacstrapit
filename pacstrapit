@@ -503,7 +503,7 @@ function gdiskify() {
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Configuring partition..."
 
-declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | egrep 'sd|hd|xvd' | tr -d '[:digit:]' | uniq))
+declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum:] \n' | sed 's#\(^.*\)#/dev/\1#' | grep -E 'sd|hd|xvd' | tr -d '[:digit:]' | uniq))
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     msg      "Available block device numbers"
@@ -2349,6 +2349,7 @@ if [[ "${_base}" == '1' ]]; then
           'proxychains-ng'
           'pwsafe'
           'python2-pbp'
+          'qrencode'
           'quixand'
           'reptyr'
           'rfkill'
@@ -2484,7 +2485,6 @@ if [[ "${_gui}" == '1' ]]; then
           'pidgin-otr'
           'printproto'
           'pulseaudio'
-          'qrencode'
           'randrproto'
           'recode'
           'renderproto'
