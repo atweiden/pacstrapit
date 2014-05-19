@@ -253,7 +253,7 @@ echo "${bold}${white}PacstrapIt!${normal} ${bold}${green}v${VERSION}${normal} ${
 }
 
 function die() {
-  if [[ "$#" > '0' ]]; then echo "error: $@" >&2; fi
+  if [[ "$#" > '0' ]]; then echo "${bold}${red}error:${normal} $@" >&2; fi
   flags_help
   exit 1
 }
@@ -2349,6 +2349,7 @@ if [[ "${_base}" == '1' ]]; then
           'proxychains-ng'
           'pwsafe'
           'python2-pbp'
+          'python3-aur'
           'qrencode'
           'quixand'
           'reptyr'
@@ -2790,14 +2791,16 @@ if [[ "${_nimrod}" == '1' ]]; then
 fi
 
 if [[ "${_node}" == '1' ]]; then
-  _pkgs+=('nodejs'
+  _pkgs+=('dart'
+          'nodejs'
           'nodejs-bower'
           'nodejs-grasp'
           'nodejs-grunt-cli'
           'nodejs-hexo'
           'nodejs-jade'
           'nodejs-stylus')
-  _vimpkgs+=('vim-jade-git'
+  _vimpkgs+=('vim-dart-plugin'
+             'vim-jade-git'
              'vim-javascript-git'
              'vim-jquery'
              'vim-nodejs-errorformat-git'
@@ -2956,7 +2959,6 @@ fi
   && msg "Setting up VirtualBox..."
 
 if [[ "$_vbox" == '1' ]]; then
-  arch-chroot /mnt groupadd vboxsf
   arch-chroot /mnt usermod -a -G uucp,vboxsf,vboxusers ${_user_name}
   arch-chroot /mnt usermod -a -G uucp,vboxsf,vboxusers root
   cat > /mnt/etc/modules-load.d/virtualbox.conf <<'EOF'
