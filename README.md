@@ -386,6 +386,13 @@ Desktop shortcuts:
 - `Alt+Shift+<ARROW>` : move the current window to a different desktop
 - `Super+<F1-F4>` : switch to desktop #1-4
 
+Mouse shortcuts:
+
+- right-click anywhere on desktop: main menu
+- mousewheel-scrolldown on app icon in lower panel: minimize the current window to lower panel
+- mousewheel-scrollup on app icon in lower panel: restore the current window from minimized in lower panel
+- right-click on app icon in lower panel: quit app / close app window
+
 #### How It Works
 
 - Log in
