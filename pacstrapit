@@ -1532,9 +1532,7 @@ arch-chroot /mnt mkinitcpio -p linux
   && msg "Installing GRUB..."
 
 _luks_uuid=$(lsblk -f | grep ${_partition##/dev/}3 | awk '{print $3}')
-if   [[ "${_disk}" == 'usb' ]]; then
-  arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop nomodeset\"!" /etc/default/grub
-elif [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
+if [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
 elif [[ "${_disk}" == 'ssd' ]]; then
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop\"!" /etc/default/grub
