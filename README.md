@@ -354,7 +354,8 @@ Set `_dotfiles` to 1 for:
 **Keybindings**
 
 *The Windows symbol key is the 'Super' key. For example,
-`Windows+spacebar` opens the main menu*
+`Windows+spacebar` opens the main menu. Right-click anywhere on the
+desktop to open the main menu.*
 
 Program shortcuts:
 
