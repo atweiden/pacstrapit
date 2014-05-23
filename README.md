@@ -61,7 +61,7 @@ Done.
 Usage
 -----
 
-Run `pacstrapit` for a capable cmdline persistent USB installation
+Run `pacstrapit` for a capable headless persistent USB installation
 in /dev/sdb:
 
 ```bash
