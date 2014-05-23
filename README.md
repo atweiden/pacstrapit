@@ -51,7 +51,7 @@ Defaults:
 <tr><td>LUKS name</td><td>lux</td></tr>
 <tr><td>LUKS password</td><td>secret</td></tr>
 <tr><td>Hostname</td><td>luxor</td></tr>
-<tr><td>Hosts allowed</td><td>192.168.0. (LAN)</td></tr>
+<tr><td>Hosts allowed</td><td>192.168.0. (LAN - SSH is disabled by default)</td></tr>
 </table>
 
 > `cd pacstrapit-0.5.19 && $EDITOR pacstrapit`
