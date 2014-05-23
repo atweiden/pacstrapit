@@ -1421,20 +1421,20 @@ for _pkg in cower pacaur; do
   arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 done
 
-# install zramswap
+# install systemd-swap
 
                    if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* install zramswap *"
-                     echo "*                  *"
-                     echo "********************"
+                   echo "************************"
+                   echo "*                      *"
+                   echo "* install systemd-swap *"
+                   echo "*                      *"
+                   echo "************************"
                                   fi
 
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Installing zramswap..."
+  && msg "Installing systemd-swap..."
 
-arch-chroot /mnt pacaur -Sy --needed --asroot zramswap --noedit --noconfirm
+arch-chroot /mnt pacaur -Sy --needed --asroot systemd-swap --noedit --noconfirm
 
 # always suspend to RAM
 
@@ -2003,7 +2003,7 @@ echo "sshd: ${_hosts_allowed}" >                                                
 arch-chroot /mnt systemctl enable cronie         \
                                   dnscrypt-proxy \
                                   iptables       \
-                                  zramswap
+                                  systemd-swap
 
 # disable /var/log/journal CoW
 

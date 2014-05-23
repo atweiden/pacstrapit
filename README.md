@@ -404,7 +404,7 @@ Notes
 To Do
 -----
 
-- Replace [zramswap](https://aur.archlinux.org/packages/zramswap/) with [systemd-swap](https://aur.archlinux.org/packages/systemd-swap/)
+- Add support for [laptop power management](https://wiki.archlinux.org/index.php/TLP)
 - Add man page
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 
