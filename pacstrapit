@@ -2314,6 +2314,7 @@ if [[ "${_base}" == '1' ]]; then
           'cronwhip'
           'darkhttpd'
           'devtools'
+          'dnsutils'
           'downgrade'
           'dvd+rw-tools'
           'easytether-rpm'
