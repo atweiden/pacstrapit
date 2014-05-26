@@ -2378,6 +2378,7 @@ if [[ "${_grsec}" == '1' ]]; then
           'linux-grsec'
           'linux-grsec-docs'
           'linux-grsec-headers'
+          'paxd'
           'paxtest'
           'pax-utils'
           'prelink')
