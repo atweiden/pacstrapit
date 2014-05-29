@@ -2503,7 +2503,6 @@ if [[ "${_gui}" == '1' ]]; then
           'tiv'
           'tor-browser-en'
           'torchat'
-          'truecrypt'
           'urxvt-perls'
           'valabattery-git'
           'videoproto'
