@@ -2343,6 +2343,7 @@ if [[ "${_base}" == '1' ]]; then
           'pacmatic'
           'parcimonie-sh-git'
           'perl-image-exiftool'
+          'pkgbuild-introspection'
           'pkgcacheclean'
           'pkgtools'
           'proxychains-ng'
