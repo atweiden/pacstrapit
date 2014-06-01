@@ -16,8 +16,8 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.20"
-VERSION_DOTFILES="0.5.4"
+VERSION="0.5.21"
+VERSION_DOTFILES="0.5.5"
 VERSION_ELECTRUM="1.9.8"
 
 # machine
