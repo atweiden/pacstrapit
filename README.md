@@ -351,6 +351,8 @@ Set `_dotfiles` to 1 for:
 
 ![openbox](https://i.imgur.com/zDzVno0.png)
 
+![vim](https://i.imgur.com/ap6n27Z.png)
+
 #### Openbox Settings
 
 **Keybindings**
