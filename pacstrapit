@@ -3405,9 +3405,7 @@ command=$1
 case ${command} in
   '') die ;;
 
-  start)
-    msg "Starting..."
-    main ;;
+  start) main ;;
 
   version) printversion ;;
 
