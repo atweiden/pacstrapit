@@ -207,7 +207,7 @@ function die() {
   exit 1
 }
 
-# select pkgs
+# select on/off
 if [[ "${FLAGS_select}" -eq "${FLAGS_TRUE}" || -n "$SELECT" || "$FLAGS_bundle" -eq "${FLAGS_TRUE}" || -n "$BUNDLE" ]]; then
   _select=1
 else
@@ -216,7 +216,7 @@ else
   _select=0
 fi
 
-# ssh
+# ssh on/off
 if [[ "${FLAGS_ssh}" -eq "${FLAGS_TRUE}" || -n "$SSH" ]]; then
   _ssh=1
 else
@@ -225,7 +225,7 @@ else
   _ssh=0
 fi
 
-# dotfiles
+# dotfiles on/off
 if [[ "${FLAGS_dotfiles}" -eq "${FLAGS_TRUE}" || -n "$DOTFILES" ]]; then
   _dotfiles=1
 else
