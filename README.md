@@ -2,7 +2,7 @@ pacstrap it: install arch the easy way
 ======================================
 
 <table>
-<tr><td>Last tested</td><td>2014-04-14 with archlinux-2014.04.01-dual.iso</td></tr>
+<tr><td>Last tested</td><td>2014-06-03 with archlinux-2014.06.01-dual.iso</td></tr>
 </table>
 
 
@@ -28,8 +28,8 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.5.21} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.5.21.tar.gz`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.6.0} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.6.0.tar.gz`
 6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -54,7 +54,7 @@ Defaults:
 <tr><td>Hosts allowed</td><td>192.168.0. (LAN - SSH is disabled by default)</td></tr>
 </table>
 
-> `cd pacstrapit-0.5.21 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.6.0 && $EDITOR pacstrapit`
 
 Done.
 
@@ -337,7 +337,7 @@ Additional packages are available.
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
 </table>
 
-Selecting all packages (GUI included) adds over 1.0 GB to the download
+Selecting all packages (GUI included) adds over 1.1 GB to the download
 and over 5.5 GB to the system image size. This is something to be aware
 of if installing on a slow Internet connection or to a small USB stick.
 An 8GB USB stick should work perfectly well, but free space would be

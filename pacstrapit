@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.5.21"
+VERSION="0.6.0"
 VERSION_DOTFILES="0.5.5"
 VERSION_ELECTRUM="1.9.8"
 
@@ -1005,6 +1005,7 @@ pacstrap /mnt abs                  \
               bash-completion      \
               btrfs-progs          \
               ca-certificates      \
+              cronie               \
               dhclient             \
               dialog               \
               dnscrypt-proxy       \
@@ -1015,6 +1016,7 @@ pacstrap /mnt abs                  \
               grub-bios            \
               haveged              \
               iproute2             \
+              iptables             \
               iw                   \
               kexec-tools          \
               net-tools            \
@@ -1968,10 +1970,10 @@ echo "sshd: ${_hosts_allowed}" >                                                
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Enabling systemd services..."
 
-arch-chroot /mnt systemctl enable cronie         \
-                                  dnscrypt-proxy \
-                                  iptables       \
-                                  systemd-swap
+arch-chroot /mnt systemctl enable cronie
+arch-chroot /mnt systemctl enable dnscrypt-proxy
+arch-chroot /mnt systemctl enable iptables
+arch-chroot /mnt systemctl enable systemd-swap
 
 # disable /var/log/journal CoW
 
@@ -2667,6 +2669,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'iftop'
           'inotify-tools'
           'iotop'
+          'lsof'
           'ltrace'
           'moreutils'
           'multitail'
@@ -2683,7 +2686,8 @@ if [[ "${_clojure}" == '1' ]]; then
           'clojure'
           'leiningen'
           'leiningen-completions'
-          'nailgun')
+          'nailgun'
+          'rlwrap')
   _vimpkgs+=('vim-clojure-sql-git'
              'vim-clojure-static-git'
              'vim-fireplace-git'
@@ -2834,7 +2838,8 @@ if [[ "${_vbox}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('qt4')
   fi
-  _pkgs+=('linux-headers'
+  _pkgs+=('dkms'
+          'linux-headers'
           'net-tools'
           'vde2'
           'virtualbox'
@@ -2868,6 +2873,8 @@ fi
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing selected pkgs..."
 
+arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+# run again in case pacaur lost net connection during prev pkg dep calc
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 
 # setup grsec
@@ -2955,9 +2962,7 @@ vboxsf
 # Load vboxvideo module at boot
 vboxvideo
 EOF
-  arch-chroot /mnt depmod -a
-  arch-chroot /mnt dkms install vboxhost/$(pacman -Q virtualbox|awk {'print $2'}|sed 's/\-.\+//') -k $(uname -rm|sed 's/\ /\//')
-  arch-chroot /mnt dkms install vboxguest/$(pacman -Q virtualbox|awk {'print $2'}|sed 's/\-.\+//') -k $(uname -rm|sed 's/\ /\//')
+  arch-chroot /mnt systemctl enable dkms
   arch-chroot /mnt systemctl enable vboxservice
 fi
 
@@ -3171,10 +3176,12 @@ fi
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Getting dotfiles..."
 
-mkdir -p /mnt/home/${_user_name}/.src /mnt/root/.src
+mkdir -p /mnt/home/${_user_name}/.src
 curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
 tar -xvzf /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}.tar.gz -C /mnt/home/${_user_name}/.src
-tar -xvzf /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}.tar.gz -C /mnt/root/.src
+mkdir -p /mnt/root/.src
+curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/root/.src/"#1-#3.#2"
+tar -xvzf /mnt/root/.src/dotfiles-${VERSION_DOTFILES}.tar.gz -C /mnt/root/.src
 
 # adjusting dotfile config parameters
 
@@ -3226,7 +3233,7 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
   && msg "Installing dotfiles..."
 
 arch-chroot /mnt su -c "cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" ${_user_name}
-arch-chroot /mnt /root/.src/dotfiles-${VERSION_DOTFILES}/bootstrap.sh
+arch-chroot /mnt su -c "cd /root/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" root
 
 # configuring wallpaper
 
@@ -3241,13 +3248,14 @@ arch-chroot /mnt /root/.src/dotfiles-${VERSION_DOTFILES}/bootstrap.sh
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_gui}" == '1' ]] \
   && msg "Configuring wallpaper..."
 
-sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' /mnt/home/${_user_name}/.config/nitrogen/nitrogen.cfg /mnt/root/.config/nitrogen/nitrogen.cfg
+sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' /mnt/home/${_user_name}/.config/nitrogen/nitrogen.cfg
 cat > /mnt/home/${_user_name}/.config/nitrogen/bg-saved.cfg <<'EOF'
 [:0.0]
 file=/usr/share/archlinux/wallpaper/archlinux-simplyblack-43.png
 mode=5
 bgcolor=#000000
 EOF
+sed -i 's#^dirs.*#dirs=/usr/share/archlinux/wallpaper;#' /mnt/root/.config/nitrogen/nitrogen.cfg
 cat > /mnt/root/.config/nitrogen/bg-saved.cfg <<'EOF'
 [:0.0]
 file=/usr/share/archlinux/wallpaper/archlinux-simplyblack-43.png
