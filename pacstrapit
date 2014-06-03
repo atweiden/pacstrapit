@@ -151,64 +151,13 @@ _keymap_default="us"
                       # etc...
 _timezone_default="America/Los_Angeles"
 
-# select pkgs
-if [[ -n "${FLAGS_select}" || -n "$SELECT" || -n "$FLAGS_bundle" || -n "$BUNDLE" ]]; then
-  _select=1
-else
-  # set to 1 to explicitly enable selectifying without the use of cmdline
-  # flags or environment variables
-  _select=0
-fi
-
-# ssh
-if [[ "${FLAGS_ssh}" -eq "${FLAGS_TRUE}" || -n "$SSH" ]]; then
-  _ssh=1
-else
-  # set to 1 to explicitly enable sshifying without the use of cmdline
-  # flags or environment variables
-  _ssh=0
-fi
+# ssh access
 _hosts_allowed_default="192.168.0."
-_electrum_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
-_user_pubkey_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
-_user_pubkey_sig_default="https://raw.github.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
+_electrum_pubkey_default="https://raw.githubusercontent.com/atweiden/dotfiles/master/_ssh/id_secp256k1.pub"
+_user_pubkey_default="https://raw.githubusercontent.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub"
+_user_pubkey_sig_default="https://raw.githubusercontent.com/atweiden/dotfiles/master/_ssh/id_ed25519.pub.sig"
 
-# dotfiles
-if [[ "${FLAGS_dotfiles}" -eq "${FLAGS_TRUE}" || -n "$DOTFILES" ]]; then
-  _dotfiles=1
-else
-  # set to 1 to explicitly enable dotifying without the use of cmdline
-  # flags or environment variables
-  _dotfiles=0
-fi
-
-# verbose on/off
-if [[ "${FLAGS_verbose}" -eq "${FLAGS_TRUE}" || -n "$VERBOSE" ]]; then
-  _verbose=1
-else
-  # set to 1 to explicitly enable verbose output without the use of
-  # cmdline flags or environment variables
-  _verbose=0
-fi
-
-# colors
-normal=$(tput sgr0)
-bold=$(tput bold)
-red=$(tput setaf 1)
-green=$(tput setaf 2)
-yellow=$(tput setaf 3)
-blue=$(tput setaf 4)
-teal=$(tput setaf 6)
-white=$(tput setaf 7)
-gray=$(tput setaf 8)
-
-
-
-
-# -----------------------------------------------------------------------------
 # cli
-# -----------------------------------------------------------------------------
-
 DEFINE_boolean 'interactive' false 'interactive mode'                  'i'
 DEFINE_boolean 'concealed'   false 'hidden interactive password input' 'c'
 DEFINE_string  'partition'    ''   'partition in which to install OS'  'P'
@@ -258,17 +207,52 @@ function die() {
   exit 1
 }
 
-command=$1
-case ${command} in
-  '') die ;;
+# select pkgs
+if [[ "${FLAGS_select}" -eq "${FLAGS_TRUE}" || -n "$SELECT" || "$FLAGS_bundle" -eq "${FLAGS_TRUE}" || -n "$BUNDLE" ]]; then
+  _select=1
+else
+  # set to 1 to explicitly enable selectifying without the use of cmdline
+  # flags or environment variables
+  _select=0
+fi
 
-  start)
-    msg "Starting..." ;;
+# ssh
+if [[ "${FLAGS_ssh}" -eq "${FLAGS_TRUE}" || -n "$SSH" ]]; then
+  _ssh=1
+else
+  # set to 1 to explicitly enable sshifying without the use of cmdline
+  # flags or environment variables
+  _ssh=0
+fi
 
-  version) printversion ;;
+# dotfiles
+if [[ "${FLAGS_dotfiles}" -eq "${FLAGS_TRUE}" || -n "$DOTFILES" ]]; then
+  _dotfiles=1
+else
+  # set to 1 to explicitly enable dotifying without the use of cmdline
+  # flags or environment variables
+  _dotfiles=0
+fi
 
-  *) die "unrecognized command (${command})" ;;
-esac
+# verbose on/off
+if [[ "${FLAGS_verbose}" -eq "${FLAGS_TRUE}" || -n "$VERBOSE" ]]; then
+  _verbose=1
+else
+  # set to 1 to explicitly enable verbose output without the use of
+  # cmdline flags or environment variables
+  _verbose=0
+fi
+
+# colors
+normal=$(tput sgr0)
+bold=$(tput bold)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+blue=$(tput setaf 4)
+teal=$(tput setaf 6)
+white=$(tput setaf 7)
+gray=$(tput setaf 8)
 
 
 
@@ -1038,6 +1022,7 @@ pacstrap /mnt abs                  \
               openssh              \
               python2              \
               sshpass              \
+              systemd-swap         \
               tmux                 \
               unzip                \
               wget                 \
@@ -1420,21 +1405,6 @@ for _pkg in cower pacaur; do
   done
   arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 done
-
-# install systemd-swap
-
-                   if [[ "$_debug" == '1' ]]; then
-                   echo "************************"
-                   echo "*                      *"
-                   echo "* install systemd-swap *"
-                   echo "*                      *"
-                   echo "************************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Installing systemd-swap..."
-
-arch-chroot /mnt pacaur -Sy --needed --asroot systemd-swap --noedit --noconfirm
 
 # always suspend to RAM
 
@@ -3382,9 +3352,10 @@ echo "******************************"
 
 
 # -----------------------------------------------------------------------------
-# go
+# main
 # -----------------------------------------------------------------------------
 
+function main() {
 # dependency checks
 checkify
 
@@ -3428,3 +3399,17 @@ fi
 
 # exit
 exitify
+}
+
+command=$1
+case ${command} in
+  '') die ;;
+
+  start)
+    msg "Starting..."
+    main ;;
+
+  version) printversion ;;
+
+  *) die "unrecognized command (${command})" ;;
+esac
