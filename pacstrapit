@@ -17,7 +17,7 @@
 
 # constants
 VERSION="0.6.0"
-VERSION_DOTFILES="0.5.5"
+VERSION_DOTFILES="0.6.0"
 VERSION_ELECTRUM="1.9.8"
 
 # machine
@@ -491,8 +491,7 @@ declare _block_devices=($(lsblk | awk '{print $1}' | tail -n+2 | tr -cd '[:alnum
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     msg      "Available block device numbers"
-    echo; for i in "${!_block_devices[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"
-    done; echo
+    echo; for i in "${!_block_devices[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_block_devices[${i}]}"; done; echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a block device number for partitioning:${normal}"; read -p ' ' _block_device_number
     echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_block_devices[${_block_device_number}]}${normal}"
     echo     "${bold}${yellow}::${normal} ${bold}${white}Data in${normal}   ${bold}${teal}${_block_devices[${_block_device_number}]}${normal} ${bold}${red}WILL BE DESTROYED${normal}."
@@ -885,10 +884,7 @@ declare _processors=('intel' 'other')
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     msg      "Available processors"
-    echo
-    for i in "${!_processors[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"
-    done
-    echo
+    echo; for i in "${!_processors[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_processors[${i}]}"; done; echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a processor number:${normal}"; read -p ' ' _processor_number
     echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_processors[${_processor_number}]}${normal}"
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_processors[${_processor_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _processor_confirm
@@ -924,10 +920,7 @@ declare _gpus=('intel' 'nvidia' 'radeon')
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     msg     "Available graphics cards"
-    echo
-    for i in "${!_gpus[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"
-    done
-    echo
+    echo; for i in "${!_gpus[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_gpus[${i}]}"; done; echo
     echo -n "${bold}${blue}::${normal} ${bold}${white}Select a graphics card number:${normal}"; read -p ' ' _gpu_number
     echo    "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_gpus[${_gpu_number}]}${normal}"
     echo -n "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_gpus[${_gpu_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _graphics_confirm
@@ -963,10 +956,7 @@ declare _disks=('hdd' 'ssd' 'usb')
 if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
   while true; do
     msg      "Available hard drive targets"
-    echo
-    for i in "${!_disks[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"
-    done
-    echo
+    echo; for i in "${!_disks[@]}"; do echo "       ${bold}${teal}${i}${normal}: ${_disks[${i}]}"; done; echo
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Select a hard drive target number:${normal}"; read -p ' ' _disk_number
     echo     "${bold}${blue}::${normal} ${bold}${white}You chose${normal} ${bold}${teal}${_disks[${_disk_number}]}${normal}"
     echo -n  "${bold}${blue}::${normal} ${bold}${white}Type in${normal}   ${bold}${teal}${_disks[${_disk_number}]}${normal} ${bold}${white}to continue:${normal}"; read -p ' ' _disk_confirm
