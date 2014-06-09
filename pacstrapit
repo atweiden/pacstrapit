@@ -2287,6 +2287,7 @@ if [[ "${_base}" == '1' ]]; then
           'imgurbash'
           'ipw2100-fw'
           'ipw2200-fw'
+          'irssi'
           'ix'
           'jq'
           'keybase'
@@ -2308,6 +2309,7 @@ if [[ "${_base}" == '1' ]]; then
           'pkgbuild-introspection'
           'pkgcacheclean'
           'pkgtools'
+          'profanity'
           'proxychains-ng'
           'pwsafe'
           'python2-pbp'
@@ -2328,6 +2330,7 @@ if [[ "${_base}" == '1' ]]; then
           'the_silver_searcher'
           'tor'
           'torsocks'
+          'toxic'
           'tree'
           'ttf-monaco'
           'usb_modeswitch'
@@ -2466,8 +2469,10 @@ if [[ "${_gui}" == '1' ]]; then
           'tiv'
           'tor-browser-en'
           'torchat'
+          'tox-prpl'
           'urxvt-perls'
           'valabattery-git'
+          'venom-git'
           'videoproto'
           'vlc'
           'volumeicon'
@@ -2694,7 +2699,8 @@ if [[ "${_elixir}" == '1' ]]; then
   else
     _pkgs+=('erlang-nox')
   fi
-  _pkgs+=('elixir')
+  _pkgs+=('elixir'
+          'rebar')
   _vimpkgs+=('vim-elixir-git'
              'vimerl-git'
              'vim-mix-git')
@@ -2886,6 +2892,7 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
 if [[ "$_grsec" == '1' ]]; then
   arch-chroot /mnt usermod -a -G tpe ${_user_name}
   arch-chroot /mnt usermod -a -G tpe root
+  arch-chroot /mnt sed -i 's!^GRUB_DEFAULT=0!GRUB_DEFAULT="1>2"!' /etc/default/grub
   arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 fi
 

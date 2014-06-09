@@ -268,6 +268,7 @@ Base packages include:
 <tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
+<tr><td><a href="http://irssi.org/">irssi</a></td><td>Modular text mode IRC client with Perl scripting.</td></tr>
 <tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
 <tr><td><a href="https://stedolan.github.io/jq/">jq</a></td><td>CLI JSON processor.</td></tr>
 <tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
@@ -289,6 +290,7 @@ Base packages include:
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
 <tr><td><a href="https://github.com/Daenyth/pkgtools">pkgtools</a></td><td>Pacman tools.</td></tr>
+<tr><td><a href="http://www.profanity.im/">profanity</a></td><td>A console based XMPP client.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
 <tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
@@ -309,6 +311,7 @@ Base packages include:
 <tr><td><a href="https://github.com/ggreer/the_silver_searcher">the_silver_searcher</a></td><td>Code searching tool.</td></tr>
 <tr><td><a href="https://www.torproject.org/">tor</a></td><td>Anonymizing overlay network.</td></tr>
 <tr><td><a href="https://code.google.com/p/torsocks">torsocks</a></td><td>Safely torify applications.</td></tr>
+<tr><td><a href="https://github.com/Tox/toxic">toxic</a></td><td>Text mode instant messaging client for Tox.</td></tr>
 <tr><td><a href="http://mama.indstate.edu/users/ice/tree/">tree</a></td><td>Show the contents of a directory in a depth-indented list of files.</td></tr>
 <tr><td><a href="https://en.wikipedia.org/wiki/Monaco_(typeface)">ttf-monaco</a></td><td>Monospaced sans-serif typeface.</td></tr>
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
