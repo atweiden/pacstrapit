@@ -2284,6 +2284,7 @@ if [[ "${_base}" == '1' ]]; then
           'geturl-git'
           'git'
           'gnupg1'
+          'httpie'
           'imgurbash'
           'ipw2100-fw'
           'ipw2200-fw'
