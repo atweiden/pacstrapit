@@ -2662,7 +2662,6 @@ _vimpkgs+=('ctags'
            'vim-unite-outline'
            'vim-vis-git'
            'vim-vimproc'
-           'vim-yankring'
            'vim-youcompleteme-git')
 
 if [[ "${_analysis}" == '1' ]]; then
