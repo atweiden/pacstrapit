@@ -324,6 +324,7 @@ Additional packages are available.
 
 <table>
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
+<tr><td>C</td><td>Packages for programming in C</td></tr>
 <tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
@@ -338,6 +339,7 @@ Additional packages are available.
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
+<tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
 </table>
 
