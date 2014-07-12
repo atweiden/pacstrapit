@@ -2276,6 +2276,7 @@ if [[ "${_base}" == '1' ]]; then
           'colordiff'
           'create_ap'
           'cronwhip'
+          'cv'
           'darkhttpd'
           'devtools'
           'dnsutils'

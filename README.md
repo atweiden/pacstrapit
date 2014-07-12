@@ -255,6 +255,7 @@ Base packages include:
 <tr><td><a href="http://www.colordiff.org/">colordiff</a></td><td>Syntax highlighting for diff.</td></tr>
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
+<tr><td><a href="https://github.com/Xfennec/cv">cv</a></td><td>Shows running coreutils basic commands and displays stats.</td></tr>
 <tr><td><a href="http://dmr.ath.cx/net/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
 <tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for package maintainers.</td></tr>
 <tr><td><a href="https://www.isc.org/downloads/bind/">dnsutils</a></td><td>Utilities: dig, host, and nslookup.</td></tr>
