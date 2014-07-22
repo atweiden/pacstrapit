@@ -2764,8 +2764,7 @@ fi
 if [[ "${_lua}" == '1' ]]; then
   _pkgs+=('lua')
   _vimpkgs+=('vim-lua-ftplugin-git'
-             'vim-lua-inspect-git'
-             'vim-lua-support')
+             'vim-lua-inspect-git')
 fi
 
 if [[ "${_markdown}" == '1' ]]; then
@@ -2805,8 +2804,7 @@ if [[ "${_perl}" == '1' ]]; then
           'perl-mojolicious')
   _vimpkgs+=('vim-after-syntax-perl-git'
              'vim-mojo-git'
-             'vim-perl'
-             'vim-perl-support')
+             'vim-perl')
 fi
 
 if [[ "${_python}" == '1' ]]; then
