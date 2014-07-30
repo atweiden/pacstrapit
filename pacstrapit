@@ -2204,6 +2204,7 @@ declare _bundle_full=('base'
                       'markdown'
                       'nimrod'
                       'node'
+                      'ocaml'
                       'perl'
                       'python'
                       'ruby'
@@ -2793,6 +2794,12 @@ if [[ "${_node}" == '1' ]]; then
              'vim-nodejs-errorformat-git'
              'vim-nodejs-git'
              'vim-stylus-git')
+fi
+
+if [[ "${_ocaml}" == '1' ]]; then
+  _pkgs+=('ocaml'
+          'ocaml-findlib'
+          'opam')
 fi
 
 if [[ "${_perl}" == '1' ]]; then

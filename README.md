@@ -337,6 +337,7 @@ Additional packages are available.
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
 <tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
 <tr><td>Node</td><td>Packages for programming in Node.js</td></tr>
+<tr><td>OCaml</td><td>Packages for programming in OCaml</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
