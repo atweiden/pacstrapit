@@ -2326,6 +2326,7 @@ if [[ "${_base}" == '1' ]]; then
           'reptyr'
           'rfkill'
           'rtorrent'
+          'seq2gif'
           'sfk'
           'socat'
           'spiped'
@@ -2340,6 +2341,7 @@ if [[ "${_base}" == '1' ]]; then
           'toxic'
           'tree'
           'ttf-monaco'
+          'ttyrec'
           'usb_modeswitch'
           'usbmuxd'
           'youtube-dl')
