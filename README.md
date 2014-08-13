@@ -321,6 +321,8 @@ Base packages include:
 <tr><td><a href="http://0xcc.net/ttyrec/">ttyrec</a></td><td>A tty recorder and player.</td></tr>
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
 <tr><td><a href="http://marcansoft.com/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
+<tr><td><a href="https://github.com/joewalnes/websocketd">websocketd</a></td><td>Turn any application that uses STDIO/STDOUT into a WebSocket server.</td></tr>
+<tr><td><a href="http://www.xinetd.org/">xinetd</a></td><td>A secure replacement for inetd.</td></tr>
 <tr><td><a href="https://rg3.github.io/youtube-dl/">youtube-dl</a></td><td><a href="https://www.youtube.com/">YouTube.com</a> CLI video downloader.</td></tr>
 </table>
 
