@@ -2287,6 +2287,7 @@ if [[ "${_base}" == '1' ]]; then
           'easytether-rpm'
           'elinks'
           'f-irc'
+          'firejail'
           'geturl-git'
           'git'
           'gnupg1'
