@@ -2314,6 +2314,7 @@ if [[ "${_base}" == '1' ]]; then
           'pacmatic'
           'parcimonie-sh-git'
           'perl-image-exiftool'
+          'pipe-logger-git'
           'pkgbuild-introspection'
           'pkgcacheclean'
           'pkgtools'

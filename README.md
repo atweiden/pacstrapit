@@ -291,6 +291,7 @@ Base packages include:
 <tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh-git</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
+<tr><td><a href="https://github.com/junegunn/pipe-logger">pipe-logger-git</a></td><td>Log rotation of stdout & stderr.</td></tr>
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
 <tr><td><a href="https://github.com/Daenyth/pkgtools">pkgtools</a></td><td>Pacman tools.</td></tr>
