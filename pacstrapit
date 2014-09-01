@@ -2338,6 +2338,7 @@ if [[ "${_base}" == '1' ]]; then
           'subrepo'
           'tcplay'
           'the_silver_searcher'
+          'tmux.sh-git'
           'tor'
           'torsocks'
           'toxic'
@@ -2618,6 +2619,7 @@ fi
 _vimpkgs+=('ctags'
            'vim-align'
            'vim-auto-pairs'
+           'vim-bufsurf-git'
            'vim-cecutil'
            'vim-colors-eddie-git'
            'vim-colors-jellyx-git'
@@ -2627,6 +2629,7 @@ _vimpkgs+=('ctags'
            'vim-colors-sorcerer'
            'vim-csapprox'
            'vim-ctrlsf-git'
+           'vim-dbext'
            'vim-dragvisuals-git'
            'vim-easydir-git'
            'vim-easymotion'
@@ -2651,28 +2654,37 @@ _vimpkgs+=('ctags'
            'vim-nerdcommenter'
            'vim-nerdtree'
            'vim-numbered-git'
+           'vim-obsession-git'
            'vim-openssl'
            'vim-operator-user-git'
            'vim-partial-git'
            'vim-pipe2eval-git'
+           'vim-projectionist-git'
            'vim-repeat'
            'vim-repl-git'
            'vim-reporoot-git'
            'vim-searchparty-git'
            'vim-singlecompile-git'
            'vim-spacebars-git'
+           'vim-sqlutilities-git'
            'vim-submode-git'
            'vim-surround'
            'vim-systemd'
            'vim-taboo-git'
            'vim-tabular-git'
            'vim-tagbar'
+           'vim-targets-git'
+           'vim-tbone-git'
+           'vim-textobj-entire-git'
            'vim-textobj-user-git'
+           'vim-tmuxline-git'
            'vim-tmux-navigator-git'
            'vim-unite'
            'vim-unite-outline'
-           'vim-vis-git'
+           'vim-vertical-move-git'
+           'vimux-git'
            'vim-vimproc'
+           'vim-vis-git'
            'vim-youcompleteme-git')
 
 if [[ "${_analysis}" == '1' ]]; then
@@ -2693,8 +2705,13 @@ if [[ "${_analysis}" == '1' ]]; then
 fi
 
 if [[ "${_c}" == '1' ]]; then
-  _pkgs+=('splint'
-          'valgrind')
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('codequery')
+  else
+    _pkgs+=('cscope'
+            'ruby-starscope'
+            'splint'
+            'valgrind')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
@@ -2722,7 +2739,8 @@ if [[ "${_elixir}" == '1' ]]; then
           'rebar')
   _vimpkgs+=('vim-elixir-git'
              'vimerl-git'
-             'vim-mix-git')
+             'vim-mix-git'
+             'vim-vimix-git')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
@@ -2835,6 +2853,7 @@ if [[ "${_python}" == '1' ]]; then
           'python2'
           'python2-jedi'
           'python2-pip'
+          'python2-pycscope'
           'python2-setuptools'
           'python2-vex'
           'python2-virtualenv'
@@ -2855,7 +2874,8 @@ if [[ "${_ruby}" == '1' ]]; then
           'rbenv-default-gems'
           'rbenv-each-git'
           'rbenv-vars')
-  _vimpkgs+=('vim-rbenv-git'
+  _vimpkgs+=('vim-rabl-git'
+             'vim-rbenv-git'
              'vim-ruby-git')
 fi
 
