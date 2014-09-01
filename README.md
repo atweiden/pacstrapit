@@ -1,21 +1,9 @@
-pacstrap it: install arch the easy way
-======================================
+btrfs on luks
+=============
 
 <table>
 <tr><td>Last tested</td><td>2014-06-03 with archlinux-2014.06.01-dual.iso</td></tr>
 </table>
-
-
-Features
---------
-
-- Btrfs on LUKS done for you
-- Supports persistent USB installation
-- Interactive and cmdline configuration options
-
-
-Assumptions
------------
 
 `pacstrapit` is meant for provisioning physical hardware. It assumes
 you have no need for dual-booting Windows, and that you are comfortable
