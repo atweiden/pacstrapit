@@ -2288,6 +2288,7 @@ if [[ "${_base}" == '1' ]]; then
           'elinks'
           'f-irc'
           'firejail'
+          'fzf'
           'geturl-git'
           'git'
           'gnupg1'
