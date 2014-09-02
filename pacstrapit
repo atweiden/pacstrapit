@@ -2720,6 +2720,8 @@ if [[ "${_c}" == '1' ]]; then
             'ruby-starscope'
             'splint'
             'valgrind')
+  _vimpkgs+=('vim-cpp-enhanced-highlight-git'
+             'vim-cpp-git')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
@@ -2793,7 +2795,7 @@ fi
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
-  _vimpkgs+=('vim-haskell')
+  _vimpkgs+=('vim-hasksyn-git')
 fi
 
 if [[ "${_lua}" == '1' ]]; then
@@ -2866,10 +2868,11 @@ if [[ "${_python}" == '1' ]]; then
           'python2-vex'
           'python2-virtualenv'
           'python2-virtualenv-clone')
-  _vimpkgs+=('vim-jedi'
+  _vimpkgs+=('vim-cython-git'
+             'vim-jedi'
              'vim-jinja-git'
              'vim-kivy-git'
-             'vim-python'
+             'vim-python-combined-git'
              'vim-virtualenv')
 fi
 
