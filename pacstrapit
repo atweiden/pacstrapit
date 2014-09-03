@@ -2633,6 +2633,7 @@ _vimpkgs+=('ctags'
            'vim-csapprox'
            'vim-ctrlsf-git'
            'vim-dbext'
+           'vim-dispatch-git'
            'vim-dragvisuals-git'
            'vim-easy-align-git'
            'vim-easydir-git'
@@ -2734,9 +2735,12 @@ if [[ "${_clojure}" == '1' ]]; then
           'leiningen-completions'
           'nailgun'
           'rlwrap')
-  _vimpkgs+=('vim-clojure-sql-git'
+  _vimpkgs+=('vim-classpath-git'
+             'vim-clojure-highlight-git'
+             'vim-clojure-sql-git'
              'vim-clojure-static-git'
              'vim-fireplace-git'
+             'vim-leiningen-git'
              'vim-rainbow-parentheses-git')
 fi
 
