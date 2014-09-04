@@ -2193,13 +2193,17 @@ declare _bundle_full=('base'
                       'gui'
                       'dotfiles'
                       'analysis'
+                      'assembly'
                       'c'
                       'clojure'
+                      'd'
                       'elixir'
                       'fonts'
                       'go'
                       'gobi'
+                      'groovy'
                       'haskell'
+                      'julia'
                       'lua'
                       'markdown'
                       'nimrod'
@@ -2207,6 +2211,7 @@ declare _bundle_full=('base'
                       'ocaml'
                       'perl'
                       'python'
+                      'racket'
                       'ruby'
                       'rust'
                       'vbox')
@@ -2275,6 +2280,7 @@ if [[ "${_base}" == '1' ]]; then
           'avahi'
           'bluez'
           'bluez-firmware'
+          'ccrypt'
           'colordiff'
           'create_ap'
           'cronwhip'
@@ -2465,6 +2471,7 @@ if [[ "${_gui}" == '1' ]]; then
           'openbox-menu'
           'openbox-themes'
           'pcmanfm'
+          'pencil'
           'pidgin-otr'
           'printproto'
           'pulseaudio'
@@ -2620,11 +2627,13 @@ else
 fi
 _vimpkgs+=('ctags'
            'vim-align'
+           'vim-ansible-yaml-git'
            'vim-auto-pairs'
            'vim-bufsurf-git'
            'vim-cecutil'
            'vim-colors-eddie-git'
            'vim-colors-jellyx-git'
+           'vim-colors-lettuce'
            'vim-colors-liquidcarbon'
            'vim-colors-mayansmoke'
            'vim-colors-neverland-git'
@@ -2647,8 +2656,8 @@ _vimpkgs+=('ctags'
            'vim-goyo-git'
            'vim-gtk-syntax-git'
            'vim-guicolorscheme'
-           'vim-gundo'
            'vim-haml-git'
+           'vim-html5-git'
            'vim-hugefile-git'
            'vim-indent-object'
            'vim-iptables'
@@ -2688,6 +2697,7 @@ _vimpkgs+=('ctags'
            'vim-textobj-user-git'
            'vim-tmuxline-git'
            'vim-tmux-navigator-git'
+           'vim-undotree-git'
            'vim-unimpaired-git'
            'vim-unite'
            'vim-unite-outline'
@@ -2715,6 +2725,13 @@ if [[ "${_analysis}" == '1' ]]; then
           'traceroute')
 fi
 
+if [[ "${_assembly}" == '1' ]]; then
+  _pkgs+=('fasm'
+          'nasm'
+          'yasm')
+  _vimpkgs+=('vim-gas')
+fi
+
 if [[ "${_c}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('codequery')
@@ -2724,7 +2741,8 @@ if [[ "${_c}" == '1' ]]; then
             'splint'
             'valgrind')
   _vimpkgs+=('vim-cpp-enhanced-highlight-git'
-             'vim-cpp-git')
+             'vim-cpp-git'
+             'vim-ifdef')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
@@ -2742,6 +2760,16 @@ if [[ "${_clojure}" == '1' ]]; then
              'vim-fireplace-git'
              'vim-leiningen-git'
              'vim-rainbow-parentheses-git')
+fi
+
+if [[ "${_d}" == '1' ]]; then
+  _pkgs+=('dcd-git'
+          'dmd'
+          'dtools'
+          'dscanner'
+          'dub'
+          'libphobos')
+  _vimpkgs+=('vim-dutyl')
 fi
 
 if [[ "${_elixir}" == '1' ]]; then
@@ -2777,6 +2805,7 @@ if [[ "${_fonts}" == '1' ]]; then
           'ttf-khmer'
           'ttf-linux-libertine'
           'ttf-mph-2b-damase'
+          'ttf-nishiki-teki'
           'ttf-sazanami'
           'ttf-symbola'
           'ttf-tibetan-machine'
@@ -2798,10 +2827,22 @@ if [[ "${_gobi}" == '1' ]]; then
           'modemmanager')
 fi
 
+if [[ "${_groovy}" == '1' ]]; then
+  _pkgs+=('grails'
+          'grails-docs'
+          'groovy'
+          'groovy-docs')
+fi
+
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
   _vimpkgs+=('vim-hasksyn-git')
+fi
+
+if [[ "${_julia}" == '1' ]]; then
+  _pkgs+=('julia')
+  _vimpkgs+=('julia-vim-git')
 fi
 
 if [[ "${_lua}" == '1' ]]; then
@@ -2858,7 +2899,10 @@ if [[ "${_perl}" == '1' ]]; then
 fi
 
 if [[ "${_python}" == '1' ]]; then
-  _pkgs+=('python'
+  _pkgs+=('ipython'
+          'ipython2'
+          'python'
+          'python-ipdb'
           'python-jedi'
           'python-pip'
           'python-setuptools'
@@ -2867,6 +2911,7 @@ if [[ "${_python}" == '1' ]]; then
           'python-virtualenv-clone'
           'python-virtualenvwrapper'
           'python2'
+          'python2-ipdb'
           'python2-jedi'
           'python2-pip'
           'python2-pycscope'
@@ -2879,7 +2924,16 @@ if [[ "${_python}" == '1' ]]; then
              'vim-jinja-git'
              'vim-kivy-git'
              'vim-python-combined-git'
+             'vim-vimux-ipy-git'
              'vim-virtualenv')
+fi
+
+if [[ "${_racket}" == '1' ]]; then
+  _pkgs+=('racket'
+          'scmindent-git')
+  _vimpkgs+=('vim-racket-git'
+             'vim-scribble'
+             'vim-slimv')
 fi
 
 if [[ "${_ruby}" == '1' ]]; then

@@ -240,6 +240,7 @@ Base packages include:
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez-firmware</a></td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
+<tr><td><a href="http://ccrypt.sourceforge.net/">ccrypt</a></td><td>Command-line utility for encrypting and decrypting files and streams.</td></tr>
 <tr><td><a href="http://www.colordiff.org/">colordiff</a></td><td>Syntax highlighting for diff.</td></tr>
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
@@ -323,14 +324,18 @@ Additional packages are available.
 
 <table>
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
-<tr><td>C</td><td>Packages for programming in C</td></tr>
+<tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
+<tr><td>C</td><td>Packages for programming in C/C++</td></tr>
 <tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
+<tr><td>D</td><td>Packages for programming in D</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
+<tr><td>Groovy</td><td>Packages for programming in Groovy</td></tr>
 <tr><td>Grsec</td><td>Packages for Grsecurity / PaX</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
+<tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
 <tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
@@ -338,6 +343,7 @@ Additional packages are available.
 <tr><td>OCaml</td><td>Packages for programming in OCaml</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
+<tr><td>Racket</td><td>Packages for programming in Racket</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
