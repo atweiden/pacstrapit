@@ -2932,7 +2932,10 @@ if [[ "${_python}" == '1' ]]; then
 fi
 
 if [[ "${_racket}" == '1' ]]; then
-  _pkgs+=('racket'
+  _pkgs+=('chicken'
+          'clisp'
+          'racket'
+          'sbcl'
           'scmindent-git')
   _vimpkgs+=('vim-racket-git'
              'vim-scribble'
