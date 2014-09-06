@@ -2316,6 +2316,7 @@ if [[ "${_base}" == '1' ]]; then
           'mlocate'
           'mosh'
           'ncurses'
+          'nyan-git'
           'openvpn'
           'p7zip'
           'pacmatic'
@@ -2737,11 +2738,11 @@ fi
 if [[ "${_c}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('codequery')
-  else
-    _pkgs+=('cscope'
-            'ruby-starscope'
-            'splint'
-            'valgrind')
+  fi
+  _pkgs+=('cscope'
+          'ruby-starscope'
+          'splint'
+          'valgrind')
   _vimpkgs+=('vim-cpp-enhanced-highlight-git'
              'vim-cpp-git'
              'vim-ifdef')
