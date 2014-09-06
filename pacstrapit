@@ -2964,6 +2964,7 @@ if [[ "${_vbox}" == '1' ]]; then
   _pkgs+=('dkms'
           'linux-headers'
           'net-tools'
+          'vagrant'
           'vde2'
           'virtualbox'
           'virtualbox-ext-oracle'
