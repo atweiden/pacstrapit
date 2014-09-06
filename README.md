@@ -337,6 +337,7 @@ Additional packages are available.
 <tr><td>Grsec</td><td>Packages for Grsecurity / PaX</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
+<tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
 <tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
@@ -344,7 +345,6 @@ Additional packages are available.
 <tr><td>OCaml</td><td>Packages for programming in OCaml</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
-<tr><td>Racket</td><td>Packages for programming in Racket</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
