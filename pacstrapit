@@ -2934,6 +2934,7 @@ fi
 if [[ "${_racket}" == '1' ]]; then
   _pkgs+=('chicken'
           'clisp'
+          'gambit-c'
           'racket'
           'sbcl'
           'scmindent-git')
