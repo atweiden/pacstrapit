@@ -250,7 +250,7 @@ Base packages include:
 <tr><td><a href="https://www.isc.org/downloads/bind/">dnsutils</a></td><td>Utilities: dig, host, and nslookup.</td></tr>
 <tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
 <tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
-<tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether-rpm</a></td><td>EasyTether Internet access drivers.</td></tr>
+<tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether</a></td><td>EasyTether Internet access drivers.</td></tr>
 <tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
 <tr><td><a href="http://www.vanheusden.com/f-irc/">f-irc</a></td><td>User-friendly IRC client for the console/terminal.</td></tr>
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
