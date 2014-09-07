@@ -2447,6 +2447,7 @@ if [[ "${_gui}" == '1' ]]; then
           'leafpad'
           'libgl'
           'link-grammar'
+          'lucidor'
           'lxappearance'
           'lxinput'
           'lxmed'
