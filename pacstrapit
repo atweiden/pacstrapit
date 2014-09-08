@@ -2623,7 +2623,8 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
-  _vimpkgs+=('vim-ultisnips')
+  _vimpkgs+=('vim-shell'
+             'vim-ultisnips')
 else
   declare _vimpkgs=('vim')
 fi
