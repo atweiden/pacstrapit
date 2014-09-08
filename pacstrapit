@@ -2501,6 +2501,7 @@ if [[ "${_gui}" == '1' ]]; then
           'videoproto'
           'vlc'
           'volumeicon'
+          'wmctrl'
           'x11-ssh-askpass'
           'xautolock'
           'xautomation'
@@ -2623,8 +2624,7 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
-  _vimpkgs+=('vim-shell'
-             'vim-ultisnips')
+  _vimpkgs+=('vim-ultisnips')
 else
   declare _vimpkgs=('vim')
 fi
