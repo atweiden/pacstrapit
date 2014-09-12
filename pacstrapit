@@ -2752,7 +2752,8 @@ if [[ "${_c}" == '1' ]]; then
           'valgrind')
   _vimpkgs+=('vim-cpp-enhanced-highlight-git'
              'vim-cpp-git'
-             'vim-ifdef')
+             'vim-ifdef'
+             'vim-objc-git')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
