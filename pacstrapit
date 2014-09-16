@@ -2211,6 +2211,7 @@ declare _bundle_full=('base'
                       'node'
                       'ocaml'
                       'perl'
+                      'php'
                       'python'
                       'ruby'
                       'rust'
@@ -2746,7 +2747,8 @@ if [[ "${_assembly}" == '1' ]]; then
   _pkgs+=('fasm'
           'nasm'
           'yasm')
-  _vimpkgs+=('vim-gas')
+  _vimpkgs+=('vim-armasm-git'
+             'vim-gas')
 fi
 
 if [[ "${_c}" == '1' ]]; then
@@ -2836,6 +2838,7 @@ fi
 
 if [[ "${_go}" == '1' ]]; then
   _pkgs+=('go')
+  _vimpkgs+=('gotags-git')
 fi
 
 if [[ "${_gobi}" == '1' ]]; then
@@ -2855,7 +2858,8 @@ fi
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
-  _vimpkgs+=('vim-hasksyn-git')
+  _vimpkgs+=('hasktags'
+             'vim-hasksyn-git')
 fi
 
 if [[ "${_julia}" == '1' ]]; then
@@ -2871,7 +2875,8 @@ fi
 
 if [[ "${_markdown}" == '1' ]]; then
   _pkgs+=('markdown')
-  _vimpkgs+=('vim-markdown')
+  _vimpkgs+=('markdown2ctags'
+             'vim-markdown')
 fi
 
 if [[ "${_nimrod}" == '1' ]]; then
@@ -2914,6 +2919,21 @@ if [[ "${_perl}" == '1' ]]; then
   _vimpkgs+=('vim-after-syntax-perl-git'
              'vim-mojo-git'
              'vim-perl')
+fi
+
+if [[ "${_php}" == '1' ]]; then
+  _pkgs+=('php'
+          'php-composer'
+          'php-docs'
+          'php-pear'
+          'php-phpdbg'
+          'xdebug')
+  _vimpkgs+=('vim-php-doc'
+             'vim-phpcomplete-extended-git'
+             'vim-phperrormarker'
+             'vim-phpfolding'
+             'vim-php-indent-git'
+             'vim-php-syntax-git')
 fi
 
 if [[ "${_python}" == '1' ]]; then

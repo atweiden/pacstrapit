@@ -345,6 +345,7 @@ Additional packages are available.
 <tr><td>Node</td><td>Packages for programming in Node.js</td></tr>
 <tr><td>OCaml</td><td>Packages for programming in OCaml</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
+<tr><td>PHP</td><td>Packages for programming in PHP</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
