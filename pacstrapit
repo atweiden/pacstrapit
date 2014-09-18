@@ -2901,8 +2901,8 @@ if [[ "${_node}" == '1' ]]; then
              'vim-jade-git'
              'vim-javascript-git'
              'vim-jquery'
+             'vim-node'
              'vim-nodejs-errorformat-git'
-             'vim-nodejs-git'
              'vim-stylus-git')
 fi
 
