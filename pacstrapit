@@ -305,6 +305,9 @@ if [[ "$(uname -m)" == 'x86_64' ]]; then
   echo '[multilib]'                         >> /etc/pacman.conf
   echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 fi
+sed -i "/^\\[extra\\].*/i [haskell-core]\n" /etc/pacman.conf
+sed -i "/^\\[haskell-core\\].*/i #https://wiki.archlinux.org/index.php/ArchHaskell" /etc/pacman.conf
+sed -i "/^\\[haskell-core\\].*/a Server = http://xsounds.org/~haskell/core/\$arch" /etc/pacman.conf
 
 # depends: pacman-key --init
 
@@ -2862,7 +2865,7 @@ fi
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
-  _vimpkgs+=('hasktags'
+  _vimpkgs+=('haskell-hasktags'
              'vim-hasksyn-git')
 fi
 
