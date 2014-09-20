@@ -274,6 +274,7 @@ Base packages include:
 <tr><td><a href="http://ftp.gnu.org/gnu/macchanger">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
+<tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
 <tr><td><a href="http://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
 <tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
@@ -318,6 +319,7 @@ Base packages include:
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
 <tr><td><a href="http://marcansoft.com/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
 <tr><td><a href="https://github.com/joewalnes/websocketd">websocketd</a></td><td>Turn any application that uses STDIO/STDOUT into a WebSocket server.</td></tr>
+<tr><td><a href="ftp://ftp.gnu.org/gnu/aspell/dict/0index.html">words</a></td><td>A collection of International 'words' files for /usr/share/dict.</td></tr>
 <tr><td><a href="http://www.xinetd.org/">xinetd</a></td><td>A secure replacement for inetd.</td></tr>
 <tr><td><a href="https://rg3.github.io/youtube-dl/">youtube-dl</a></td><td><a href="https://www.youtube.com/">YouTube.com</a> CLI video downloader.</td></tr>
 </table>
