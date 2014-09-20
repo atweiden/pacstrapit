@@ -2303,6 +2303,7 @@ if [[ "${_base}" == '1' ]]; then
           'fzf'
           'geturl-git'
           'git'
+          'git-extras'
           'gnupg1'
           'httpie'
           'imgurbash'
@@ -2871,7 +2872,7 @@ if [[ "${_clojure}" == '1' ]]; then
 fi
 
 if [[ "${_d}" == '1' ]]; then
-  _pkgs+=('dcd-git'
+  _pkgs+=('dcd'
           'dmd'
           'dtools'
           'dscanner'

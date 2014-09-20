@@ -257,6 +257,7 @@ Base packages include:
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>
 <tr><td><a href="https://github.com/uams/geturl">geturl</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
 <tr><td><a href="http://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
+<tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
 <tr><td><a href="http://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
 <tr><td><a href="https://github.com/jkbr/httpie">httpie</a></td><td>cURL for humans.</td></tr>
 <tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
