@@ -2738,6 +2738,7 @@ _vimpkgs+=('ctags'
            'vim-reporoot-git'
            'vim-searchparty-git'
            'vim-singlecompile-git'
+           'vim-slime-git'
            'vim-spacebars-git'
            'vim-spell-af'
            'vim-spell-am'
@@ -3006,6 +3007,7 @@ if [[ "${_ocaml}" == '1' ]]; then
   _pkgs+=('ocaml'
           'ocaml-findlib'
           'opam')
+  _vimpkgs+=('vim-ocaml-merlin-git')
 fi
 
 if [[ "${_perl}" == '1' ]]; then
@@ -3075,8 +3077,7 @@ if [[ "${_lisp}" == '1' ]]; then
           'sbcl'
           'scmindent-git')
   _vimpkgs+=('vim-racket-git'
-             'vim-scribble'
-             'vim-slimv')
+             'vim-scribble')
 fi
 
 if [[ "${_ruby}" == '1' ]]; then
