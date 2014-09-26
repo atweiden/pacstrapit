@@ -330,7 +330,7 @@ Additional packages are available.
 <table>
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
-<tr><td>C</td><td>Packages for programming in C/C++</td></tr>
+<tr><td>C</td><td>Packages for programming in C/C++/Obj-C</td></tr>
 <tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
 <tr><td>D</td><td>Packages for programming in D</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
