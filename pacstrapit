@@ -2524,6 +2524,7 @@ if [[ "${_gui}" == '1' ]]; then
           'tox-prpl'
           'rxvt-unicode-pixbuf'
           'urxvt-perls'
+          'urxvt-tabbedex'
           'valabattery-git'
           'venom-git'
           'videoproto'
