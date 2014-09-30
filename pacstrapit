@@ -2889,6 +2889,7 @@ if [[ "${_clojure}" == '1' ]]; then
              'vim-clojure-sql-git'
              'vim-clojure-static-git'
              'vim-fireplace-git'
+             'vim-jad'
              'vim-leiningen-git'
              'vim-rainbow-parentheses-git')
 fi
