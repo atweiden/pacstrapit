@@ -2282,6 +2282,7 @@ declare _pkgs=()
 if [[ "${_base}" == '1' ]]; then
   _pkgs+=('ack'
           'ansible'
+          'appjail'
           'arch-wiki-lite'
           'avahi'
           'bluez'
