@@ -2330,6 +2330,7 @@ if [[ "${_base}" == '1' ]]; then
           'nyan-git'
           'openvpn'
           'p7zip'
+          'packer'
           'pacmatic'
           'parcimonie-sh-git'
           'perl-image-exiftool'
