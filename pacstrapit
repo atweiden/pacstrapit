@@ -2324,6 +2324,7 @@ if [[ "${_base}" == '1' ]]; then
           'mercurial'
           'mlocate'
           'moby-thesaurus'
+          'monaco-powerline-font-git'
           'moreutils'
           'mosh'
           'ncurses'
