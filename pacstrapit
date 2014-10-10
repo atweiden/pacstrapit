@@ -2872,6 +2872,7 @@ if [[ "${_c}" == '1' ]]; then
     _pkgs+=('codequery')
   fi
   _pkgs+=('check'
+          'cppman'
           'cscope'
           'ruby-starscope'
           'splint'
