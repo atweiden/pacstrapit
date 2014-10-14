@@ -2300,6 +2300,7 @@ if [[ "${_base}" == '1' ]]; then
           'dvd+rw-tools'
           'easytether-rpm'
           'elinks'
+          'findx-git'
           'f-irc'
           'firejail'
           'fzf'
