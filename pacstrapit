@@ -2416,6 +2416,7 @@ if [[ "${_gui}" == '1' ]]; then
           'bleachbit'
           'castawesome'
           'chromium'
+          'compton-git'
           'conky'
           'deluge'
           'desktop-file-utils'
