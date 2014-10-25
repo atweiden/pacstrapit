@@ -3037,6 +3037,7 @@ fi
 
 if [[ "${_ocaml}" == '1' ]]; then
   _pkgs+=('ocaml'
+          'ocaml-doc'
           'ocaml-findlib'
           'opam')
   _vimpkgs+=('vim-ocaml-merlin-git')
