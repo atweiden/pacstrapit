@@ -1014,6 +1014,7 @@ pacstrap /mnt abs                  \
               iproute2             \
               iptables             \
               iw                   \
+              kbd                  \
               kexec-tools          \
               net-tools            \
               openresolv           \
@@ -1693,6 +1694,7 @@ EOF
 
 cat >> /mnt/etc/sudoers <<EOF
 ${_user_name} ALL=(ALL) ALL
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/loadkeys
 ${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
 ${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
 ${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
