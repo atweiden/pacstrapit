@@ -2370,6 +2370,7 @@ if [[ "${_base}" == '1' ]]; then
           'tree'
           'ttf-monaco'
           'ttyrec'
+          'tup'
           'usb_modeswitch'
           'usbmuxd'
           'websocketd'
