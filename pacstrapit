@@ -2349,6 +2349,7 @@ if [[ "${_base}" == '1' ]]; then
           'python3-aur'
           'qrencode'
           'quixand'
+          'ranger'
           'reptyr'
           'rfkill'
           'rtorrent'

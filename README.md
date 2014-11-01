@@ -300,6 +300,7 @@ Base packages include:
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
 <tr><td><a href="http://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quixand">quixand</a></td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
+<tr><td><a href="http://ranger.nongnu.org/">ranger</a></td><td>A simple, Vim-like file manager.</td></tr>
 <tr><td><a href="https://github.com/nelhage/reptyr">reptyr</a></td><td>Utility for taking an existing running program and attaching it to a new terminal.</td></tr>
 <tr><td><a href="http://wireless.kernel.org/en/users/Documentation/rfkill">rfkill</a></td><td>Tool for enabling and disabling wireless devices.</td></tr>
 <tr><td><a href="http://libtorrent.rakshasa.no/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
