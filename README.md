@@ -72,7 +72,7 @@ in /dev/sdb:
 ...use the `select` option instead of `bundle` for more control:
 
 ```bash
-./pacstrapit start --select    "base gui python nimrod"   \
+./pacstrapit start --select    "base gui python nim"   \
                    --dotfiles                             \
                    --username  "newusername"              \
                    --userpass  "your new user's password" \
@@ -349,7 +349,7 @@ Additional packages are available.
 <tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
-<tr><td>Nimrod</td><td>Packages for programming in Nimrod</td></tr>
+<tr><td>Nim</td><td>Packages for programming in Nim</td></tr>
 <tr><td>Node</td><td>Packages for programming in Node.js</td></tr>
 <tr><td>OCaml</td><td>Packages for programming in OCaml</td></tr>
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>

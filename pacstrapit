@@ -2215,7 +2215,7 @@ declare _bundle_full=('base'
                       'lisp'
                       'lua'
                       'markdown'
-                      'nimrod'
+                      'nim'
                       'node'
                       'ocaml'
                       'perl'
@@ -3015,7 +3015,7 @@ if [[ "${_markdown}" == '1' ]]; then
              'vim-markdown-git')
 fi
 
-if [[ "${_nimrod}" == '1' ]]; then
+if [[ "${_nim}" == '1' ]]; then
   _pkgs+=('nimrod')
   _vimpkgs+=('vim-nimrod-git')
 fi
