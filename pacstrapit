@@ -2341,7 +2341,6 @@ if [[ "${_base}" == '1' ]]; then
           'pipe-logger-git'
           'pkgbuild-introspection'
           'pkgcacheclean'
-          'pkgtools'
           'profanity'
           'proxychains-ng'
           'pwsafe'

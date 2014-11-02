@@ -292,7 +292,6 @@ Base packages include:
 <tr><td><a href="https://github.com/junegunn/pipe-logger">pipe-logger</a></td><td>Log rotation of stdout & stderr.</td></tr>
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
-<tr><td><a href="https://github.com/Daenyth/pkgtools">pkgtools</a></td><td>Pacman tools.</td></tr>
 <tr><td><a href="http://www.profanity.im/">profanity</a></td><td>A console based XMPP client.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
 <tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
