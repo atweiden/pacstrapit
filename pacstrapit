@@ -3108,11 +3108,13 @@ if [[ "${_python}" == '1' ]]; then
 fi
 
 if [[ "${_lisp}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('racket')
+  fi
   _pkgs+=('chicken'
           'clisp'
           'ecl'
           'gambit-c'
-          'racket'
           'sbcl'
           'scmindent-git')
   _vimpkgs+=('vim-racket-git'
