@@ -3016,8 +3016,8 @@ if [[ "${_markdown}" == '1' ]]; then
 fi
 
 if [[ "${_nim}" == '1' ]]; then
-  _pkgs+=('nimrod')
-  _vimpkgs+=('vim-nimrod-git')
+  _pkgs+=('nim')
+  _vimpkgs+=('vim-nim-git')
 fi
 
 if [[ "${_node}" == '1' ]]; then

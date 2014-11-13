@@ -72,7 +72,7 @@ in /dev/sdb:
 ...use the `select` option instead of `bundle` for more control:
 
 ```bash
-./pacstrapit start --select    "base gui python nim"   \
+./pacstrapit start --select    "base gui python nim"      \
                    --dotfiles                             \
                    --username  "newusername"              \
                    --userpass  "your new user's password" \
