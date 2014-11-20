@@ -2877,7 +2877,8 @@ if [[ "${_c}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('codequery')
   fi
-  _pkgs+=('check'
+  _pkgs+=('astyle'
+          'check'
           'cppman'
           'cscope'
           'ruby-starscope'
