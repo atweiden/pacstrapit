@@ -3022,6 +3022,7 @@ fi
 
 if [[ "${_node}" == '1' ]]; then
   _pkgs+=('dart'
+          'flow'
           'nodejs'
           'nodejs-bower'
           'nodejs-grasp'
