@@ -3061,7 +3061,8 @@ if [[ "${_perl}" == '1' ]]; then
 fi
 
 if [[ "${_php}" == '1' ]]; then
-  _pkgs+=('php'
+  _pkgs+=('hhvm'
+          'php'
           'php-composer'
           'php-docs'
           'php-pear'
