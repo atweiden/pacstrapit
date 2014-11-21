@@ -237,6 +237,7 @@ Base packages include:
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
 <tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Idempotent anti-conflaguration discombobulator.</td></tr>
 <tr><td><a href="https://github.com/brain0/appjail">appjail</a></td><td>Sandboxing tool to protect private data from untrusted applications.</td></tr>
+<tr><td><a href="https://github.com/seblu/archversion">archversion</a></td><td>Archlinux Version Controller.</td></tr>
 <tr><td><a href="http://kmkeen.com/arch-wiki-lite/">arch-wiki-lite</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a>, easily searched and viewable on console.</td></tr>
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
