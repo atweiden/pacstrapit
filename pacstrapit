@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.7.0"
+VERSION="0.8.0"
 VERSION_DOTFILES="0.7.0"
 VERSION_ELECTRUM="1.9.8"
 
@@ -2204,25 +2204,29 @@ declare _bundle_full=('base'
                       'assembly'
                       'c'
                       'clojure'
+                      'csharp'
                       'd'
                       'elixir'
                       'fonts'
+                      'frontend'
                       'go'
                       'gobi'
                       'groovy'
                       'haskell'
                       'julia'
+                      'latex'
                       'lisp'
                       'lua'
                       'markdown'
                       'nim'
-                      'node'
                       'ocaml'
                       'perl'
                       'php'
                       'python'
                       'ruby'
                       'rust'
+                      'scala'
+                      'swift'
                       'vbox')
 
 # pkgs feedback
@@ -2663,113 +2667,19 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
-  _vimpkgs+=('vim-ultisnips')
+  declare _vimplugs=('vim-vcooler-plugged-git')
 else
   declare _vimpkgs=('vim')
+  declare _vimplugs=()
 fi
-_vimpkgs+=('ctags'
-           'vim-align'
-           'vim-ansible-yaml-git'
-           'vim-auto-pairs'
-           'vim-bbye'
-           'vim-bufsurf-git'
-           'vim-cecutil'
-           'vim-centaur-git'
-           'vim-clever-f'
-           'vim-colors-autumnleaf'
-           'vim-colors-baycomb'
-           'vim-colors-bubblegum-git'
-           'vim-colors-candy-git'
-           'vim-colors-candyman'
-           'vim-colors-eddie-git'
-           'vim-colors-github'
-           'vim-colors-gruvbox-git'
-           'vim-colors-iceberg'
-           'vim-colors-jellyx-git'
-           'vim-colors-lettuce'
-           'vim-colors-liquidcarbon'
-           'vim-colors-lucius-git'
-           'vim-colors-matrix'
-           'vim-colors-mayansmoke'
-           'vim-colors-mimicpak'
-           'vim-colors-mirodark-git'
-           'vim-colors-nefertiti'
-           'vim-colors-neon-git'
-           'vim-colors-neverland-git'
-           'vim-colors-oceanblack-git'
-           'vim-colors-oceanlight'
-           'vim-colors-pencil-git'
-           'vim-colors-print_bw'
-           'vim-colors-seoul256-git'
-           'vim-colors-solarized-git'
-           'vim-colors-sorcerer'
-           'vim-colors-summerfruit256'
-           'vim-colors-taqua'
-           'vim-colors-vombatidae-git'
-           'vim-colors-wallaby-git'
-           'vim-colors-zenesque'
-           'vim-committia-git'
-           'vim-csapprox'
-           'vim-ctrlsf-git'
-           'vim-dbext'
-           'vim-dispatch-git'
-           'vim-dragvisuals-git'
-           'vim-easy-align-git'
-           'vim-easydir-git'
-           'vim-easymotion-git'
-           'vim-easytags'
-           'vim-expand-region-git'
-           'vim-filebeagle-git'
-           'vim-file-line-git'
-           'vim-fugitive'
-           'vim-fzf'
-           'vim-gnupg'
-           'vim-goyo-git'
-           'vim-gtk-syntax-git'
-           'vim-guicolorscheme'
-           'vim-haml-git'
-           'vim-html5-git'
-           'vim-hugefile-git'
-           'vim-incsearch'
-           'vim-indent-object'
-           'vim-iptables'
-           'vim-jellybeans'
-           'vim-kangaroo-git'
-           'vim-kolor'
-           'vim-lawrencium'
-           'vim-ledger-git'
-           'vim-lengthmatters'
-           'vim-less-git'
-           'vim-lexical-git'
-           'vim-lightline-git'
-           'vim-limelight-git'
-           'vim-litecorrect-git'
-           'vim-lustyexplorer'
-           'vim-markology-git'
-           'vim-marvim'
-           'vim-matchit'
-           'vim-misc-xolox'
-           'vim-multiple-cursors-git'
-           'vim-nerdcommenter'
-           'vim-nerdtree'
-           'vim-nrrwrgn-git'
-           'vim-numbered-git'
-           'vim-obsession-git'
-           'vim-openssl'
-           'vim-operator-user-git'
+_vimpkgs+=('clang'
+           'cmake'
+           'ctags'
+           'dos2unix'
+           'mono'
+           'patch'
+           'patchutils'
            'vimpager'
-           'vim-paredit'
-           'vim-partial-git'
-           'vim-pipe2eval-git'
-           'vim-projectionist-git'
-           'vim-repeat'
-           'vim-repl-git'
-           'vim-reporoot-git'
-           'vim-scriptease-git'
-           'vim-searchparty-git'
-           'vim-singlecompile-git'
-           'vim-slime-git'
-           'vim-spacebars-git'
            'vim-spell-af'
            'vim-spell-am'
            'vim-spell-bg'
@@ -2819,36 +2729,202 @@ _vimpkgs+=('ctags'
            'vim-spell-tn'
            'vim-spell-uk'
            'vim-spell-yi'
-           'vim-spell-zu'
-           'vim-sqlutilities-git'
-           'vim-submode-git'
-           'vim-surround'
-           'vim-systemd'
-           'vim-taboo-git'
-           'vim-tagbar'
-           'vim-targets-git'
-           'vim-tbone-git'
-           'vim-textobj-quote-git'
-           'vim-textobj-sentence-git'
-           'vim-textobj-user-git'
-           'vim-thematic-git'
-           'vim-tmuxline-git'
-           'vim-tmux-navigator-git'
-           'vim-tmux-syntax-git'
-           'vim-toml-git'
-           'vim-undotree-git'
-           'vim-unimpaired-git'
-           'vim-unite-git'
-           'vim-unite-outline'
-           'vimux-git'
-           'vim-vertical-move-git'
-           'vim-vimproc'
-           'vim-vis-git'
-           'vim-visualrepeat-git'
-           'vim-vital-git'
-           'vim-wordy-git'
-           'vim-xoria256'
-           'vim-youcompleteme-git')
+           'vim-spell-zu')
+_vimplugs+=('vim-abolish-plugged-git'
+            'vim-accordion-plugged-git'
+            'vim-after-syntax-vim-plugged-git'
+            'vim-align-plugged-git'
+            'vim-ansible-yaml-plugged-git'
+            'vim-archversion-plugged-git'
+            'vim-arpeggio-plugged-git'
+            'vim-auto-pairs-plugged-git'
+            'vim-autorepeat-plugged-git'
+            'vim-awk-support-plugged-git'
+            'vim-bbye-plugged-git'
+            'vim-blockit-plugged-git'
+            'vim-bufsurf-plugged-git'
+            'vim-calendar-plugged-git'
+            'vim-capture-plugged-git'
+            'vim-cecutil-plugged-git'
+            'vim-centaur-plugged-git'
+            'vim-clever-f-plugged-git'
+            'vim-clone-plugged-git'
+            'vim-colors-autumnleaf-plugged-git'
+            'vim-colors-base16-plugged-git'
+            'vim-colors-baycomb-plugged-git'
+            'vim-colors-briofita-plugged-git'
+            'vim-colors-bubblegum-plugged-git'
+            'vim-colors-buttercream-plugged-git'
+            'vim-colors-candyman-plugged-git'
+            'vim-colors-eddie-plugged-git'
+            'vim-colors-github-plugged-git'
+            'vim-colors-grb256-plugged-git'
+            'vim-colors-gruvbox-plugged-git'
+            'vim-colors-harold-plugged-git'
+            'vim-colors-hybrid-plugged-git'
+            'vim-colors-iceberg-plugged-git'
+            'vim-colors-inkpot-plugged-git'
+            'vim-colors-ir_black-plugged-git'
+            'vim-colors-jellybeans-plugged-git'
+            'vim-colors-jellyx-plugged-git'
+            'vim-colors-kolor-plugged-git'
+            'vim-colors-last256-plugged-git'
+            'vim-colors-lettuce-plugged-git'
+            'vim-colors-liquidcarbon-plugged-git'
+            'vim-colors-lucius-plugged-git'
+            'vim-colors-matrix-plugged-git'
+            'vim-colors-mayansmoke-plugged-git'
+            'vim-colors-mimicpak-plugged-git'
+            'vim-colors-miro8-plugged-git'
+            'vim-colors-mirodark-plugged-git'
+            'vim-colors-molokai-plugged-git'
+            'vim-colors-mrkn256-plugged-git'
+            'vim-colors-nefertiti-plugged-git'
+            'vim-colors-neon-plugged-git'
+            'vim-colors-neverland-plugged-git'
+            'vim-colors-oceanlight-plugged-git'
+            'vim-colors-pencil-plugged-git'
+            'vim-colors-print_bw-plugged-git'
+            'vim-colors-seoul256-plugged-git'
+            'vim-colors-solarized-plugged-git'
+            'vim-colors-sorcerer-plugged-git'
+            'vim-colors-stackoverflow-plugged-git'
+            'vim-colors-summerfruit256-plugged-git'
+            'vim-colors-taqua-plugged-git'
+            'vim-colors-tomorrow-plugged-git'
+            'vim-colors-vibrantink-plugged-git'
+            'vim-colors-vombatidae-plugged-git'
+            'vim-colors-vombato-plugged-git'
+            'vim-colors-wallaby-plugged-git'
+            'vim-colors-xoria256-plugged-git'
+            'vim-colors-zenburn-plugged-git'
+            'vim-colors-zenesque-plugged-git'
+            'vim-columnmove-plugged-git'
+            'vim-commentary-plugged-git'
+            'vim-committia-plugged-git'
+            'vim-crunch-plugged-git'
+            'vim-csapprox-plugged-git'
+            'vim-csv-plugged-git'
+            'vim-ctrlsf-plugged-git'
+            'vim-dbext-plugged-git'
+            'vim-dispatch-plugged-git'
+            'vim-dockerfile-plugged-git'
+            'vim-dragvisuals-plugged-git'
+            'vim-dwm-plugged-git'
+            'vim-easy-align-plugged-git'
+            'vim-easydir-plugged-git'
+            'vim-easymotion-plugged-git'
+            'vim-easytags-plugged-git'
+            'vim-emmet-plugged-git'
+            'vim-expand-region-plugged-git'
+            'vim-fieldtrip-plugged-git'
+            'vim-filebeagle-plugged-git'
+            'vim-file-line-plugged-git'
+            'vim-fixkey-plugged-git'
+            'vim-fugitive-plugged-git'
+            'vim-fzf-plugged-git'
+            'vim-gitv-plugged-git'
+            'vim-gnupg-plugged-git'
+            'vim-goyo-plugged-git'
+            'vim-guicolorscheme-plugged-git'
+            'vim-hilinktrace-plugged-git'
+            'vim-hugefile-plugged-git'
+            'vim-i3-syntax-plugged-git'
+            'vim-incsearch-plugged-git'
+            'vim-indent-object-plugged-git'
+            'vim-indexed-search-plugged-git'
+            'vim-ingo-library-plugged-git'
+            'vim-inline_edit-plugged-git'
+            'vim-iptables-plugged-git'
+            'vim-kangaroo-plugged-git'
+            'vim-lawrencium-plugged-git'
+            'vim-ledger-plugged-git'
+            'vim-lexical-plugged-git'
+            'vim-lightline-plugged-git'
+            'vim-lilyvim-plugged-git'
+            'vim-limelight-plugged-git'
+            'vim-linediff-plugged-git'
+            'vim-line-juggler-commands-plugged-git'
+            'vim-line-juggler-plugged-git'
+            'vim-litecorrect-plugged-git'
+            'vim-localmacros-plugged-git'
+            'vim-lusty-plugged-git'
+            'vim-markology-plugged-git'
+            'vim-marvim-plugged-git'
+            'vim-matchit-plugged-git'
+            'vim-matrix-screensaver-plugged-git'
+            'vim-misc-xolox-plugged-git'
+            'vim-multiple-cursors-plugged-git'
+            'vim-nerdtree-plugged-git'
+            'vim-nerdtree-tabs-plugged-git'
+            'vim-nomad-plugged-git'
+            'vim-nrrwrgn-plugged-git'
+            'vim-numbered-plugged-git'
+            'vim-numbers-plugged-git'
+            'vim-obsession-plugged-git'
+            'vim-obvious-resize-plugged-git'
+            'vim-openssl-plugged-git'
+            'vim-operator-user-plugged-git'
+            'vim-over-plugged-git'
+            'vim-pacmanlog-plugged-git'
+            'vim-partial-plugged-git'
+            'vim-patchreview-plugged-git'
+            'vim-projectionist-plugged-git'
+            'vim-promptline-plugged-git'
+            'vim-prosession-plugged-git'
+            'vim-rainbow-parentheses-plugged-git'
+            'vim-recover-plugged-git'
+            'vim-rename-plugged-git'
+            'vim-repeat-plugged-git'
+            'vim-replace-with-register-plugged-git'
+            'vim-reporoot-plugged-git'
+            'vim-salt-plugged-git'
+            'vim-screen-plugged-git'
+            'vim-scriptease-plugged-git'
+            'vim-searchparty-plugged-git'
+            'vim-sideways-plugged-git'
+            'vim-signature-plugged-git'
+            'vim-simple_bookmarks-plugged-git'
+            'vim-singlecompile-plugged-git'
+            'vim-slimux-plugged-git'
+            'vim-sonictemplate-plugged-git'
+            'vim-sqlutilities-plugged-git'
+            'vim-submode-plugged-git'
+            'vim-surround-plugged-git'
+            'vim-syntaxrange-plugged-git'
+            'vim-systemd-plugged-git'
+            'vim-table-mode-plugged-git'
+            'vim-taboo-plugged-git'
+            'vim-tabularity-plugged-git'
+            'vim-tabular-plugged-git'
+            'vim-tagbar-plugged-git'
+            'vim-targets-plugged-git'
+            'vim-tbone-plugged-git'
+            'vim-textobj-entire-plugged-git'
+            'vim-textobj-quote-plugged-git'
+            'vim-textobj-sentence-plugged-git'
+            'vim-textobj-user-plugged-git'
+            'vim-textobj-word-column-plugged-git'
+            'vim-thematic-plugged-git'
+            'vim-thumbnail-plugged-git'
+            'vim-tmuxline-plugged-git'
+            'vim-tmux-navigator-plugged-git'
+            'vim-tmux-syntax-plugged-git'
+            'vim-toml-plugged-git'
+            'vim-ultisnips-plugged-git'
+            'vim-undotree-plugged-git'
+            'vim-unite-outline-plugged-git'
+            'vim-unite-plugged-git'
+            'vim-unstack-plugged-git'
+            'vimux-plugged-git'
+            'vim-vertical-help-plugged-git'
+            'vim-vertical-move-plugged-git'
+            'vim-vimproc-plugged-git'
+            'vim-vis-plugged-git'
+            'vim-visualrepeat-plugged-git'
+            'vim-wordy-plugged-git'
+            'vim-xterm-color-table-plugged-git'
+            'vim-youcompleteme-plugged-git')
 
 if [[ "${_analysis}" == '1' ]]; then
   _pkgs+=('glances'
@@ -2870,8 +2946,8 @@ if [[ "${_assembly}" == '1' ]]; then
   _pkgs+=('fasm'
           'nasm'
           'yasm')
-  _vimpkgs+=('vim-armasm-git'
-             'vim-gas')
+  _vimplugs+=('vim-armasm-plugged-git'
+              'vim-gas-plugged-git')
 fi
 
 if [[ "${_c}" == '1' ]]; then
@@ -2882,31 +2958,39 @@ if [[ "${_c}" == '1' ]]; then
           'check'
           'cppman'
           'cscope'
+          'gdb'
           'ruby-starscope'
           'splint'
           'valgrind')
-  _vimpkgs+=('vim-cpp-enhanced-highlight-git'
-             'vim-cpp-git'
-             'vim-ifdef'
-             'vim-objc-git')
+  _vimplugs+=('vim-after-syntax-c-plugged-git'
+              'vim-conque-gdb-plugged-git'
+              'vim-cpp-enhanced-highlight-plugged-git'
+              'vim-cpp-plugged-git'
+              'vim-ifdef-plugged-git'
+              'vim-objc-plugged-git')
 fi
 
 if [[ "${_clojure}" == '1' ]]; then
   _pkgs+=('jdk7-openjdk'
           'ca-certificates-java'
           'clojure'
+          'jad'
           'leiningen'
           'leiningen-completions'
           'nailgun'
           'rlwrap')
-  _vimpkgs+=('vim-classpath-git'
-             'vim-clojure-highlight-git'
-             'vim-clojure-sql-git'
-             'vim-clojure-static-git'
-             'vim-fireplace-git'
-             'vim-jad'
-             'vim-leiningen-git'
-             'vim-rainbow-parentheses-git')
+  _vimplugs+=('vim-classpath-plugged-git'
+              'vim-clojure-highlight-plugged-git'
+              'vim-clojure-sql-plugged-git'
+              'vim-clojure-static-plugged-git'
+              'vim-fireplace-plugged-git'
+              'vim-jad-plugged-git'
+              'vim-leiningen-plugged-git'
+              'vim-typedclojure-plugged-git')
+fi
+
+if [[ "${_csharp}" == '1' ]]; then
+  _vimplugs+=('vim-csharp-plugged-git')
 fi
 
 if [[ "${_d}" == '1' ]]; then
@@ -2916,7 +3000,7 @@ if [[ "${_d}" == '1' ]]; then
           'dscanner'
           'dub'
           'libphobos')
-  _vimpkgs+=('vim-dutyl')
+  _vimplugs+=('vim-dutyl-plugged-git')
 fi
 
 if [[ "${_elixir}" == '1' ]]; then
@@ -2928,10 +3012,10 @@ if [[ "${_elixir}" == '1' ]]; then
   fi
   _pkgs+=('elixir'
           'rebar')
-  _vimpkgs+=('vim-elixir-git'
-             'vimerl-git'
-             'vim-mix-git'
-             'vim-vimix-git')
+  _vimplugs+=('vim-elixir-plugged-git'
+              'vimerl-plugged-git'
+              'vim-mix-plugged-git'
+              'vim-vimix-plugged-git')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
@@ -2964,9 +3048,47 @@ if [[ "${_fonts}" == '1' ]]; then
           'wqy-zenhei')
 fi
 
+if [[ "${_frontend}" == '1' ]]; then
+  _pkgs+=('dart'
+          'flow'
+          'nodejs'
+          'nodejs-bower'
+          'nodejs-grasp'
+          'nodejs-grunt-cli'
+          'nodejs-hexo'
+          'nodejs-jade'
+          'nodejs-stylus')
+  _vimplugs+=('vim-better-javascript-completion-plugged-git'
+              'vim-dart-plugged-git'
+              'vim-egs-plugged-git'
+              'vim-flow-plugged-git'
+              'vim-gorillascript-plugged-git'
+              'vim-javascript-libraries-syntax-plugged-git'
+              'vim-javascript-plugged-git'
+              'vim-jquery-plugged-git'
+              'vim-json5-plugged-git'
+              'vim-json-plugged-git'
+              'vim-nodejs-errorformat-plugged-git'
+              'vim-node-plugged-git'
+              'vim-tern-plugged-git'
+              'vim-yajs-plugged-git')
+  _vimplugs+=('vim-better-css-completion-plugged-git'
+              'vim-css3-syntax-plugged-git'
+              'vim-less-plugged-git'
+              'vim-stylus-plugged-git')
+  _vimplugs+=('vim-haml-plugged-git'
+              'vim-html5-plugged-git'
+              'vim-jade-plugged-git'
+              'vim-jinja2-syntax-plugged-git'
+              'vim-mustache-handlebars-plugged-git'
+              'vim-slim-plugged-git')
+fi
+
 if [[ "${_go}" == '1' ]]; then
   _pkgs+=('go')
   _vimpkgs+=('gotags-git')
+  _vimplugs+=('vim-go-extra-plugged-git'
+              'vim-go-plugged-git')
 fi
 
 if [[ "${_gobi}" == '1' ]]; then
@@ -2989,56 +3111,60 @@ if [[ "${_haskell}" == '1' ]]; then
   _vimpkgs+=('haskell-ghc-mod'
              'haskell-hasktags'
              'haskell-pointfree'
-             'haskell-pointful'
-             'vim-ghcmod'
-             'vim-haskell-conceal-plus-git'
-             'vim-haskell-fold-git'
-             'vim-hasksyn-git'
-             'vim-lhaskell-git'
-             'vim-neco-ghc-git')
+             'haskell-pointful')
+  _vimplugs+=('vim-ghcmod-plugged-git'
+              'vim-haskell-conceal-plus-plugged-git'
+              'vim-haskell-fold-plugged-git'
+              'vim-hasksyn-plugged-git'
+              'vim-lhaskell-plugged-git'
+              'vim-neco-ghc-plugged-git'
+              'vim-syntax-shakespeare-plugged-git')
 fi
 
 if [[ "${_julia}" == '1' ]]; then
   _pkgs+=('julia')
-  _vimpkgs+=('julia-vim-git')
+  _vimplugs+=('vim-julia-minimalist-plugged-git')
+fi
+
+if [[ "${_latex}" == 1 ]]; then
+  _pkgs+=('texlive-core')
+  _vimplugs+=('vim-latex-plugged-git')
+fi
+
+if [[ "${_lisp}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('racket')
+  fi
+  _pkgs+=('chicken'
+          'clisp'
+          'ecl'
+          'gambit-c'
+          'sbcl'
+          'scmindent-git')
+  _vimplugs+=('vim-paredit-plugged-git'
+              'vim-racket-plugged-git'
+              'vim-scribble-plugged-git'
+              'vim-slime-plugged-git')
 fi
 
 if [[ "${_lua}" == '1' ]]; then
   _pkgs+=('lua')
-  _vimpkgs+=('vim-lua-ftplugin-git'
-             'vim-lua-inspect-git')
+  _vimplugs+=('vim-lua-ftplugin-plugged-git'
+              'vim-lua-inspect-plugged-git'
+              'vim-moonscript-plugged-git')
 fi
 
 if [[ "${_markdown}" == '1' ]]; then
   _pkgs+=('markdown')
-  _vimpkgs+=('markdown2ctags'
-             'vim-markdown-enhancements-git'
-             'vim-markdown-folding-git'
-             'vim-markdown-git')
+  _vimpkgs+=('markdown2ctags')
+  _vimplugs+=('vim-markdown-enhancements-plugged-git'
+              'vim-markdown-folding-plugged-git'
+              'vim-markdown-plugged-git')
 fi
 
 if [[ "${_nim}" == '1' ]]; then
   _pkgs+=('nim')
-  _vimpkgs+=('vim-nim-git')
-fi
-
-if [[ "${_node}" == '1' ]]; then
-  _pkgs+=('dart'
-          'flow'
-          'nodejs'
-          'nodejs-bower'
-          'nodejs-grasp'
-          'nodejs-grunt-cli'
-          'nodejs-hexo'
-          'nodejs-jade'
-          'nodejs-stylus')
-  _vimpkgs+=('vim-dart-plugin'
-             'vim-jade-git'
-             'vim-javascript-git'
-             'vim-jquery'
-             'vim-node'
-             'vim-nodejs-errorformat-git'
-             'vim-stylus-git')
+  _vimplugs+=('vim-nim-plugged-git')
 fi
 
 if [[ "${_ocaml}" == '1' ]]; then
@@ -3058,9 +3184,10 @@ if [[ "${_perl}" == '1' ]]; then
           'perl-io-socket-ssl'
           'perl-mojolicious'
           'perl-net-dns-native')
-  _vimpkgs+=('vim-after-syntax-perl-git'
-             'vim-mojo-git'
-             'vim-perl')
+  _vimplugs+=('vim-after-syntax-perl-plugged-git'
+              'vim-mojo-plugged-git'
+              'vim-perlomni-plugged-git'
+              'vim-perl-plugged-git')
 fi
 
 if [[ "${_php}" == '1' ]]; then
@@ -3071,12 +3198,12 @@ if [[ "${_php}" == '1' ]]; then
           'php-pear'
           'php-phpdbg'
           'xdebug')
-  _vimpkgs+=('vim-php-doc'
-             'vim-phpcomplete-extended-git'
-             'vim-phperrormarker'
-             'vim-phpfolding'
-             'vim-php-indent-git'
-             'vim-php-syntax-git')
+  _vimplugs+=('vim-hack-plugged-git'
+              'vim-phpcomplete-extended-plugged-git'
+              'vim-php-error-marker-plugged-git'
+              'vim-php-folding-plugged-git'
+              'vim-php-indent-plugged-git'
+              'vim-php-syntax-plugged-git')
 fi
 
 if [[ "${_python}" == '1' ]]; then
@@ -3102,27 +3229,11 @@ if [[ "${_python}" == '1' ]]; then
           'python-virtualenv'
           'python-virtualenv-clone'
           'python-virtualenvwrapper')
-  _vimpkgs+=('vim-cython-git'
-             'vim-jedi'
-             'vim-jinja-git'
-             'vim-kivy-git'
-             'vim-python-combined-git'
-             'vim-vimux-ipy-git'
-             'vim-virtualenv')
-fi
-
-if [[ "${_lisp}" == '1' ]]; then
-  if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('racket')
-  fi
-  _pkgs+=('chicken'
-          'clisp'
-          'ecl'
-          'gambit-c'
-          'sbcl'
-          'scmindent-git')
-  _vimpkgs+=('vim-racket-git'
-             'vim-scribble')
+  _vimplugs+=('vim-cython-plugged-git'
+              'vim-jedi-plugged-git'
+              'vim-kivy-plugged-git'
+              'vim-python-combined-plugged-git'
+              'vim-virtualenv-plugged-git')
 fi
 
 if [[ "${_ruby}" == '1' ]]; then
@@ -3134,13 +3245,26 @@ if [[ "${_ruby}" == '1' ]]; then
           'rbenv-default-gems'
           'rbenv-each-git'
           'rbenv-vars')
-  _vimpkgs+=('vim-rabl-git'
-             'vim-rbenv-git'
-             'vim-ruby-git')
+  _vimplugs+=('vim-rabl-plugged-git'
+              'vim-rbenv-plugged-git'
+              'vim-ruby-plugged-git')
 fi
 
 if [[ "${_rust}" == '1' ]]; then
   _pkgs+=('rust')
+  _vimplugs+=('vim-rust-plugged-git')
+fi
+
+if [[ "${_scala}" == 1 ]]; then
+  _pkgs+=('sbt'
+          'scala'
+          'scala-docs')
+  _vimplugs+=('vim-sbt-plugged-git'
+              'vim-scala-plugged-git')
+fi
+
+if [[ "${_swift}" == 1 ]]; then
+  _vimplugs+=('vim-swift-plugged-git')
 fi
 
 if [[ "${_vbox}" == '1' ]]; then
@@ -3186,6 +3310,25 @@ fi
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 # run again in case pacaur lost net connection during prev pkg dep calc
 arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+
+# install selected vim plugins
+
+                   if [[ "$_debug" == '1' ]]; then
+              echo "***********************************"
+              echo "*                                 *"
+              echo "* installing selected vim plugins *"
+              echo "*                                 *"
+              echo "***********************************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Installing selected vim plugins..."
+
+mkdir -p /mnt/home/${_user_name}/.src
+arch-chroot /mnt su -c "cd /home/${_user_name}/.src && git clone https://github.com/atweiden/pkgbuilds --branch plugged" ${_user_name}
+for _vimplug in ${!_vimplugs[@]}; do
+  arch-chroot /mnt su -c "cd /home/${_user_name}/.src/pkgbuilds/${_vimplugs[$_vimplug]} && makepkg -Acs --nodeps --noconfirm" ${_user_name}
+done
 
 # setup grsec
 
