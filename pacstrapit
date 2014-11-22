@@ -324,7 +324,7 @@ status "Initializing pacman-keys..."
 haveged -w 1024
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key -r 4209170B
+pacman-key -r 4209170B # https://wiki.archlinux.org/index.php/ArchHaskell#.5Bhaskell-core.5D
 pacman-key --lsign-key 4209170B
 pkill haveged
 
