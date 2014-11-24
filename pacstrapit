@@ -18,6 +18,7 @@
 # constants
 VERSION="0.8.0"
 VERSION_DOTFILES="0.7.0"
+VERSION_PKGBUILDS="0.1.0"
 VERSION_ELECTRUM="1.9.8"
 
 # machine
@@ -2485,7 +2486,7 @@ if [[ "${_gui}" == '1' ]]; then
           'hwinfo'
           'hyphen'
           'i2p'
-          'icedtea-web-java7'
+          'icedtea-web'
           'ifuse'
           'imagemagick'
           'imlib2'
@@ -2537,7 +2538,7 @@ if [[ "${_gui}" == '1' ]]; then
           'renderproto'
           'screencastor'
           'scrot'
-          'shared-color-profiles'
+          'shared-color-targets'
           'shared-mime-info'
           'shotwell'
           'slop'
@@ -3324,9 +3325,9 @@ fi
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing selected pkgs..."
 
-arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 # run again in case pacaur lost net connection during prev pkg dep calc
-arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 
 # install selected vim plugins
 
@@ -3342,7 +3343,9 @@ arch-chroot /mnt pacaur -Sy --needed --asroot "${_pkgs[@]}" "${_vimpkgs[@]}" "${
   && msg "Installing selected vim plugins..."
 
 mkdir -p /mnt/home/${_user_name}/.src
-arch-chroot /mnt su -c "cd /home/${_user_name}/.src && git clone https://github.com/atweiden/pkgbuilds --branch plugged" ${_user_name}
+cd && curl -k https://codeload.github.com/atweiden/{pkgbuilds}/{tar.gz}/{${VERSION_PKGBUILDS}} -o "#1-#3.#2"
+tar xvzf pkgbuilds-${VERSION_PKGBUILDS}.tar.gz
+mv pkgbuilds-${VERSION_PKGBUILDS} /mnt/home/${_user_name}/.src
 for _vimplug in ${!_vimplugs[@]}; do
   arch-chroot /mnt su -c "cd /home/${_user_name}/.src/pkgbuilds/${_vimplugs[$_vimplug]} && makepkg -Acs --nodeps --noconfirm" ${_user_name}
 done
