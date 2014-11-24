@@ -3187,7 +3187,8 @@ if [[ "${_ocaml}" == '1' ]]; then
           'ocaml-doc'
           'ocaml-findlib'
           'opam')
-  _vimpkgs+=('vim-ocaml-merlin-git')
+  _vimpkgs+=('merlin-git')
+  _vimplugs+=('vim-merlin-plugged-git')
 fi
 
 if [[ "${_perl}" == '1' ]]; then
@@ -3248,6 +3249,7 @@ if [[ "${_python}" == '1' ]]; then
               'vim-jedi-plugged-git'
               'vim-kivy-plugged-git'
               'vim-python-combined-plugged-git'
+              'vim-vimux-ipy-plugged-git'
               'vim-virtualenv-plugged-git')
 fi
 
