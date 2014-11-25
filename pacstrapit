@@ -1376,30 +1376,6 @@ sed -i 's!^#Server!Server!' /mnt/etc/pacman.d/mirrorlist
 mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak
 rankmirrors -n 4 /mnt/etc/pacman.d/mirrorlist.bak > /mnt/etc/pacman.d/mirrorlist
 
-# build pacaur
-
-                   if [[ "$_debug" == '1' ]]; then
-                       echo "****************"
-                       echo "*              *"
-                       echo "* build pacaur *"
-                       echo "*              *"
-                       echo "****************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Readying pacaur..."
-
-pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
-for _pkg in cower pacaur; do
-  mkdir -p /root/.src && cd /root/.src
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
-done
-
 # install pacaur
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1415,11 +1391,11 @@ done
 
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 for _pkg in cower pacaur; do
-  mkdir -p /mnt/root/.src/$_pkg
-  for _pkgtarxz in `find /root/.src/$_pkg -type f -name "*.pkg.tar.xz"`; do
-    cp ${_pkgtarxz} /mnt/root/.src/$_pkg
-  done
-  arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
+  mkdir -p /mnt/root/.src && cd /mnt/root/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  arch-chroot /mnt cd /root/.src/$_pkg && makepkg -Acsi --asroot --noconfirm
 done
 
 # install paktahn
