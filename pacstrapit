@@ -3326,7 +3326,7 @@ fi
 # arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 # run again in case pacaur lost net connection during prev pkg dep calc
 # arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
-arch-chroot /mnt pak -S "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}"
+arch-chroot /mnt su -c "sudo -S pak -S \"${_pkgs[@]}\" \"${_vimpkgs[@]}\" \"${_bitpkgs[@]}\"" ${_user_name}
 
 # install selected vim plugins
 
