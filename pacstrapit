@@ -1395,7 +1395,7 @@ for _pkg in cower pacaur; do
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm" root
+  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm --asroot" root
 done
 
 # install paktahn
@@ -1417,7 +1417,7 @@ for _pkg in paktahn; do
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm" root
+  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm --asroot" root
 done
 
 # always suspend to RAM
