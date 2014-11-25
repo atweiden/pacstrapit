@@ -1441,9 +1441,7 @@ for _pkg in paktahn; do
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
+  arch-chroot /mnt cd /root/.src/$_pkg && makepkg -Acsi --asroot --noconfirm
 done
 
 # always suspend to RAM
