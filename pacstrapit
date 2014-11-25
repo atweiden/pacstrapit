@@ -1422,30 +1422,6 @@ for _pkg in cower pacaur; do
   arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
 done
 
-# build paktahn
-
-                   if [[ "$_debug" == '1' ]]; then
-                       echo "*****************"
-                       echo "*               *"
-                       echo "* build paktahn *"
-                       echo "*               *"
-                       echo "*****************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Readying paktahn..."
-
-pacman -Sy --needed pacman readline sbcl subversion sudo --noconfirm
-for _pkg in paktahn; do
-  mkdir -p /root/.src && cd /root/.src
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  cd $_pkg
-  makepkg -Acsi --asroot --noconfirm
-  cd ..
-done
-
 # install paktahn
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1461,11 +1437,13 @@ done
 
 arch-chroot /mnt pacman -Sy --needed pacman readline sbcl subversion sudo --noconfirm
 for _pkg in paktahn; do
-  mkdir -p /mnt/root/.src/$_pkg
-  for _pkgtarxz in `find /root/.src/$_pkg -type f -name "*.pkg.tar.xz"`; do
-    cp ${_pkgtarxz} /mnt/root/.src/$_pkg
-  done
-  arch-chroot /mnt find /root/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U --noconfirm '{}' \;
+  mkdir -p /mnt/root/.src && cd /mnt/root/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  cd $_pkg
+  makepkg -Acsi --asroot --noconfirm
+  cd ..
 done
 
 # always suspend to RAM
