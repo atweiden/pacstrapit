@@ -3319,6 +3319,34 @@ else
   _headless=1
 fi
 
+declare _vimplugs_deps=('vim-align-plugged-git'
+                        'vim-bufsync-plugged-git'
+                        'vim-clojure-static-plugged-git'
+                        'vim-colors-ir_black-plugged-git'
+                        'vim-dbext-plugged-git'
+                        'vim-fireplace-plugged-git'
+                        'vim-fugitive-plugged-git'
+                        'vim-gorillascript-plugged-git'
+                        'vim-ingo-library-plugged-git'
+                        'vim-lightline-plugged-git'
+                        'vim-line-juggler-plugged-git'
+                        'vim-markdown-plugged-git'
+                        'vim-misc-xolox-plugged-git'
+                        'vim-nerdtree-plugged-git'
+                        'vim-obsession-plugged-git'
+                        'vim-php-indent-plugged-git'
+                        'vim-php-syntax-plugged-git'
+                        'vim-repeat-plugged-git'
+                        'vim-scribble-plugged-git'
+                        'vim-sideways-plugged-git'
+                        'vim-submode-plugged-git'
+                        'vim-tabular-plugged-git'
+                        'vim-textobj-user-plugged-git'
+                        'vim-vimproc-plugged-git'
+                        'vim-unite-plugged-git'
+                        'vimux-plugged-git'
+                        'vim-vis-plugged-git')
+
 # install selected pkgs
 
                    if [[ "$_debug" == '1' ]]; then
@@ -3355,6 +3383,10 @@ cd && curl -k https://codeload.github.com/atweiden/{pkgbuilds}/{tar.gz}/{${VERSI
 tar xvzf pkgbuilds-${VERSION_PKGBUILDS}.tar.gz
 mv pkgbuilds-${VERSION_PKGBUILDS} /mnt/home/${_user_name}/.src
 arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
+# dependencies first, some packages are installed twice
+for _vimplug_dep in ${!_vimplugs_deps[@]}; do
+  arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs_deps[$_vimplug_dep]} && makepkg -Acsi --noconfirm" ${_user_name}
+done
 for _vimplug in ${!_vimplugs[@]}; do
   arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs[$_vimplug]} && makepkg -Acsi --noconfirm" ${_user_name}
 done
