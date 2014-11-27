@@ -1395,29 +1395,38 @@ for _pkg in cower pacaur; do
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm --asroot" root
+  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
 done
 
-# install paktahn
+# install trizen
 
                    if [[ "$_debug" == '1' ]]; then
-                      echo "*******************"
-                      echo "*                 *"
-                      echo "* install paktahn *"
-                      echo "*                 *"
-                      echo "*******************"
+                      echo "******************"
+                      echo "*                *"
+                      echo "* install trizen *"
+                      echo "*                *"
+                      echo "******************"
                                   fi
 
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Installing paktahn..."
+  && msg "Installing trizen..."
 
-arch-chroot /mnt pacman -Sy --needed pacman readline sbcl subversion sudo --noconfirm
-for _pkg in paktahn; do
+# trizen's official pkg dependencies
+arch-chroot /mnt pacman -Sy --needed git \
+                                     perl-data-dump \
+                                     perl-json-xs \
+                                     perl-libwww \
+                                     perl-log-message \
+                                     perl-log-message-simple \
+                                     perl-lwp-protocol-https \
+                                     perl-term-readline-gnu \
+                                     perl-term-ui --noconfirm
+for _pkg in trizen; do
   mkdir -p /mnt/root/.src && cd /mnt/root/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --nodeps --noconfirm --asroot" root
+  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
 done
 
 # always suspend to RAM
@@ -3326,7 +3335,7 @@ fi
 # arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 # run again in case pacaur lost net connection during prev pkg dep calc
 # arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
-arch-chroot /mnt su -c "sudo -S pak -S \"${_pkgs[@]}\" \"${_vimpkgs[@]}\" \"${_bitpkgs[@]}\"" ${_user_name}
+arch-chroot /mnt trizen -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
 
 # install selected vim plugins
 
@@ -3347,7 +3356,7 @@ tar xvzf pkgbuilds-${VERSION_PKGBUILDS}.tar.gz
 mv pkgbuilds-${VERSION_PKGBUILDS} /mnt/home/${_user_name}/.src
 arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 for _vimplug in ${!_vimplugs[@]}; do
-  arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs[$_vimplug]} && makepkg -Acsi --nodeps --noconfirm" ${_user_name}
+  arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs[$_vimplug]} && makepkg -Acsi --noconfirm" ${_user_name}
 done
 
 # setup grsec
