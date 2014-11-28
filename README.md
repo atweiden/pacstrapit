@@ -2,7 +2,7 @@ btrfs on luks
 =============
 
 <table>
-<tr><td>Last tested</td><td>2014-06-03 with archlinux-2014.06.01-dual.iso</td></tr>
+<tr><td>Last tested</td><td>2014-11-27 with archlinux-2014.11.01-dual.iso</td></tr>
 </table>
 
 `pacstrapit` is meant for provisioning physical hardware. It assumes
@@ -16,8 +16,8 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.8.0} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.8.0.tar.gz`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.9.0} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.9.0.tar.gz`
 6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -42,7 +42,7 @@ Defaults:
 <tr><td>Hosts allowed</td><td>192.168.0. (LAN - SSH is disabled by default)</td></tr>
 </table>
 
-> `cd pacstrapit-0.8.0 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.9.0 && $EDITOR pacstrapit`
 
 Done.
 
@@ -379,7 +379,7 @@ Set `_dotfiles` to 1 for:
 
 ![openbox](https://i.imgur.com/zDzVno0.png)
 
-![vim](https://i.imgur.com/ap6n27Z.png)
+[Dotfiles](https://github.com/atweiden/dotfiles)
 
 #### Openbox Settings
 
