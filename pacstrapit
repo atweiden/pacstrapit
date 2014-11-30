@@ -2380,6 +2380,7 @@ if [[ "${_base}" == '1' ]]; then
           'ranger'
           'reptyr'
           'rfkill'
+          'rlwrap'
           'rtorrent'
           'seq2gif'
           'sfk'
