@@ -2941,11 +2941,11 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-unite-outline-plugged-git'
             'vim-unite-plugged-git'
             'vim-unstack-plugged-git'
-            'vimux-plugged-git'
             'vim-vertical-help-plugged-git'
             'vim-vertical-move-plugged-git'
             'vim-vimfiler-plugged-git'
             'vim-vimproc-plugged-git'
+            'vim-vimux-plugged-git'
             'vim-vis-plugged-git'
             'vim-visualrepeat-plugged-git'
             'vim-wordy-plugged-git'
@@ -3044,8 +3044,8 @@ if [[ "${_elixir}" == '1' ]]; then
               'vim-elixir-plugged-git'
               'vim-erlang-motions-plugged-git'
               'vim-erlang-tags-plugged-git'
-              'vimerl-plugged-git'
               'vim-mix-plugged-git'
+              'vim-vimerl-plugged-git'
               'vim-vimix-plugged-git')
 fi
 
