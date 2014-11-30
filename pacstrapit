@@ -2246,6 +2246,7 @@ declare _bundle_full=('base'
                       'perl'
                       'php'
                       'python'
+                      'rst'
                       'ruby'
                       'rust'
                       'scala'
@@ -2843,6 +2844,7 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-expand-region-plugged-git'
             'vim-fieldtrip-plugged-git'
             'vim-file-line-plugged-git'
+            'vim-fish-plugged-git'
             'vim-fixkey-plugged-git'
             'vim-fugitive-plugged-git'
             'vim-fzf-plugged-git'
@@ -3035,8 +3037,13 @@ if [[ "${_elixir}" == '1' ]]; then
     _pkgs+=('erlang-nox')
   fi
   _pkgs+=('elixir'
+          'elixir-build'
+          'exenv-git'
           'rebar')
-  _vimplugs+=('vim-elixir-plugged-git'
+  _vimplugs+=('vim-dialyzer-plugged-git'
+              'vim-elixir-plugged-git'
+              'vim-erlang-motions-plugged-git'
+              'vim-erlang-tags-plugged-git'
               'vimerl-plugged-git'
               'vim-mix-plugged-git'
               'vim-vimix-plugged-git')
@@ -3262,6 +3269,11 @@ if [[ "${_python}" == '1' ]]; then
               'vim-virtualenv-plugged-git')
 fi
 
+if [[ "${_rst}" == '1' ]]; then
+  _vimpkgs+=('rst2ctags')
+  _vimplugs+=('vim-rst-plugged-git')
+fi
+
 if [[ "${_ruby}" == '1' ]]; then
   _pkgs+=('ruby'
           'ruby-build'
@@ -3325,6 +3337,7 @@ declare _vimplugs_deps=('vim-align-plugged-git'
                         'vim-clojure-static-plugged-git'
                         'vim-colors-ir_black-plugged-git'
                         'vim-dbext-plugged-git'
+                        'vim-dispatch-plugged-git'
                         'vim-fireplace-plugged-git'
                         'vim-fugitive-plugged-git'
                         'vim-gorillascript-plugged-git'

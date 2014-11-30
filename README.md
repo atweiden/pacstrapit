@@ -358,6 +358,7 @@ Additional packages are available.
 <tr><td>Perl</td><td>Packages for programming in Perl</td></tr>
 <tr><td>PHP</td><td>Packages for programming in PHP</td></tr>
 <tr><td>Python</td><td>Packages for programming in Python</td></tr>
+<tr><td>RST</td><td>Packages for writing in reStructuredText</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
 <tr><td>Scala</td><td>Packages for programming in Scala</td></tr>
