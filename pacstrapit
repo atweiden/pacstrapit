@@ -327,6 +327,8 @@ pacman-key --init
 pacman-key --populate archlinux
 pacman-key -r 4209170B # https://wiki.archlinux.org/index.php/ArchHaskell#.5Bhaskell-core.5D
 pacman-key --lsign-key 4209170B
+pacman-key -r 0xEC3CBE7F607D11E663149E811D1F0DC78F173680 # https://www.archlinux.org/people/trusted-users/#xyne
+pacman-key --lsign-key 0xEC3CBE7F607D11E663149E811D1F0DC78F173680
 pkill haveged
 
 # depends: rankmirrors
