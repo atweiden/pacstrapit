@@ -343,7 +343,6 @@ Additional packages are available.
 <tr><td>D</td><td>Packages for programming in D</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
-<tr><td>Frontend</td><td>HTML, Haml, Jade, Jinja, Mustache/Handlebars, Slim; CSS, LESS, Sass, SCSS, Stylus; JS/Node</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
 <tr><td>Groovy</td><td>Packages for programming in Groovy</td></tr>
@@ -365,6 +364,7 @@ Additional packages are available.
 <tr><td>Scala</td><td>Packages for programming in Scala</td></tr>
 <tr><td>Swift</td><td>Packages for programming in Swift</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
+<tr><td>Webdev</td><td>HTML, Haml, Jade, Jinja, Mustache/Handlebars, Slim; CSS, LESS, Sass, SCSS, Stylus; JS/Node</td></tr>
 </table>
 
 Selecting all packages (GUI included) adds over 1.1 GB to the download

@@ -2231,7 +2231,6 @@ declare _bundle_full=('base'
                       'd'
                       'elixir'
                       'fonts'
-                      'frontend'
                       'go'
                       'gobi'
                       'groovy'
@@ -2251,7 +2250,8 @@ declare _bundle_full=('base'
                       'rust'
                       'scala'
                       'swift'
-                      'vbox')
+                      'vbox'
+                      'webdev')
 
 # pkgs feedback
 if   [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
@@ -3080,42 +3080,6 @@ if [[ "${_fonts}" == '1' ]]; then
           'wqy-zenhei')
 fi
 
-if [[ "${_frontend}" == '1' ]]; then
-  _pkgs+=('dart'
-          'flow'
-          'nodejs'
-          'nodejs-bower'
-          'nodejs-grasp'
-          'nodejs-grunt-cli'
-          'nodejs-hexo'
-          'nodejs-jade'
-          'nodejs-stylus')
-  _vimplugs+=('vim-better-javascript-completion-plugged-git'
-              'vim-dart-plugged-git'
-              'vim-egs-plugged-git'
-              'vim-flow-plugged-git'
-              'vim-gorillascript-plugged-git'
-              'vim-javascript-libraries-syntax-plugged-git'
-              'vim-javascript-plugged-git'
-              'vim-jquery-plugged-git'
-              'vim-json5-plugged-git'
-              'vim-json-plugged-git'
-              'vim-nodejs-errorformat-plugged-git'
-              'vim-node-plugged-git'
-              'vim-tern-plugged-git'
-              'vim-yajs-plugged-git')
-  _vimplugs+=('vim-better-css-completion-plugged-git'
-              'vim-css3-syntax-plugged-git'
-              'vim-less-plugged-git'
-              'vim-stylus-plugged-git')
-  _vimplugs+=('vim-haml-plugged-git'
-              'vim-html5-plugged-git'
-              'vim-jade-plugged-git'
-              'vim-jinja2-syntax-plugged-git'
-              'vim-mustache-handlebars-plugged-git'
-              'vim-slim-plugged-git')
-fi
-
 if [[ "${_go}" == '1' ]]; then
   _pkgs+=('go')
   _vimpkgs+=('gotags-git')
@@ -3324,6 +3288,42 @@ if [[ "${_vbox}" == '1' ]]; then
           'virtualbox-host-dkms'
           'virtualbox-host-modules'
           'virtualbox-sdk')
+fi
+
+if [[ "${_webdev}" == '1' ]]; then
+  _pkgs+=('dart'
+          'flow'
+          'nodejs'
+          'nodejs-bower'
+          'nodejs-grasp'
+          'nodejs-grunt-cli'
+          'nodejs-hexo'
+          'nodejs-jade'
+          'nodejs-stylus')
+  _vimplugs+=('vim-better-javascript-completion-plugged-git'
+              'vim-dart-plugged-git'
+              'vim-egs-plugged-git'
+              'vim-flow-plugged-git'
+              'vim-gorillascript-plugged-git'
+              'vim-javascript-libraries-syntax-plugged-git'
+              'vim-javascript-plugged-git'
+              'vim-jquery-plugged-git'
+              'vim-json5-plugged-git'
+              'vim-json-plugged-git'
+              'vim-nodejs-errorformat-plugged-git'
+              'vim-node-plugged-git'
+              'vim-tern-plugged-git'
+              'vim-yajs-plugged-git')
+  _vimplugs+=('vim-better-css-completion-plugged-git'
+              'vim-css3-syntax-plugged-git'
+              'vim-less-plugged-git'
+              'vim-stylus-plugged-git')
+  _vimplugs+=('vim-haml-plugged-git'
+              'vim-html5-plugged-git'
+              'vim-jade-plugged-git'
+              'vim-jinja2-syntax-plugged-git'
+              'vim-mustache-handlebars-plugged-git'
+              'vim-slim-plugged-git')
 fi
 
 if [[ "${_gui}" == '1' ]]; then
