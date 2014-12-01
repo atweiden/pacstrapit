@@ -350,7 +350,7 @@ Additional packages are available.
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
 <tr><td>LaTeX</td><td>Packages for writing in LaTeX</td></tr>
-<tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme</td></tr>
+<tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme / Racket</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
 <tr><td>Markdown</td><td>Packages for writing in Markdown</td></tr>
 <tr><td>Nim</td><td>Packages for programming in Nim</td></tr>
