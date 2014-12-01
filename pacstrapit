@@ -2220,6 +2220,7 @@ declare _bundle_lite=('base'
                       'gui'
                       'dotfiles')
 declare _bundle_full=('base'
+                      'beam'
                       'grsec'
                       'gui'
                       'dotfiles'
@@ -2228,7 +2229,6 @@ declare _bundle_full=('base'
                       'c'
                       'csharp'
                       'd'
-                      'elixir'
                       'fonts'
                       'go'
                       'gobi'
@@ -3009,7 +3009,7 @@ if [[ "${_d}" == '1' ]]; then
   _vimplugs+=('vim-dutyl-plugged-git')
 fi
 
-if [[ "${_elixir}" == '1' ]]; then
+if [[ "${_beam}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('erlang'
             'erlang-docs')

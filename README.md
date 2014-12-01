@@ -337,10 +337,10 @@ Additional packages are available.
 <table>
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
+<tr><td>BEAM</td><td>Packages for programming in Erlang / Elixir</td></tr>
 <tr><td>C</td><td>Packages for programming in C/C++/Obj-C</td></tr>
 <tr><td>C#</td><td>Packages for programming in C#</td></tr>
 <tr><td>D</td><td>Packages for programming in D</td></tr>
-<tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
