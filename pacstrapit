@@ -325,10 +325,8 @@ status "Initializing pacman-keys..."
 haveged -w 1024
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key -r 4209170B # https://wiki.archlinux.org/index.php/ArchHaskell#.5Bhaskell-core.5D
-pacman-key --lsign-key 4209170B
-pacman-key -r 0xEC3CBE7F607D11E663149E811D1F0DC78F173680 # https://www.archlinux.org/people/trusted-users/#xyne
-pacman-key --lsign-key 0xEC3CBE7F607D11E663149E811D1F0DC78F173680
+pacman-key -r 0x32B0B4534209170B # https://wiki.archlinux.org/index.php/ArchHaskell#.5Bhaskell-core.5D
+pacman-key --lsign-key 0x32B0B4534209170B
 pkill haveged
 
 # depends: rankmirrors
@@ -3363,6 +3361,47 @@ declare _vimplugs_deps=('vim-align-plugged-git'
                         'vim-unite-plugged-git'
                         'vimux-plugged-git'
                         'vim-vis-plugged-git')
+
+# import gpg signing keys - https://sks-keyservers.net/overview-of-pools.php
+
+                   if [[ "$_debug" == '1' ]]; then
+                         echo "************"
+                         echo "*          *"
+                         echo "* gpg keys *"
+                         echo "*          *"
+                         echo "************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Importing GPG keys..."
+
+# https://www.archlinux.org/people/developers/#pierre
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x4AA4767BBC9C4B1D18AE28B77F2D434B9741E8AC" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x4AA4767BBC9C4B1D18AE28B77F2D434B9741E8AC" ${_user_name}
+
+# https://www.archlinux.org/people/trusted-users/#xyne
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xEC3CBE7F607D11E663149E811D1F0DC78F173680" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xEC3CBE7F607D11E663149E811D1F0DC78F173680" ${_user_name}
+
+# https://electrum.org/download.html
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
+
+# https://www.torproject.org/docs/verifying-signatures.html.en
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x416F061063FEE659" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x416F061063FEE659" ${_user_name}
+
+# https://tails.boum.org/doc/about/openpgp_keys/index.en.html#index2h1
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x1202821CBE2CD9C1" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x1202821CBE2CD9C1" ${_user_name}
+
+# https://www.whonix.org/wiki/Whonix_Signing_Key
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x8D66066A2EEACCDA" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x8D66066A2EEACCDA" ${_user_name}
+
+# https://geti2p.net/en/get-involved/develop/release-signing-key
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xEE60C0C8EE7256A8" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xEE60C0C8EE7256A8" ${_user_name}
 
 # install selected pkgs
 
