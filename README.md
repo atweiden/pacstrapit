@@ -338,17 +338,16 @@ Additional packages are available.
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
 <tr><td>C</td><td>Packages for programming in C/C++/Obj-C</td></tr>
-<tr><td>Clojure</td><td>Packages for programming in Clojure</td></tr>
 <tr><td>C#</td><td>Packages for programming in C#</td></tr>
 <tr><td>D</td><td>Packages for programming in D</td></tr>
 <tr><td>Elixir</td><td>Packages for programming in Elixir</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
 <tr><td>Go</td><td>Packages for programming in Go</td></tr>
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
-<tr><td>Groovy</td><td>Packages for programming in Groovy</td></tr>
 <tr><td>Grsec</td><td>Packages for Grsecurity / PaX</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
+<tr><td>JVM</td><td>Packages for programming in Java / Clojure / Groovy / Scala</td></tr>
 <tr><td>LaTeX</td><td>Packages for writing in LaTeX</td></tr>
 <tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme / Racket</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>
@@ -361,7 +360,6 @@ Additional packages are available.
 <tr><td>RST</td><td>Packages for writing in reStructuredText</td></tr>
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
-<tr><td>Scala</td><td>Packages for programming in Scala</td></tr>
 <tr><td>Swift</td><td>Packages for programming in Swift</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
 <tr><td>Webdev</td><td>HTML, Haml, Jade, Jinja, Mustache/Handlebars, Slim; CSS, LESS, Sass, SCSS, Stylus; JS/Node</td></tr>

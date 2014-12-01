@@ -2226,16 +2226,15 @@ declare _bundle_full=('base'
                       'analysis'
                       'assembly'
                       'c'
-                      'clojure'
                       'csharp'
                       'd'
                       'elixir'
                       'fonts'
                       'go'
                       'gobi'
-                      'groovy'
                       'haskell'
                       'julia'
+                      'jvm'
                       'latex'
                       'lisp'
                       'lua'
@@ -2248,7 +2247,6 @@ declare _bundle_full=('base'
                       'rst'
                       'ruby'
                       'rust'
-                      'scala'
                       'swift'
                       'vbox'
                       'webdev')
@@ -2997,25 +2995,6 @@ if [[ "${_c}" == '1' ]]; then
               'vim-objc-plugged-git')
 fi
 
-if [[ "${_clojure}" == '1' ]]; then
-  _pkgs+=('jdk7-openjdk'
-          'ca-certificates-java'
-          'clojure'
-          'jad'
-          'leiningen'
-          'leiningen-completions'
-          'nailgun'
-          'rlwrap')
-  _vimplugs+=('vim-classpath-plugged-git'
-              'vim-clojure-highlight-plugged-git'
-              'vim-clojure-sql-plugged-git'
-              'vim-clojure-static-plugged-git'
-              'vim-fireplace-plugged-git'
-              'vim-jad-plugged-git'
-              'vim-leiningen-plugged-git'
-              'vim-typedclojure-plugged-git')
-fi
-
 if [[ "${_csharp}" == '1' ]]; then
   _vimplugs+=('vim-csharp-plugged-git')
 fi
@@ -3094,13 +3073,6 @@ if [[ "${_gobi}" == '1' ]]; then
           'modemmanager')
 fi
 
-if [[ "${_groovy}" == '1' ]]; then
-  _pkgs+=('grails'
-          'grails-docs'
-          'groovy'
-          'groovy-docs')
-fi
-
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
           'ghc')
@@ -3120,6 +3092,44 @@ fi
 if [[ "${_julia}" == '1' ]]; then
   _pkgs+=('julia')
   _vimplugs+=('vim-julia-minimalist-plugged-git')
+fi
+
+if [[ "${_jvm}" == '1' ]]; then
+  _pkgs+=('apache-ant'
+          'apache-ant-doc'
+          'ca-certificates-java'
+          'gradle'
+          'gradle-doc'
+          'jad'
+          'jdk7-openjdk'
+          'jdk8-openjdk'
+          'maven')
+  _vimplugs+=('vim-classpath-plugged-git'
+              'vim-jad-plugged-git'
+              'vim-java-bytecode-plugged-git'
+              'vim-javacomplete-plugged-git'
+              'vim-java-plugged-git'
+              'vim-java-sql-plugged-git')
+  _pkgs+=('clojure'
+          'leiningen'
+          'leiningen-completions'
+          'nailgun')
+  _vimplugs+=('vim-clojure-highlight-plugged-git'
+              'vim-clojure-sql-plugged-git'
+              'vim-clojure-static-plugged-git'
+              'vim-fireplace-plugged-git'
+              'vim-leiningen-plugged-git'
+              'vim-typedclojure-plugged-git')
+  _pkgs+=('grails'
+          'grails-docs'
+          'groovy'
+          'groovy-docs')
+  _vimplugs+=('vim-groovim-plugged-git')
+  _pkgs+=('sbt'
+          'scala'
+          'scala-docs')
+  _vimplugs+=('vim-sbt-plugged-git'
+              'vim-scala-plugged-git')
 fi
 
 if [[ "${_latex}" == 1 ]]; then
@@ -3256,14 +3266,6 @@ fi
 if [[ "${_rust}" == '1' ]]; then
   _pkgs+=('rust')
   _vimplugs+=('vim-rust-plugged-git')
-fi
-
-if [[ "${_scala}" == 1 ]]; then
-  _pkgs+=('sbt'
-          'scala'
-          'scala-docs')
-  _vimplugs+=('vim-sbt-plugged-git'
-              'vim-scala-plugged-git')
 fi
 
 if [[ "${_swift}" == 1 ]]; then
