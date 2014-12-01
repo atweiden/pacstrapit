@@ -2338,6 +2338,7 @@ if [[ "${_base}" == '1' ]]; then
           'git-extras'
           'gnupg1'
           'httpie'
+          'hub'
           'imgurbash'
           'ipw2100-fw'
           'ipw2200-fw'
