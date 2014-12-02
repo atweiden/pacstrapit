@@ -239,6 +239,7 @@ Base packages include:
 <tr><td><a href="https://github.com/brain0/appjail">appjail</a></td><td>Sandboxing tool to protect private data from untrusted applications.</td></tr>
 <tr><td><a href="https://github.com/seblu/archversion">archversion</a></td><td>Archlinux Version Controller.</td></tr>
 <tr><td><a href="http://kmkeen.com/arch-wiki-lite/">arch-wiki-lite</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a>, easily searched and viewable on console.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/autochown">autochown</a></td><td>Monitor multiple directories using glob patterns and automatically adjust file ownership and permissions.</td></tr>
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez-firmware</a></td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
@@ -254,6 +255,7 @@ Base packages include:
 <tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
 <tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether</a></td><td><a href="http://easytether.org/">EasyTether</a> Internet access drivers.</td></tr>
 <tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/facadefs">facadefs</a></td><td>FUSE-based filesystem sandbox.</td></tr>
 <tr><td><a href="https://github.com/drmikehenry/findx">findx</a></td><td>Wrapper to extend the Unix find command.</td></tr>
 <tr><td><a href="http://www.vanheusden.com/f-irc/">f-irc</a></td><td>User-friendly IRC client for the console/terminal.</td></tr>
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
@@ -262,8 +264,10 @@ Base packages include:
 <tr><td><a href="http://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
 <tr><td><a href="http://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/hexgrep">hexgrep</a></td><td>Versatile grep-like binary stream and file search tool.</td></tr>
 <tr><td><a href="https://github.com/jkbr/httpie">httpie</a></td><td>cURL for humans.</td></tr>
 <tr><td><a href="https://hub.github.com/">hub</a></td><td>CLI interface for Github.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/idemptables">idemptables</a></td><td>Idempotent iptables wrapper for appending and deleting rules.</td></tr>
 <tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
@@ -275,8 +279,10 @@ Base packages include:
 <tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
 <tr><td><a href="http://libusb.sourceforge.net/">libusb-compat</a></td><td>USB device support.</td></tr>
 <tr><td><a href="http://lrzip.kolivas.org/">lrzip</a></td><td>Multi-threaded file compression.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/lsgrp">lsgrp</a></td><td>A simple command-line utility to list all members of a group.</td></tr>
 <tr><td><a href="http://lynx.isc.org/">lynx</a></td><td>Text mode Web browser.</td></tr>
 <tr><td><a href="http://ftp.gnu.org/gnu/macchanger">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/makedep">makedep</a></td><td>Convert Pacman optional dependencies to real dependencies.</td></tr>
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
 <tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
@@ -286,22 +292,31 @@ Base packages include:
 <tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
 <tr><td><a href="http://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/ottools">ottools</a></td><td>Tools for encrypting files with one-time pads.</td></tr>
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
 <tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/pacnew_scripts">pacnew_scripts</a></td><td>A collection of scripts to help merge changes in .pacnew files.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/pacserve">pacserve</a></td><td>Easily share Pacman packages between computers.</td></tr>
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/pbget">pbget</a></td><td>Retrieve PKGBUILDs and local source files from Git, ABS and the AUR for makepkg.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
 <tr><td><a href="https://github.com/junegunn/pipe-logger">pipe-logger</a></td><td>Log rotation of stdout & stderr.</td></tr>
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/pkg_scripts">pkg_scripts</a></td><td>A collection of pacman and package-related utilities.</td></tr>
 <tr><td><a href="http://www.profanity.im/">profanity</a></td><td>A console based XMPP client.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
 <tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
 <tr><td><a href="http://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/quickserve">quickserve</a></td><td>A simple HTTP server for quickly sharing files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quixand">quixand</a></td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
 <tr><td><a href="http://ranger.nongnu.org/">ranger</a></td><td>A simple, Vim-like file manager.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/recollect">recollect</a></td><td>Keep local copies of remote files updated.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/repo-add_and_sign">repo-add_and_sign</a></td><td>Easily create signed Pacman package repositories.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/repoman">repoman</a></td><td>The pacman of repository managers.</td></tr>
 <tr><td><a href="https://github.com/nelhage/reptyr">reptyr</a></td><td>Utility for taking an existing running program and attaching it to a new terminal.</td></tr>
 <tr><td><a href="http://wireless.kernel.org/en/users/Documentation/rfkill">rfkill</a></td><td>Tool for enabling and disabling wireless devices.</td></tr>
 <tr><td><a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a></td><td>Add readline-style editing and history to programs.</td></tr>
@@ -315,8 +330,10 @@ Base packages include:
 <tr><td><a href="http://point-at-infinity.org/ssss/">ssss</a></td><td>CLI tool for Shamir's Secret Sharing Scheme.</td></tr>
 <tr><td><a href="http://steghide.sourceforge.net/">steghide</a></td><td>Embed a message in a file.</td></tr>
 <tr><td><a href="http://blog.rusty.io/2010/01/24/submodules-and-subrepos-done-right/">subrepo</a></td><td>Git & Mercurial subrepos done right.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/synclinks">synclinks</a></td><td>A tool that synchronizes hierarchies of symlinks.</td></tr>
 <tr><td><a href="https://github.com/bwalex/tc-play">tcplay</a></td><td>CLI TrueCrypt implementation.</td></tr>
 <tr><td><a href="https://github.com/ggreer/the_silver_searcher">the_silver_searcher</a></td><td>Code searching tool.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/timedatectl-restorer">timedatectl-restorer</a></td><td>Restore system time across reboots when the internal clock is dead.</td></tr>
 <tr><td><a href="https://github.com/bsandrow/tmux.sh">tmux.sh</a></td><td>Enable two tmux clients to connect and switch windows independently from each other, like GNU screen.</td></tr>
 <tr><td><a href="https://www.torproject.org/">tor</a></td><td>Anonymizing overlay network.</td></tr>
 <tr><td><a href="https://code.google.com/p/torsocks">torsocks</a></td><td>Safely torify applications.</td></tr>
