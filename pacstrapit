@@ -2513,6 +2513,7 @@ if [[ "${_gui}" == '1' ]]; then
           'i2p'
           'icedtea-web'
           'ifuse'
+          'ignuit'
           'imagemagick'
           'imlib2'
           'inkscape'
