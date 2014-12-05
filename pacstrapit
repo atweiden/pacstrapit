@@ -2227,8 +2227,8 @@ declare _bundle_full=('base'
                       'analysis'
                       'assembly'
                       'c'
-                      'csharp'
                       'd'
+                      'dotnet'
                       'fonts'
                       'go'
                       'gobi'
@@ -2811,6 +2811,7 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-colors-jellybeans-plugged-git'
             'vim-colors-jellyx-plugged-git'
             'vim-colors-kolor-plugged-git'
+            'vim-colors-kongo-plugged-git'
             'vim-colors-last256-plugged-git'
             'vim-colors-lettuce-plugged-git'
             'vim-colors-liquidcarbon-plugged-git'
@@ -2995,6 +2996,26 @@ if [[ "${_assembly}" == '1' ]]; then
               'vim-gas-plugged-git')
 fi
 
+if [[ "${_beam}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('erlang'
+            'erlang-docs')
+  else
+    _pkgs+=('erlang-nox')
+  fi
+  _pkgs+=('elixir'
+          'elixir-build'
+          'exenv-git'
+          'rebar')
+  _vimplugs+=('vim-dialyzer-plugged-git'
+              'vim-elixir-plugged-git'
+              'vim-erlang-motions-plugged-git'
+              'vim-erlang-tags-plugged-git'
+              'vim-mix-plugged-git'
+              'vim-vimerl-plugged-git'
+              'vim-vimix-plugged-git')
+fi
+
 if [[ "${_c}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('codequery')
@@ -3015,10 +3036,6 @@ if [[ "${_c}" == '1' ]]; then
               'vim-objc-plugged-git')
 fi
 
-if [[ "${_csharp}" == '1' ]]; then
-  _vimplugs+=('vim-csharp-plugged-git')
-fi
-
 if [[ "${_d}" == '1' ]]; then
   _pkgs+=('dcd'
           'dmd'
@@ -3029,24 +3046,9 @@ if [[ "${_d}" == '1' ]]; then
   _vimplugs+=('vim-dutyl-plugged-git')
 fi
 
-if [[ "${_beam}" == '1' ]]; then
-  if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('erlang'
-            'erlang-docs')
-  else
-    _pkgs+=('erlang-nox')
-  fi
-  _pkgs+=('elixir'
-          'elixir-build'
-          'exenv-git'
-          'rebar')
-  _vimplugs+=('vim-dialyzer-plugged-git'
-              'vim-elixir-plugged-git'
-              'vim-erlang-motions-plugged-git'
-              'vim-erlang-tags-plugged-git'
-              'vim-mix-plugged-git'
-              'vim-vimerl-plugged-git'
-              'vim-vimix-plugged-git')
+if [[ "${_dotnet}" == '1' ]]; then
+  _vimplugs+=('vim-csharp-plugged-git'
+              'vim-fsharp-plugged-git')
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
