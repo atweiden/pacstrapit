@@ -276,6 +276,7 @@ Base packages include:
 <tr><td><a href="https://stedolan.github.io/jq/">jq</a></td><td>CLI JSON processor.</td></tr>
 <tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
 <tr><td><a href="https://github.com/mafm/ledger.py">ledger.py</a></td><td>CLI double-entry accounting.</td></tr>
+<tr><td><a href="http://www-zeuthen.desy.de/~friebel/unix/lesspipe.html">lesspipe</a></td><td>An input filter for the pager less.</td></tr>
 <tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
 <tr><td><a href="http://libusb.sourceforge.net/">libusb-compat</a></td><td>USB device support.</td></tr>
 <tr><td><a href="http://lrzip.kolivas.org/">lrzip</a></td><td>Multi-threaded file compression.</td></tr>
@@ -289,6 +290,7 @@ Base packages include:
 <tr><td><a href="https://gist.github.com/arkhan/229a0729ec79c6fcec81">monaco-powerline-font</a></td><td>Monaco Powerline fonts for X11 and the console.</td></tr>
 <tr><td><a href="http://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
+<tr><td><a href="http://www.jedsoft.org/most/">most</a></td><td>A terminal pager similar to 'more' and 'less'.</td></tr>
 <tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
 <tr><td><a href="http://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
