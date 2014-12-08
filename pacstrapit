@@ -2342,6 +2342,7 @@ if [[ "${_base}" == '1' ]]; then
           'hexgrep'
           'httpie'
           'hub'
+          'icdiff-git'
           'idemptables'
           'imgurbash'
           'ipw2100-fw'

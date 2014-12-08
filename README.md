@@ -267,6 +267,7 @@ Base packages include:
 <tr><td><a href="http://xyne.archlinux.ca/projects/hexgrep">hexgrep</a></td><td>Versatile grep-like binary stream and file search tool.</td></tr>
 <tr><td><a href="https://github.com/jkbr/httpie">httpie</a></td><td>cURL for humans.</td></tr>
 <tr><td><a href="https://hub.github.com/">hub</a></td><td>CLI interface for Github.</td></tr>
+<tr><td><a href="https://github.com/jeffkaufman/icdiff">icdiff</a></td><td>Improved colored diff.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/idemptables">idemptables</a></td><td>Idempotent iptables wrapper for appending and deleting rules.</td></tr>
 <tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
