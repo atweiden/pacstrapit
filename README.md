@@ -463,8 +463,6 @@ Notes
 To Do
 -----
 
-- Add [babel-git](https://aur.archlinux.org/packages/babel-git/) once
-  PKGBUILD is updated
 - Add support for [laptop power management](https://wiki.archlinux.org/index.php/TLP)
 - Add man page
 - Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
