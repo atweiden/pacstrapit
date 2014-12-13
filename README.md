@@ -287,7 +287,6 @@ Base packages include:
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
 <tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
-<tr><td><a href="https://gist.github.com/arkhan/229a0729ec79c6fcec81">monaco-powerline-font</a></td><td>Monaco Powerline fonts for X11 and the console.</td></tr>
 <tr><td><a href="http://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
 <tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
@@ -306,9 +305,7 @@ Base packages include:
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pkg_scripts">pkg_scripts</a></td><td>A collection of pacman and package-related utilities.</td></tr>
-<tr><td><a href="http://www.profanity.im/">profanity</a></td><td>A console based XMPP client.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
-<tr><td><a href="http://nsd.dyndns.org/pwsafe/">pwsafe</a></td><td>CLI password manager.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
 <tr><td><a href="http://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
@@ -340,7 +337,6 @@ Base packages include:
 <tr><td><a href="https://code.google.com/p/torsocks">torsocks</a></td><td>Safely torify applications.</td></tr>
 <tr><td><a href="https://github.com/Tox/toxic">toxic</a></td><td>Text mode instant messaging client for Tox.</td></tr>
 <tr><td><a href="http://mama.indstate.edu/users/ice/tree/">tree</a></td><td>Show the contents of a directory in a depth-indented list of files.</td></tr>
-<tr><td><a href="https://en.wikipedia.org/wiki/Monaco_(typeface)">ttf-monaco</a></td><td>Monospaced sans-serif typeface.</td></tr>
 <tr><td><a href="http://0xcc.net/ttyrec/">ttyrec</a></td><td>A tty recorder and player.</td></tr>
 <tr><td><a href="http://gittup.org/tup/">tup</a></td><td>A fast, file-based build system.</td></tr>
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
