@@ -1429,6 +1429,28 @@ for _pkg in trizen; do
   arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
 done
 
+# install arch-luks-suspend
+
+                   if [[ "$_debug" == '1' ]]; then
+                 echo "*****************************"
+                 echo "*                           *"
+                 echo "* install arch-luks-suspend *"
+                 echo "*                           *"
+                 echo "*****************************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Installing arch-luks-suspend..."
+
+arch-chroot /mnt pacman -Sy --needed cryptsetup git mkinitcpio systemd --noconfirm
+for _pkg in arch-luks-suspend-git; do
+  mkdir -p /mnt/root/.src && cd /mnt/root/.src
+  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
+  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
+  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
+done
+
 # always suspend to RAM
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1504,9 +1526,9 @@ elif [[ "${_graphics}" == 'radeon' ]]; then
 fi
 
 if   [[ "${_disk}" == 'usb' ]]; then
-  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev block autodetect modconf keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev block autodetect modconf keyboard keymap encrypt btrfs filesystems shutdown suspend usr"!' /etc/mkinitcpio.conf
 else
-  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown usr"!' /etc/mkinitcpio.conf
+  arch-chroot /mnt sed -i 's!^HOOKS.*!HOOKS="base udev autodetect modconf block keyboard keymap encrypt btrfs filesystems shutdown suspend usr"!' /etc/mkinitcpio.conf
 fi
 arch-chroot /mnt sed -i   's!^FILES.*!FILES="/etc/modprobe.d/modprobe.conf"!' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -p linux
@@ -1995,6 +2017,7 @@ echo "sshd: ${_hosts_allowed}" >                                                
 arch-chroot /mnt systemctl enable cronie
 arch-chroot /mnt systemctl enable dnscrypt-proxy
 arch-chroot /mnt systemctl enable iptables
+arch-chroot /mnt systemctl enable systemd-suspend
 arch-chroot /mnt systemctl enable systemd-swap
 
 # disable /var/log/journal CoW
