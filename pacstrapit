@@ -2343,6 +2343,7 @@ if [[ "${_base}" == '1' ]]; then
           'bluez-firmware'
           'ccrypt'
           'colordiff'
+          'corkscrew'
           'create_ap'
           'cronwhip'
           'cv'
