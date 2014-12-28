@@ -46,6 +46,7 @@ Defaults:
 
 Done.
 
+
 Usage
 -----
 
@@ -193,24 +194,19 @@ $ ssh-keygen -t ed25519 -b 521 -f ~/keys/id_ed25519
 Get Electrum.
 
 ```bash
-$ sudo pacman -Sy --needed python2-ecdsa python2-pbkdf2 python2-slowaes --noconfirm
-$ cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${_electrum_version}} -o "#1-#3.#2"
-$ tar xvzf electrum-${_electrum_version}.tar.gz
-$ cd electrum-${_electrum_version}
-$ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
-$ find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/env python#/usr/bin/env python2#g'
+$ sudo pacman -S electrum
 ```
 
 Generate an Electrum wallet.
 
 ```bash
-$ ./electrum create -o
+$ electrum create -o
 ```
 
 Pick an Electrum address for signing.
 
 ```bash
-$ address_for_signing=$(./electrum listaddresses | sed -n '2p' | tr -d '[:punct:]' | awk '{print $1}')
+$ address_for_signing=$(electrum listaddresses | sed -n '2p' | tr -d '[:punct:]' | awk '{print $1}')
 ```
 
 ```bash
@@ -218,7 +214,7 @@ $ echo ${address_for_signing} > ~/keys/id_secp256k1.pub
 ```
 
 ```bash
-$ ./electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
+$ electrum signmessage ${address_for_signing} "$(cat ~/keys/id_ed25519.pub)" > ~/keys/id_ed25519.pub.sig
 ```
 
 Upload `id_ed25519.pub`, `id_ed25519.pub.sig` and `id_secp256k1.pub` to
@@ -227,6 +223,7 @@ GitHub, or any other file hosting service reachable via `curl`.
 Save the exact URL for each keyfile to the corresponding
 variable (`_electrum_pubkey_default`, `_user_pubkey_default`,
 `_user_pubkey_sig_default`).
+
 
 Optional: select
 ----------------
@@ -245,6 +242,7 @@ Base packages include:
 <tr><td><a href="http://www.bluez.org/">bluez-firmware</a></td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
 <tr><td><a href="http://ccrypt.sourceforge.net/">ccrypt</a></td><td>Command-line utility for encrypting and decrypting files and streams.</td></tr>
 <tr><td><a href="http://www.colordiff.org/">colordiff</a></td><td>Syntax highlighting for diff.</td></tr>
+<tr><td><a href="http://www.agroman.net/corkscrew/">corkscrew</a></td><td>A tool for tunneling SSH through HTTP proxies.</td></tr>
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
 <tr><td><a href="https://github.com/Xfennec/cv">cv</a></td><td>Show running coreutils basic commands and display stats.</td></tr>
@@ -395,73 +393,6 @@ Set `_dotfiles` to 1 for:
 ![openbox](https://i.imgur.com/zDzVno0.png)
 
 [Dotfiles](https://github.com/atweiden/dotfiles)
-
-#### Openbox Settings
-
-**Keybindings**
-
-*The Windows symbol key is the 'Super' key. For example,
-`Windows+spacebar` opens the main menu. Right-click anywhere on the
-desktop to open the main menu.*
-
-Program shortcuts:
-
-- `Super+space`: main menu
-- `Super+t`    : LXTerminal (T)erminal
-- `Super+f`    : PCManFM (F)ile manager
-- `Super+e`    : Leafpad (E)ditor
-- `Super+m`    : VLC (M)edia player
-- `Super+w`    : Chromium (W)eb browser
-- `Super+q`    : Force (Q)uit
-- `Super+g`    : (g)Vim
-- `Super+l`    : (L)ock screen
-- `Super+r`    : Calculato(R)
-- `Alt+F2`     : gmrun dialog (program launcher)
-- `Alt+F3`     : dmenu (HUD-like program launcher with simple fuzzy completion)
-
-Desktop shortcuts:
-
-- `Super+a` : toggle maximize the current window
-- `Super+h` : toggle fully expand the current window horizontally
-- `Super+v` : toggle fully expand the current window vertically
-- `Super+c` : center the current window
-- `Super+<UP>`   : move the current window up
-- `Super+<DOWN>` : move the current window down
-- `Super+<RIGHT>`: move the current window to the right
-- `Super+<LEFT>` : move the current window to the left
-- `Alt+Super+<ARROW>` : resize the current window
-- `Alt+Shift+<ARROW>` : move the current window to a different desktop
-- `Super+<F1-F4>` : switch to desktop #1-4
-
-Mouse shortcuts:
-
-- right-click anywhere on desktop: main menu
-- mousewheel-scrolldown on app icon in lower panel: minimize app to lower panel
-- mousewheel-scrollup on app icon in lower panel: restore app to size from minimized in lower panel
-- right-click on app icon in lower panel: quit app / close app window
-
-#### How It Works
-
-- Log in
-- Run `startx` to launch Openbox
-
-
-Notes
------
-
-- If you are doing a persistent USB install, it's recommended to boot
-  the Arch LiveCD/USB in i686 mode to ensure maximum hardware
-  compatibilty.
-- If `wifi-menu -o` throws an `invalid interface` error, reboot the
-  LiveCD/USB.
-
-
-To Do
------
-
-- Add support for [laptop power management](https://wiki.archlinux.org/index.php/TLP)
-- Add man page
-- Add `_raid` variable to setup [Btrfs RAID](https://wiki.archlinux.org/index.php/Btrfs#Multi-device_filesystem_and_RAID_feature)
 
 
 Licensing
