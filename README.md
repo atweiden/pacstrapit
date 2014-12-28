@@ -232,7 +232,7 @@ Base packages include:
 
 <table>
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
-<tr><td><a href="http://www.ansible.com/">ansible</a></td><td>Idempotent anti-conflaguration discombobulator.</td></tr>
+<tr><td><a href="https://github.com/ansible/ansible">ansible</a></td><td>Idempotent anti-conflaguration discombobulator.</td></tr>
 <tr><td><a href="https://github.com/brain0/appjail">appjail</a></td><td>Sandboxing tool to protect private data from untrusted applications.</td></tr>
 <tr><td><a href="https://github.com/seblu/archversion">archversion</a></td><td>Archlinux Version Controller.</td></tr>
 <tr><td><a href="http://kmkeen.com/arch-wiki-lite/">arch-wiki-lite</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a>, easily searched and viewable on console.</td></tr>
@@ -246,7 +246,7 @@ Base packages include:
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
 <tr><td><a href="https://github.com/Xfennec/cv">cv</a></td><td>Show running coreutils basic commands and display stats.</td></tr>
-<tr><td><a href="http://dmr.ath.cx/net/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
+<tr><td><a href="https://unix4lyfe.org/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
 <tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for package maintainers.</td></tr>
 <tr><td><a href="https://www.isc.org/downloads/bind/">dnsutils</a></td><td>Utilities: dig, host, and nslookup.</td></tr>
 <tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
@@ -259,9 +259,9 @@ Base packages include:
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>
 <tr><td><a href="https://github.com/uams/geturl">geturl</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
-<tr><td><a href="http://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
+<tr><td><a href="https://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
-<tr><td><a href="http://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
+<tr><td><a href="https://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/hexgrep">hexgrep</a></td><td>Versatile grep-like binary stream and file search tool.</td></tr>
 <tr><td><a href="https://github.com/jkbr/httpie">httpie</a></td><td>cURL for humans.</td></tr>
 <tr><td><a href="https://hub.github.com/">hub</a></td><td>CLI interface for Github.</td></tr>
@@ -275,21 +275,21 @@ Base packages include:
 <tr><td><a href="https://stedolan.github.io/jq/">jq</a></td><td>CLI JSON processor.</td></tr>
 <tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
 <tr><td><a href="https://github.com/mafm/ledger.py">ledger.py</a></td><td>CLI double-entry accounting.</td></tr>
-<tr><td><a href="http://www.code-wizards.com/projects/libfaketime/">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
+<tr><td><a href="https://github.com/wolfcw/libfaketime">libfaketime</a></td><td>Report arbitrary dates and times to programs.</td></tr>
 <tr><td><a href="http://libusb.sourceforge.net/">libusb-compat</a></td><td>USB device support.</td></tr>
 <tr><td><a href="http://lrzip.kolivas.org/">lrzip</a></td><td>Multi-threaded file compression.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/lsgrp">lsgrp</a></td><td>A simple command-line utility to list all members of a group.</td></tr>
 <tr><td><a href="http://lynx.isc.org/">lynx</a></td><td>Text mode Web browser.</td></tr>
-<tr><td><a href="http://ftp.gnu.org/gnu/macchanger">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
+<tr><td><a href="https://ftp.gnu.org/gnu/macchanger/">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/makedep">makedep</a></td><td>Convert Pacman optional dependencies to real dependencies.</td></tr>
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
 <tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
-<tr><td><a href="http://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
+<tr><td><a href="https://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
-<tr><td><a href="http://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
-<tr><td><a href="http://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
+<tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/ottools">ottools</a></td><td>Tools for encrypting files with one-time pads.</td></tr>
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
@@ -306,7 +306,7 @@ Base packages include:
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
-<tr><td><a href="http://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
+<tr><td><a href="https://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quickserve">quickserve</a></td><td>A simple HTTP server for quickly sharing files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quixand">quixand</a></td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
 <tr><td><a href="http://ranger.nongnu.org/">ranger</a></td><td>A simple, Vim-like file manager.</td></tr>
@@ -316,9 +316,9 @@ Base packages include:
 <tr><td><a href="https://github.com/nelhage/reptyr">reptyr</a></td><td>Utility for taking an existing running program and attaching it to a new terminal.</td></tr>
 <tr><td><a href="http://wireless.kernel.org/en/users/Documentation/rfkill">rfkill</a></td><td>Tool for enabling and disabling wireless devices.</td></tr>
 <tr><td><a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a></td><td>Add readline-style editing and history to programs.</td></tr>
-<tr><td><a href="http://libtorrent.rakshasa.no/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
+<tr><td><a href="https://rakshasa.github.io/rtorrent/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
 <tr><td><a href="https://github.com/saitoha/seq2gif">seq2gif</a></td><td>Convert a ttyrec record into a gif animation directly.</td></tr>
-<tr><td><a href="http://stahlforce.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
+<tr><td><a href="http://stahlworks.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="https://github.com/naquad/shmig">shmig</a></td><td>Database migration tool.</td></tr>
 <tr><td><a href="http://www.dest-unreach.org/socat/">socat</a></td><td>Multipurpose relay.</td></tr>
 <tr><td><a href="https://www.tarsnap.com/spiped.html">spiped</a></td><td>Secure pipe daemon.</td></tr>
@@ -338,7 +338,7 @@ Base packages include:
 <tr><td><a href="http://0xcc.net/ttyrec/">ttyrec</a></td><td>A tty recorder and player.</td></tr>
 <tr><td><a href="http://gittup.org/tup/">tup</a></td><td>A fast, file-based build system.</td></tr>
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
-<tr><td><a href="http://marcansoft.com/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
+<tr><td><a href="https://marcan.st/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
 <tr><td><a href="https://github.com/joewalnes/websocketd">websocketd</a></td><td>Turn any application that uses STDIO/STDOUT into a WebSocket server.</td></tr>
 <tr><td><a href="http://aspell.net/">words</a></td><td>A collection of International 'words' files for /usr/share/dict.</td></tr>
 <tr><td><a href="http://www.xinetd.org/">xinetd</a></td><td>A secure replacement for inetd.</td></tr>
