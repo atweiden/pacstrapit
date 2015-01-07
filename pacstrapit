@@ -3401,7 +3401,9 @@ if [[ "${_webdev}" == '1' ]]; then
           'nodejs-grunt-cli'
           'nodejs-hexo'
           'nodejs-jade'
-          'nodejs-stylus')
+          'nodejs-less'
+          'nodejs-stylus'
+          'ruby-sass')
   _vimplugs+=('vim-better-javascript-completion-plugged-git'
               'vim-dart-plugged-git'
               'vim-egs-plugged-git'
