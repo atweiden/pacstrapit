@@ -1975,12 +1975,12 @@ sed -i 's!^# Host!Host!' /mnt/etc/ssh/ssh_config
 sed -i '/^#   HostbasedAuthentication.*/a \    HashKnownHosts yes' /mnt/etc/ssh/ssh_config
 sed -i '/^#   ConnectTimeout.*/a \    TCPKeepAlive yes' /mnt/etc/ssh/ssh_config
 sed -i 's!^#   Protocol.*!    Protocol 2!'  /mnt/etc/ssh/ssh_config
-sed -i 's!^#   Ciphers.*!    Ciphers aes256-cbc,aes256-ctr,aes192-cbc,aes192-ctr,blowfish-cbc,aes128-cbc,aes128-ctr,arcfour256,arcfour128,arcfour,3des-cbc,cast128-cbc!'  /mnt/etc/ssh/ssh_config
+sed -i 's!^#   Ciphers.*!    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr!'  /mnt/etc/ssh/ssh_config
 sed -i '/^#   MACs.*/a \    ServerAliveCountMax 3' /mnt/etc/ssh/ssh_config
 sed -i '/^#   MACs.*/a \    ServerAliveInterval 60' /mnt/etc/ssh/ssh_config
-sed -i '/^#   MACs.*/a \    KexAlgorithms diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1,diffie-hellman-group14-sha1' /mnt/etc/ssh/ssh_config
-sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ssh-dss-cert-v01@openssh.com,ssh-dss-cert-v00@openssh.com,ssh-dss' /mnt/etc/ssh/ssh_config
-sed -i 's!^#   MACs.*!    MACs hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-sha1,hmac-md5,hmac-sha1-96,hmac-md5-96,umac-64@openssh.com!'  /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256' /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-ed25519,ssh-rsa' /mnt/etc/ssh/ssh_config
+sed -i 's!^#   MACs.*!    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
 
 # configure hosts_allowed
@@ -2023,28 +2023,30 @@ fi
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Configuring sshd..."
 
-sed -i 's!^#Port.*!Port 22!'                                                          /mnt/etc/ssh/sshd_config
-sed -i 's!^#Protocol.*!Protocol 2!'                                                   /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_rsa_key!HostKey /etc/ssh/ssh_host_rsa_key!'     /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_dsa_key!HostKey /etc/ssh/ssh_host_dsa_key!'     /mnt/etc/ssh/sshd_config
-sed -i 's!^#HostKey /etc/ssh/ssh_host_ecdsa_key!HostKey /etc/ssh/ssh_host_ecdsa_key!' /mnt/etc/ssh/sshd_config
-sed -i 's!^#SyslogFacility.*!SyslogFacility AUTH!'                                    /mnt/etc/ssh/sshd_config
-sed -i 's!^#LogLevel.*!LogLevel ERROR!'                                               /mnt/etc/ssh/sshd_config
-sed -i 's!^#LoginGraceTime.*!LoginGraceTime 2m!'                                      /mnt/etc/ssh/sshd_config
-sed -i 's!^#PermitRootLogin.*!PermitRootLogin no!'                                    /mnt/etc/ssh/sshd_config
-sed -i 's!^#StrictModes.*!StrictModes yes!'                                           /mnt/etc/ssh/sshd_config
-sed -i 's!^#PasswordAuthentication.*!PasswordAuthentication no!'                      /mnt/etc/ssh/sshd_config
-sed -i 's!^UsePAM yes!UsePAM no!'                                                     /mnt/etc/ssh/sshd_config
-sed -i 's!^#X11Forwarding.*!X11Forwarding no!'                                        /mnt/etc/ssh/sshd_config
-sed -i 's!^#X11DisplayOffset.*!X11DisplayOffset 10!'                                  /mnt/etc/ssh/sshd_config
-sed -i 's!^#PrintLastLog.*!PrintLastLog yes!'                                         /mnt/etc/ssh/sshd_config
-sed -i 's!^#TCPKeepAlive.*!TCPKeepAlive yes!'                                         /mnt/etc/ssh/sshd_config
-sed -i 's!^#ClientAliveInterval.*!ClientAliveInterval 60!'                            /mnt/etc/ssh/sshd_config
-sed -i 's!^#ClientAliveCountMax.*!ClientAliveCountMax 3!'                             /mnt/etc/ssh/sshd_config
-sed -i 's!^#UseDNS.*!UseDNS no!'                                                      /mnt/etc/ssh/sshd_config
-echo "AllowUsers ${_user_name}" >>                                                    /mnt/etc/ssh/sshd_config
-sed -i '/^multi.*/a nospoof on'                                                       /mnt/etc/host.conf
-echo "sshd: ${_hosts_allowed}" >                                                      /mnt/etc/hosts.allow
+sed -i 's!^#Port.*!Port 22!'                                                              /mnt/etc/ssh/sshd_config
+sed -i 's!^#Protocol.*!Protocol 2!'                                                       /mnt/etc/ssh/sshd_config
+sed -i 's!^#HostKey /etc/ssh/ssh_host_rsa_key!HostKey /etc/ssh/ssh_host_rsa_key!'         /mnt/etc/ssh/sshd_config
+sed -i 's!^#HostKey /etc/ssh/ssh_host_ed25519_key!HostKey /etc/ssh/ssh_host_ed25519_key!' /mnt/etc/ssh/sshd_config
+sed -i 's!^#SyslogFacility.*!SyslogFacility AUTH!'                                        /mnt/etc/ssh/sshd_config
+sed -i 's!^#LogLevel.*!LogLevel ERROR!'                                                   /mnt/etc/ssh/sshd_config
+sed -i 's!^#LoginGraceTime.*!LoginGraceTime 2m!'                                          /mnt/etc/ssh/sshd_config
+sed -i 's!^#PermitRootLogin.*!PermitRootLogin no!'                                        /mnt/etc/ssh/sshd_config
+sed -i 's!^#StrictModes.*!StrictModes yes!'                                               /mnt/etc/ssh/sshd_config
+sed -i 's!^#PasswordAuthentication.*!PasswordAuthentication no!'                          /mnt/etc/ssh/sshd_config
+sed -i 's!^UsePAM yes!UsePAM no!'                                                         /mnt/etc/ssh/sshd_config
+sed -i 's!^#X11Forwarding.*!X11Forwarding no!'                                            /mnt/etc/ssh/sshd_config
+sed -i 's!^#X11DisplayOffset.*!X11DisplayOffset 10!'                                      /mnt/etc/ssh/sshd_config
+sed -i 's!^#PrintLastLog.*!PrintLastLog yes!'                                             /mnt/etc/ssh/sshd_config
+sed -i 's!^#TCPKeepAlive.*!TCPKeepAlive yes!'                                             /mnt/etc/ssh/sshd_config
+sed -i 's!^#ClientAliveInterval.*!ClientAliveInterval 60!'                                /mnt/etc/ssh/sshd_config
+sed -i 's!^#ClientAliveCountMax.*!ClientAliveCountMax 3!'                                 /mnt/etc/ssh/sshd_config
+sed -i 's!^#UseDNS.*!UseDNS no!'                                                          /mnt/etc/ssh/sshd_config
+echo 'KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256' >> /mnt/etc/ssh/sshd_config
+echo 'Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' >> /mnt/etc/ssh/sshd_config
+echo 'MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com' >> /mnt/etc/ssh/sshd_config
+echo "AllowUsers ${_user_name}" >>                                                        /mnt/etc/ssh/sshd_config
+sed -i '/^multi.*/a nospoof on'                                                           /mnt/etc/host.conf
+echo "sshd: ${_hosts_allowed}" >                                                          /mnt/etc/hosts.allow
 
 # set systemd services
 
