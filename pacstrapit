@@ -3158,7 +3158,8 @@ if [[ "${_fonts}" == '1' ]]; then
 fi
 
 if [[ "${_go}" == '1' ]]; then
-  _pkgs+=('go')
+  _pkgs+=('go'
+          'godep')
   _vimpkgs+=('gotags-git')
   _vimplugs+=('vim-go-extra-plugged-git'
               'vim-go-plugged-git')
