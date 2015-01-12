@@ -254,7 +254,6 @@ Base packages include:
 <tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether</a></td><td><a href="http://easytether.org/">EasyTether</a> Internet access drivers.</td></tr>
 <tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/facadefs">facadefs</a></td><td>FUSE-based filesystem sandbox.</td></tr>
-<tr><td><a href="https://github.com/drmikehenry/findx">findx</a></td><td>Wrapper to extend the Unix find command.</td></tr>
 <tr><td><a href="http://www.vanheusden.com/f-irc/">f-irc</a></td><td>User-friendly IRC client for the console/terminal.</td></tr>
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>
@@ -289,7 +288,7 @@ Base packages include:
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
 <tr><td><a href="https://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
-<tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN (Virtual Private Network).</td></tr>
+<tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/ottools">ottools</a></td><td>Tools for encrypting files with one-time pads.</td></tr>
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
