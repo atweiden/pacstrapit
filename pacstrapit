@@ -2402,7 +2402,6 @@ if [[ "${_base}" == '1' ]]; then
           'easytether-rpm'
           'elinks'
           'facadefs'
-          'findx-git'
           'f-irc'
           'firejail'
           'fzf'
