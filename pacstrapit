@@ -3238,7 +3238,7 @@ fi
 
 if [[ "${_nim}" == '1' ]]; then
   _pkgs+=('nim'
-          'nimble-git')
+          'nimble')
   _vimplugs+=('vim-nim-plugged-git')
 fi
 
