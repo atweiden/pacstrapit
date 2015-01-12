@@ -1443,37 +1443,6 @@ for _pkg in cower pacaur; do
   arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
 done
 
-# install trizen
-
-                   if [[ "$_debug" == '1' ]]; then
-                      echo "******************"
-                      echo "*                *"
-                      echo "* install trizen *"
-                      echo "*                *"
-                      echo "******************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Installing trizen..."
-
-# trizen's official pkg dependencies
-arch-chroot /mnt pacman -Sy --needed git \
-                                     perl-data-dump \
-                                     perl-json-xs \
-                                     perl-libwww \
-                                     perl-log-message \
-                                     perl-log-message-simple \
-                                     perl-lwp-protocol-https \
-                                     perl-term-readline-gnu \
-                                     perl-term-ui --noconfirm
-for _pkg in trizen; do
-  mkdir -p /mnt/root/.src && cd /mnt/root/.src
-  rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
-  tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
-done
-
 # install arch-luks-suspend
 
                    if [[ "$_debug" == '1' ]]; then
@@ -3479,10 +3448,31 @@ declare _vimplugs_deps=('vim-align-plugged-git'
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing selected pkgs..."
 
-# arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
-# run again in case pacaur lost net connection during prev pkg dep calc
-# arch-chroot /mnt pacaur -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
-arch-chroot /mnt trizen -Sy --needed "${_pkgs[@]}" "${_vimpkgs[@]}" "${_bitpkgs[@]}" --noedit --noconfirm
+# ten at a time to prevent bugs with pacaur
+for (( i=0; i < ${#_pkgs[@]}; i+=10 )); do
+  arch-chroot /mnt pacaur -Sy --needed "${_pkgs[$i + 0]}" "${_pkgs[$i + 1]}" \
+                                       "${_pkgs[$i + 2]}" "${_pkgs[$i + 3]}" \
+                                       "${_pkgs[$i + 4]}" "${_pkgs[$i + 5]}" \
+                                       "${_pkgs[$i + 6]}" "${_pkgs[$i + 7]}" \
+                                       "${_pkgs[$i + 8]}" "${_pkgs[$i + 9]}" \
+                                       --noedit --noconfirm
+done
+for (( i=0; i < ${#_vimpkgs[@]}; i+=10 )); do
+  arch-chroot /mnt pacaur -Sy --needed "${_vimpkgs[$i + 0]}" "${_vimpkgs[$i + 1]}" \
+                                       "${_vimpkgs[$i + 2]}" "${_vimpkgs[$i + 3]}" \
+                                       "${_vimpkgs[$i + 4]}" "${_vimpkgs[$i + 5]}" \
+                                       "${_vimpkgs[$i + 6]}" "${_vimpkgs[$i + 7]}" \
+                                       "${_vimpkgs[$i + 8]}" "${_vimpkgs[$i + 9]}" \
+                                       --noedit --noconfirm
+done
+for (( i=0; i < ${#_bitpkgs[@]}; i+=10 )); do
+  arch-chroot /mnt pacaur -Sy --needed "${_bitpkgs[$i + 0]}" "${_bitpkgs[$i + 1]}" \
+                                       "${_bitpkgs[$i + 2]}" "${_bitpkgs[$i + 3]}" \
+                                       "${_bitpkgs[$i + 4]}" "${_bitpkgs[$i + 5]}" \
+                                       "${_bitpkgs[$i + 6]}" "${_bitpkgs[$i + 7]}" \
+                                       "${_bitpkgs[$i + 8]}" "${_bitpkgs[$i + 9]}" \
+                                       --noedit --noconfirm
+done
 
 # install selected vim plugins
 
