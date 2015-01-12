@@ -225,10 +225,57 @@ variable (`_electrum_pubkey_default`, `_user_pubkey_default`,
 `_user_pubkey_sig_default`).
 
 
-Optional: select
+Default packages
 ----------------
 
-Base packages include:
+Minimum packages installed (excluding dependencies, `base` and
+`base-devel` groups):
+
+<table>
+<tr><td><a href="https://projects.archlinux.org/abs.git">abs</a></td><td>Utilities to download and work with the Arch Build System (ABS).</td></tr>
+<tr><td><a href="https://projects.archlinux.org/arch-install-scripts.git">arch-install-scripts</a></td><td>Scripts to aid in installing Arch.</td></tr>
+<tr><td><a href="https://github.com/vianney/arch-luks-suspend">arch-luks-suspend</a></td><td>Lock encrypted root volume on suspend.</td></tr>
+<tr><td><a href="https://bash-completion.alioth.debian.org/">bash-completion</a></td><td>Programmable completion for the bash shell.</td></tr>
+<tr><td><a href="https://btrfs.wiki.kernel.org/index.php/Main_Page">btrfs-progs</a></td><td>Btrfs filesystem utilities.</td></tr>
+<tr><td><a href="https://pkgs.fedoraproject.org/cgit/ca-certificates.git">ca-certificates</a></td><td>Common CA certificates.</td></tr>
+<tr><td><a href="https://fedorahosted.org/cronie/">cronie</a></td><td>Daemon that runs specified programs at scheduled times and related tools.</td></tr>
+<tr><td><a href="https://www.isc.org/software/dhcp">dhclient</a></td><td>Standalone DHCP client.</td></tr>
+<tr><td><a href="http://invisible-island.net/dialog/">dialog</a></td><td>Tool to display dialog boxes from shell scripts.</td></tr>
+<tr><td><a href="https://github.com/jedisct1/dnscrypt-proxy">dnscrypt-proxy</a></td><td>Tool for securing communications between a client and a DNS resolver.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/ed/ed.html">ed</a></td><td>Line-oriented text editor.</td></tr>
+<tr><td><a href="https://www.kernel.org/pub/software/network/ethtool/">ethtool</a></td><td>Utility for controlling network drivers and hardware.</td></tr>
+<tr><td><a href="http://expect.sourceforge.net/">expect</a></td><td>Tool for automating interactive applications.</td></tr>
+<tr><td><a href="http://www.rodsbooks.com/gdisk/">gptfdisk</a></td><td>Text-mode partitioning tool that works on GUID Partition Table (GPT) disks.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/grub/">grub-bios</a></td><td>GNU GRand Unified Bootloader.</td></tr>
+<tr><td><a href="http://www.issihosts.com/haveged">haveged</a></td><td>Entropy harvesting daemon using CPU timings.</td></tr>
+<tr><td><a href="https://downloadcenter.intel.com/SearchResult.aspx?lang=eng&keyword=%22microcode%22">intel-ucode</a></td><td>Microcode update files <a href="https://www.archlinux.org/news/changes-to-intel-microcodeupdates/">for Intel CPUs</a>.</td></tr>
+<tr><td><a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2">iproute2</a></td><td>IP Routing Utilities.</td></tr>
+<tr><td><a href="https://www.netfilter.org/projects/iptables/">iptables</a></td><td>Linux kernel packet control tool.</td></tr>
+<tr><td><a href="http://wireless.kernel.org/en/users/Documentation/iw">iw</a></td><td>nl80211 based CLI configuration utility for wireless devices.</td></tr>
+<tr><td><a href="http://www.kbd-project.org/">kbd</a></td><td>Keytable files and keyboard utilities.</td></tr>
+<tr><td><a href="https://kernel.org/pub/linux/utils/kernel/kexec/">kexec-tools</a></td><td>Load another kernel from the currently executing Linux kernel.</td></tr>
+<tr><td><a href="http://net-tools.sourceforge.net/">net-tools</a></td><td>Configuration tools for Linux networking.</td></tr>
+<tr><td><a href="http://roy.marples.name/projects/openresolv/index">openresolv</a></td><td>resolv.conf management framework (resolvconf).</td></tr>
+<tr><td><a href="http://www.openssh.com/portable.html">openssh</a></td><td>SSH connectivity tools.</td></tr>
+<tr><td><a href="https://github.com/rmarquis/pacaur">pacaur</a></td><td>Fast workflow AUR helper.</td></tr>
+<tr><td><a href="https://www.python.org/">python2</a></td><td>High-level scripting language v2.</td></tr>
+<tr><td><a href="http://sourceforge.net/projects/sshpass/">sshpass</a></td><td>Fool ssh into accepting an interactive password non-interactively.</td></tr>
+<tr><td><a href="https://github.com/Nefelim4ag/systemd-swap">systemd-swap</a></td><td>Create hybrid swap space from zram swaps, swap files and swap partitions.</td></tr>
+<tr><td><a href="http://tmux.sourceforge.net/">tmux</a></td><td>Terminal multiplexer.</td></tr>
+<tr><td><a href="https://www.info-zip.org/UnZip.html">unzip</a></td><td>Extract and view files in zip archives.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/wget/wget.html">wget</a></td><td>Retrieve files from the Web.</td></tr>
+<tr><td><a href="http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html">wireless_tools</a></td><td>Wireless tools.</td></tr>
+<tr><td><a href="https://projects.archlinux.org/wpa_actiond.git/">wpa_actiond</a></td><td>Daemon that connects to wpa_supplicant and handles connect and disconnect events.</td></tr>
+<tr><td><a href="http://w1.fi/wpa_supplicant/">wpa_supplicant</a></td><td>Utility providing key negotiation for WPA wireless networks.</td></tr>
+<tr><td><a href="https://www.info-zip.org/Zip.html">zip</a></td><td>Create and modify zipfiles.</td></tr>
+<tr><td><a href="http://www.zsh.org/">zsh</a></td><td>Very advanced and programmable shell.</td></tr>
+</table>
+
+
+Optional packages
+-----------------
+
+Base packages (use `--bundle "base"` to include):
 
 <table>
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
