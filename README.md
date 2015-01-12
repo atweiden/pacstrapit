@@ -397,7 +397,7 @@ Additional packages are available.
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
 <tr><td>BEAM</td><td>Packages for programming in Erlang / Elixir</td></tr>
-<tr><td>C</td><td>Packages for programming in C/C++/Obj-C</td></tr>
+<tr><td>C</td><td>Packages for programming in C / C++ / Obj-C</td></tr>
 <tr><td>D</td><td>Packages for programming in D</td></tr>
 <tr><td>DotNet</td><td>Packages for programming in .NET</td></tr>
 <tr><td>Fonts</td><td>Fonts with internationalization</td></tr>
