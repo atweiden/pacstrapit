@@ -3864,7 +3864,7 @@ arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
   && msg "Installing dotfiles..."
 
 arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" ${_user_name}
-arch-chroot /mnt su -l -c "cd /root/.src/dotfiles-${VERSION_DOTFILES} && ./bootstrap.sh" root
+arch-chroot /mnt su -l -c "cd /root/.src/dotfiles-${VERSION_DOTFILES} && HOME=/root ./bootstrap.sh" root
 
 # configuring wallpaper
 
