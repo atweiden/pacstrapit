@@ -2625,6 +2625,7 @@ if [[ "${_gui}" == '1' ]]; then
           'urxvt-tabbedex'
           'valabattery-git'
           'venom-git'
+          'veracrypt'
           'videoproto'
           'vlc'
           'volumeicon'
