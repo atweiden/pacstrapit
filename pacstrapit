@@ -2197,7 +2197,14 @@ curl -k "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Verifying SSH keys..."
 
-pacman -Sy --needed python2-ecdsa python2-pbkdf2 python2-slowaes --noconfirm
+pacman -Sy --needed python2-ecdsa \
+                    python2-pbkdf2 \
+                    python2-pyasn1 \
+                    python2-pyasn1-modules \
+                    python2-requests \
+                    python2-slowaes \
+                    python2-socksipy-branch \
+                    python2-tlslite --noconfirm
 cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
 tar xvzf electrum-${VERSION_ELECTRUM}.tar.gz
 cd electrum-${VERSION_ELECTRUM}
@@ -3466,14 +3473,16 @@ for (( i=0; i < ${#_vimpkgs[@]}; i+=10 )); do
                                        "${_vimpkgs[$i + 8]}" "${_vimpkgs[$i + 9]}" \
                                        --noedit --noconfirm
 done
-for (( i=0; i < ${#_bitpkgs[@]}; i+=10 )); do
-  arch-chroot /mnt pacaur -Sy --needed "${_bitpkgs[$i + 0]}" "${_bitpkgs[$i + 1]}" \
-                                       "${_bitpkgs[$i + 2]}" "${_bitpkgs[$i + 3]}" \
-                                       "${_bitpkgs[$i + 4]}" "${_bitpkgs[$i + 5]}" \
-                                       "${_bitpkgs[$i + 6]}" "${_bitpkgs[$i + 7]}" \
-                                       "${_bitpkgs[$i + 8]}" "${_bitpkgs[$i + 9]}" \
-                                       --noedit --noconfirm
-done
+if [[ "${_gui}" == '1' ]]; then
+  for (( i=0; i < ${#_bitpkgs[@]}; i+=10 )); do
+    arch-chroot /mnt pacaur -Sy --needed "${_bitpkgs[$i + 0]}" "${_bitpkgs[$i + 1]}" \
+                                         "${_bitpkgs[$i + 2]}" "${_bitpkgs[$i + 3]}" \
+                                         "${_bitpkgs[$i + 4]}" "${_bitpkgs[$i + 5]}" \
+                                         "${_bitpkgs[$i + 6]}" "${_bitpkgs[$i + 7]}" \
+                                         "${_bitpkgs[$i + 8]}" "${_bitpkgs[$i + 9]}" \
+                                         --noedit --noconfirm
+  done
+fi
 
 # install selected vim plugins
 
