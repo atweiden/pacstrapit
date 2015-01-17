@@ -3384,6 +3384,7 @@ if [[ "${_webdev}" == '1' ]]; then
           'nodejs-jade'
           'nodejs-less'
           'nodejs-stylus'
+          'nodejs-typescript'
           'ruby-sass')
   _vimplugs+=('vim-better-javascript-completion-plugged-git'
               'vim-dart-plugged-git'
@@ -3393,11 +3394,13 @@ if [[ "${_webdev}" == '1' ]]; then
               'vim-javascript-libraries-syntax-plugged-git'
               'vim-javascript-plugged-git'
               'vim-jquery-plugged-git'
+              'vim-js-indent-plugged-git'
               'vim-json5-plugged-git'
               'vim-json-plugged-git'
               'vim-nodejs-errorformat-plugged-git'
               'vim-node-plugged-git'
               'vim-tern-plugged-git'
+              'vim-typescript-plugged-git'
               'vim-yajs-plugged-git')
   _vimplugs+=('vim-better-css-completion-plugged-git'
               'vim-css3-syntax-plugged-git'
