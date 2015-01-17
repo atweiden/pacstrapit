@@ -2474,6 +2474,7 @@ fi
 if [[ "${_grsec}" == '1' ]]; then
   _pkgs+=('checksec'
           'gradm'
+          'grsec-common'
           'linux-grsec'
           'linux-grsec-docs'
           'linux-grsec-headers'
