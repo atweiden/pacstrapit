@@ -2368,6 +2368,7 @@ if [[ "${_base}" == '1' ]]; then
           'bluez'
           'bluez-firmware'
           'ccrypt'
+          'check-pacman-mtree'
           'colordiff'
           'corkscrew'
           'create_ap'
