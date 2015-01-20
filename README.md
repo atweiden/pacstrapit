@@ -306,6 +306,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>
 <tr><td><a href="https://github.com/uams/geturl">geturl</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
+<tr><td><a href="https://github.com/pawel-wiejacha/gfms">gfms</a></td><td>Github Flavored Markdown Server with web preview and PDF export.</td></tr>
 <tr><td><a href="https://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
 <tr><td><a href="https://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>

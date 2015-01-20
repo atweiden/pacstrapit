@@ -2386,6 +2386,7 @@ if [[ "${_base}" == '1' ]]; then
           'firejail'
           'fzf'
           'geturl-git'
+          'gfms-git'
           'git'
           'git-extras'
           'gnupg1'
@@ -3413,6 +3414,12 @@ if [[ "${_webdev}" == '1' ]]; then
               'vim-jinja2-syntax-plugged-git'
               'vim-mustache-handlebars-plugged-git'
               'vim-slim-plugged-git')
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('phantomjs') # https://www.nightmarejs.org/
+  fi
+  _pkgs+=('python-grab'
+          'python2-grab'
+          'scrapy')
 fi
 
 if [[ "${_gui}" == '1' ]]; then
