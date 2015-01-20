@@ -3414,11 +3414,18 @@ if [[ "${_webdev}" == '1' ]]; then
               'vim-jinja2-syntax-plugged-git'
               'vim-mustache-handlebars-plugged-git'
               'vim-slim-plugged-git')
-  if [[ "${_gui}" == '1' ]]; then
-    _pkgs+=('phantomjs') # https://www.nightmarejs.org/
+  if [[ "${_gui}" == '1' ]]; then # https://www.nightmarejs.org/
+    _pkgs+=('casperjs-git'
+            'nodejs-karma'
+            'nodejs-karma-cli'
+            'phantomjs'
+            'ruby-poltergeist'
+            'slimerjs')
   fi
-  _pkgs+=('python-grab'
+  _pkgs+=('nodejs-buster'
+          'python-grab'
           'python2-grab'
+          'ruby-capybara'
           'scrapy')
 fi
 
