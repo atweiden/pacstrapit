@@ -3425,8 +3425,10 @@ if [[ "${_webdev}" == '1' ]]; then
             'slimerjs')
   fi
   _pkgs+=('nodejs-buster'
+          'perl-www-mechanize'
           'python-grab'
           'python2-grab'
+          'python2-mechanize'
           'ruby-capybara'
           'scrapy')
 fi
