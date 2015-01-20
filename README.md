@@ -306,7 +306,6 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>
 <tr><td><a href="https://github.com/uams/geturl">geturl</a></td><td><a href="https://filepicker.io">Filepicker.io</a> CLI tool to get a public link for any file.</td></tr>
-<tr><td><a href="https://github.com/pawel-wiejacha/gfms">gfms</a></td><td>Github Flavored Markdown Server with web preview and PDF export.</td></tr>
 <tr><td><a href="https://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
 <tr><td><a href="https://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
@@ -330,11 +329,13 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://lynx.isc.org/">lynx</a></td><td>Text mode Web browser.</td></tr>
 <tr><td><a href="https://ftp.gnu.org/gnu/macchanger/">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/makedep">makedep</a></td><td>Convert Pacman optional dependencies to real dependencies.</td></tr>
+<tr><td><a href="http://invisible-island.net/mawk/">mawk</a></td><td>Minimal-featured Awk designed for speed of execution over functionality.</td></tr>
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
 <tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
 <tr><td><a href="https://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
+<tr><td><a href="http://cm.bell-labs.com/who/bwk/">nawk</a></td><td>The One True Awk.</td></tr>
 <tr><td><a href="https://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
 <tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN.</td></tr>
@@ -344,6 +345,8 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacnew_scripts">pacnew_scripts</a></td><td>A collection of scripts to help merge changes in .pacnew files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacserve">pacserve</a></td><td>Easily share Pacman packages between computers.</td></tr>
+<tr><td><a href="https://github.com/cheusov/paexec">paexec</a></td><td>Parallel executor.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/parallel/">parallel</a></td><td>Execute jobs in parallel.</td></tr>
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pbget">pbget</a></td><td>Retrieve PKGBUILDs and local source files from Git, ABS and the AUR for makepkg.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
