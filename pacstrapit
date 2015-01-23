@@ -2274,6 +2274,7 @@ declare _bundle_full=('base'
                       'gui'
                       'dotfiles'
                       'analysis'
+                      'android'
                       'assembly'
                       'c'
                       'd'
@@ -3049,6 +3050,16 @@ if [[ "${_analysis}" == '1' ]]; then
           'ntop'
           'strace'
           'traceroute')
+fi
+
+if [[ "${_android}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('archon'
+            'archon-exec'
+            'chromeos-apk-git')
+  fi
+  _pkgs+=('android-tools'
+          'android-udev')
 fi
 
 if [[ "${_assembly}" == '1' ]]; then
