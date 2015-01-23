@@ -3388,6 +3388,7 @@ if [[ "${_webdev}" == '1' ]]; then
           'nodejs-hexo'
           'nodejs-jade'
           'nodejs-less'
+          'nodejs-riot'
           'nodejs-stylus'
           'nodejs-typescript'
           'ruby-sass')
