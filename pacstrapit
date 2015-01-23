@@ -2370,6 +2370,7 @@ if [[ "${_base}" == '1' ]]; then
           'ccrypt'
           'check-pacman-mtree'
           'colordiff'
+          'commacd'
           'corkscrew'
           'create_ap'
           'cronwhip'

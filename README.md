@@ -290,6 +290,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://ccrypt.sourceforge.net/">ccrypt</a></td><td>Command-line utility for encrypting and decrypting files and streams.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=1490719">check-pacman-mtree</a></td><td>Locate files that have changed on disk (size/md5/sha256).</td></tr>
 <tr><td><a href="http://www.colordiff.org/">colordiff</a></td><td>Syntax highlighting for diff.</td></tr>
+<tr><td><a href="https://github.com/shyiko/commacd">commacd</a></td><td>A faster way to move around Bash.</td></tr>
 <tr><td><a href="http://www.agroman.net/corkscrew/">corkscrew</a></td><td>A tool for tunneling SSH through HTTP proxies.</td></tr>
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
