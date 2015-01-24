@@ -2649,6 +2649,7 @@ if [[ "${_gui}" == '1' ]]; then
           'torchat'
           'tox-prpl'
           'ttf-monaco'
+          'unibrow'
           'urxvt-perls'
           'urxvt-tabbedex'
           'valabattery-git'
