@@ -259,6 +259,8 @@ Minimum packages installed (excluding dependencies, `base` and
 <tr><td><a href="http://www.openssh.com/portable.html">openssh</a></td><td>SSH connectivity tools.</td></tr>
 <tr><td><a href="https://github.com/rmarquis/pacaur">pacaur</a></td><td>Fast workflow AUR helper.</td></tr>
 <tr><td><a href="https://www.python.org/">python2</a></td><td>High-level scripting language v2.</td></tr>
+<tr><td><a href="http://xyne.archlinux.ca/projects/reflector/">reflector</a></td><td>Retrieve and filter the latest Pacman mirror list.</td></tr>
+<tr><td><a href="https://rsync.samba.org/">rsync</a></td><td>A file transfer program to keep remote files in sync.</td></tr>
 <tr><td><a href="http://sourceforge.net/projects/sshpass/">sshpass</a></td><td>Fool ssh into accepting an interactive password non-interactively.</td></tr>
 <tr><td><a href="https://github.com/Nefelim4ag/systemd-swap">systemd-swap</a></td><td>Create hybrid swap space from zram swaps, swap files and swap partitions.</td></tr>
 <tr><td><a href="http://tmux.sourceforge.net/">tmux</a></td><td>Terminal multiplexer.</td></tr>

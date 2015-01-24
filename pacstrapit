@@ -329,21 +329,26 @@ pacman-key -r 0x32B0B4534209170B # https://wiki.archlinux.org/index.php/ArchHask
 pacman-key --lsign-key 0x32B0B4534209170B
 pkill haveged
 
-# depends: rankmirrors
+# depends: rankmirrors / reflector for https-only mirrors
 
-                   if [[ "$_debug" == '1' ]]; then
-                   echo "************************"
-                   echo "*                      *"
-                   echo "* depends: rankmirrors *"
-                   echo "*                      *"
-                   echo "************************"
-                                  fi
+                        if [[ "$_debug" == '1' ]]; then
+                   echo "***********************************"
+                   echo "*                                 *"
+                   echo "* depends: rankmirrors/ reflector *"
+                   echo "*                                 *"
+                   echo "***********************************"
+                                       fi
+
+if ! [[ -x /usr/bin/reflector ]]; then
+  status "Depends pkg: reflector"
+  pacman -Sy reflector --noconfirm
+fi
 
 status "Ranking mirrors..."
 substatus "This can take up to 20 minutes"
-sed -i 's!^#Server!Server!' /etc/pacman.d/mirrorlist
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-rankmirrors -n 4 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
+reflector -i https -x ftp > /etc/pacman.d/mirrorlist.https
+rankmirrors -n 8 /etc/pacman.d/mirrorlist.https > /etc/pacman.d/mirrorlist
 
 # depends: arch-install-scripts
 
@@ -1021,6 +1026,8 @@ pacstrap /mnt abs                  \
               openresolv           \
               openssh              \
               python2              \
+              reflector            \
+              rsync                \
               sshpass              \
               systemd-swap         \
               tmux                 \
@@ -1370,11 +1377,11 @@ fi
                                   fi
 
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Finding four fastest mirrors..."
+  && msg "Finding eight fastest mirrors..."
 
-sed -i 's!^#Server!Server!' /mnt/etc/pacman.d/mirrorlist
 mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak
-rankmirrors -n 4 /mnt/etc/pacman.d/mirrorlist.bak > /mnt/etc/pacman.d/mirrorlist
+reflector -i https -x ftp > /mnt/etc/pacman.d/mirrorlist.https
+rankmirrors -n 8 /mnt/etc/pacman.d/mirrorlist.https > /mnt/etc/pacman.d/mirrorlist
 
 # import gpg signing keys - https://sks-keyservers.net/overview-of-pools.php
 
