@@ -356,6 +356,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pkg_scripts">pkg_scripts</a></td><td>A collection of pacman and package-related utilities.</td></tr>
 <tr><td><a href="https://github.com/rofl0r/proxychains">proxychains-ng</a></td><td>Run programs from behind a proxy server.</td></tr>
+<tr><td><a href="https://puppetlabs.com/puppet/puppet-open-source">puppet</a></td><td>Server automation framework and application.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
 <tr><td><a href="https://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
@@ -369,6 +370,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://wireless.kernel.org/en/users/Documentation/rfkill">rfkill</a></td><td>Tool for enabling and disabling wireless devices.</td></tr>
 <tr><td><a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a></td><td>Add readline-style editing and history to programs.</td></tr>
 <tr><td><a href="https://rakshasa.github.io/rtorrent/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
+<tr><td><a href="https://github.com/saltstack/salt">salt-raet</a></td><td>Central system and configuration manager.</td></tr>
 <tr><td><a href="https://github.com/saitoha/seq2gif">seq2gif</a></td><td>Convert a ttyrec record into a gif animation directly.</td></tr>
 <tr><td><a href="http://stahlworks.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="https://github.com/naquad/shmig">shmig</a></td><td>Database migration tool.</td></tr>
