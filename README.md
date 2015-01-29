@@ -399,6 +399,8 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/joewalnes/websocketd">websocketd</a></td><td>Turn any application that uses STDIO/STDOUT into a WebSocket server.</td></tr>
 <tr><td><a href="http://aspell.net/">words</a></td><td>A collection of International 'words' files for /usr/share/dict.</td></tr>
 <tr><td><a href="http://www.xinetd.org/">xinetd</a></td><td>A secure replacement for inetd.</td></tr>
+<tr><td><a href="http://xtables-addons.sourceforge.net/">xtables-addons</a></td><td>Additional extensions for iptables.</td></tr>
+<tr><td><a href="http://dev.maxmind.com/geoip/legacy/geolite/">xtables-geoip</a></td><td>Maxmind GeoIP database for iptables.</td></tr>
 <tr><td><a href="https://rg3.github.io/youtube-dl/">youtube-dl</a></td><td><a href="https://www.youtube.com/">YouTube.com</a> CLI video downloader.</td></tr>
 </table>
 

@@ -2485,6 +2485,8 @@ if [[ "${_base}" == '1' ]]; then
           'websocketd'
           'words'
           'xinetd'
+          'xtables-addons-dkms'
+          'xtables-geoip-db'
           'youtube-dl')
 fi
 
