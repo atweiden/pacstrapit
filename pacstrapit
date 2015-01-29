@@ -347,7 +347,7 @@ fi
 status "Ranking mirrors..."
 substatus "This can take up to 20 minutes"
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-reflector -i https -x ftp > /etc/pacman.d/mirrorlist.https
+reflector -p https > /etc/pacman.d/mirrorlist.https
 rankmirrors -n 8 /etc/pacman.d/mirrorlist.https > /etc/pacman.d/mirrorlist
 
 # depends: arch-install-scripts
@@ -1380,7 +1380,7 @@ fi
   && msg "Finding eight fastest mirrors..."
 
 mv /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak
-reflector -i https -x ftp > /mnt/etc/pacman.d/mirrorlist.https
+reflector -p https > /mnt/etc/pacman.d/mirrorlist.https
 rankmirrors -n 8 /mnt/etc/pacman.d/mirrorlist.https > /mnt/etc/pacman.d/mirrorlist
 
 # import gpg signing keys - https://sks-keyservers.net/overview-of-pools.php
