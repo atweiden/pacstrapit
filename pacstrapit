@@ -3322,7 +3322,8 @@ if [[ "${_php}" == '1' ]]; then
               'vim-php-error-marker-plugged-git'
               'vim-php-folding-plugged-git'
               'vim-php-indent-plugged-git'
-              'vim-php-syntax-plugged-git')
+              'vim-php-syntax-plugged-git'
+              'vim-xhp-plugged-git')
 fi
 
 if [[ "${_python}" == '1' ]]; then
