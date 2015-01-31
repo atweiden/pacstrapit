@@ -2591,6 +2591,8 @@ if [[ "${_gui}" == '1' ]]; then
           'jp2a'
           'jre7-openjdk'
           'jre7-openjdk-headless'
+          'jre8-openjdk'
+          'jre8-openjdk-headless'
           'keepassx'
           'leafpad'
           'libgl'
