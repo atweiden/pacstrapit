@@ -2419,6 +2419,7 @@ if [[ "${_base}" == '1' ]]; then
           'macchanger'
           'makedep'
           'mawk'
+          'mdp-git'
           'mercurial'
           'mlocate'
           'moby-thesaurus'

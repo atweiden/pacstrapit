@@ -332,6 +332,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://lynx.isc.org/">lynx</a></td><td>Text mode Web browser.</td></tr>
 <tr><td><a href="https://ftp.gnu.org/gnu/macchanger/">macchanger</a></td><td>Change your NIC's MAC address.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/makedep">makedep</a></td><td>Convert Pacman optional dependencies to real dependencies.</td></tr>
+<tr><td><a href="https://github.com/visit1985/mdp">mdp</a></td><td>A command-line based Markdown presentation tool.</td></tr>
 <tr><td><a href="http://invisible-island.net/mawk/">mawk</a></td><td>Minimal-featured Awk designed for speed of execution over functionality.</td></tr>
 <tr><td><a href="http://mercurial.selenic.com/">mercurial</a></td><td>Scalable distributed SCM tool.</td></tr>
 <tr><td><a href="https://fedorahosted.org/mlocate/">mlocate</a></td><td>Locate files easily.</td></tr>
