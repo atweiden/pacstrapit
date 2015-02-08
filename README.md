@@ -346,10 +346,12 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/ottools">ottools</a></td><td>Tools for encrypting files with one-time pads.</td></tr>
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
+<tr><td><a href="https://github.com/archlinuxfr/package-query">package-query</a></td><td>Query ALPM and AUR.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
 <tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacnew_scripts">pacnew_scripts</a></td><td>A collection of scripts to help merge changes in .pacnew files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacserve">pacserve</a></td><td>Easily share Pacman packages between computers.</td></tr>
+<tr><td><a href="https://github.com/crossroads1112/bin/tree/master/pacupg">pacupg</a></td><td>Script that wraps package and AUR upgrades in btrfs snapshots as well as providing an easy way to roll them back.</td></tr>
 <tr><td><a href="https://github.com/cheusov/paexec">paexec</a></td><td>Parallel executor.</td></tr>
 <tr><td><a href="https://www.gnu.org/software/parallel/">parallel</a></td><td>Execute jobs in parallel.</td></tr>
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
