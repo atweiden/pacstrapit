@@ -2650,7 +2650,7 @@ if [[ "${_gui}" == '1' ]]; then
           'startup-notification'
           'statler-ui-theme'
           'thunderbird'
-          'thunderbird-enigmail-bin'
+          'thunderbird-enigmail'
           'tint2'
           'tiv'
           'tmsu'
