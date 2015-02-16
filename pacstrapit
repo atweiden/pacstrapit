@@ -3300,7 +3300,9 @@ if [[ "${_ocaml}" == '1' ]]; then
 fi
 
 if [[ "${_perl}" == '1' ]]; then
-  _pkgs+=('perlbrew'
+  _pkgs+=('cpanminus'
+          'perlbrew'
+          'perl-carton'
           'perl-cpanplus-dist-arch'
           'perl-ev'
           'perl-io-socket-ip'
