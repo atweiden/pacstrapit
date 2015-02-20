@@ -1409,6 +1409,10 @@ arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xEC3CBE7F607D11E663149E811D1F0DC78F173680" ${_user_name}
 arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xEC3CBE7F607D11E663149E811D1F0DC78F173680" ${_user_name}
 
+# https://www.gnupg.org/signature_key.html
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x249B39D24F25E3B6" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x249B39D24F25E3B6" ${_user_name}
+
 # https://electrum.org/download.html
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
 arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
@@ -1445,12 +1449,20 @@ arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys
 pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 for _pkg in cower pacaur; do
-  mkdir -p /mnt/root/.src && cd /mnt/root/.src
+  mkdir -p /mnt/home/build
+  chgrp nobody /mnt/home/build
+  chmod g+ws /mnt/home/build
+  setfacl -m u::rwx,g::rwx /mnt/home/build
+  setfacl -d --set u::rwx,g::rwx,o::- /mnt/home/build
+  pushd /mnt/home/build
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  curl -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  makepkg -Acsi --noconfirm --asroot
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
+  chmod -R g+w /mnt/home/build
+  chown -R root:nobody /mnt/home/build
+  cd $_pkg && sudo -u nobody makepkg -Acs --noconfirm
+  arch-chroot /mnt su -l -c "cd /home/build/$_pkg && makepkg -Acs --noconfirm" nobody
+  popd
 done
 
 # install arch-luks-suspend
@@ -1470,7 +1482,7 @@ arch-chroot /mnt pacman -Sy --needed cryptsetup git mkinitcpio systemd --noconfi
 for _pkg in arch-luks-suspend-git; do
   mkdir -p /mnt/root/.src && cd /mnt/root/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
-  curl -k -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
+  curl -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
   arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
 done
@@ -2190,9 +2202,9 @@ arch-chroot /mnt systemctl enable sshd
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Importing SSH keys..."
 
-curl -k "${_electrum_pubkey}" -o ~/electrum.pub
-curl -k "${_user_pubkey}"     -o ~/sshkey.pub
-curl -k "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
+curl "${_electrum_pubkey}" -o ~/electrum.pub
+curl "${_user_pubkey}"     -o ~/sshkey.pub
+curl "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 
 # verify with electrum
 
@@ -2215,7 +2227,7 @@ pacaur -Sy --needed python2-ecdsa \
                     python2-slowaes \
                     python2-socksipy-branch \
                     python2-tlslite --noedit --noconfirm
-cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
+cd && curl https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
 tar xvzf electrum-${VERSION_ELECTRUM}.tar.gz
 cd electrum-${VERSION_ELECTRUM}
 find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
@@ -3051,6 +3063,7 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-visualrepeat-plugged-git'
             'vim-wordy-plugged-git'
             'vim-xterm-color-table-plugged-git'
+            'vim-ycm_simple_conf-plugged-git'
             'vim-youcompleteme-plugged-git')
 
 if [[ "${_analysis}" == '1' ]]; then
@@ -3144,33 +3157,35 @@ if [[ "${_dotnet}" == '1' ]]; then
 fi
 
 if [[ "${_fonts}" == '1' ]]; then
-  _pkgs+=('gsfonts'
-          'opendesktop-fonts'
-          'ttf-arphic-ukai'
-          'ttf-arphic-uming'
-          'ttf-baekmuk'
-          'ttf-bitstream-vera'
-          'ttf-dejavu'
-          'ttf-freebanglafont'
-          'ttf-gentium'
-          'ttf-google-fonts-git'
-          'ttf-hanazono'
-          'ttf-hannom'
-          'ttf-indic-otf'
-          'ttf-junicode'
-          'ttf-khmer'
-          'ttf-linux-libertine'
-          'ttf-meslo'
-          'ttf-mph-2b-damase'
-          'ttf-nishiki-teki'
-          'ttf-sazanami'
-          'ttf-symbola'
-          'ttf-tibetan-machine'
-          'ttf-tlwg'
-          'ttf-ubraille'
-          'wqy-bitmapfont'
-          'wqy-microhei'
-          'wqy-zenhei')
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('gsfonts'
+            'opendesktop-fonts'
+            'ttf-arphic-ukai'
+            'ttf-arphic-uming'
+            'ttf-baekmuk'
+            'ttf-bitstream-vera'
+            'ttf-dejavu'
+            'ttf-freebanglafont'
+            'ttf-gentium'
+            'ttf-google-fonts-git'
+            'ttf-hanazono'
+            'ttf-hannom'
+            'ttf-indic-otf'
+            'ttf-junicode'
+            'ttf-khmer'
+            'ttf-linux-libertine'
+            'ttf-meslo'
+            'ttf-mph-2b-damase'
+            'ttf-nishiki-teki'
+            'ttf-sazanami'
+            'ttf-symbola'
+            'ttf-tibetan-machine'
+            'ttf-tlwg'
+            'ttf-ubraille'
+            'wqy-bitmapfont'
+            'wqy-microhei'
+            'wqy-zenhei')
+  fi
 fi
 
 if [[ "${_go}" == '1' ]]; then
@@ -3224,7 +3239,8 @@ if [[ "${_jvm}" == '1' ]]; then
               'vim-java-bytecode-plugged-git'
               'vim-javacomplete-plugged-git'
               'vim-java-plugged-git'
-              'vim-java-sql-plugged-git')
+              'vim-java-sql-plugged-git'
+              'vim-maven-compiler-plugged-git')
   _pkgs+=('clojure'
           'leiningen'
           'leiningen-completions'
@@ -3247,7 +3263,11 @@ if [[ "${_jvm}" == '1' ]]; then
               'vim-scala-plugged-git')
 fi
 
-if [[ "${_latex}" == 1 ]]; then
+if [[ "${_latex}" == '1' ]]; then
+  if [[ "${_gui}" == '1' ]]; then
+    _pkgs+=('elyxer'
+            'lyx')
+  fi
   _pkgs+=('tex2png'
           'texlive-core')
   _vimplugs+=('vim-latex-plugged-git')
@@ -3569,7 +3589,7 @@ fi
   && msg "Installing selected vim plugins..."
 
 mkdir -p /mnt/home/${_user_name}/.src
-cd && curl -k https://codeload.github.com/atweiden/{pkgbuilds}/{tar.gz}/{${VERSION_PKGBUILDS}} -o "#1-#3.#2"
+cd && curl https://codeload.github.com/atweiden/{pkgbuilds}/{tar.gz}/{${VERSION_PKGBUILDS}} -o "#1-#3.#2"
 tar xvzf pkgbuilds-${VERSION_PKGBUILDS}.tar.gz
 mv pkgbuilds-${VERSION_PKGBUILDS} /mnt/home/${_user_name}/.src
 arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
@@ -3741,7 +3761,7 @@ arch-chroot /mnt pacaur -Sy --needed python2-ecdsa \
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing Electrum headless in chroot..."
 
-cd && curl -k https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
+cd && curl https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
 tar xvzf electrum-${VERSION_ELECTRUM}.tar.gz
 cd electrum-${VERSION_ELECTRUM}
 find . -type f -print0 | xargs -0 sed -i 's#/usr/bin/python#/usr/bin/python2#g'
@@ -3889,10 +3909,10 @@ fi
   && msg "Getting dotfiles..."
 
 mkdir -p /mnt/home/${_user_name}/.src
-curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
+curl https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/home/${_user_name}/.src/"#1-#3.#2"
 tar -xvzf /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}.tar.gz -C /mnt/home/${_user_name}/.src
 mkdir -p /mnt/root/.src
-curl -k https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/root/.src/"#1-#3.#2"
+curl https://codeload.github.com/atweiden/{dotfiles}/{tar.gz}/{${VERSION_DOTFILES}} -o /mnt/root/.src/"#1-#3.#2"
 tar -xvzf /mnt/root/.src/dotfiles-${VERSION_DOTFILES}.tar.gz -C /mnt/root/.src
 
 # adjusting dotfile config parameters
