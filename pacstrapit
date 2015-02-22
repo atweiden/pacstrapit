@@ -1055,6 +1055,193 @@ pacstrap /mnt abs                  \
 
 [[ "${_processor}" == 'intel' ]] && pacstrap /mnt intel-ucode
 
+# configure root password
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: rootpass *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring root password..."
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
+    echo
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p ' ' _root_pass_confirm
+    echo
+    if [[    "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
+    if [[ -z "$_root_pass" ]]; then
+      echo   "${bold}${yellow}::${normal} Root password cannot be blank. Please try again"
+    else
+      echo   "${bold}${yellow}::${normal} Please try again"
+    fi
+  done
+elif [[ -n   "$FLAGS_rootpass" ]]; then
+  msg        "Reading root password from cmdline flag..."
+  _root_pass="$FLAGS_rootpass"
+elif [[ -n   "$ROOT_PASS" ]]; then
+  msg        "Reading root password from environment variable..."
+  _root_pass="$ROOT_PASS"
+else
+  msg        "Using default root password..."
+  _root_pass="$_root_pass_default"
+fi
+
+# set root password
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* root passwd *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Applying root password..."
+
+arch-chroot /mnt expect <<EOF
+  spawn passwd root
+  expect "Enter*" {
+    send "${_root_pass}\r"
+  }
+  expect "Retype*" {
+    send "${_root_pass}\r"
+  }
+  expect eof
+EOF
+
+# configure user name
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: username *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring username..."
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
+  _user_name="${_user_name:-$_user_name_default}"
+elif [[ -n   "$FLAGS_username" ]]; then
+  msg        "Reading user name from cmdline flag..."
+  _user_name="$FLAGS_username"
+elif [[ -n   "$USER_NAME" ]]; then
+  msg        "Reading user name from environment variable..."
+  _user_name="$USER_NAME"
+else
+  msg        "Using default user name..."
+  _user_name="$_user_name_default"
+fi
+
+# create user
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* create user *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Creating user ${_user_name}..."
+
+arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
+
+# configure user password
+
+                   if [[ "$_debug" == '1' ]]; then
+                     echo "********************"
+                     echo "*                  *"
+                     echo "* config: userpass *"
+                     echo "*                  *"
+                     echo "********************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring password for user ${_user_name}..."
+
+if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
+  while true; do
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
+    echo
+    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p ' ' _user_pass_confirm
+    echo
+    if [[    "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
+    if [[ -z "$_user_pass" ]]; then
+      echo   "${bold}${yellow}::${normal} User password cannot be blank. Please try again"
+    else
+      echo   "${bold}${yellow}::${normal} Please try again"
+    fi
+  done
+elif [[ -n   "$FLAGS_userpass" ]]; then
+  msg        "Reading user password from cmdline flag..."
+  _user_pass="$FLAGS_userpass"
+elif [[ -n   "$USER_PASS" ]]; then
+  msg        "Reading user password from environment variable..."
+  _user_pass="$USER_PASS"
+else
+  msg        "Using default user password..."
+  _user_pass="$_user_pass_default"
+fi
+
+# set user password
+
+                   if [[ "$_debug" == '1' ]]; then
+                        echo "***************"
+                        echo "*             *"
+                        echo "* user passwd *"
+                        echo "*             *"
+                        echo "***************"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Applying password for user ${_user_name}..."
+
+arch-chroot /mnt expect <<EOF
+  spawn passwd ${_user_name}
+  expect "Enter*" {
+    send "${_user_pass}\r"
+  }
+  expect "Retype*" {
+    send "${_user_pass}\r"
+  }
+  expect eof
+EOF
+
+# configure sudo
+
+                   if [[ "$_debug" == '1' ]]; then
+                           echo "********"
+                           echo "*      *"
+                           echo "* sudo *"
+                           echo "*      *"
+                           echo "********"
+                                  fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Giving user ${_user_name} sudo powers..."
+
+cat >> /mnt/etc/sudoers <<EOF
+${_user_name} ALL=(ALL) ALL
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/loadkeys
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown
+${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu
+EOF
+
 # install a bootloader
 
                    if [[ "$_debug" == '1' ]]; then
@@ -1449,19 +1636,12 @@ arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys
 pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 arch-chroot /mnt pacman -Sy --needed curl expac pacman perl sudo yajl --noconfirm
 for _pkg in cower pacaur; do
-  mkdir -p /mnt/home/build
-  chgrp nobody /mnt/home/build
-  chmod g+ws /mnt/home/build
-  setfacl -m u::rwx,g::rwx /mnt/home/build
-  setfacl -d --set u::rwx,g::rwx,o::- /mnt/home/build
-  pushd /mnt/home/build
+  mkdir -p /mnt/home/${_user_name}/.src && pushd /mnt/home/${_user_name}/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  chmod -R g+w /mnt/home/build
-  chown -R root:nobody /mnt/home/build
-  cd $_pkg && sudo -u nobody makepkg -Acs --noconfirm
-  arch-chroot /mnt su -l -c "cd /home/build/$_pkg && makepkg -Acs --noconfirm" nobody
+  arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/$_pkg && makepkg -Acsi --noconfirm" ${_user_name}
+  find /mnt/home/${_user_name}/.src/$_pkg -type f -name "*.pkg.tar.xz" -exec pacman -U '{}' --noconfirm \;
   popd
 done
 
@@ -1480,11 +1660,12 @@ done
 
 arch-chroot /mnt pacman -Sy --needed cryptsetup git mkinitcpio systemd --noconfirm
 for _pkg in arch-luks-suspend-git; do
-  mkdir -p /mnt/root/.src && cd /mnt/root/.src
+  mkdir -p /mnt/home/${_user_name}/.src && pushd /mnt/home/${_user_name}/.src
   rm -rf $_pkg ${_pkg}.tar.gz && mkdir -p $_pkg
   curl -O https://aur.archlinux.org/packages/${_pkg:0:2}/$_pkg/$_pkg.tar.gz
   tar -xvzf ${_pkg}.tar.gz --strip 1 -C $_pkg
-  arch-chroot /mnt su -l -c "cd /root/.src/$_pkg && makepkg -Acsi --noconfirm --asroot" root
+  arch-chroot /mnt su -l -c "cd /home/${_user_name}/.src/$_pkg && makepkg -Acsi --noconfirm" ${_user_name}
+  popd
 done
 
 # always suspend to RAM
@@ -1595,193 +1776,6 @@ fi
 arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-
-# configure root password
-
-                   if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* config: rootpass *"
-                     echo "*                  *"
-                     echo "********************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Configuring root password..."
-
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
-  while true; do
-    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (root):${normal}"; read -s -p ' ' _root_pass
-    echo
-    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (root):${normal}"; read -s -p ' ' _root_pass_confirm
-    echo
-    if [[    "$_root_pass" == "$_root_pass_confirm" && -n "$_root_pass" ]]; then break; fi
-    if [[ -z "$_root_pass" ]]; then
-      echo   "${bold}${yellow}::${normal} Root password cannot be blank. Please try again"
-    else
-      echo   "${bold}${yellow}::${normal} Please try again"
-    fi
-  done
-elif [[ -n   "$FLAGS_rootpass" ]]; then
-  msg        "Reading root password from cmdline flag..."
-  _root_pass="$FLAGS_rootpass"
-elif [[ -n   "$ROOT_PASS" ]]; then
-  msg        "Reading root password from environment variable..."
-  _root_pass="$ROOT_PASS"
-else
-  msg        "Using default root password..."
-  _root_pass="$_root_pass_default"
-fi
-
-# set root password
-
-                   if [[ "$_debug" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* root passwd *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Applying root password..."
-
-arch-chroot /mnt expect <<EOF
-  spawn passwd root
-  expect "Enter*" {
-    send "${_root_pass}\r"
-  }
-  expect "Retype*" {
-    send "${_root_pass}\r"
-  }
-  expect eof
-EOF
-
-# configure user name
-
-                   if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* config: username *"
-                     echo "*                  *"
-                     echo "********************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Configuring username..."
-
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
-  echo -n    "${bold}${blue}::${normal} ${bold}${white}Enter user name${normal} ${bold}${white}[${normal}$_user_name_default${bold}${white}]${normal}:"; read -p ' ' _user_name
-  _user_name="${_user_name:-$_user_name_default}"
-elif [[ -n   "$FLAGS_username" ]]; then
-  msg        "Reading user name from cmdline flag..."
-  _user_name="$FLAGS_username"
-elif [[ -n   "$USER_NAME" ]]; then
-  msg        "Reading user name from environment variable..."
-  _user_name="$USER_NAME"
-else
-  msg        "Using default user name..."
-  _user_name="$_user_name_default"
-fi
-
-# create user
-
-                   if [[ "$_debug" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* create user *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Creating user ${_user_name}..."
-
-arch-chroot /mnt useradd -m -g users -G audio,games,log,lp,network,optical,power,scanner,storage,video,wheel -s /bin/bash ${_user_name}
-
-# configure user password
-
-                   if [[ "$_debug" == '1' ]]; then
-                     echo "********************"
-                     echo "*                  *"
-                     echo "* config: userpass *"
-                     echo "*                  *"
-                     echo "********************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Configuring password for user ${_user_name}..."
-
-if [[ "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" || "${FLAGS_concealed}" -eq "${FLAGS_TRUE}" ]]; then
-  while true; do
-    echo -n  "${bold}${blue}::${normal} ${bold}${white}Enter new UNIX password (user):${normal}"; read -s -p ' ' _user_pass
-    echo
-    echo -n  "${bold}${blue}::${normal} ${bold}${white}Retype new UNIX password (user):${normal}"; read -s -p ' ' _user_pass_confirm
-    echo
-    if [[    "$_user_pass" == "$_user_pass_confirm" && -n "$_user_pass" ]]; then break; fi
-    if [[ -z "$_user_pass" ]]; then
-      echo   "${bold}${yellow}::${normal} User password cannot be blank. Please try again"
-    else
-      echo   "${bold}${yellow}::${normal} Please try again"
-    fi
-  done
-elif [[ -n   "$FLAGS_userpass" ]]; then
-  msg        "Reading user password from cmdline flag..."
-  _user_pass="$FLAGS_userpass"
-elif [[ -n   "$USER_PASS" ]]; then
-  msg        "Reading user password from environment variable..."
-  _user_pass="$USER_PASS"
-else
-  msg        "Using default user password..."
-  _user_pass="$_user_pass_default"
-fi
-
-# set user password
-
-                   if [[ "$_debug" == '1' ]]; then
-                        echo "***************"
-                        echo "*             *"
-                        echo "* user passwd *"
-                        echo "*             *"
-                        echo "***************"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Applying password for user ${_user_name}..."
-
-arch-chroot /mnt expect <<EOF
-  spawn passwd ${_user_name}
-  expect "Enter*" {
-    send "${_user_pass}\r"
-  }
-  expect "Retype*" {
-    send "${_user_pass}\r"
-  }
-  expect eof
-EOF
-
-# configure sudo
-
-                   if [[ "$_debug" == '1' ]]; then
-                           echo "********"
-                           echo "*      *"
-                           echo "* sudo *"
-                           echo "*      *"
-                           echo "********"
-                                  fi
-
-[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
-  && msg "Giving user ${_user_name} sudo powers..."
-
-cat >> /mnt/etc/sudoers <<EOF
-${_user_name} ALL=(ALL) ALL
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/loadkeys
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacman
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/pacmatic
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/reboot
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/shutdown
-${_user_name} ALL=(ALL) NOPASSWD: /usr/bin/wifi-menu
-EOF
 
 # configure sysctl
 
@@ -2311,6 +2305,7 @@ declare _bundle_full=('base'
                       'nim'
                       'ocaml'
                       'perl'
+                      'perl6'
                       'php'
                       'python'
                       'rst'
@@ -3336,6 +3331,13 @@ if [[ "${_perl}" == '1' ]]; then
               'vim-perl-plugged-git')
 fi
 
+if [[ "${_perl6}" == '1' ]]; then # _perl6pkg dependencies are installed in order
+  _perl6pkgs+=('moarvm-git'
+               'nqp-git'
+               'rakudo-git'
+               'panda-git')
+fi
+
 if [[ "${_php}" == '1' ]]; then
   _pkgs+=('hhvm'
           'php'
@@ -3573,6 +3575,26 @@ if ! [[ "${_headless}" == '1' ]]; then
                                          "${_bitpkgs[$i + 6]}" "${_bitpkgs[$i + 7]}" \
                                          "${_bitpkgs[$i + 8]}" "${_bitpkgs[$i + 9]}" \
                                          --noedit --noconfirm
+  done
+fi
+
+# install perl6 pkgs from my pkgbuilds
+
+                        if [[ "$_debug" == '1' ]]; then
+                      echo "*****************************"
+                      echo "*                           *"
+                      echo "* installing perl6 packages *"
+                      echo "*                           *"
+                      echo "*****************************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_perl6}" == '1' ]] \
+  && msg "Installing perl6 pkgs..."
+
+if [[ "${_perl6}" == '1' ]]; then
+  git clone https://github.com/atweiden/pkgbuilds /tmp/pkgbuilds --depth=1
+  for _perl6pkg in ${!_perl6pkgs[@]}; do
+    arch-chroot /mnt su -l -c "cd /tmp/pkgbuilds/perl6/${_perl6pkgs[$_perl6pkg]} && makepkg -Acsi --noconfirm" ${_user_name}
   done
 fi
 
