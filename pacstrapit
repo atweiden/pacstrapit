@@ -1606,8 +1606,8 @@ arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys
 arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
 
 # https://www.torproject.org/docs/verifying-signatures.html.en
-#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x416F061063FEE659" ${_user_name}
-arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x416F061063FEE659" ${_user_name}
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x4E2C6E8793298290" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x4E2C6E8793298290" ${_user_name}
 
 # https://tails.boum.org/doc/about/openpgp_keys/index.en.html#index2h1
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x1202821CBE2CD9C1" ${_user_name}
