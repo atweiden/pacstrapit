@@ -2676,6 +2676,7 @@ if [[ "${_gui}" == '1' ]]; then
           'videoproto'
           'vlc'
           'volumeicon'
+          'vym'
           'wmctrl'
           'x11-ssh-askpass'
           'xautolock'
