@@ -2644,6 +2644,7 @@ if [[ "${_gui}" == '1' ]]; then
           'pulseaudio'
           'pwsafe'
           'pystopwatch'
+          'qtcreator'
           'randrproto'
           'recode'
           'renderproto'
