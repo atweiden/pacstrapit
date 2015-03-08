@@ -3270,7 +3270,7 @@ if [[ "${_latex}" == '1' ]]; then
   fi
   _pkgs+=('tex2png'
           'texlive-core')
-  _vimplugs+=('vim-latex-plugged-git')
+  _vimplugs+=('vim-vimtex-plugged-git')
 fi
 
 if [[ "${_lisp}" == '1' ]]; then
