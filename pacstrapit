@@ -3130,6 +3130,8 @@ if [[ "${_c}" == '1' ]]; then
           'cppman'
           'cscope'
           'gdb'
+          'lldb'
+          'llvm'
           'ruby-starscope'
           'splint'
           'valgrind')
