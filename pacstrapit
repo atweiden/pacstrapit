@@ -3368,7 +3368,6 @@ if [[ "${_python}" == '1' ]]; then
           'python'
           'python2'
           'python2-ipdb'
-          'python2-jedi'
           'python2-pip'
           'python2-prompt_toolkit'
           'python2-pycscope'
@@ -3377,7 +3376,6 @@ if [[ "${_python}" == '1' ]]; then
           'python2-virtualenv'
           'python2-virtualenv-clone'
           'python-ipdb'
-          'python-jedi'
           'python-pip'
           'python-prompt_toolkit'
           'python-setuptools'
@@ -3386,7 +3384,6 @@ if [[ "${_python}" == '1' ]]; then
           'python-virtualenv-clone'
           'python-virtualenvwrapper')
   _vimplugs+=('vim-cython-plugged-git'
-              'vim-jedi-plugged-git'
               'vim-kivy-plugged-git'
               'vim-python-combined-plugged-git'
               'vim-vimux-ipy-plugged-git'
