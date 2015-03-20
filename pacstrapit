@@ -3429,13 +3429,9 @@ if [[ "${_vbox}" == '1' ]]; then
           'vde2'
           'virtualbox'
           'virtualbox-ext-oracle'
-          'virtualbox-guest-dkms'
           'virtualbox-guest-iso'
-          'virtualbox-guest-modules'
-          'virtualbox-guest-utils'
           'virtualbox-host-dkms'
-          'virtualbox-host-modules'
-          'virtualbox-sdk')
+          'virtualbox-host-modules')
 fi
 
 if [[ "${_webdev}" == '1' ]]; then
@@ -3699,8 +3695,8 @@ if [[ "$_vbox" == '1' ]]; then
 # Load vboxdrv module at boot
 vboxdrv
 
-# Load vboxguest module at boot
-vboxguest
+# Load vboxguest module at boot (only on guest)
+#vboxguest
 
 # Load vboxnetadp module at boot
 vboxnetadp
@@ -3708,14 +3704,16 @@ vboxnetadp
 # Load vboxnetflt module at boot
 vboxnetflt
 
-# Load vboxsf module at boot
-vboxsf
+# Load vboxpci module at boot
+vboxpci
 
-# Load vboxvideo module at boot
-vboxvideo
+# Load vboxsf module at boot (only on guest)
+#vboxsf
+
+# Load vboxvideo module at boot (only on guest)
+#vboxvideo
 EOF
   arch-chroot /mnt systemctl enable dkms
-  arch-chroot /mnt systemctl enable vboxservice
 fi
 
 # clean pacaur
