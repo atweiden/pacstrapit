@@ -3503,7 +3503,7 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _bitpkgs=('electrum'
-                    'python2-zbar')
+                    'zbar')
 else
   _headless=1
 fi
