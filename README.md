@@ -270,7 +270,6 @@ Minimum packages installed (excluding dependencies, `base` and
 <tr><td><a href="https://projects.archlinux.org/wpa_actiond.git/">wpa_actiond</a></td><td>Daemon that connects to wpa_supplicant and handles connect and disconnect events.</td></tr>
 <tr><td><a href="http://w1.fi/wpa_supplicant/">wpa_supplicant</a></td><td>Utility providing key negotiation for WPA wireless networks.</td></tr>
 <tr><td><a href="https://www.info-zip.org/Zip.html">zip</a></td><td>Create and modify zipfiles.</td></tr>
-<tr><td><a href="https://github.com/Nefelim4ag/zramctl">zramctl</a></td><td>Tool to control zram devices.</td></tr>
 <tr><td><a href="http://www.zsh.org/">zsh</a></td><td>Very advanced and programmable shell.</td></tr>
 </table>
 

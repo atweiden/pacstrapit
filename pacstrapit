@@ -1038,7 +1038,6 @@ pacstrap /mnt abs                  \
               wpa_actiond          \
               wpa_supplicant       \
               zip                  \
-              zramctl              \
               zsh
 
 # https://www.archlinux.org/news/changes-to-intel-microcodeupdates/
