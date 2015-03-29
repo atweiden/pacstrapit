@@ -1599,8 +1599,16 @@ arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys
 
 status "GnuPG and Thunderbird..."
 substatus "Werner Koch: https://www.gnupg.org/signature_key.html"
-#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x249B39D24F25E3B6" ${_user_name}
-arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x249B39D24F25E3B6" ${_user_name}
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x249B39D24F25E3B6 0x8A861B1C7EFD60D9" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x249B39D24F25E3B6 0x8A861B1C7EFD60D9" ${_user_name}
+
+substatus "David Shaw: https://www.gnupg.org/signature_key.html"
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x04376F3EE085695" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x04376F3EE085695" ${_user_name}
+
+substatus "NIIBE Yutaka: https://www.gnupg.org/signature_key.html"
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x2071B08A33BD3F06" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x2071B08A33BD3F06" ${_user_name}
 
 substatus "Patrick Brunschwig: https://www.enigmail.net/home/members.php"
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xDB1187B9DD5F693B" ${_user_name}
