@@ -2420,6 +2420,7 @@ if [[ "${_base}" == '1' ]]; then
           'f-irc'
           'firejail'
           'fzf'
+          'fzf-extras'
           'geturl-git'
           'git'
           'git-extras'
