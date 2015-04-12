@@ -2688,7 +2688,6 @@ if [[ "${_gui}" == '1' ]]; then
           'ttf-monaco'
           'unibrow'
           'urxvt-perls'
-          'urxvt-tabbedex'
           'valabattery-git'
           'venom-git'
           'veracrypt'
