@@ -4090,6 +4090,21 @@ cp /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/etc/openvpn/update-
   && msg "Enabling kill-ssh-sessions systemd service..."
 
 arch-chroot /mnt su -l -c "systemctl --user enable kill-ssh-sessions" ${_user_name}
+
+# fixing wifi-menu ncurses interface error
+
+                        if [[ "$_debug" == '1' ]]; then
+                               echo "***********"
+                               echo "*         *"
+                               echo "* ncurses *"
+                               echo "*         *"
+                               echo "***********"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Fixing ncurses to detect screen-it-256color..."
+
+cp /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/_terminfo/s/screen-it-256color /mnt/usr/share/terminfo/s
 }
 
 
