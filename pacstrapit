@@ -16,10 +16,10 @@
 # -----------------------------------------------------------------------------
 
 # constants
-VERSION="0.9.1"
-VERSION_DOTFILES="0.8.0"
-VERSION_PKGBUILDS="0.1.0"
-VERSION_ELECTRUM="2.0.3"
+VERSION="0.9.2"
+VERSION_DOTFILES="0.9.0"
+VERSION_PKGBUILDS="0.2.0"
+VERSION_ELECTRUM="2.0.4"
 
 # machine
 _partition_default="/dev/sda"
