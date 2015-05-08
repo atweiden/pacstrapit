@@ -3478,6 +3478,7 @@ if [[ "${_webdev}" == '1' ]]; then
           'nodejs-riot'
           'nodejs-stylus'
           'nodejs-typescript'
+          'npm'
           'ruby-sass')
   _vimplugs+=('vim-better-javascript-completion-plugged-git'
               'vim-dart-plugged-git'
