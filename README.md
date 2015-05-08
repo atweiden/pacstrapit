@@ -319,6 +319,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/jeffkaufman/icdiff">icdiff</a></td><td>Improved colored diff.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/idemptables">idemptables</a></td><td>Idempotent iptables wrapper for appending and deleting rules.</td></tr>
 <tr><td><a href="https://imgur.com/tools/">imgurbash</a></td><td><a href="https://imgur.com">Imgur.com</a> CLI uploader.</td></tr>
+<tr><td><a href="http://ipset.netfilter.org/">ipset</a></td><td>Store multiple IP addresses or port numbers and match against the collection with iptables in one swoop.</td></tr>
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
 <tr><td><a href="http://irssi.org/">irssi</a></td><td>Modular text mode IRC client with Perl scripting.</td></tr>
@@ -359,6 +360,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://xyne.archlinux.ca/projects/pbget">pbget</a></td><td>Retrieve PKGBUILDs and local source files from Git, ABS and the AUR for makepkg.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
 <tr><td><a href="https://github.com/junegunn/pipe-logger">pipe-logger</a></td><td>Log rotation of stdout & stderr.</td></tr>
+<tr><td><a href="https://github.com/flonatel/pipexec">pipexec</a></td><td>Handle pipe of commands like a single command.</td></tr>
 <tr><td><a href="https://github.com/falconindy/pkgbuild-introspection">pkgbuild-introspection</a></td><td>Tools for generating .AURINFO files and PKGBUILD data extraction.</td></tr>
 <tr><td><a href="https://bbs.archlinux.org/viewtopic.php?pid=841774">pkgcacheclean</a></td><td>Clean the Pacman cache to save on disk space.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pkg_scripts">pkg_scripts</a></td><td>A collection of pacman and package-related utilities.</td></tr>
@@ -366,6 +368,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://puppetlabs.com/puppet/puppet-open-source">puppet</a></td><td>Server automation framework and application.</td></tr>
 <tr><td><a href="https://github.com/stef/pbp">python2-pbp</a></td><td>Simple crypto tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/python3-aur">python3-aur</a></td><td>AUR-related modules and helper utilities.</td></tr>
+<tr><td><a href="https://harelba.github.io/q/">q</a></td><td>Run SQL directly on CSV or TSV files.</td></tr>
 <tr><td><a href="https://fukuchi.org/works/qrencode/">qrencode</a></td><td>Encode data in a QR code.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quickserve">quickserve</a></td><td>A simple HTTP server for quickly sharing files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/quixand">quixand</a></td><td>Create single-use unrecoverable encrypted sandboxes.</td></tr>
