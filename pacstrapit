@@ -2452,6 +2452,7 @@ if [[ "${_base}" == '1' ]]; then
           'moby-thesaurus'
           'moreutils'
           'mosh'
+          'myrepos'
           'nawk'
           'ncurses'
           'nyan-git'

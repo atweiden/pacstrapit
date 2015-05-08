@@ -340,6 +340,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://www.gutenberg.org/ebooks/3202">moby-thesaurus</a></td><td>The Project Gutenberg Etext of Moby Thesaurus II by Grady Ward.</td></tr>
 <tr><td><a href="https://joeyh.name/code/moreutils/">moreutils</a></td><td>A growing collection of the unix tools that nobody thought to write thirty years ago.</td></tr>
 <tr><td><a href="https://mosh.mit.edu/">mosh</a></td><td>Mobile shell, survives disconnects.</td></tr>
+<tr><td><a href="https://myrepos.branchable.com/">myrepos</a></td><td>Multiple Repository management tool.</td></tr>
 <tr><td><a href="http://cm.bell-labs.com/who/bwk/">nawk</a></td><td>The One True Awk.</td></tr>
 <tr><td><a href="https://www.gnu.org/software/ncurses/">ncurses</a></td><td>Text mode user interface support.</td></tr>
 <tr><td><a href="https://github.com/shibumi/nyan">nyan</a></td><td>Simple netcat wrapper.</td></tr>
