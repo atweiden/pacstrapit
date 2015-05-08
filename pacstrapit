@@ -2673,6 +2673,7 @@ if [[ "${_gui}" == '1' ]]; then
           'renderproto'
           'rxvt-unicode-pixbuf'
           'screencastor'
+          'screenkey'
           'scrot'
           'shared-color-targets'
           'shared-mime-info'
@@ -3097,6 +3098,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'nethogs'
           'ngrep'
           'ntop'
+          'perf-tools-git'
           'strace'
           'traceroute')
 fi
@@ -3181,11 +3183,13 @@ if [[ "${_fonts}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('gsfonts'
             'opendesktop-fonts'
+            'phallus-fonts-git'
             'ttf-arphic-ukai'
             'ttf-arphic-uming'
             'ttf-baekmuk'
             'ttf-bitstream-vera'
             'ttf-dejavu'
+            'ttf-envy-code-r'
             'ttf-freebanglafont'
             'ttf-gentium'
             'ttf-google-fonts-git'
@@ -3383,6 +3387,8 @@ fi
 if [[ "${_python}" == '1' ]]; then
   _pkgs+=('ipython'
           'ipython2'
+          'pypy'
+          'pypy3'
           'python'
           'python2'
           'python2-ipdb'
