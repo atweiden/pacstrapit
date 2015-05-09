@@ -2884,6 +2884,7 @@ _vimpkgs+=('clang'
            'vim-spell-zu')
 _vimplugs+=('vim-abolish-plugged-git'
             'vim-accordion-plugged-git'
+            'vim-advanced-sorters-plugged-git'
             'vim-align-plugged-git'
             'vim-ansible-yaml-plugged-git'
             'vim-archversion-plugged-git'
