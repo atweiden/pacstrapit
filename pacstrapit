@@ -3512,6 +3512,7 @@ if [[ "${_webdev}" == '1' ]]; then
               'vim-ls-plugged-git'
               'vim-node-plugged-git'
               'vim-tern-plugged-git'
+              'vim-textobj-function-javascript-plugged-git'
               'vim-typescript-plugged-git'
               'vim-yajs-plugged-git')
   _vimplugs+=('vim-better-css-completion-plugged-git'
