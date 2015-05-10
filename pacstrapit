@@ -3374,7 +3374,8 @@ if [[ "${_perl}" == '1' ]]; then
   _vimplugs+=('vim-mojo-plugged-git'
               'vim-perl-local-lib-path-plugged-git'
               'vim-perlomni-plugged-git'
-              'vim-perl-plugged-git')
+              'vim-perl-plugged-git'
+              'vim-textobj-function-perl-plugged-git')
 fi
 
 if [[ "${_perl6}" == '1' ]]; then # _perl6pkg dependencies are installed in order
