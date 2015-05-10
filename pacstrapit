@@ -3087,6 +3087,7 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-visualrepeat-plugged-git'
             'vim-wordy-plugged-git'
             'vim-xterm-color-table-plugged-git'
+            'vim-yankitute-plugged-git'
             'vim-ycm_simple_conf-plugged-git'
             'vim-youcompleteme-plugged-git')
 
