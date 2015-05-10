@@ -427,6 +427,7 @@ Additional packages are available.
 <tr><td>Gobi</td><td>Gobi 3G / mobile network connection firmware</td></tr>
 <tr><td>Grsec</td><td>Packages for Grsecurity / PaX</td></tr>
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
+<tr><td>Haxe</td><td>Packages for programming in Haxe</td></tr>
 <tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
 <tr><td>JVM</td><td>Packages for programming in Java / Clojure / Groovy / Scala</td></tr>
 <tr><td>LaTeX</td><td>Packages for writing in LaTeX</td></tr>

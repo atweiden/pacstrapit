@@ -2315,6 +2315,7 @@ declare _bundle_full=('base'
                       'go'
                       'gobi'
                       'haskell'
+                      'haxe'
                       'julia'
                       'jvm'
                       'latex'
@@ -3250,6 +3251,10 @@ if [[ "${_haskell}" == '1' ]]; then
               'vim-lhaskell-plugged-git'
               'vim-neco-ghc-plugged-git'
               'vim-syntax-shakespeare-plugged-git')
+fi
+
+if [[ "${_haxe}" == '1' ]]; then
+  _vimplugs+=('vim-vaxe-plugged-git')
 fi
 
 if [[ "${_julia}" == '1' ]]; then
