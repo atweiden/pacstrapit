@@ -2967,7 +2967,6 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-dbext-plugged-git'
             'vim-dispatch-plugged-git'
             'vim-dockerfile-plugged-git'
-            'vim-dragvisuals-plugged-git'
             'vim-dwm-plugged-git'
             'vim-easy-align-plugged-git'
             'vim-easydir-plugged-git'
@@ -3068,6 +3067,7 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-textobj-sentence-plugged-git'
             'vim-textobj-user-plugged-git'
             'vim-textobj-word-column-plugged-git'
+            'vim-textmanip-plugged-git'
             'vim-thematic-plugged-git'
             'vim-thumbnail-plugged-git'
             'vim-tmuxline-plugged-git'
@@ -3563,8 +3563,7 @@ declare _vimplugs_deps=('vim-align-plugged-git'
                         'vim-textobj-user-plugged-git'
                         'vim-vimproc-plugged-git'
                         'vim-unite-plugged-git'
-                        'vimux-plugged-git'
-                        'vim-vis-plugged-git')
+                        'vimux-plugged-git')
 
 # install selected pkgs
 
