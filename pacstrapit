@@ -3371,6 +3371,7 @@ if [[ "${_perl}" == '1' ]]; then
           'perl-mojolicious'
           'perl-net-dns-native')
   _vimplugs+=('vim-mojo-plugged-git'
+              'vim-perl-local-lib-path-plugged-git'
               'vim-perlomni-plugged-git'
               'vim-perl-plugged-git')
 fi
