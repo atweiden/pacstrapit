@@ -3112,7 +3112,9 @@ if [[ "${_analysis}" == '1' ]]; then
           'ngrep'
           'ntop'
           'perf-tools-git'
+          'sendip'
           'strace'
+          'subnetcalc'
           'traceroute')
 fi
 
