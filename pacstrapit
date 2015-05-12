@@ -2744,6 +2744,7 @@ if [[ "${_gui}" == '1' ]]; then
           'xf86vidmodeproto'
           'xflux'
           'xineramaproto'
+          'xkev-git'
           'xkeyboard-config'
           'xlockmore'
           'xorg'
