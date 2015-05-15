@@ -3443,7 +3443,8 @@ if [[ "${_rst}" == '1' ]]; then
 fi
 
 if [[ "${_ruby}" == '1' ]]; then
-  _pkgs+=('ruby'
+  _pkgs+=('pacgem'
+          'ruby'
           'ruby-build'
           'ruby-bundler'
           'ruby-docs'
