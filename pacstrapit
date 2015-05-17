@@ -2308,6 +2308,7 @@ declare _bundle_full=('base'
                       'android'
                       'assembly'
                       'c'
+                      'crystal'
                       'd'
                       'dotnet'
                       'fonts'
@@ -3182,6 +3183,11 @@ if [[ "${_c}" == '1' ]]; then
               'vim-cpp-plugged-git'
               'vim-ifdef-plugged-git'
               'vim-objc-plugged-git')
+fi
+
+if [[ "${_crystal}" == '1' ]]; then
+  _pkgs+=('crystal')
+  _vimplugs+=('vim-crystal-plugged-git')
 fi
 
 if [[ "${_d}" == '1' ]]; then
