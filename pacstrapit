@@ -2064,6 +2064,7 @@ echo "sshd: ${_hosts_allowed}" >                                                
 
 arch-chroot /mnt systemctl enable cronie
 arch-chroot /mnt systemctl enable dnscrypt-proxy
+arch-chroot /mnt systemctl enable haveged
 arch-chroot /mnt systemctl enable iptables
 arch-chroot /mnt systemctl enable systemd-suspend
 arch-chroot /mnt systemctl enable systemd-swap
