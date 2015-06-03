@@ -381,6 +381,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a></td><td>Add readline-style editing and history to programs.</td></tr>
 <tr><td><a href="https://rakshasa.github.io/rtorrent/">rtorrent</a></td><td>Rakshasa's BitTorrent client.</td></tr>
 <tr><td><a href="https://github.com/saltstack/salt">salt-raet</a></td><td>Central system and configuration manager.</td></tr>
+<tr><td><a href="http://sdcv.sourceforge.net/">sdcv</a></td><td>StarDict Console Version.</td></tr>
 <tr><td><a href="https://github.com/saitoha/seq2gif">seq2gif</a></td><td>Convert a ttyrec record into a gif animation directly.</td></tr>
 <tr><td><a href="http://stahlworks.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="https://github.com/naquad/shmig">shmig</a></td><td>Database migration tool.</td></tr>

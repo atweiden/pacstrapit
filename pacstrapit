@@ -2495,6 +2495,7 @@ if [[ "${_base}" == '1' ]]; then
           'rlwrap'
           'rtorrent'
           'salt-raet'
+          'sdcv'
           'seq2gif'
           'sfk'
           'shmig-git'
