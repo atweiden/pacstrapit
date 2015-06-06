@@ -3505,7 +3505,6 @@ if [[ "${_webdev}" == '1' ]]; then
           'nodejs-grasp'
           'nodejs-grunt-cli'
           'nodejs-gulp'
-          'nodejs-hexo'
           'nodejs-jade'
           'nodejs-jshint'
           'nodejs-jspm'
