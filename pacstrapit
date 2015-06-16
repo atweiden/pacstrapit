@@ -2663,7 +2663,6 @@ if [[ "${_gui}" == '1' ]]; then
           'openbox-menu'
           'openbox-themes'
           'pass'
-          'passmenu'
           'pcmanfm'
           'pencil'
           'photocrypt'
