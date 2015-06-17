@@ -3119,6 +3119,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'iftop'
           'inotify-tools'
           'iotop'
+          'lnav-git'
           'lsof'
           'ltrace'
           'multitail'
