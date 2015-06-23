@@ -288,6 +288,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/vstakhov/asignify">asignify</a></td><td>Yet another signify tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/autochown">autochown</a></td><td>Monitor multiple directories using glob patterns and automatically adjust file ownership and permissions.</td></tr>
 <tr><td><a href="http://www.avahi.org/">avahi</a></td><td>Multicast/unicast DNS-SD framework.</td></tr>
+<tr><td><a href="http://www.isc.org/software/bind/">bind-tools</a></td><td>The ISC DNS tools.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez</a></td><td>Bluetooth support.</td></tr>
 <tr><td><a href="http://www.bluez.org/">bluez-firmware</a></td><td>Firmware for Broadcom BCM203x and STLC2300 Bluetooth chips.</td></tr>
 <tr><td><a href="http://ccrypt.sourceforge.net/">ccrypt</a></td><td>Command-line utility for encrypting and decrypting files and streams.</td></tr>
@@ -300,7 +301,6 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/Xfennec/cv">cv</a></td><td>Show running coreutils basic commands and display stats.</td></tr>
 <tr><td><a href="https://unix4lyfe.org/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
 <tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for package maintainers.</td></tr>
-<tr><td><a href="https://www.isc.org/downloads/bind/">dnsutils</a></td><td>Utilities: dig, host, and nslookup.</td></tr>
 <tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
 <tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
 <tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether</a></td><td><a href="http://easytether.org/">EasyTether</a> Internet access drivers.</td></tr>
