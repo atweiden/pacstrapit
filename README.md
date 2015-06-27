@@ -307,6 +307,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/facadefs">facadefs</a></td><td>FUSE-based filesystem sandbox.</td></tr>
 <tr><td><a href="https://github.com/Keruspe/facron">facron</a></td><td>fanotify cron system.</td></tr>
+<tr><td><a href="https://github.com/drmikehenry/findx">findx</a></td><td>Wrapper to extend the Unix find command.</td></tr>
 <tr><td><a href="http://www.vanheusden.com/f-irc/">f-irc</a></td><td>User-friendly IRC client for the console/terminal.</td></tr>
 <tr><td><a href="https://l3net.wordpress.com/projects/firejail/">firejail</a></td><td>Sandbox any type of process.</td></tr>
 <tr><td><a href="https://github.com/junegunn/fzf">fzf</a></td><td>Fuzzy finder for your shell.</td></tr>

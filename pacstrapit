@@ -2421,6 +2421,7 @@ if [[ "${_base}" == '1' ]]; then
           'elinks'
           'facadefs'
           'facron'
+          'findx-git'
           'f-irc'
           'firejail'
           'fzf'
