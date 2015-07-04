@@ -2669,6 +2669,7 @@ if [[ "${_gui}" == '1' ]]; then
           'pidgin-otr'
           'printproto'
           'profanity'
+          'projectm-pulseaudio'
           'pulseaudio'
           'pwsafe'
           'pystopwatch'
