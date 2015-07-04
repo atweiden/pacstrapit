@@ -2651,6 +2651,7 @@ if [[ "${_gui}" == '1' ]]; then
           'mimeo'
           'mime-types'
           'monaco-powerline-font-git'
+          'mplayer'
           'nitrogen'
           'notification-daemon'
           'numlockx'
