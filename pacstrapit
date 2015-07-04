@@ -2673,6 +2673,7 @@ if [[ "${_gui}" == '1' ]]; then
           'pulseaudio'
           'pwsafe'
           'pystopwatch'
+          'qmmp'
           'qtcreator'
           'randrproto'
           'recode'
