@@ -3165,8 +3165,10 @@ if [[ "${_beam}" == '1' ]]; then
   else
     _pkgs+=('erlang-nox')
   fi
-  _pkgs+=('elixir'
+  _pkgs+=('concuerror-git'
+          'elixir'
           'elixir-build'
+          'erlang-proper-git'
           'exenv-git'
           'rebar'
           'relx')
@@ -3396,12 +3398,14 @@ if [[ "${_perl}" == '1' ]]; then
           'perlbrew'
           'perl-carton'
           'perl-cpanplus-dist-arch'
+          'perl-critic'
           'perl-ev'
           'perl-io-socket-ip'
           'perl-io-socket-socks'
           'perl-io-socket-ssl'
           'perl-mojolicious'
-          'perl-net-dns-native')
+          'perl-net-dns-native'
+          'perl-tidy')
   _vimplugs+=('vim-mojo-plugged-git'
               'vim-perl-local-lib-path-plugged-git'
               'vim-perlomni-plugged-git'
