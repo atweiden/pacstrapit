@@ -2660,6 +2660,7 @@ if [[ "${_gui}" == '1' ]]; then
           'obkey-git'
           'obmenu'
           'obmenu-generator'
+          'office-code-pro'
           'onboard'
           'openbox'
           'openbox-menu'
