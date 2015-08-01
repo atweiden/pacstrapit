@@ -19,7 +19,7 @@
 VERSION="0.9.3"
 VERSION_DOTFILES="0.10.0"
 VERSION_PKGBUILDS="0.2.1"
-VERSION_ELECTRUM="2.4"
+VERSION_ELECTRUM="2.4.1"
 
 # machine
 _partition_default="/dev/sda"
@@ -2230,8 +2230,7 @@ curl "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Verifying SSH keys..."
 
-pacaur -Sy --needed python2-crypto \
-                    python2-dnspython \
+pacaur -Sy --needed python2-dnspython \
                     python2-ecdsa \
                     python2-pbkdf2 \
                     python2-protobuf \
@@ -2413,7 +2412,6 @@ if [[ "${_base}" == '1' ]]; then
           'corkscrew'
           'create_ap'
           'cronwhip'
-          'cv'
           'darkhttpd'
           'devtools'
           'downgrade'
@@ -2482,6 +2480,7 @@ if [[ "${_base}" == '1' ]]; then
           'pkgbuild-introspection'
           'pkgcacheclean'
           'pkg_scripts'
+          'progress'
           'proxychains-ng'
           'puppet'
           'python2-pbp'
@@ -3844,8 +3843,7 @@ function electrumify() {
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing Electrum headless dependencies..."
 
-arch-chroot /mnt pacaur -Sy --needed python2-crypto \
-                                     python2-dnspython \
+arch-chroot /mnt pacaur -Sy --needed python2-dnspython \
                                      python2-ecdsa \
                                      python2-pbkdf2 \
                                      python2-protobuf \
