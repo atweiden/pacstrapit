@@ -2237,8 +2237,7 @@ pacaur -Sy --needed python2-dnspython \
                     python2-qrcode \
                     python2-requests \
                     python2-six \
-                    python2-slowaes \
-                    python2-tlslite --noedit --noconfirm
+                    python2-slowaes --noedit --noconfirm
 curl https://codeload.github.com/spesmilo/{electrum}/{tar.gz}/{${VERSION_ELECTRUM}} -o "#1-#3.#2"
 tar xvzf electrum-${VERSION_ELECTRUM}.tar.gz
 pushd electrum-${VERSION_ELECTRUM}
@@ -3850,8 +3849,7 @@ arch-chroot /mnt pacaur -Sy --needed python2-dnspython \
                                      python2-qrcode \
                                      python2-requests \
                                      python2-six \
-                                     python2-slowaes \
-                                     python2-tlslite --noedit --noconfirm
+                                     python2-slowaes --noedit --noconfirm
 
 # place electrum-headless in chroot
 
