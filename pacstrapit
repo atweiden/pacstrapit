@@ -1980,7 +1980,8 @@ sed -i 's!^#   Ciphers.*!    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@op
 sed -i '/^#   MACs.*/a \    ServerAliveCountMax 3' /mnt/etc/ssh/ssh_config
 sed -i '/^#   MACs.*/a \    ServerAliveInterval 60' /mnt/etc/ssh/ssh_config
 sed -i '/^#   MACs.*/a \    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256' /mnt/etc/ssh/ssh_config
-sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-rsa-cert-v00@openssh.com,ssh-ed25519,ssh-rsa' /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    HostbasedKeyTypes ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa' /mnt/etc/ssh/ssh_config
+sed -i '/^#   MACs.*/a \    HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa' /mnt/etc/ssh/ssh_config
 sed -i 's!^#   MACs.*!    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com!'  /mnt/etc/ssh/ssh_config
 sed -i 's!^#   EscapeChar!    EscapeChar!' /mnt/etc/ssh/ssh_config
 
