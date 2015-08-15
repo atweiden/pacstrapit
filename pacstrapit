@@ -3568,6 +3568,7 @@ if [[ "${_webdev}" == '1' ]]; then
               'vim-slim-plugged-git')
   if [[ "${_gui}" == '1' ]]; then # https://www.nightmarejs.org/
     _pkgs+=('casperjs-git'
+            'delicolour'
             'nodejs-karma'
             'nodejs-karma-cli'
             'phantomjs'
