@@ -304,6 +304,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://fy.chalmers.se/~appro/linux/DVD+RW">dvd+rw-tools</a></td><td>DVD burning tools.</td></tr>
 <tr><td><a href="http://www.mobile-stream.com/easytether/drivers.html">easytether</a></td><td><a href="http://easytether.org/">EasyTether</a> Internet access drivers.</td></tr>
 <tr><td><a href="http://elinks.or.cz/">elinks</a></td><td>Text mode web browser.</td></tr>
+<tr><td><a href="http://entrproject.org/">entr</a></td><td>Run arbitrary commands when files change.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/facadefs">facadefs</a></td><td>FUSE-based filesystem sandbox.</td></tr>
 <tr><td><a href="https://github.com/Keruspe/facron">facron</a></td><td>fanotify cron system.</td></tr>
 <tr><td><a href="https://github.com/drmikehenry/findx">findx</a></td><td>Wrapper to extend the Unix find command.</td></tr>
@@ -388,6 +389,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/saitoha/seq2gif">seq2gif</a></td><td>Convert a ttyrec record into a gif animation directly.</td></tr>
 <tr><td><a href="http://stahlworks.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="https://github.com/naquad/shmig">shmig</a></td><td>Database migration tool.</td></tr>
+<tr><td><a href="https://github.com/aperezdc/signify">signify</a></td><td>Sign and verify signatures on files.</td></tr>
 <tr><td><a href="http://snapper.io/">snapper</a></td><td>The ultimate snapshot tool for Linux.</td></tr>
 <tr><td><a href="http://www.dest-unreach.org/socat/">socat</a></td><td>Multipurpose relay.</td></tr>
 <tr><td><a href="https://www.tarsnap.com/spiped.html">spiped</a></td><td>Secure pipe daemon.</td></tr>
@@ -406,6 +408,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://mama.indstate.edu/users/ice/tree/">tree</a></td><td>Show the contents of a directory in a depth-indented list of files.</td></tr>
 <tr><td><a href="http://0xcc.net/ttyrec/">ttyrec</a></td><td>A tty recorder and player.</td></tr>
 <tr><td><a href="http://gittup.org/tup/">tup</a></td><td>A fast, file-based build system.</td></tr>
+<tr><td><a href="https://www.gnu.org/software/units/units.html">units</a></td><td>Convert quantities expressed in various systems of measurement to their equivalents in other systems of measurement.</td></tr>
 <tr><td><a href="http://www.draisberghof.de/usb_modeswitch/">usb_modeswitch</a></td><td>Activate switchable USB devices.</td></tr>
 <tr><td><a href="https://marcan.st/blog/iphonelinux/usbmuxd/">usbmuxd</a></td><td>USB Multiplex Daemon.</td></tr>
 <tr><td><a href="https://github.com/joewalnes/websocketd">websocketd</a></td><td>Turn any application that uses STDIO/STDOUT into a WebSocket server.</td></tr>
