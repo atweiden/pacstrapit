@@ -813,7 +813,6 @@ btrfs subvolume create @
 btrfs subvolume create @home
 btrfs subvolume create @opt
 btrfs subvolume create @srv
-btrfs subvolume create @tmp
 btrfs subvolume create @usr
 btrfs subvolume create @var
 popd
@@ -830,7 +829,7 @@ popd
   && msg "Mounting btrfs subvolumes..."
 
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@ /dev/mapper/${_luks_name} /mnt
-for _btrfs_dir in home opt srv tmp usr var; do
+for _btrfs_dir in home opt srv usr var; do
   mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
 done
 
@@ -4201,7 +4200,7 @@ function exitify() {
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Unmounting..."
 
-umount /mnt/{boot,home,opt,srv,tmp,usr,var,}
+umount /mnt/{boot,home,opt,srv,usr,var,}
 
 echo "******************************"
 echo "*                            *"
