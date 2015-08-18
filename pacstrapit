@@ -19,7 +19,7 @@
 VERSION="0.9.3"
 VERSION_DOTFILES="0.10.0"
 VERSION_PKGBUILDS="0.2.1"
-VERSION_ELECTRUM="2.4.1"
+VERSION_ELECTRUM="2.4.2"
 
 # machine
 _partition_default="/dev/sda"
