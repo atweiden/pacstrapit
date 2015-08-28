@@ -1726,6 +1726,8 @@ blacklist floppy
 blacklist bcma
 blacklist snd_pcsp
 blacklist pcspkr
+blacklist firewire-core
+blacklist thunderbolt
 EOF
 
 # set initramfs
@@ -1788,6 +1790,13 @@ elif [[ "${_graphics}" == 'radeon' ]]; then
 else
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@\"!" /etc/default/grub
 fi
+
+arch-chroot /mnt sed -i 's!^GRUB_DEFAULT=.*!GRUB_DEFAULT=saved!' /etc/default/grub
+arch-chroot /mnt sed -i 's!^#GRUB_SAVEDEFAULT=.*!GRUB_SAVEDEFAULT="true"!' /etc/default/grub
+cat >> /mnt/etc/default/grub <<'EOF'
+GRUB_DISABLE_SUBMENU=y
+EOF
+
 arch-chroot /mnt grub-install --target=i386-pc --recheck ${_partition}
 arch-chroot /mnt cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
@@ -1908,6 +1917,70 @@ if [[ "${_disk}" == 'ssd' || "${_disk}" == 'usb' ]]; then
 fi
 
 arch-chroot /mnt sysctl -p
+
+# configure hidepid
+
+                        if [[ "$_debug" == '1' ]]; then
+                               echo "***********"
+                               echo "*         *"
+                               echo "* hidepid *"
+                               echo "*         *"
+                               echo "***********"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring hidepid..."
+
+mkdir -p /mnt/etc/systemd/system/systemd-logind.service.d
+cat > /mnt/etc/systemd/system/systemd-logind.service.d/hidepid.conf <<'EOF'
+[Service]
+SupplementaryGroups=proc
+EOF
+
+cat >> /mnt/etc/fstab <<'EOF'
+# /proc with hidepid (https://wiki.archlinux.org/index.php/Security#hidepid)
+proc                                      /proc       procfs      hidepid=2,gid=proc                                              0 0
+EOF
+
+# configure securetty
+
+                        if [[ "$_debug" == '1' ]]; then
+                              echo "*************"
+                              echo "*           *"
+                              echo "* securetty *"
+                              echo "*           *"
+                              echo "*************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring securetty..."
+
+cat > /mnt/etc/securetty <<'EOF'
+#
+# /etc/securetty
+# https://wiki.archlinux.org/index.php/Security#Denying_console_login_as_root
+#
+
+console
+#tty1
+#tty2
+#tty3
+#tty4
+#tty5
+#tty6
+#ttyS0
+#hvc0
+
+# End of file
+EOF
+
+cat > /mnt/etc/profile.d/shell-timeout.sh <<'EOF'
+TMOUT="$(( 60*10 ))";
+[[ -z "$DISPLAY" ]] && export TMOUT;
+case $( /usr/bin/tty ) in
+  /dev/tty[0-9]*) export TMOUT;;
+esac
+EOF
 
 # configure iptables
 
@@ -3722,7 +3795,6 @@ done
 if [[ "$_grsec" == '1' ]]; then
   arch-chroot /mnt usermod -a -G tpe ${_user_name}
   arch-chroot /mnt usermod -a -G tpe root
-  arch-chroot /mnt sed -i 's!^GRUB_DEFAULT=0!GRUB_DEFAULT="1>2"!' /etc/default/grub
   arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
@@ -4120,6 +4192,22 @@ if [[ "${_gui}" == '1' ]]; then
   mv /mnt/etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d.bak
   cp -R /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/etc/X11/xorg.conf.d /mnt/etc/X11/xorg.conf.d
 fi
+
+# configuring hidepid for gui
+
+                        if [[ "$_debug" == '1' ]]; then
+                            echo "*****************"
+                            echo "*               *"
+                            echo "* hidepid (gui) *"
+                            echo "*               *"
+                            echo "*****************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" && "${_gui}" == '1' ]] \
+  && msg "Configuring hidepid for gui..."
+
+# https://wiki.archlinux.org/index.php/Security#hidepid
+[[ "${_gui}" == '1' ]] && arch-chroot /mnt gpasswd -a polkitd proc
 
 # configuring openvpn
 
