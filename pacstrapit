@@ -3490,7 +3490,8 @@ if [[ "${_ruby}" == '1' ]]; then
 fi
 
 if [[ "${_rust}" == '1' ]]; then
-  _pkgs+=('rust')
+  _pkgs+=('cargo'
+          'rust')
   _vimplugs+=('vim-rust-plugged-git')
 fi
 
