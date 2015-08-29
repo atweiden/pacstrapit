@@ -18,7 +18,7 @@
 # constants
 VERSION="0.9.3"
 VERSION_DOTFILES="0.10.0"
-VERSION_PKGBUILDS="0.2.1"
+VERSION_PKGBUILDS_PLUGGED="0.3.0"
 VERSION_ELECTRUM="2.4.2"
 
 # machine
@@ -3767,16 +3767,16 @@ fi
   && msg "Installing selected vim plugins..."
 
 mkdir -p /mnt/home/${_user_name}/.src
-curl https://codeload.github.com/atweiden/{pkgbuilds}/{tar.gz}/{${VERSION_PKGBUILDS}} -o "#1-#3.#2"
-tar xvzf pkgbuilds-${VERSION_PKGBUILDS}.tar.gz
-mv pkgbuilds-${VERSION_PKGBUILDS} /mnt/home/${_user_name}/.src
+curl https://codeload.github.com/atweiden/{pkgbuilds-plugged}/{tar.gz}/{${VERSION_PKGBUILDS_PLUGGED}} -o "#1-#3.#2"
+tar xvzf pkgbuilds-plugged-${VERSION_PKGBUILDS_PLUGGED}.tar.gz
+mv pkgbuilds-plugged-${VERSION_PKGBUILDS_PLUGGED} /mnt/home/${_user_name}/.src
 arch-chroot /mnt chown -R ${_user_name}:users /home/${_user_name}
 # dependencies first, some packages are installed twice
 for _vimplug_dep in ${!_vimplugs_deps[@]}; do
-  arch-chroot /mnt su -l -c "pushd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs_deps[$_vimplug_dep]} && makepkg -Acsi --noconfirm && popd" ${_user_name}
+  arch-chroot /mnt su -l -c "pushd /home/${_user_name}/.src/pkgbuilds-plugged-${VERSION_PKGBUILDS_PLUGGED}/${_vimplugs_deps[$_vimplug_dep]} && makepkg -Acsi --noconfirm && popd" ${_user_name}
 done
 for _vimplug in ${!_vimplugs[@]}; do
-  arch-chroot /mnt su -l -c "pushd /home/${_user_name}/.src/pkgbuilds-${VERSION_PKGBUILDS}/${_vimplugs[$_vimplug]} && makepkg -Acsi --noconfirm && popd" ${_user_name}
+  arch-chroot /mnt su -l -c "pushd /home/${_user_name}/.src/pkgbuilds-plugged-${VERSION_PKGBUILDS_PLUGGED}/${_vimplugs[$_vimplug]} && makepkg -Acsi --noconfirm && popd" ${_user_name}
 done
 
 # setup grsec
