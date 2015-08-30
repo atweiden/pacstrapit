@@ -19,7 +19,7 @@
 VERSION="0.9.3"
 VERSION_DOTFILES="0.10.0"
 VERSION_PKGBUILDS_PLUGGED="0.3.0"
-VERSION_ELECTRUM="2.4.2"
+VERSION_ELECTRUM="2.4.3"
 
 # machine
 _partition_default="/dev/sda"
@@ -3490,9 +3490,9 @@ if [[ "${_perl}" == '1' ]]; then
 fi
 
 if [[ "${_perl6}" == '1' ]]; then # _perl6pkg dependencies are installed in order
-  _perl6pkgs+=('moarvm-git'
-               'nqp-git'
-               'rakudo-git'
+  _perl6pkgs+=('moarvm'
+               'nqp'
+               'rakudo'
                'panda-git')
 fi
 
