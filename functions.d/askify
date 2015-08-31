@@ -20,7 +20,7 @@
 #   ask "Install dotfiles? (y/N)" "N"
 #   ask "Enable SSH? (y/N)" "n"
 
-function ask() {
+ask() {
 
 _inquiry="$1"
 _answer_default="$2"

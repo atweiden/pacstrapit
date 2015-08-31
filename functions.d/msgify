@@ -21,14 +21,14 @@
 #   status "Ranking mirrors..."
 #   substatus "This could take up to 20 minutes"
 
-function msg() {
+msg() {
 echo "${bold}${blue}::${normal} ${bold}${white}$1${normal}"
 }
 
-function status() {
+status() {
 echo "${bold}${green}==>${normal} ${bold}${white}$1${normal}"
 }
 
-function substatus() {
+substatus() {
 echo "${bold}${blue}  ->${normal} ${bold}${white}$1${normal}"
 }

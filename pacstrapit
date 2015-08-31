@@ -197,12 +197,12 @@ EOF`
 FLAGS "$@" || exit 1
 eval set -- "${FLAGS_ARGV}"
 
-function printversion() {
+printversion() {
 echo "${bold}${white}PacstrapIt!${normal} ${bold}${green}v${VERSION}${normal} ${bold}${gray}(${normal}${gray}$(uname -o) $(uname -m)${normal}${bold}${gray})${normal}"
   exit 1
 }
 
-function die() {
+die() {
   if [[ "$#" > '0' ]]; then echo "${bold}${red}error:${normal} $@" >&2; fi
   flags_help
   exit 1
@@ -272,7 +272,7 @@ gray=$(tput setaf 8)
                                   fi
 
 
-function checkify() {
+checkify() {
 
 msg "Resolving dependencies..."
 
@@ -484,7 +484,7 @@ setfont Lat2-Terminus16
                                   fi
 
 
-function gdiskify() {
+gdiskify() {
 
 # configure partition in which to install OS
 
@@ -616,7 +616,7 @@ EOF
                                   fi
 
 
-function luksify() {
+luksify() {
 
 # configure machine's luks devmapper name
 
@@ -877,7 +877,7 @@ mkdir -p /mnt/boot && mount ${_partition}2 /mnt/boot
                                   fi
 
 
-function pacstrapify() {
+pacstrapify() {
 
 # configure machine's processor
 
@@ -2175,7 +2175,7 @@ chattrify "/var/log/journal" "755" "root" "systemd-journal"
                                   fi
 
 
-function sshify() {
+sshify() {
 
 # configure electrum pubkey
 
@@ -2363,7 +2363,7 @@ fi
                                   fi
 
 
-function selectify() {
+selectify() {
 
 # pkg bundles
 declare _bundle_base=('base'
@@ -3903,7 +3903,7 @@ arch-chroot /mnt rm -rf /tmp/pacaur*
                                   fi
 
 
-function electrumify() {
+electrumify() {
 
 # install electrum-headless deps in chroot
 
@@ -3965,7 +3965,7 @@ mv electrum-${VERSION_ELECTRUM} /mnt/home/${_user_name}
                                   fi
 
 
-function dotify() {
+dotify() {
 
 # configure name for GitHub/gitconfig
 
@@ -4273,7 +4273,7 @@ cp /mnt/home/${_user_name}/.src/dotfiles-${VERSION_DOTFILES}/_terminfo/s/screen-
                                   fi
 
 
-function exitify() {
+exitify() {
 
 # exit pacstrapped chroot
 
@@ -4304,7 +4304,7 @@ echo "******************************"
 # main
 # -----------------------------------------------------------------------------
 
-function main() {
+main() {
 # dependency checks
 checkify
 
