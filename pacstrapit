@@ -2122,6 +2122,21 @@ echo "AllowUsers ${_user_name}" >>                                              
 sed -i '/^multi.*/a nospoof on'                                                           /mnt/etc/host.conf
 echo "sshd: ${_hosts_allowed}" >                                                          /mnt/etc/hosts.allow
 
+# filter all weak ssh moduli
+
+                        if [[ "$_debug" == '1' ]]; then
+                             echo "**************"
+                             echo "*            *"
+                             echo "* ssh_moduli *"
+                             echo "*            *"
+                             echo "**************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Filtering weak ssh moduli..."
+
+awk '$5 > 2000' /etc/ssh/moduli > /mnt/etc/ssh/moduli
+
 # set systemd services
 
                    if [[ "$_debug" == '1' ]]; then
