@@ -3581,7 +3581,8 @@ if [[ "${_ruby}" == '1' ]]; then
           'rbenv-default-gems'
           'rbenv-each-git'
           'rbenv-vars')
-  _vimplugs+=('vim-rabl-plugged-git'
+  _vimplugs+=('vim-citrus-plugged-git'
+              'vim-rabl-plugged-git'
               'vim-rbenv-plugged-git'
               'vim-ruby-plugged-git')
 fi
