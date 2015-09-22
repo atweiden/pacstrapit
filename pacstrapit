@@ -3491,7 +3491,8 @@ if [[ "${_ocaml}" == '1' ]]; then
           'opam')
   _vimpkgs+=('merlin-git'
              'ocp-indent')
-  _vimplugs+=('vim-merlin-plugged-git')
+  _vimplugs+=('vim-merlin-plugged-git'
+              'vim-ocp-indent-plugged-git')
 fi
 
 if [[ "${_perl}" == '1' ]]; then
