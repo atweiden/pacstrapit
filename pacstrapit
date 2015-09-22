@@ -3489,7 +3489,8 @@ if [[ "${_ocaml}" == '1' ]]; then
           'ocaml-doc'
           'ocaml-findlib'
           'opam')
-  _vimpkgs+=('merlin-git')
+  _vimpkgs+=('merlin-git'
+             'ocp-indent')
   _vimplugs+=('vim-merlin-plugged-git')
 fi
 
