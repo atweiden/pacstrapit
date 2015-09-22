@@ -3485,14 +3485,13 @@ if [[ "${_nim}" == '1' ]]; then
 fi
 
 if [[ "${_ocaml}" == '1' ]]; then
-  _pkgs+=('ocaml'
+  _pkgs+=('camlp4'
+          'ocaml'
           'ocaml-doc'
-          'ocaml-findlib'
           'opam')
-  _vimpkgs+=('merlin-git'
-             'ocp-indent')
   _vimplugs+=('vim-merlin-plugged-git'
-              'vim-ocp-indent-plugged-git')
+              'vim-ocp-indent-plugged-git'
+              'vim-ocp-index-plugged-git')
 fi
 
 if [[ "${_perl}" == '1' ]]; then
