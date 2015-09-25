@@ -16,8 +16,8 @@ Instructions
 1. Burn LiveCD/LiveUSB with latest [Arch ISO](https://www.archlinux.org/download/)
 2. Boot from LiveCD/LiveUSB
 3. Connect to the Internet: `wifi-menu -o`
-4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.9.3} -o "#1-#3.#2"`
-5. Extract: `tar xvzf pacstrapit-0.9.3.tar.gz`
+4. Download pacstrapit: `curl -k https://codeload.github.com/atweiden/{pacstrapit}/{tar.gz}/{0.10.0} -o "#1-#3.#2"`
+5. Extract: `tar xvzf pacstrapit-0.10.0.tar.gz`
 6. Customize defaults (recommended even if using cmdline flags or environment variables)
 
 WARNING: failure to give appropriate values could cause catastrophic
@@ -42,7 +42,7 @@ Defaults:
 <tr><td>Hosts allowed</td><td>192.168.0. (LAN - SSH is disabled by default)</td></tr>
 </table>
 
-> `cd pacstrapit-0.9.3 && $EDITOR pacstrapit`
+> `cd pacstrapit-0.10.0 && $EDITOR pacstrapit`
 
 Done.
 
