@@ -2798,6 +2798,7 @@ if [[ "${_gui}" == '1' ]]; then
           'tox-prpl'
           'ttf-monaco'
           'unibrow'
+          'urxvt-autocomplete-all-the-things-git'
           'urxvt-perls'
           'valabattery-git'
           'venom-git'
