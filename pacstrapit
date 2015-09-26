@@ -3326,8 +3326,8 @@ fi
 if [[ "${_fonts}" == '1' ]]; then
   if [[ "${_gui}" == '1' ]]; then
     _pkgs+=('gsfonts'
+            'office-code-pro'
             'opendesktop-fonts'
-            'phallus-fonts-git'
             'siji-git'
             'ttf-arphic-ukai'
             'ttf-arphic-uming'
@@ -3335,6 +3335,8 @@ if [[ "${_fonts}" == '1' ]]; then
             'ttf-bitstream-vera'
             'ttf-dejavu'
             'ttf-envy-code-r'
+            'ttf-everson-mono'
+            'ttf-fantasque-sans'
             'ttf-freebanglafont'
             'ttf-gentium'
             'ttf-google-fonts-git'
@@ -3345,6 +3347,7 @@ if [[ "${_fonts}" == '1' ]]; then
             'ttf-khmer'
             'ttf-linux-libertine'
             'ttf-meslo'
+            'ttf-monoone-git'
             'ttf-mph-2b-damase'
             'ttf-nishiki-teki'
             'ttf-sazanami'
