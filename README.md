@@ -401,7 +401,6 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/bwalex/tc-play">tcplay</a></td><td>CLI TrueCrypt implementation.</td></tr>
 <tr><td><a href="https://github.com/ggreer/the_silver_searcher">the_silver_searcher</a></td><td>Code searching tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/timedatectl-restorer">timedatectl-restorer</a></td><td>Restore system time across reboots when the internal clock is dead.</td></tr>
-<tr><td><a href="https://github.com/bsandrow/tmux.sh">tmux.sh</a></td><td>Enable two tmux clients to connect and switch windows independently from each other, like GNU screen.</td></tr>
 <tr><td><a href="https://www.torproject.org/">tor</a></td><td>Anonymizing overlay network.</td></tr>
 <tr><td><a href="https://code.google.com/p/torsocks">torsocks</a></td><td>Safely torify applications.</td></tr>
 <tr><td><a href="https://github.com/Tox/toxic">toxic</a></td><td>Text mode instant messaging client for Tox.</td></tr>

@@ -2609,7 +2609,6 @@ if [[ "${_base}" == '1' ]]; then
           'tcplay'
           'the_silver_searcher'
           'timedatectl-restorer'
-          'tmux.sh-git'
           'tor'
           'torsocks'
           'toxic'
