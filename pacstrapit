@@ -2674,6 +2674,7 @@ if [[ "${_gui}" == '1' ]]; then
           'feh'
           'firefox'
           'flashplugin'
+          'flatabulous-theme-git'
           'fmbt'
           'gajim'
           'gajim-plugin-otr-git'
