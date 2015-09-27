@@ -2850,6 +2850,8 @@ if [[ "${_gui}" == '1' ]]; then
           'xf86-video-vmware'
           'xf86-video-voodoo'
           'xf86vidmodeproto'
+          'xfce4-terminal'
+          'xfce4-terminal-colors-jellyx'
           'xflux'
           'xineramaproto'
           'xkev-git'
