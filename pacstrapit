@@ -2395,13 +2395,13 @@ declare _bundle_lite=('base'
                       'gui'
                       'dotfiles')
 declare _bundle_full=('base'
-                      'beam'
                       'grsec'
                       'gui'
                       'dotfiles'
                       'analysis'
                       'android'
                       'assembly'
+                      'beam'
                       'c'
                       'crystal'
                       'd'
@@ -2411,6 +2411,7 @@ declare _bundle_full=('base'
                       'gobi'
                       'haskell'
                       'haxe'
+                      'hexedit'
                       'julia'
                       'jvm'
                       'latex'
@@ -3397,6 +3398,11 @@ fi
 
 if [[ "${_haxe}" == '1' ]]; then
   _vimplugs+=('vim-vaxe-plugged-git')
+fi
+
+if [[ "${_hexedit}" == '1' ]]; then
+  _pkgs+=('python2-pfp')
+  _vimplugs+=('vim-pfp-plugged-git')
 fi
 
 if [[ "${_julia}" == '1' ]]; then
