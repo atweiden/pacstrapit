@@ -3308,7 +3308,8 @@ if [[ "${_c}" == '1' ]]; then
 fi
 
 if [[ "${_crystal}" == '1' ]]; then
-  _pkgs+=('crystal')
+  _pkgs+=('crystal'
+          'shards')
   _vimplugs+=('vim-crystal-plugged-git')
 fi
 
