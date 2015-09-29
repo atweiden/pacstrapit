@@ -2608,6 +2608,7 @@ if [[ "${_base}" == '1' ]]; then
           'subrepo'
           'synclinks'
           'tcplay'
+          'terminfo-italics'
           'the_silver_searcher'
           'timedatectl-restorer'
           'tor'
