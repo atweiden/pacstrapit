@@ -2598,6 +2598,7 @@ if [[ "${_base}" == '1' ]]; then
           'seq2gif'
           'sfk'
           'shmig-git'
+          'sift'
           'signify'
           'snapper'
           'socat'

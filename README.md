@@ -389,6 +389,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://github.com/saitoha/seq2gif">seq2gif</a></td><td>Convert a ttyrec record into a gif animation directly.</td></tr>
 <tr><td><a href="http://stahlworks.com/dev/?tool=sfk">sfk</a></td><td>Swiss File Knife.</td></tr>
 <tr><td><a href="https://github.com/naquad/shmig">shmig</a></td><td>Database migration tool.</td></tr>
+<tr><td><a href="https://sift-tool.org/">sift</a></td><td>A fast and powerful open source alternative to grep.</td></tr>
 <tr><td><a href="https://github.com/aperezdc/signify">signify</a></td><td>Sign and verify signatures on files.</td></tr>
 <tr><td><a href="http://snapper.io/">snapper</a></td><td>The ultimate snapshot tool for Linux.</td></tr>
 <tr><td><a href="http://www.dest-unreach.org/socat/">socat</a></td><td>Multipurpose relay.</td></tr>
