@@ -2570,6 +2570,7 @@ if [[ "${_base}" == '1' ]]; then
           'parallel'
           'parcimonie-sh-git'
           'pbget'
+          'pdfgrep'
           'perl-image-exiftool'
           'pipe-logger-git'
           'pipexec-git'

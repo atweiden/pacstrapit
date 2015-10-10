@@ -361,6 +361,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://www.gnu.org/software/parallel/">parallel</a></td><td>Execute jobs in parallel.</td></tr>
 <tr><td><a href="https://github.com/EtiennePerot/parcimonie.sh">parcimonie-sh</a></td><td>Safely refresh your GnuPG keyring.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pbget">pbget</a></td><td>Retrieve PKGBUILDs and local source files from Git, ABS and the AUR for makepkg.</td></tr>
+<tr><td><a href="https://pdfgrep.org/">pdfgrep</a></td><td>A tool to search text in PDF files.</td></tr>
 <tr><td><a href="https://metacpan.org/pod/distribution/Image-ExifTool/exiftool">perl-image-exiftool</a></td><td>Alter EXIF data easily.</td></tr>
 <tr><td><a href="https://github.com/junegunn/pipe-logger">pipe-logger</a></td><td>Log rotation of stdout & stderr.</td></tr>
 <tr><td><a href="https://github.com/flonatel/pipexec">pipexec</a></td><td>Handle pipe of commands like a single command.</td></tr>
