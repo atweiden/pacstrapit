@@ -2802,6 +2802,7 @@ if [[ "${_gui}" == '1' ]]; then
           'tmsu'
           'tor-browser-en'
           'tox-prpl'
+          'ttf-ionicons'
           'ttf-monaco'
           'unibrow'
           'urxvt-autocomplete-all-the-things-git'
