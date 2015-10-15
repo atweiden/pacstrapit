@@ -3636,10 +3636,10 @@ if [[ "${_vbox}" == '1' ]]; then
 fi
 
 if [[ "${_webdev}" == '1' ]]; then
-  _pkgs+=('dart'
+  _pkgs+=('bower'
+          'dart'
           'flow'
           'nodejs'
-          'nodejs-bower'
           'nodejs-eslint'
           'nodejs-grasp'
           'nodejs-grunt-cli'
