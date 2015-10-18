@@ -452,6 +452,7 @@ Additional packages are available.
 <tr><td>Ruby</td><td>Packages for programming in Ruby</td></tr>
 <tr><td>Rust</td><td>Packages for programming in Rust</td></tr>
 <tr><td>Swift</td><td>Packages for programming in Swift</td></tr>
+<tr><td>Vala</td><td>Packages for programming in Vala</td></tr>
 <tr><td>Vbox</td><td>Packages for VirtualBox</td></tr>
 <tr><td>Webdev</td><td>HTML, Haml, Jade, Jinja, Mustache/Handlebars, Slim; CSS, LESS, Sass, SCSS, Stylus; JS/Node</td></tr>
 </table>
