@@ -1639,6 +1639,11 @@ substatus "zzz: https://geti2p.net/en/get-involved/develop/release-signing-key"
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xEE60C0C8EE7256A8" ${_user_name}
 arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xEE60C0C8EE7256A8" ${_user_name}
 
+status "Devtools..."
+substatus "Hans Wennborg: http://llvm.org/releases/download.html"
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x0FC3042E345AD05D" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x0FC3042E345AD05D" ${_user_name}
+
 # install pacaur
 
                    if [[ "$_debug" == '1' ]]; then
