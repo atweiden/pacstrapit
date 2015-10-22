@@ -2541,6 +2541,8 @@ if [[ "${_base}" == '1' ]]; then
           'ipw2100-fw'
           'ipw2200-fw'
           'irssi'
+          'irssi-otr'
+          'irssi-script-sasl'
           'ix'
           'jq'
           'keybase'

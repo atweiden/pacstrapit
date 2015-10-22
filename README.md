@@ -326,6 +326,8 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://ipw2100.sourceforge.net/">ipw2100-fw</a></td><td>Intel Centrino Drivers firmware for IPW2100.</td></tr>
 <tr><td><a href="http://ipw2200.sourceforge.net/">ipw2200-fw</a></td><td>Firmware for the Intel PRO/Wireless 2200BG.</td></tr>
 <tr><td><a href="http://irssi.org/">irssi</a></td><td>Modular text mode IRC client with Perl scripting.</td></tr>
+<tr><td><a href="https://github.com/cryptodotis/irssi-otr">irssi-otr</a></td><td>OTR support for Irssi.</td></tr>
+<tr><td><a href="https://github.com/irssi/scripts.irssi.org">irssi-script-sasl</a></td><td>Freenode SASL support for Irssi.</td></tr>
 <tr><td><a href="http://ix.io/">ix</a></td><td>Client for the <a href="http://ix.io/">ix.io</a> pastebin.</td></tr>
 <tr><td><a href="https://stedolan.github.io/jq/">jq</a></td><td>CLI JSON processor.</td></tr>
 <tr><td><a href="https://keybase.io/">keybase</a></td><td>CLI tool for GPG with <a href="https://keybase.io/">keybase.io</a>.</td></tr>
