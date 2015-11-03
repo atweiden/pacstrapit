@@ -1613,6 +1613,11 @@ substatus "Patrick Brunschwig: https://www.enigmail.net/home/members.php"
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xDB1187B9DD5F693B" ${_user_name}
 arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xDB1187B9DD5F693B" ${_user_name}
 
+status "VeraCrypt..."
+substatus "VeraCrypt team: https://www.idrix.fr/Root/content/category/7/32/46/"
+#arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0xEB559C7C54DDD393" ${_user_name}
+arch-chroot /mnt su -c "gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0xEB559C7C54DDD393" ${_user_name}
+
 status "Bitcoin..."
 substatus "Thomas Voegtlin: https://electrum.org/download.html"
 #arch-chroot /mnt su -c "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x6694D8DE7BE8EE5631BED9502BD5824B7F9470E6" ${_user_name}
