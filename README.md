@@ -281,7 +281,7 @@ Base packages (use `--bundle "base"` to include):
 
 <table>
 <tr><td><a href="http://beyondgrep.com/">ack</a></td><td>Grep replacement.</td></tr>
-<tr><td><a href="https://github.com/ansible/ansible">ansible</a></td><td>Idempotent anti-conflaguration discombobulator.</td></tr>
+<tr><td><a href="https://github.com/ansible/ansible">ansible</a></td><td>Radically simple IT automation platform.</td></tr>
 <tr><td><a href="https://github.com/brain0/appjail">appjail</a></td><td>Sandboxing tool to protect private data from untrusted applications.</td></tr>
 <tr><td><a href="https://github.com/seblu/archversion">archversion</a></td><td>Archlinux Version Controller.</td></tr>
 <tr><td><a href="http://kmkeen.com/arch-wiki-lite/">arch-wiki-lite</a></td><td>Offline <a href="https://wiki.archlinux.org/">Arch Wiki</a>, easily searched and viewable on console.</td></tr>
