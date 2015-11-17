@@ -3252,6 +3252,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'htop'
           'iftop'
           'inotify-tools'
+          'inxi'
           'iotop'
           'lnav-git'
           'lsof'
@@ -3426,7 +3427,8 @@ if [[ "${_haxe}" == '1' ]]; then
 fi
 
 if [[ "${_hexedit}" == '1' ]]; then
-  _pkgs+=('python2-pfp')
+  _pkgs+=('ht'
+          'python2-pfp')
   _vimplugs+=('vim-pfp-plugged-git')
 fi
 
