@@ -3406,7 +3406,8 @@ fi
 
 if [[ "${_haskell}" == '1' ]]; then
   _pkgs+=('cabal-install'
-          'ghc')
+          'ghc'
+          'haskell-stack')
   _vimpkgs+=('haskell-ghc-mod'
              'haskell-hasktags'
              'haskell-pointfree'
