@@ -2341,6 +2341,7 @@ curl "${_user_pubkey_sig}" -o ~/sshkey.pub.sig
 
 pacaur -Sy --needed python2-dnspython \
                     python2-ecdsa \
+                    python2-jsonrpclib \
                     python2-pbkdf2 \
                     python2-protobuf \
                     python2-qrcode \
@@ -3996,6 +3997,7 @@ electrumify() {
 
 arch-chroot /mnt pacaur -Sy --needed python2-dnspython \
                                      python2-ecdsa \
+                                     python2-jsonrpclib \
                                      python2-pbkdf2 \
                                      python2-protobuf \
                                      python2-qrcode \
