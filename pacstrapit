@@ -3470,7 +3470,7 @@ if [[ "${_jvm}" == '1' ]]; then
               'vim-clojure-sql-plugged-git'
               'vim-clojure-static-plugged-git'
               'vim-fireplace-plugged-git'
-              'vim-leiningen-plugged-git'
+              'vim-salve-plugged-git'
               'vim-slamhound-plugged-git'
               'vim-typedclojure-plugged-git')
   _pkgs+=('grails'
