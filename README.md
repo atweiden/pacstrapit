@@ -439,7 +439,7 @@ Additional packages are available.
 <tr><td>Haskell</td><td>Packages for programming in Haskell</td></tr>
 <tr><td>Haxe</td><td>Packages for programming in Haxe</td></tr>
 <tr><td>Julia</td><td>Packages for programming in Julia</td></tr>
-<tr><td>JVM</td><td>Packages for programming in Java / Clojure / Groovy / Scala</td></tr>
+<tr><td>JVM</td><td>Packages for programming in Java / Clojure / Groovy / Scala / Kotlin</td></tr>
 <tr><td>LaTeX</td><td>Packages for writing in LaTeX</td></tr>
 <tr><td>Lisp</td><td>Packages for programming in Lisp / Scheme / Racket</td></tr>
 <tr><td>Lua</td><td>Packages for programming in Lua</td></tr>

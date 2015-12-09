@@ -3484,6 +3484,8 @@ if [[ "${_jvm}" == '1' ]]; then
           'scala-docs')
   _vimplugs+=('vim-sbt-plugged-git'
               'vim-scala-plugged-git')
+  _pkgs+=('kotlinc')
+  _vimplugs+=('vim-kotlin-plugged-git')
 fi
 
 if [[ "${_latex}" == '1' ]]; then
