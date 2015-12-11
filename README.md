@@ -404,6 +404,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://xyne.archlinux.ca/projects/synclinks">synclinks</a></td><td>A tool that synchronizes hierarchies of symlinks.</td></tr>
 <tr><td><a href="https://github.com/bwalex/tc-play">tcplay</a></td><td>CLI TrueCrypt implementation.</td></tr>
 <tr><td><a href="https://aur.archlinux.org/packages/terminfo-italics/">terminfo-italics</a></td><td>Common terminfo formats patched to support italics.</td></tr>
+<tr><td><a href="https://github.com/monochromegane/the_platinum_searcher">the_platinum_searcher</a></td><td>Code searching tool similar to the_silver_searcher.</td></tr>
 <tr><td><a href="https://github.com/ggreer/the_silver_searcher">the_silver_searcher</a></td><td>Code searching tool.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/timedatectl-restorer">timedatectl-restorer</a></td><td>Restore system time across reboots when the internal clock is dead.</td></tr>
 <tr><td><a href="https://www.torproject.org/">tor</a></td><td>Anonymizing overlay network.</td></tr>
