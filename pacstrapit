@@ -3277,6 +3277,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'sendip'
           'strace'
           'subnetcalc'
+          'sysdig'
           'traceroute')
 fi
 
