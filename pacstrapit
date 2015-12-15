@@ -2539,6 +2539,7 @@ if [[ "${_base}" == '1' ]]; then
           'fzf-extras'
           'geturl-git'
           'git'
+          'git-appraise'
           'git-extras'
           'gnupg1'
           'hexgrep'
