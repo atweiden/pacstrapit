@@ -3265,6 +3265,7 @@ if [[ "${_analysis}" == '1' ]]; then
           'inotify-tools'
           'inxi'
           'iotop'
+          'linux-tools'
           'lnav-git'
           'lsof'
           'ltrace'
