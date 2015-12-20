@@ -2769,7 +2769,6 @@ if [[ "${_gui}" == '1' ]]; then
           'media-player-info'
           'menu-cache'
           'mesa'
-          'mesa-demos'
           'mimeo'
           'mime-types'
           'monaco-powerline-font-git'
