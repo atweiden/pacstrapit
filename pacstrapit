@@ -176,6 +176,7 @@ DEFINE_string  'username'     ''   'User name'                         'u'
 DEFINE_string  'userpass'     ''   'User password'                     'U'
 DEFINE_string  'select'       ''   'select pkgs  [gui, python, etc]'   't'
 DEFINE_string  'bundle'       ''   'bundled pkgs [full, lite, base]'   'b'
+DEFINE_boolean 'pwrmgt'      false 'enable power management'           'p'
 DEFINE_boolean 'ssh'         false 'enable ssh access'                 's'
 DEFINE_string  'hostsallowed' ''   'hosts allowed to connect over ssh' 'a'
 DEFINE_string  'electrum'     ''   'link to Electrum pubkey'           'E'
@@ -215,6 +216,15 @@ else
   # set to 1 to explicitly enable selectifying without the use of cmdline
   # flags or environment variables
   _select=0
+fi
+
+# power management on/off
+if [[ "${FLAGS_pwrmgt}" -eq "${FLAGS_TRUE}" || -n "$PWRMGT" ]]; then
+  _pwrmgt=1
+else
+  # set to 1 to explicitly enable pwrmgtment without the use of cmdline
+  # flags or environment variables
+  _pwrmgt=0
 fi
 
 # ssh on/off
@@ -2192,6 +2202,77 @@ arch-chroot /mnt systemctl enable systemd-swap
   && msg "Disabling btrfs Copy-On-Write where optimal..."
 
 chattrify "/var/log/journal" "755" "root" "systemd-journal"
+}
+
+
+
+
+# -----------------------------------------------------------------------------
+# pwrmgtify: enable power management with TLP
+# -----------------------------------------------------------------------------
+
+
+                        if [[ "$_debug" == '1' ]]; then
+                             echo "***************"
+                             echo "*  ---------  *"
+                             echo "* |pwrmgtify| *"
+                             echo "*  ---------  *"
+                             echo "***************"
+                                       fi
+
+
+
+pwrmgtify() {
+
+# get power management packages
+
+                        if [[ "$_debug" == '1' ]]; then
+                           echo "*******************"
+                           echo "*                 *"
+                           echo "* get pwrmgt pkgs *"
+                           echo "*                 *"
+                           echo "*******************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Getting power management packages..."
+
+arch-chroot /mnt pacaur -Sy --needed tlp --noedit --noconfirm
+
+# avoid filesystem corruption on btrfs formatted partitions
+# (https://wiki.archlinux.org/index.php/TLP)
+
+                        if [[ "$_debug" == '1' ]]; then
+                           echo "******************"
+                           echo "*                *"
+                           echo "* fix TLP config *"
+                           echo "*                *"
+                           echo "******************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Fixing TLP config SATA_LINKPWR_ON_BAT for Btrfs..."
+
+sed -i 's/SATA_LINKPWR_ON_BAT.*/SATA_LINKPWR_ON_BAT=max_performance/' \
+  /mnt/etc/default/tlp
+
+# setup TLP power management services
+
+                        if [[ "$_debug" == '1' ]]; then
+                           echo "*******************"
+                           echo "*                 *"
+                           echo "* pwrmgt services *"
+                           echo "*                 *"
+                           echo "*******************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Setting up TLP power management systemd services..."
+
+arch-chroot /mnt systemctl mask systemd-rkfill.service
+arch-chroot /mnt systemctl mask NetworkManager.service
+arch-chroot /mnt systemctl enable tlp.service
+arch-chroot /mnt systemctl enable tlp-sleep.service
 }
 
 
@@ -4388,6 +4469,14 @@ luksify
 
 # base system
 pacstrapify
+
+# power management
+if   [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
+  ask "Enable power management? (y/N)" "n"
+  if [[  "$_retval" == '0' ]]; then pwrmgtify; fi
+elif [[  "${_pwrmgt}" == '1' ]]; then
+  pwrmgtify
+fi
 
 # ssh
 if   [[  "${FLAGS_interactive}" -eq "${FLAGS_TRUE}" ]]; then
