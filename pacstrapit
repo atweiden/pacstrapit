@@ -2622,6 +2622,7 @@ if [[ "${_base}" == '1' ]]; then
           'git'
           'git-appraise'
           'git-extras'
+          'gitlint'
           'gnupg1'
           'hexgrep'
           'httpie'
