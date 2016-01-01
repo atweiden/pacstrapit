@@ -2494,6 +2494,7 @@ declare _bundle_full=('base'
                       'grsec'
                       'gui'
                       'dotfiles'
+                      'as'
                       'analysis'
                       'android'
                       'assembly'
@@ -3341,6 +3342,10 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-ycm-generator-plugged-git'
             'vim-ycm_simple_conf-plugged-git'
             'vim-youcompleteme-plugged-git')
+
+if [[ "${_as}" == '1' ]]; then
+  _vimplugs+=('vim-actionscript-plugged-git')
+fi
 
 if [[ "${_analysis}" == '1' ]]; then
   _pkgs+=('glances'
