@@ -3678,7 +3678,7 @@ if [[ "${_php}" == '1' ]]; then
               'vim-phpcomplete-extended-plugged-git'
               'vim-php-folding-plugged-git'
               'vim-php-indent-plugged-git'
-              'vim-php-syntax-plugged-git'
+              'vim-php-plugged-git'
               'vim-xhp-plugged-git')
 fi
 
