@@ -3621,9 +3621,7 @@ fi
 if [[ "${_markdown}" == '1' ]]; then
   _pkgs+=('markdown')
   _vimpkgs+=('markdown2ctags')
-  _vimplugs+=('vim-markdown-enhancements-plugged-git'
-              'vim-markdown-folding-plugged-git'
-              'vim-markdown-plugged-git')
+  _vimplugs+=('vim-markdown-plugged-git')
 fi
 
 if [[ "${_nim}" == '1' ]]; then
