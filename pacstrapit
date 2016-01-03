@@ -3672,6 +3672,7 @@ if [[ "${_php}" == '1' ]]; then
           'php'
           'php-composer'
           'php-docs'
+          'php-pear'
           'php-phpdbg'
           'xdebug')
   _vimplugs+=('vim-hack-plugged-git'
