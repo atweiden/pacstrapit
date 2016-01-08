@@ -318,7 +318,7 @@ if [[ "$(uname -m)" == 'x86_64' ]]; then
 fi
 sed -i "/^\\[extra\\].*/i [haskell-core]\n" /etc/pacman.conf
 sed -i "/^\\[haskell-core\\].*/i #https://wiki.archlinux.org/index.php/ArchHaskell" /etc/pacman.conf
-sed -i "/^\\[haskell-core\\].*/a #Server = http://www.kiwilight.com/haskell/core/\$arch" /etc/pacman.conf
+sed -i "/^\\[haskell-core\\].*/a #Server = http://orbitalfox.com/haskell/core/\$arch" /etc/pacman.conf
 sed -i "/^\\[haskell-core\\].*/a Server = http://xsounds.org/~haskell/core/\$arch" /etc/pacman.conf
 
 # depends: pacman-key --init
