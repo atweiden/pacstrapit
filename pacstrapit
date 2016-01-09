@@ -3337,7 +3337,6 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-vertical-move-plugged-git'
             'vim-vimfiler-plugged-git'
             'vim-vimproc-plugged-git'
-            'vim-vimux-plugged-git'
             'vim-vis-plugged-git'
             'vim-visualrepeat-plugged-git'
             'vim-wordy-plugged-git'
@@ -3709,7 +3708,6 @@ if [[ "${_python}" == '1' ]]; then
   _vimplugs+=('vim-cython-plugged-git'
               'vim-kivy-plugged-git'
               'vim-python-combined-plugged-git'
-              'vim-vimux-ipy-plugged-git'
               'vim-virtualenv-plugged-git')
 fi
 
@@ -3866,8 +3864,7 @@ declare _vimplugs_deps=('vim-align-plugged-git'
                         'vim-textobj-user-plugged-git'
                         'vim-textobj-function-plugged-git'
                         'vim-vimproc-plugged-git'
-                        'vim-unite-plugged-git'
-                        'vimux-plugged-git')
+                        'vim-unite-plugged-git')
 
 # install selected pkgs
 
