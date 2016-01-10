@@ -2894,6 +2894,7 @@ if [[ "${_gui}" == '1' ]]; then
           'shotwell'
           'slop'
           'source-highlight'
+          'speedcrunch'
           'startup-notification'
           'statler-ui-theme'
           'stribogsum'
