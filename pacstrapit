@@ -2664,6 +2664,7 @@ if [[ "${_base}" == '1' ]]; then
           'p7zip'
           'package-query'
           'packer'
+          'paclog'
           'pacmatic'
           'pacnew_scripts'
           'pacserve'

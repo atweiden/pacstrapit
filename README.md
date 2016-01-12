@@ -357,6 +357,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
 <tr><td><a href="https://github.com/archlinuxfr/package-query">package-query</a></td><td>Query ALPM and AUR.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
+<tr><td><a href="https://github.com/protist/paclog">paclog</a></td><td>List recent commits for Arch Linux packages.</td></tr>
 <tr><td><a href="http://kmkeen.com/pacmatic/">pacmatic</a></td><td>Pacman with less surprises.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacnew_scripts">pacnew_scripts</a></td><td>A collection of scripts to help merge changes in .pacnew files.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/pacserve">pacserve</a></td><td>Easily share Pacman packages between computers.</td></tr>
