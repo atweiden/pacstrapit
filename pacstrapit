@@ -2662,6 +2662,7 @@ if [[ "${_base}" == '1' ]]; then
           'openvpn'
           'ottools'
           'p7zip'
+          'pacdep'
           'package-query'
           'packer'
           'paclog'

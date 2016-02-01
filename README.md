@@ -355,6 +355,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://openvpn.net/index.php/open-source.html">openvpn</a></td><td>An easy-to-use, robust, and highly configurable VPN.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/ottools">ottools</a></td><td>Tools for encrypting files with one-time pads.</td></tr>
 <tr><td><a href="http://p7zip.sourceforge.net/">p7zip</a></td><td>7zip file archiver.</td></tr>
+<tr><td><a href="http://jjacky.com/pacdep">pacdep</a></td><td>List package dependencies.</td></tr>
 <tr><td><a href="https://github.com/archlinuxfr/package-query">package-query</a></td><td>Query ALPM and AUR.</td></tr>
 <tr><td><a href="https://github.com/keenerd/packer">packer</a></td><td>Bash wrapper for Pacman and AUR.</td></tr>
 <tr><td><a href="https://github.com/protist/paclog">paclog</a></td><td>List recent commits for Arch Linux packages.</td></tr>
