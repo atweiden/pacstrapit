@@ -823,6 +823,7 @@ btrfs subvolume create @
 btrfs subvolume create @home
 btrfs subvolume create @opt
 btrfs subvolume create @srv
+btrfs subvolume create @tmp
 btrfs subvolume create @usr
 btrfs subvolume create @var
 popd
@@ -839,7 +840,7 @@ popd
   && msg "Mounting btrfs subvolumes..."
 
 mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@ /dev/mapper/${_luks_name} /mnt
-for _btrfs_dir in home opt srv usr var; do
+for _btrfs_dir in home opt srv tmp usr var; do
   mkdir -p /mnt/${_btrfs_dir} && mount -t btrfs -o rw,noatime,nodiratime,compress=lzo,space_cache,subvol=@${_btrfs_dir} /dev/mapper/${_luks_name} /mnt/${_btrfs_dir}
 done
 
@@ -1540,6 +1541,36 @@ arch-chroot /mnt ln -s /usr/share/zoneinfo/${_timezone} /etc/localtime
   && msg "Setting hardware clock..."
 
 arch-chroot /mnt hwclock --systohc --utc
+
+# configure tmp directories
+
+                        if [[ "$_debug" == '1' ]]; then
+                             echo "**************"
+                             echo "*            *"
+                             echo "* tmpfiles.d *"
+                             echo "*            *"
+                             echo "**************"
+                                       fi
+
+[[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
+  && msg "Configuring tmp mounts..."
+
+# https://wiki.archlinux.org/index.php/Tmpfs#Disable_automatic_mount
+arch-chroot /mnt systemctl mask tmp.mount
+cat >> /mnt/etc/tmpfiles.d/tmp.conf <<'EOF'
+# see tmpfiles.d(5)
+# always enable /tmp folder cleaning
+D! /tmp 1777 root root 0
+
+# remove files in /var/tmp older than 10 days
+D /var/tmp 1777 root root 10d
+
+# namespace mountpoints (PrivateTmp=yes) are excluded from removal
+x /tmp/systemd-private-*
+x /var/tmp/systemd-private-*
+X /tmp/systemd-private-*/tmp
+X /var/tmp/systemd-private-*/tmp
+EOF
 
 # configure pacman.conf
 
@@ -4453,7 +4484,7 @@ exitify() {
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Unmounting..."
 
-umount /mnt/{boot,home,opt,srv,usr,var,}
+umount /mnt/{boot,home,opt,srv,tmp,usr,var,}
 
 echo "******************************"
 echo "*                            *"
