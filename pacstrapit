@@ -3534,7 +3534,8 @@ fi
 
 if [[ "${_go}" == '1' ]]; then
   _pkgs+=('go'
-          'godep')
+          'godep'
+          'go-tools')
   _vimpkgs+=('gotags-git')
   _vimplugs+=('vim-go-extra-plugged-git'
               'vim-go-plugged-git')
