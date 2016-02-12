@@ -3847,9 +3847,9 @@ if [[ "${_webdev}" == '1' ]]; then
   _vimplugs+=('vim-breeze-plugged-git'
               'vim-haml-plugged-git'
               'vim-html5-plugged-git'
-              'vim-jade-plugged-git'
               'vim-jinja2-syntax-plugged-git'
               'vim-mustache-handlebars-plugged-git'
+              'vim-pug-plugged-git'
               'vim-slim-plugged-git')
   if [[ "${_gui}" == '1' ]]; then # https://www.nightmarejs.org/
     _pkgs+=('casperjs-git'
