@@ -3074,7 +3074,7 @@ fi
 
 if [[ "${_gui}" == '1' ]]; then
   declare _vimpkgs=('gvim')
-  declare _vimplugs=('vim-vcooler-plugged-git')
+  declare _vimplugs=('vim-vcoolor-plugged-git')
 else
   declare _vimpkgs=('vim')
   declare _vimplugs=()
