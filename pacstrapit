@@ -4082,7 +4082,6 @@ vboxpci
 # Load vboxvideo module at boot (only on guest)
 #vboxvideo
 EOF
-  arch-chroot /mnt systemctl enable dkms
 fi
 
 # clean pacaur
