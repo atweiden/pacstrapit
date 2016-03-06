@@ -3800,8 +3800,7 @@ if [[ "${_vbox}" == '1' ]]; then
           'virtualbox'
           'virtualbox-ext-oracle'
           'virtualbox-guest-iso'
-          'virtualbox-host-dkms'
-          'virtualbox-host-modules')
+          'virtualbox-host-dkms')
 fi
 
 if [[ "${_webdev}" == '1' ]]; then
