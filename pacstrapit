@@ -3669,7 +3669,8 @@ if [[ "${_markdown}" == '1' ]]; then
 fi
 
 if [[ "${_nim}" == '1' ]]; then
-  _pkgs+=('nim'
+  _pkgs+=('c2nim'
+          'nim'
           'nimble'
           'nimsuggest')
   _vimplugs+=('vim-nim-plugged-git')
