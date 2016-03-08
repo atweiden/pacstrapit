@@ -316,6 +316,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="https://git-scm.com/">git</a></td><td>Fast distributed version control system.</td></tr>
 <tr><td><a href="https://github.com/google/git-appraise">git-appraise</a></td><td>Distributed code review system for Git repositories.</td></tr>
 <tr><td><a href="https://github.com/visionmedia/git-extras">git-extras</a></td><td>Git utilities.</td></tr>
+<tr><td><a href="https://git-lfs.github.com/">git-lfs</a></td><td>An open source Git extension for versioning large files.</td></tr>
 <tr><td><a href="https://jorisroovers.github.io/gitlint/">gitlint</a></td><td>Git commit message linter.</td></tr>
 <tr><td><a href="https://www.gnupg.org/">gnupg1</a></td><td>GNU Privacy Guard.</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/hexgrep">hexgrep</a></td><td>Versatile grep-like binary stream and file search tool.</td></tr>

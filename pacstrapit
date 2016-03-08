@@ -2654,6 +2654,7 @@ if [[ "${_base}" == '1' ]]; then
           'git'
           'git-appraise'
           'git-extras'
+          'git-lfs'
           'gitlint'
           'gnupg1'
           'hexgrep'
