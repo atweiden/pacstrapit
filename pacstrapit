@@ -3887,7 +3887,6 @@ fi
 
 declare _vimplugs_deps=('vim-plug-git'
                         'vim-align-plugged-git'
-                        'vim-bufsync-plugged-git'
                         'vim-clojure-static-plugged-git'
                         'vim-colors-ir_black-plugged-git'
                         'vim-dbext-plugged-git'
