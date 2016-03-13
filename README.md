@@ -298,6 +298,7 @@ Base packages (use `--bundle "base"` to include):
 <tr><td><a href="http://www.agroman.net/corkscrew/">corkscrew</a></td><td>A tool for tunneling SSH through HTTP proxies.</td></tr>
 <tr><td><a href="https://github.com/oblique/create_ap">create_ap</a></td><td>Create a NATed/Bridged Software Access Point (aka WiFi).</td></tr>
 <tr><td><a href="http://xyne.archlinux.ca/projects/cronwhip">cronwhip</a></td><td>Run missed cronjobs.</td></tr>
+<tr><td><a href="https://www.cryfs.org/">cryfs</a></td><td> Cryptographic filesystem for the cloud.</td></tr>
 <tr><td><a href="https://unix4lyfe.org/darkhttpd/">darkhttpd</a></td><td>Small and secure static webserver.</td></tr>
 <tr><td><a href="https://projects.archlinux.org/devtools">devtools</a></td><td>Tools for package maintainers.</td></tr>
 <tr><td><a href="https://github.com/pbrisbin/downgrade">downgrade</a></td><td>Downgrade software to an earlier version.</td></tr>
