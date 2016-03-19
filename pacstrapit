@@ -1028,6 +1028,7 @@ pacstrap /mnt abs                  \
               gptfdisk             \
               grub-bios            \
               haveged              \
+              ifplugd              \
               iproute2             \
               iptables             \
               iw                   \
