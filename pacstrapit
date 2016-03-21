@@ -2641,6 +2641,7 @@ if [[ "${_base}" == '1' ]]; then
           'darkhttpd'
           'devtools'
           'downgrade'
+          'dtags'
           'dvd+rw-tools'
           'easytether-rpm'
           'elinks'
