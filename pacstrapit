@@ -2526,6 +2526,7 @@ declare _bundle_full=('base'
                       'grsec'
                       'gui'
                       'dotfiles'
+                      'ada'
                       'as'
                       'analysis'
                       'android'
@@ -3393,6 +3394,11 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-ycm-generator-plugged-git'
             'vim-ycm_simple_conf-plugged-git'
             'vim-youcompleteme-plugged-git')
+
+if [[ "${_ada}" == '1' ]]; then
+  _pkgs+=('gcc-ada')
+  _vimplugs+=('vim-ada-bundle-plugged-git')
+fi
 
 if [[ "${_as}" == '1' ]]; then
   _vimplugs+=('vim-actionscript-plugged-git')

@@ -432,7 +432,8 @@ Base packages (use `--bundle "base"` to include):
 Additional packages are available.
 
 <table>
-<tr><td>AS</td><td>Packages for ActionScript programming</td></tr>
+<tr><td>AS</td><td>Packages for programming in ActionScript</td></tr>
+<tr><td>Ada</td><td>Packages for programming in Ada</td></tr>
 <tr><td>Analysis</td><td>Packages for system analysis</td></tr>
 <tr><td>Android</td><td>Packages for Android programming</td></tr>
 <tr><td>Assembly</td><td>Packages for programming in Assembly</td></tr>
