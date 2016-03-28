@@ -2751,6 +2751,7 @@ if [[ "${_base}" == '1' ]]; then
           'synclinks'
           'tcplay'
           'terminfo-italics'
+          'terminfo-neovim-tmux'
           'the_platinum_searcher'
           'the_silver_searcher'
           'timedatectl-restorer'
