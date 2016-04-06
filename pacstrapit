@@ -2301,10 +2301,10 @@ sed -i 's/SATA_LINKPWR_ON_BAT.*/SATA_LINKPWR_ON_BAT=max_performance/' \
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Setting up TLP power management systemd services..."
 
-arch-chroot /mnt systemctl mask systemd-rkfill.service
-arch-chroot /mnt systemctl mask NetworkManager.service
-arch-chroot /mnt systemctl enable tlp.service
-arch-chroot /mnt systemctl enable tlp-sleep.service
+arch-chroot /mnt systemctl mask systemd-rkfill
+arch-chroot /mnt systemctl mask NetworkManager
+arch-chroot /mnt systemctl enable tlp
+arch-chroot /mnt systemctl enable tlp-sleep
 }
 
 
@@ -2922,6 +2922,7 @@ if [[ "${_gui}" == '1' ]]; then
           'qtcreator'
           'randrproto'
           'recode'
+          'redshift'
           'renderproto'
           'ricochet'
           'rxvt-unicode-pixbuf'
@@ -3002,7 +3003,6 @@ if [[ "${_gui}" == '1' ]]; then
           'xfce4-terminal'
           'xfce4-terminal-colors-jellyx'
           'xfce4-terminal-colors-seoul256'
-          'xflux'
           'xineramaproto'
           'xkev-git'
           'xkeyboard-config'
@@ -3397,7 +3397,8 @@ _vimplugs+=('vim-abolish-plugged-git'
             'vim-youcompleteme-plugged-git')
 
 if [[ "${_ada}" == '1' ]]; then
-  _pkgs+=('gcc-ada')
+  _pkgs+=('gcc-ada'
+          'gprbuild')
   _vimplugs+=('vim-ada-bundle-plugged-git')
 fi
 
