@@ -3725,9 +3725,9 @@ if [[ "${_perl6}" == '1' ]]; then # _perl6pkg dependencies are installed in orde
 fi
 
 if [[ "${_php}" == '1' ]]; then
-  _pkgs+=('hhvm'
+  _pkgs+=('composer'
+          'hhvm'
           'php'
-          'php-composer'
           'php-docs'
           'php-pear'
           'php-phpdbg'
