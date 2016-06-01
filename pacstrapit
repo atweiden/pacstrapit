@@ -1843,7 +1843,7 @@ arch-chroot /mnt mkinitcpio -p linux
 [[ "$FLAGS_verbose" == "$FLAGS_TRUE" ]] \
   && msg "Installing GRUB..."
 
-_luks_uuid=$(blkid -s UUID -o value ${_partition##/dev/}3)
+_luks_uuid=$(blkid -s UUID -o value ${_partition}3)
 if [[ "${_disk}" == 'ssd' && "${_graphics}" == 'radeon' ]]; then
   arch-chroot /mnt sed -i "s!^GRUB_CMDLINE_LINUX=.*!GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/disk/by-uuid/${_luks_uuid}:${_luks_name} rootflags=subvol=@ elevator=noop radeon.dpm=1\"!" /etc/default/grub
 elif [[ "${_disk}" == 'ssd' ]]; then
